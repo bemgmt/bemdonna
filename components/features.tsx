@@ -41,7 +41,7 @@ const features: FeatureCard[] = [
     title: "AI + Human Collaboration",
     subtitle: "Automation that knows when to hand off",
     description:
-      "Donna routes conversations intelligently across industries. AI manages everyday interactions, while humans can review, approve, or step in with one click—all within a unified dashboard.",
+      "Donna routes conversations intelligently across industries. AI manages everyday interactions, while human operators can review, approve, or step in with one click—all within a unified dashboard. Choose full automation or hybrid mode with live human support for complex inquiries and high-value interactions.",
   },
   {
     id: "integrations",

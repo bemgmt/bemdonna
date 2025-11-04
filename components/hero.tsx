@@ -102,7 +102,7 @@ export default function Hero() {
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
               <span className="gradient-text">Meet DONNA</span>
               <br />
-              Your full service digital assistant that NEVER stops
+              Your AI Office Assistant That Never Sleeps
             </h1>
 
             <p className="text-lg md:text-xl text-foreground/90 mb-8 leading-relaxed">

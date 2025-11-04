@@ -139,7 +139,7 @@ export default function DemoForm() {
                 value={formData.role}
                 onChange={handleChange}
                 required
-                className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-accent/50 focus:outline-none transition-colors"
+                className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-accent/50 focus:outline-none transition-colors [&>option]:bg-background [&>option]:text-foreground"
               >
                 <option value="">Select Your Role</option>
                 <option value="founder">Founder / CEO</option>

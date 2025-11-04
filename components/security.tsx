@@ -3,10 +3,10 @@
 import { useInView } from "react-intersection-observer"
 
 const securityItems = [
-  { icon: "⬢", title: "Enterprise Security", description: "Bank-level encryption and security protocols" },
-  { icon: "✓", title: "SOC 2 Type II", description: "Independently audited and certified" },
-  { icon: "◐", title: "GDPR Compliant", description: "Full compliance with data protection regulations" },
-  { icon: "⚙", title: "Data Privacy", description: "Your data is yours. We never train on it." },
+  { icon: "⬢", title: "Built on AWS", description: "Enterprise-grade infrastructure with AWS ECS/Fargate, Aurora RDS, and DynamoDB. Benefit from AWS's 99.99% uptime SLA and global redundancy." },
+  { icon: "✓", title: "Verizon Partnership", description: "Powered by Verizon's enterprise network for superior call quality, reliability, and nationwide coverage. Access to Verizon's 5G network and priority routing." },
+  { icon: "◐", title: "SOC 2 Type II & GDPR", description: "Independently audited and certified. Full compliance with data protection regulations and industry standards." },
+  { icon: "⚙", title: "Data Privacy & Security", description: "Bank-level encryption, SSL via Certificate Manager, IAM least-privilege access. Your data is yours—we never train on it." },
 ]
 
 export default function Security() {
