@@ -21,9 +21,9 @@ export async function POST(request: NextRequest) {
     const mailOptions = {
       from: process.env.GMAIL_EMAIL,
       to: process.env.GMAIL_EMAIL,
-      subject: `DONNA ${type === "demo" ? "Demo Request" : "Pilot Signup"} - ${name}`,
+      subject: `DONNA ${type === "waitlist" ? "Waitlist Signup" : "Demo Request"} - ${name}`,
       html: `
-        <h2>New ${type === "demo" ? "Demo Request" : "Pilot Signup"}</h2>
+        <h2>New ${type === "waitlist" ? "Waitlist Signup" : "Demo Request"}</h2>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Company:</strong> ${company}</p>
@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
       subject: "DONNA - We Received Your Request",
       html: `
         <h2>Thank you, ${name}!</h2>
-        <p>We've received your ${type === "demo" ? "demo request" : "pilot signup"}. Our team will be in touch within 24 hours.</p>
+        <p>We've received your ${type === "waitlist" ? "waitlist signup" : "demo request"}. Our team will be in touch within 24 hours.</p>
         <p>In the meantime, feel free to check out our documentation at <a href="#">docs.donna.ai</a></p>
         <p>Best regards,<br>The DONNA Team</p>
       `,

@@ -47,18 +47,9 @@ export default function Header() {
                 const form = document.getElementById("demo-form")
                 form?.scrollIntoView({ behavior: "smooth" })
               }}
-              className="px-4 py-2 rounded-lg border border-accent/50 text-accent hover:bg-accent/10 transition-colors text-sm font-medium"
-            >
-              Request Demo
-            </button>
-            <button
-              onClick={() => {
-                const form = document.getElementById("pilot-form")
-                form?.scrollIntoView({ behavior: "smooth" })
-              }}
               className="px-4 py-2 rounded-lg bg-accent text-background hover:bg-accent/90 transition-colors text-sm font-medium"
             >
-              Join Pilot
+              Join the Waitlist
             </button>
           </div>
 
@@ -81,11 +72,15 @@ export default function Header() {
               </Link>
             ))}
             <div className="flex gap-2 pt-2">
-              <button className="flex-1 px-3 py-2 rounded-lg border border-accent/50 text-accent text-sm font-medium">
-                Request Demo
-              </button>
-              <button className="flex-1 px-3 py-2 rounded-lg bg-accent text-background text-sm font-medium">
-                Join Pilot
+              <button
+                onClick={() => {
+                  const form = document.getElementById("demo-form")
+                  form?.scrollIntoView({ behavior: "smooth" })
+                  setIsOpen(false)
+                }}
+                className="flex-1 px-3 py-2 rounded-lg bg-accent text-background text-sm font-medium"
+              >
+                Join the Waitlist
               </button>
             </div>
           </nav>

@@ -11,7 +11,7 @@ interface FormData {
   company: string
   role: string
   useCase: string
-  type: "demo" | "pilot"
+  type: "waitlist" | "demo"
 }
 
 export default function DemoForm() {
@@ -21,7 +21,7 @@ export default function DemoForm() {
     company: "",
     role: "",
     useCase: "",
-    type: "demo",
+    type: "waitlist",
   })
 
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -47,7 +47,7 @@ export default function DemoForm() {
 
       if (response.ok) {
         setSubmitSuccess(true)
-        setFormData({ name: "", email: "", company: "", role: "", useCase: "", type: "demo" })
+        setFormData({ name: "", email: "", company: "", role: "", useCase: "", type: "waitlist" })
         setTimeout(() => setSubmitSuccess(false), 5000)
       }
     } catch (error) {
@@ -62,12 +62,12 @@ export default function DemoForm() {
       <div className="max-w-2xl mx-auto">
         <div className="glass-card p-8 rounded-xl glow-accent">
           <h2 className="text-3xl font-bold mb-2 gradient-text">
-            {formData.type === "demo" ? "Request a Demo" : "Join the Pilot"}
+            {formData.type === "waitlist" ? "Join the Waitlist" : "Request a Demo"}
           </h2>
           <p className="text-foreground/70 mb-6">
-            {formData.type === "demo"
-              ? "See DONNA in action with a personalized demo"
-              : "Be among the first to experience DONNA"}
+            {formData.type === "waitlist"
+              ? "Be among the first to experience DONNA"
+              : "See DONNA in action with a personalized demo"}
           </p>
 
           {submitSuccess && (
@@ -77,8 +77,19 @@ export default function DemoForm() {
           )}
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Demo vs Pilot toggle */}
+            {/* Waitlist vs Demo toggle */}
             <div className="flex gap-3 mb-6">
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="type"
+                  value="waitlist"
+                  checked={formData.type === "waitlist"}
+                  onChange={handleChange}
+                  className="w-4 h-4"
+                />
+                <span>Join Waitlist</span>
+              </label>
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="radio"
@@ -89,17 +100,6 @@ export default function DemoForm() {
                   className="w-4 h-4"
                 />
                 <span>Request Demo</span>
-              </label>
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="radio"
-                  name="type"
-                  value="pilot"
-                  checked={formData.type === "pilot"}
-                  onChange={handleChange}
-                  className="w-4 h-4"
-                />
-                <span>Join Pilot</span>
               </label>
             </div>
 
@@ -164,7 +164,7 @@ export default function DemoForm() {
               disabled={isSubmitting}
               className="w-full px-6 py-3 rounded-lg bg-accent text-background hover:bg-accent/90 disabled:opacity-50 transition-all font-semibold glow-accent hover:shadow-[0_0_30px_rgba(132,204,255,0.5)]"
             >
-              {isSubmitting ? "Submitting..." : formData.type === "demo" ? "Request Demo" : "Join Pilot"}
+              {isSubmitting ? "Submitting..." : formData.type === "waitlist" ? "Join Waitlist" : "Request Demo"}
             </button>
           </form>
         </div>

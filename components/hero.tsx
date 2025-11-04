@@ -118,16 +118,7 @@ export default function Hero() {
                 }}
                 className="px-8 py-3 rounded-lg bg-accent text-background hover:bg-accent/90 transition-all duration-300 font-semibold text-lg glow-accent hover:shadow-[0_0_30px_rgba(132,204,255,0.5)]"
               >
-                Request a Demo
-              </button>
-              <button
-                onClick={() => {
-                  const form = document.getElementById("pilot-form")
-                  form?.scrollIntoView({ behavior: "smooth" })
-                }}
-                className="px-8 py-3 rounded-lg border-2 border-primary text-primary hover:bg-primary/10 transition-colors font-semibold text-lg"
-              >
-                Join the Pilot
+                Join the Waitlist
               </button>
             </div>
 

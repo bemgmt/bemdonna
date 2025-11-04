@@ -7,7 +7,6 @@ import UseCases from "@/components/use-cases"
 import Integrations from "@/components/integrations"
 import Security from "@/components/security"
 import Pricing from "@/components/pricing"
-import Testimonials from "@/components/testimonials"
 import FAQ from "@/components/faq"
 import DemoForm from "@/components/demo-form"
 import CTAFooter from "@/components/cta-footer"
@@ -25,7 +24,6 @@ export default function Home() {
       <Integrations />
       <Security />
       <Pricing />
-      <Testimonials />
       <FAQ />
       <div id="demo-form">
         <DemoForm />
