@@ -60,7 +60,7 @@ export default function DemoForm() {
   return (
     <div ref={formRef} className="py-20 px-4 sm:px-6 lg:px-8 bg-primary/5">
       <div className="max-w-2xl mx-auto">
-        <div className="glass-card p-8 rounded-xl glow-accent">
+        <div className="glass-card p-8 rounded-xl glow-accent text-center">
           <h2 className="text-3xl font-bold mb-2 gradient-text">
             {formData.type === "waitlist" ? "Join the Waitlist" : "Request a Demo"}
           </h2>
@@ -78,7 +78,7 @@ export default function DemoForm() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Waitlist vs Demo toggle */}
-            <div className="flex gap-3 mb-6">
+            <div className="flex gap-3 mb-6 justify-center">
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="radio"
