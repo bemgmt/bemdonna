@@ -11,6 +11,7 @@ import FAQ from "@/components/faq"
 import DemoForm from "@/components/demo-form"
 import CTAFooter from "@/components/cta-footer"
 import Footer from "@/components/footer"
+import Chatbot from "@/components/chatbot"
 
 export default function Home() {
   return (
@@ -30,6 +31,7 @@ export default function Home() {
       </div>
       <CTAFooter />
       <Footer />
+      <Chatbot />
     </main>
   )
 }
