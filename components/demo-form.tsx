@@ -38,20 +38,26 @@ export default function DemoForm() {
     setIsSubmitting(true)
 
     try {
-      // Send to Gmail via API route
+      // Send to email via API route
       const response = await fetch("/api/send-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       })
 
+      const data = await response.json()
+
       if (response.ok) {
         setSubmitSuccess(true)
         setFormData({ name: "", email: "", company: "", role: "", useCase: "", type: "waitlist" })
         setTimeout(() => setSubmitSuccess(false), 5000)
+      } else {
+        console.error("Form submission error:", data)
+        alert(`Error: ${data.error || "Failed to send email. Please try again or contact us at info@bemdonna.com"}`)
       }
     } catch (error) {
       console.error("Error submitting form:", error)
+      alert("Network error. Please check your connection and try again.")
     } finally {
       setIsSubmitting(false)
     }

@@ -6,9 +6,21 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     const { name, email, company, role, useCase, type } = body
 
-    // Create a transporter using Siteground SMTP
-    // You need to add SMTP_HOST, SMTP_PORT, SMTP_USER, and SMTP_PASSWORD to environment variables
+    // Validate required fields
+    if (!name || !email || !company || !role) {
+      return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
+    }
 
+    // Check if SMTP credentials are configured
+    if (!process.env.SMTP_HOST || !process.env.SMTP_USER || !process.env.SMTP_PASSWORD) {
+      console.error("SMTP credentials not configured")
+      return NextResponse.json(
+        { error: "Email service not configured. Please contact support." },
+        { status: 500 }
+      )
+    }
+
+    // Create a transporter using Siteground SMTP
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: parseInt(process.env.SMTP_PORT || "465"),
@@ -18,6 +30,18 @@ export async function POST(request: NextRequest) {
         pass: process.env.SMTP_PASSWORD,
       },
     })
+
+    // Verify SMTP connection
+    try {
+      await transporter.verify()
+      console.log("SMTP connection verified")
+    } catch (verifyError) {
+      console.error("SMTP verification failed:", verifyError)
+      return NextResponse.json(
+        { error: "Email server connection failed. Please contact support." },
+        { status: 500 }
+      )
+    }
 
     const mailOptions = {
       from: process.env.SMTP_USER,
@@ -35,7 +59,9 @@ export async function POST(request: NextRequest) {
       `,
     }
 
+    console.log("Sending notification email to:", process.env.SMTP_USER)
     await transporter.sendMail(mailOptions)
+    console.log("Notification email sent successfully")
 
     // Also send confirmation to user
     const userMailOptions = {
@@ -50,11 +76,14 @@ export async function POST(request: NextRequest) {
       `,
     }
 
+    console.log("Sending confirmation email to:", email)
     await transporter.sendMail(userMailOptions)
+    console.log("Confirmation email sent successfully")
 
     return NextResponse.json({ message: "Email sent successfully" }, { status: 200 })
   } catch (error) {
     console.error("Email error:", error)
-    return NextResponse.json({ error: "Failed to send email" }, { status: 500 })
+    const errorMessage = error instanceof Error ? error.message : "Unknown error"
+    return NextResponse.json({ error: `Failed to send email: ${errorMessage}` }, { status: 500 })
   }
 }
