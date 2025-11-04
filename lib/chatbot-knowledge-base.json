@@ -1,0 +1,337 @@
+{
+  "bot_name": "Donna",
+  "bot_persona": {
+    "summary": "Donna is an AI Office Assistant built by Bird's Eye Management Services. She helps organizations automate communications, workflows, and lead management across voice, chat, and email.",
+    "tone": "Professional, friendly, and knowledgeable with a human-like conversational style.",
+    "core_values": ["Efficiency", "Reliability", "Innovation", "Human-AI Collaboration"]
+  },
+  "company": {
+    "name": "DONNA",
+    "developer": "Bird's Eye Management Services",
+    "ceo": "Derek Talbird",
+    "based_in": "California, USA",
+    "tagline": "Your Digital Office Neural Network Assistant",
+    "description": "Donna is a modular AI system that unifies voice, chat, and automation into one intelligent workspace. She connects departments, manages leads, handles communication, and learns from every interaction.",
+    "key_advantage": "Unlike other AI assistants, Donna is AWS-native, built for real-time human collaboration, and integrates voice, chat, and data tools across business systems.",
+    "partners": ["Amazon Web Services (AWS)", "Verizon Business Solutions", "QuickSuite"]
+  },
+  "beta_program": {
+    "status": "Active (Invite-Only)",
+    "benefits": [
+      "Early access to Donna dashboard and automation tools",
+      "Personalized AI model per organization",
+      "Discounted pricing for first adopters",
+      "Direct input into feature development"
+    ],
+    "how_to_join": "Sign up on the landing page with your business email or request a demo through the contact form."
+  },
+  "pricing": {
+    "note": "Final pricing tiers will be announced post-beta. Current beta users have custom agreements based on usage and features.",
+    "tiers": [
+      {
+        "tier": "Free",
+        "price": "Free",
+        "description": "Join the waitlist to be among the first to experience DONNA",
+        "cta": "Join Waitlist",
+        "featured": true
+      },
+      {
+        "tier": "Pilot",
+        "price": "$5,000",
+        "description": "Early access program with full features and priority support",
+        "cta": "Join Pilot",
+        "featured": false
+      },
+      {
+        "tier": "Custom",
+        "price": "Contact Us",
+        "description": "Custom build, investment opportunities, and partnership options for enterprise needs",
+        "cta": "Contact Us",
+        "featured": false
+      }
+    ]
+  },
+  "modules": {
+    "donna_email": "Analyzes inboxes, drafts responses, classifies messages as leads, clients, or spam, and triggers workflows.",
+    "donna_chat": "Embeddable website chatbot that handles inquiries and routes leads to human agents when needed.",
+    "donna_voice": "AI voice receptionist for inbound/outbound calls, with real-time transcription and multilingual handling.",
+    "donna_crm": "Lead tracking, campaign analytics, and pipeline visualization inside a unified dashboard.",
+    "donna_books": "QuickBooks-style integration module that connects with financial data via API for invoices and reporting.",
+    "donna_photobooth": "Event-based photo and video capture app that integrates with marketing and data collection tools.",
+    "donna_lead_generation": "Hybrid AI and human lead generation system that qualifies prospects, nurtures relationships, and converts leads through intelligent automation and human oversight.",
+    "donna_secretary": "Real-time AI secretary bot that manages schedules, handles appointments, coordinates meetings, and provides executive assistance 24/7.",
+    "donna_landing_page_generator": "Automated landing page creation tool that generates custom, conversion-optimized pages tailored to your business needs and brand identity."
+  },
+  "core_features": {
+    "communication": [
+      "Email management — auto-sorting, drafting, and lead classification",
+      "Real-time chat handling with human fallback",
+      "Voice calls powered by Verizon and ElevenLabs integration",
+      "Multilingual support (English, Spanish, Mandarin, and 25+ languages total)"
+    ],
+    "automation": [
+      "Lead generation and CRM integration",
+      "Task scheduling and reminders",
+      "Document drafting and template automation",
+      "Marketing campaign management"
+    ],
+    "intelligence": [
+      "Local knowledge base training per client",
+      "Memory for ongoing conversations",
+      "Context-aware decision logic via Donna Brain™",
+      "Industry-specific knowledge bases for Real Estate, Hospitality, Professional Services, and Health & Beauty"
+    ]
+  },
+  "features": [
+    {
+      "name": "Real-Time Voice & Chat Interface",
+      "description": "Donna's AWS-powered voice layer handles 4,000+ concurrent users with adaptive streaming, smart call routing, and real-time transcription. WebSocket and phone integrations enable instant responses across any device. Integrated with Verizon for BYOC (Bring Your Own Carrier) telephony and ElevenLabs for realistic voice synthesis.",
+      "benefits": ["4,000+ concurrent users", "Real-time transcription", "Multi-device support", "Verizon-powered voice infrastructure"]
+    },
+    {
+      "name": "Intelligent Knowledge Base",
+      "description": "Four vertical-specific knowledge bases—Real Estate, Hospitality, Professional Services, and Health & Beauty—each with 200+ curated questions and semantic understanding. Powered by AWS Bedrock + Amazon Q, with automatic data ingestion from 600+ sources.",
+      "benefits": ["Industry-specific knowledge", "200+ curated questions per vertical", "600+ source integrations", "Local knowledge base training per client"]
+    },
+    {
+      "name": "Multi-Tenant Architecture",
+      "description": "Each client runs in its own secure environment with isolated data and compute resources. Scalable containers on AWS ECS/Fargate, governed by AWS Control Tower, with Aurora RDS for structured data and DynamoDB for real-time session state.",
+      "benefits": ["Isolated client environments", "Scalable infrastructure", "Enterprise security", "Data isolation per tenant"]
+    },
+    {
+      "name": "AI + Human Collaboration",
+      "description": "Donna routes conversations intelligently across industries. AI manages everyday interactions, while human operators can review, approve, or step in with one click. Choose full automation or hybrid mode with live human support for complex inquiries and high-value interactions.",
+      "benefits": ["Intelligent routing", "Human oversight option", "Hybrid automation mode", "High-quality lead conversion"]
+    },
+    {
+      "name": "Automation & Integrations",
+      "description": "Instant integration with 600+ platforms—Google Workspace, QuickBooks ('Donna Books'), Slack, Zendesk, CRMs, and document systems. Choose real-time or scheduled data refresh to keep Donna's knowledge base always current. Integrates with systems like QuickBooks, Google Workspace, Twilio, and custom CRMs through API connections.",
+      "benefits": ["600+ platform integrations", "Real-time sync", "CRM integration", "Custom API connections"]
+    },
+    {
+      "name": "Monitoring, Security & Compliance",
+      "description": "Continuous monitoring with CloudWatch, X-Ray, and CloudTrail. GuardDuty and Security Hub detect threats automatically. SSL via Certificate Manager, DNS via Route 53, and IAM least-privilege access ensure data stays secure and compliant.",
+      "benefits": ["24/7 monitoring", "Automatic threat detection", "SOC 2 Type II certified", "Encryption and IAM-based access"]
+    },
+    {
+      "name": "Performance & Scalability",
+      "description": "Auto-scaling to 5,000+ active sessions, backed by optimized WebSocket and API layers. CI/CD with GitHub + CodePipeline delivers instant updates, while cost optimization keeps operations efficient.",
+      "benefits": ["5,000+ active sessions", "Auto-scaling", "99.9% uptime", "AWS-native reliability"]
+    },
+    {
+      "name": "Client Onboarding & Management",
+      "description": "Persona-based onboarding across 12 user profiles. Guided setup for Quick Suite, connectors, and workflows. Includes monitoring dashboards, admin guides, and runbooks for self-service management.",
+      "benefits": ["15-30 minute setup", "12 user profiles", "Self-service management", "Personalized AI model per organization"]
+    }
+  ],
+  "target_audience": {
+    "industries": [
+      "Real estate agencies",
+      "Construction and ADU builders",
+      "Hospitality and hotels",
+      "Nonprofits and chambers of commerce",
+      "Small and mid-sized business teams"
+    ],
+    "use_cases": [
+      "Automating customer responses and appointment booking",
+      "Lead management and CRM automation",
+      "Voice receptionist and call handling",
+      "Event and marketing support automation"
+    ]
+  },
+  "useCases": [
+    {
+      "industry": "Real Estate",
+      "description": "Transform your real estate operations with AI that handles property inquiries, schedules showings, qualifies leads, and follows up automatically. DONNA answers questions about listings, neighborhood details, pricing, and availability while seamlessly syncing with your CRM.",
+      "outcomes": ["50% faster lead response", "Schedule 3x more showings", "40% higher conversion", "Instant property information"]
+    },
+    {
+      "industry": "Hospitality",
+      "description": "Elevate guest experiences with 24/7 reservation management, instant answers to common questions, room service coordination, and concierge-level support. DONNA handles booking modifications, special requests, and local recommendations while maintaining your brand's voice.",
+      "outcomes": ["24/7 reservation system", "Reduced staff workload", "Better guest experience", "Multilingual support"]
+    },
+    {
+      "industry": "Professional Services",
+      "description": "Streamline client intake and appointment management for law firms, consulting agencies, and professional practices. DONNA collects intake forms, schedules consultations, sends reminders, and manages follow-ups so your team can focus on billable work.",
+      "outcomes": ["Streamlined intake process", "Fewer no-shows", "More billable hours", "Automated follow-ups"]
+    },
+    {
+      "industry": "Health & Beauty",
+      "description": "Manage your salon, spa, or wellness center with automated appointment booking, service inquiries, and client communication. DONNA handles scheduling, cancellations, rescheduling, package information, and sends appointment reminders to reduce no-shows.",
+      "outcomes": ["Automated appointment booking", "Reduced no-shows", "24/7 client support", "Service upselling"]
+    },
+    {
+      "industry": "Construction and ADU Builders",
+      "description": "Automate project inquiries, permit tracking, and client communication for construction companies and ADU builders.",
+      "outcomes": ["Automated project inquiries", "Permit tracking", "Client communication", "Lead qualification"]
+    },
+    {
+      "industry": "Nonprofits and Chambers of Commerce",
+      "description": "Support community organizations with event management, member communication, and volunteer coordination.",
+      "outcomes": ["Event management automation", "Member engagement", "Volunteer coordination", "Donation tracking"]
+    }
+  ],
+  "infrastructure": {
+    "foundation": "Built on AWS using services like Lambda, Connect, Lex, Polly, Transcribe, and DynamoDB for scalable, secure performance.",
+    "voice": "Integrated with Verizon for BYOC (Bring Your Own Carrier) telephony and ElevenLabs for realistic voice synthesis.",
+    "data_handling": "All customer data is encrypted and processed within secure AWS environments compliant with privacy standards.",
+    "frontend": "Next.js 14 App Router UI hosted on Vercel.",
+    "backend": "Hybrid PHP + Node.js architecture hosted on Render and AWS."
+  },
+  "security": [
+    {
+      "title": "Built on AWS",
+      "description": "Enterprise-grade infrastructure with AWS ECS/Fargate, Aurora RDS, and DynamoDB. Built using services like Lambda, Connect, Lex, Polly, Transcribe for scalable, secure performance. Benefit from AWS's 99.99% uptime SLA and global redundancy."
+    },
+    {
+      "title": "Verizon Partnership",
+      "description": "Powered by Verizon's enterprise network for superior call quality, reliability, and nationwide coverage. Access to Verizon's 5G network and priority routing."
+    },
+    {
+      "title": "SOC 2 Type II & GDPR",
+      "description": "Independently audited and certified. Full compliance with data protection regulations and industry standards."
+    },
+    {
+      "title": "Data Privacy & Security",
+      "description": "Bank-level encryption, SSL via Certificate Manager, IAM least-privilege access. All customer data is encrypted and processed within secure AWS environments. Your data is yours—we never train on it."
+    }
+  ],
+  "competitive_edge": {
+    "aws_native": "Built entirely on AWS for reliability, scalability, and compliance.",
+    "voice_realtime": "Verizon-powered voice infrastructure for real-time, human-like conversations.",
+    "lead_generation": "Hybrid AI + human collaboration model for high-quality lead conversion.",
+    "white_label_ready": "Fully customizable for agencies, enterprises, or civic organizations.",
+    "multi_agent_system": "Separate AI modules for chat, email, voice, and data — all managed through one dashboard."
+  },
+  "integrations": [
+    "Google Calendar",
+    "Microsoft Outlook",
+    "Salesforce",
+    "HubSpot",
+    "Zapier",
+    "Slack",
+    "Microsoft Teams",
+    "Twilio",
+    "Verizon Connect",
+    "QuickBooks",
+    "Gmail",
+    "Zendesk"
+  ],
+  "stats": [
+    {
+      "value": "50M+",
+      "label": "Calls Handled",
+      "description": "Across enterprise clients"
+    },
+    {
+      "value": "100K+",
+      "label": "Hours Saved",
+      "description": "Per month by clients"
+    },
+    {
+      "value": "85%",
+      "label": "Lead Conversion",
+      "description": "Higher than industry average"
+    },
+    {
+      "value": "99.9%",
+      "label": "Uptime",
+      "description": "Guaranteed availability"
+    }
+  ],
+  "howItWorks": [
+    {
+      "step": 1,
+      "title": "Setup",
+      "description": "Connect your phone, email, calendar, and CRM in minutes. Setup typically takes 15-30 minutes and most customers are live within an hour."
+    },
+    {
+      "step": 2,
+      "title": "Train",
+      "description": "Upload your knowledge base and business documents. DONNA learns your business context, pricing, policies, and procedures."
+    },
+    {
+      "step": 3,
+      "title": "Deploy",
+      "description": "Go live with DONNA managing your communications across voice and chat, 24/7."
+    },
+    {
+      "step": 4,
+      "title": "Optimize",
+      "description": "Review analytics and continuously improve performance with monitoring dashboards and insights."
+    }
+  ],
+  "faq": [
+    {
+      "question": "What makes Donna different from ChatGPT or Alexa?",
+      "answer": "Donna is built specifically for business operations — she integrates directly with your workflows, handles real phone calls, manages your inbox, and automates follow-ups, unlike general-purpose AI assistants."
+    },
+    {
+      "question": "How long does setup take?",
+      "answer": "Setup typically takes 15-30 minutes. We guide you through connecting your phone, email, calendar, and CRM. Most customers are live within an hour."
+    },
+    {
+      "question": "Can DONNA handle multiple languages?",
+      "answer": "Yes! DONNA supports 25+ languages including English, Spanish, and Mandarin, and can seamlessly switch between them during conversations. Perfect for diverse customer bases."
+    },
+    {
+      "question": "What happens to my data?",
+      "answer": "Your data is encrypted and stored securely. All customer data is encrypted and processed within secure AWS environments compliant with privacy standards. We never train our models on customer data. You maintain complete ownership and control."
+    },
+    {
+      "question": "Can I customize DONNA for my business?",
+      "answer": "Absolutely. You can train DONNA on your business documents, pricing, policies, and procedures. It learns your business context with local knowledge base training per client."
+    },
+    {
+      "question": "Can Donna integrate with my existing tools?",
+      "answer": "Yes. Donna integrates with 600+ platforms including Salesforce, HubSpot, Google Workspace, Microsoft 365, Zapier, QuickBooks, Twilio, and custom CRMs through API connections. Custom integrations available too."
+    },
+    {
+      "question": "Do you offer customer support?",
+      "answer": "Yes, all customers get email support. You can reach the Bird's Eye support team at support@bemdonna.com or use the chatbot's contact form. Pro and Enterprise plans include phone and video support with dedicated success managers."
+    },
+    {
+      "question": "What is the difference between the pricing tiers?",
+      "answer": "We're currently in an active invite-only beta program. Free tier gets you on the waitlist for early access. The $5,000 Pilot program provides immediate access with full features and priority support. Custom tier is for enterprise needs, partnerships, and custom builds. Final pricing tiers will be announced post-beta, and current beta users have custom agreements based on usage and features."
+    },
+    {
+      "question": "How does the AI + Human collaboration work?",
+      "answer": "You can choose full automation or hybrid mode. In hybrid mode, AI handles routine interactions while human operators can review, approve, or step in for complex inquiries with one click through a unified dashboard. This hybrid model ensures high-quality lead conversion."
+    },
+    {
+      "question": "What industries does DONNA support?",
+      "answer": "DONNA has specialized knowledge bases for Real Estate, Hospitality, Professional Services, Health & Beauty, Construction/ADU builders, and Nonprofits/Chambers of Commerce. Each vertical includes 200+ curated questions and industry-specific workflows."
+    },
+    {
+      "question": "Is Donna secure?",
+      "answer": "Absolutely. DONNA is built on AWS enterprise infrastructure with SOC 2 Type II certification, GDPR compliance, bank-level encryption, IAM-based access, data isolation for each client tenant, and continuous monitoring. We partner with Verizon for superior network reliability."
+    },
+    {
+      "question": "Can DONNA scale with my business?",
+      "answer": "Yes! DONNA auto-scales to handle 5,000+ active sessions with 99.9% uptime guarantee. Built on AWS ECS/Fargate with multi-tenant architecture for enterprise-grade scalability."
+    },
+    {
+      "question": "Can I white-label Donna for my business?",
+      "answer": "Yes. Donna can be rebranded and customized for agencies, chambers, or enterprises that want a branded AI solution. Fully customizable for agencies, enterprises, or civic organizations."
+    },
+    {
+      "question": "How do I get started?",
+      "answer": "You can join the free waitlist, apply for the $5,000 Pilot program, or contact us for custom enterprise solutions. Sign up on the landing page with your business email or request a demo through the contact form. Setup takes 15-30 minutes once you're onboarded."
+    },
+    {
+      "question": "How do I contact support?",
+      "answer": "You can reach the Bird's Eye support team at support@bemdonna.com, use the chatbot's contact form, or email info@bemdonna.com."
+    }
+  ],
+  "call_to_action": {
+    "demo": "Request a live demo of Donna's capabilities.",
+    "beta_signup": "Join the Donna Beta Program.",
+    "contact": "Chat with Donna below or email info@bemdonna.com."
+  },
+  "contact": {
+    "support_email": "support@bemdonna.com",
+    "info_email": "info@bemdonna.com",
+    "company": "Bird's Eye Management Services"
+  }
+}
+
