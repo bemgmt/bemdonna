@@ -138,9 +138,11 @@ The chatbot is already integrated into your landing page. When you push to GitHu
 Create a `.env.local` file in your project root:
 
 ```env
-# Email Configuration (already set up)
-GMAIL_EMAIL=your-email@gmail.com
-GMAIL_APP_PASSWORD=your-app-password
+# Email Configuration (Siteground SMTP)
+SMTP_HOST=your-siteground-smtp-host.com
+SMTP_PORT=465
+SMTP_USER=your-email@yourdomain.com
+SMTP_PASSWORD=your-email-password
 
 # Chatbot AI (choose one or both)
 OPENAI_API_KEY=sk-...

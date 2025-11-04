@@ -6,21 +6,22 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     const { name, email, company, role, useCase, type } = body
 
-    // Create a transporter using Gmail (you'll need to set up an app password)
-    // For now, we'll use a placeholder that shows how to integrate with Gmail
-    // You need to add GMAIL_EMAIL and GMAIL_APP_PASSWORD to environment variables
+    // Create a transporter using Siteground SMTP
+    // You need to add SMTP_HOST, SMTP_PORT, SMTP_USER, and SMTP_PASSWORD to environment variables
 
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      host: process.env.SMTP_HOST,
+      port: parseInt(process.env.SMTP_PORT || "465"),
+      secure: true, // true for 465, false for other ports
       auth: {
-        user: process.env.GMAIL_EMAIL,
-        pass: process.env.GMAIL_APP_PASSWORD,
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASSWORD,
       },
     })
 
     const mailOptions = {
-      from: process.env.GMAIL_EMAIL,
-      to: process.env.GMAIL_EMAIL,
+      from: process.env.SMTP_USER,
+      to: process.env.SMTP_USER,
       subject: `DONNA ${type === "waitlist" ? "Waitlist Signup" : "Demo Request"} - ${name}`,
       html: `
         <h2>New ${type === "waitlist" ? "Waitlist Signup" : "Demo Request"}</h2>
@@ -38,7 +39,7 @@ export async function POST(request: NextRequest) {
 
     // Also send confirmation to user
     const userMailOptions = {
-      from: process.env.GMAIL_EMAIL,
+      from: process.env.SMTP_USER,
       to: email,
       subject: "DONNA - We Received Your Request",
       html: `
