@@ -1,33 +1,30 @@
 "use client"
 
+import { useEffect, useState } from "react"
+import Image from "next/image"
 import { useInView } from "react-intersection-observer"
-
-const testimonials = [
-  {
-    quote:
-      "DONNA has transformed how we handle incoming calls. Our team can focus on high-value work while she handles 90% of our scheduling requests.",
-    author: "Sarah Chen",
-    company: "Chen & Associates Real Estate",
-    image: "◎",
-  },
-  {
-    quote:
-      "We went from losing leads to capturing 95% of incoming inquiries. The ROI was immediate and the implementation was painless.",
-    author: "Marcus Johnson",
-    company: "Johnson Home Services",
-    image: "◎",
-  },
-  {
-    quote:
-      "The team loved the seamless Salesforce integration. Leads flow directly into our system without any manual data entry.",
-    author: "Elena Rodriguez",
-    company: "Horizon Hospitality Group",
-    image: "◎",
-  },
-]
+import { sanityFetch, urlFor } from "@/sanity/lib/client"
+import { testimonialsQuery } from "@/lib/sanity/queries"
 
 export default function Testimonials() {
   const { ref, inView } = useInView({ threshold: 0.2, once: true })
+  const [testimonials, setTestimonials] = useState<any[]>([])
+
+  useEffect(() => {
+    async function loadTestimonials() {
+      try {
+        const data = await sanityFetch<any[]>(testimonialsQuery)
+        setTestimonials(data.slice(0, 6)) // Show up to 6 testimonials
+      } catch (error) {
+        console.error("Failed to load testimonials:", error)
+      }
+    }
+    loadTestimonials()
+  }, [])
+
+  if (testimonials.length === 0) {
+    return null
+  }
 
   return (
     <section ref={ref} className="py-20 px-4 sm:px-6 lg:px-8 bg-primary/5">
@@ -39,26 +36,43 @@ export default function Testimonials() {
           <p className="text-foreground/60">See what customers say about DONNA</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {testimonials.map((testimonial, index) => (
             <div
-              key={index}
+              key={testimonial._id}
               className="glass-card p-8 rounded-xl glow-primary hover:shadow-[0_0_30px_rgba(122,92,255,0.2)] transition-all duration-300 animate-slide-up"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <div className="flex items-center gap-3 mb-4">
-                <div className="text-4xl">{testimonial.image}</div>
+                {testimonial.photo ? (
+                  <Image
+                    src={urlFor(testimonial.photo).width(60).height(60).url()}
+                    alt={testimonial.name}
+                    width={60}
+                    height={60}
+                    className="rounded-full"
+                  />
+                ) : (
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center text-xl font-bold">
+                    {testimonial.name.charAt(0)}
+                  </div>
+                )}
                 <div>
-                  <div className="font-semibold">{testimonial.author}</div>
-                  <div className="text-sm text-foreground/60">{testimonial.company}</div>
+                  <div className="font-semibold">{testimonial.name}</div>
+                  <div className="text-sm text-foreground/60">
+                    {testimonial.title}
+                    {testimonial.company && `, ${testimonial.company}`}
+                  </div>
                 </div>
               </div>
               <p className="text-foreground/80 italic mb-3">"{testimonial.quote}"</p>
-              <div className="flex gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <span key={i}>⭐</span>
-                ))}
-              </div>
+              {testimonial.rating && (
+                <div className="flex gap-1">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <span key={i}>⭐</span>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>

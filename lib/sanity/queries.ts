@@ -353,3 +353,189 @@ export const caseStudyBySlugQuery = `
     seo
   }
 `
+
+// FAQ Items
+export const faqItemsQuery = `
+  *[_type == "faqItem"] | order(order asc) {
+    _id,
+    question,
+    answer,
+    category
+  }
+`
+
+// All Tutorials
+export const allTutorialsQuery = `
+  *[_type == "tutorial"] | order(publishedAt desc) {
+    _id,
+    title,
+    slug,
+    description,
+    category,
+    difficulty,
+    estimatedTime
+  }
+`
+
+// Tutorial by Slug
+export const tutorialBySlugQuery = `
+  *[_type == "tutorial" && slug.current == $slug][0] {
+    _id,
+    title,
+    slug,
+    description,
+    category,
+    difficulty,
+    estimatedTime,
+    steps,
+    content,
+    seo
+  }
+`
+
+// All Documentation
+export const allDocumentationQuery = `
+  *[_type == "documentation"] | order(order asc) {
+    _id,
+    title,
+    slug,
+    description,
+    category
+  }
+`
+
+// Documentation by Slug
+export const documentationBySlugQuery = `
+  *[_type == "documentation" && slug.current == $slug][0] {
+    _id,
+    title,
+    slug,
+    description,
+    category,
+    content,
+    relatedDocs[]-> {
+      _id,
+      title,
+      slug
+    },
+    seo
+  }
+`
+
+// All Webinars
+export const allWebinarsQuery = `
+  *[_type == "webinar"] | order(date desc) {
+    _id,
+    title,
+    slug,
+    description,
+    date,
+    duration,
+    speakers[]-> {
+      _id,
+      name,
+      role,
+      photo
+    },
+    recordingUrl,
+    registrationUrl
+  }
+`
+
+// Webinar by Slug
+export const webinarBySlugQuery = `
+  *[_type == "webinar" && slug.current == $slug][0] {
+    _id,
+    title,
+    slug,
+    description,
+    date,
+    duration,
+    speakers[]-> {
+      _id,
+      name,
+      role,
+      photo,
+      bio
+    },
+    content,
+    recordingUrl,
+    registrationUrl,
+    seo
+  }
+`
+
+// Blog Categories
+export const blogCategoriesQuery = `
+  *[_type == "blogCategory"] | order(title asc) {
+    _id,
+    title,
+    slug,
+    description
+  }
+`
+
+// Blog Posts by Category
+export const blogPostsByCategoryQuery = `
+  *[_type == "blogPost" && $category in categories[]->slug.current] | order(publishedAt desc) {
+    _id,
+    title,
+    slug,
+    excerpt,
+    featuredImage,
+    publishedAt,
+    readingTime,
+    author-> {
+      name,
+      photo
+    },
+    categories[]-> {
+      _id,
+      title,
+      slug
+    }
+  }
+`
+
+// Career by Slug
+export const careerBySlugQuery = `
+  *[_type == "career" && slug.current == $slug][0] {
+    _id,
+    _createdAt,
+    title,
+    slug,
+    department,
+    location,
+    employmentType,
+    experienceLevel,
+    salaryRange,
+    summary,
+    description,
+    responsibilities,
+    requirements,
+    benefits,
+    applicationUrl,
+    seo
+  }
+`
+
+// Press Releases
+export const pressReleasesQuery = `
+  *[_type == "pressRelease"] | order(publishedAt desc) {
+    _id,
+    title,
+    summary,
+    publishedAt,
+    pdfUrl
+  }
+`
+
+// Integrations Query
+export const integrationsQuery = `
+  *[_type == "integration"] | order(name asc) {
+    _id,
+    name,
+    logo,
+    category
+  }
+`
