@@ -325,11 +325,3 @@ export default function HomePage() {
     </main>
   )
 }
-          <SectionTitleGlow
-            title="Core Capabilities"
-            subtitle="12 powerful modules working in perfect harmony"
-          />
-          <CapabilitiesGrid items={capabilities} columns={4} />
-        </div>
-      </section>
-
