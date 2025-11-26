@@ -1,162 +1,122 @@
-'use client'
-
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import * as z from 'zod'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import { Breadcrumb } from '@/components/breadcrumb'
-import { toast } from 'sonner'
-import { Loader2, Mail, Phone, MapPin } from 'lucide-react'
-
-const schema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters'),
-  email: z.string().email('Please enter a valid email address'),
-  company: z.string().optional(),
-  phone: z.string().optional(),
-  subject: z.string().min(5, 'Subject must be at least 5 characters'),
-  message: z.string().min(20, 'Message must be at least 20 characters'),
-})
-
-type FormData = z.infer<typeof schema>
+import { SectionTitleGlow } from "@/components/neural/section-title-glow"
+import { ContactFormHolo } from "@/components/neural/contact-form-holo"
+import { HoloFooter } from "@/components/neural/holo-footer"
+import { Mail, Calendar, MessageSquare, TrendingUp } from "lucide-react"
 
 export default function ContactPage() {
-  const [isSubmitting, setIsSubmitting] = useState(false)
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<FormData>({
-    resolver: zodResolver(schema),
-  })
-
-  const onSubmit = async (data: FormData) => {
-    setIsSubmitting(true)
-
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      })
-
-      if (response.ok) {
-        toast.success('Message sent successfully! We\'ll get back to you soon.')
-        reset()
-      } else {
-        throw new Error('Failed to send message')
-      }
-    } catch (error) {
-      toast.error('Failed to send message. Please try again.')
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
   return (
-    <div className="container mx-auto px-4 py-8">
-      <Breadcrumb />
+    <main className="min-h-screen bg-[#030314]">
+      {/* Hero Section */}
+      <section className="relative py-32 px-4 overflow-hidden">
+        <div className="absolute inset-0 neural-grid-animated opacity-20" />
+        <div className="absolute inset-0 circuitry-lines" />
 
-      <section className="py-12 text-center">
-        <h1 className="text-4xl md:text-6xl font-bold mb-6">Contact Us</h1>
-        <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-          Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
-        </p>
+        <div className="relative z-10 container mx-auto max-w-4xl text-center">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 gradient-text text-glow-violet animate-fade-in">
+            Get in Touch
+          </h1>
+          <p className="text-2xl text-gray-300 leading-relaxed animate-slide-up">
+            Let's discuss how DONNA can transform your business
+          </p>
+        </div>
       </section>
 
-      <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-        <div>
-          <h2 className="text-2xl font-bold mb-6">Get in Touch</h2>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <div>
-              <Input placeholder="Your Name *" {...register('name')} />
-              {errors.name && <p className="text-sm text-destructive mt-1">{errors.name.message}</p>}
+      {/* Contact Options */}
+      <section className="py-20 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
+            <div className="holo-panel p-8 rounded-xl text-center hover-lift">
+              <Mail className="w-12 h-12 text-[#3DE0FF] mx-auto mb-4" />
+              <h3 className="text-2xl font-bold mb-2 text-white">Email Us</h3>
+              <p className="text-gray-300 mb-4">
+                General inquiries and support
+              </p>
+              <a
+                href="mailto:derek@bemdonna.com"
+                className="text-[#3DE0FF] hover:text-[#FF1F99] transition-colors duration-300 font-medium"
+              >
+                derek@bemdonna.com
+              </a>
             </div>
 
-            <div>
-              <Input type="email" placeholder="Your Email *" {...register('email')} />
-              {errors.email && <p className="text-sm text-destructive mt-1">{errors.email.message}</p>}
+            <div className="holo-panel p-8 rounded-xl text-center hover-lift">
+              <Calendar className="w-12 h-12 text-[#FF1F99] mx-auto mb-4" />
+              <h3 className="text-2xl font-bold mb-2 text-white">Schedule a Demo</h3>
+              <p className="text-gray-300 mb-4">
+                See DONNA in action
+              </p>
+              <a
+                href="mailto:derek@bemdonna.com?subject=Demo Request"
+                className="text-[#FF1F99] hover:text-[#3DE0FF] transition-colors duration-300 font-medium"
+              >
+                Book a time
+              </a>
             </div>
 
-            <div>
-              <Input placeholder="Company" {...register('company')} />
-            </div>
-
-            <div>
-              <Input placeholder="Phone" {...register('phone')} />
-            </div>
-
-            <div>
-              <Input placeholder="Subject *" {...register('subject')} />
-              {errors.subject && <p className="text-sm text-destructive mt-1">{errors.subject.message}</p>}
-            </div>
-
-            <div>
-              <Textarea placeholder="Your Message *" rows={6} {...register('message')} />
-              {errors.message && <p className="text-sm text-destructive mt-1">{errors.message.message}</p>}
-            </div>
-
-            <Button type="submit" className="w-full" disabled={isSubmitting}>
-              {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              Send Message
-            </Button>
-          </form>
-        </div>
-
-        <div className="space-y-8">
-          <div>
-            <h2 className="text-2xl font-bold mb-6">Contact Information</h2>
-            <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <Mail className="h-5 w-5 text-primary mt-1" />
-                <div>
-                  <p className="font-semibold">Email</p>
-                  <a href="mailto:support@bemdonna.com" className="text-muted-foreground hover:text-primary">
-                    support@bemdonna.com
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <Phone className="h-5 w-5 text-primary mt-1" />
-                <div>
-                  <p className="font-semibold">Phone</p>
-                  <a href="tel:+1-XXX-XXX-XXXX" className="text-muted-foreground hover:text-primary">
-                    +1 (XXX) XXX-XXXX
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-primary mt-1" />
-                <div>
-                  <p className="font-semibold">Address</p>
-                  <p className="text-muted-foreground">
-                    123 Business St<br />
-                    San Francisco, CA 94105<br />
-                    United States
-                  </p>
-                </div>
-              </div>
+            <div className="holo-panel p-8 rounded-xl text-center hover-lift">
+              <TrendingUp className="w-12 h-12 text-[#8A2FFF] mx-auto mb-4" />
+              <h3 className="text-2xl font-bold mb-2 text-white">Investor Inquiries</h3>
+              <p className="text-gray-300 mb-4">
+                Investment opportunities
+              </p>
+              <a
+                href="mailto:derek@bemdonna.com?subject=Investor Inquiry"
+                className="text-[#8A2FFF] hover:text-[#3DE0FF] transition-colors duration-300 font-medium"
+              >
+                Learn more
+              </a>
             </div>
           </div>
 
-          <div className="p-6 bg-muted rounded-lg">
-            <h3 className="text-lg font-semibold mb-2">Sales Inquiries</h3>
-            <p className="text-muted-foreground mb-4">
-              Interested in DONNA for your business? Our sales team is ready to help.
-            </p>
-            <a href="mailto:sales@bemdonna.com" className="text-primary font-medium hover:underline">
-              sales@bemdonna.com
-            </a>
+          {/* Contact Form */}
+          <div className="max-w-3xl mx-auto">
+            <SectionTitleGlow
+              title="Send Us a Message"
+              subtitle="Fill out the form below and we'll get back to you within 24 hours"
+            />
+            <ContactFormHolo includeInvestorOption={true} />
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+
+      {/* Additional Info */}
+      <section className="py-20 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="glass-panel p-8 rounded-xl">
+              <MessageSquare className="w-10 h-10 text-[#3DE0FF] mb-4" />
+              <h3 className="text-2xl font-bold mb-4 text-white">Sales & Partnerships</h3>
+              <p className="text-gray-300 leading-relaxed mb-4">
+                Interested in partnering with DONNA or bringing our AI automation platform to your
+                organization? Our sales team is ready to discuss custom solutions and enterprise packages.
+              </p>
+              <a
+                href="mailto:derek@bemdonna.com?subject=Sales Inquiry"
+                className="text-[#3DE0FF] hover:text-[#FF1F99] transition-colors duration-300 font-medium"
+              >
+                Contact Sales →
+              </a>
+            </div>
+
+            <div className="glass-panel p-8 rounded-xl">
+              <Mail className="w-10 h-10 text-[#FF1F99] mb-4" />
+              <h3 className="text-2xl font-bold mb-4 text-white">Support</h3>
+              <p className="text-gray-300 leading-relaxed mb-4">
+                Already a DONNA customer? Our support team is here to help you get the most out of
+                your AI automation platform. We typically respond within 2-4 hours during business hours.
+              </p>
+              <a
+                href="mailto:derek@bemdonna.com?subject=Support Request"
+                className="text-[#FF1F99] hover:text-[#3DE0FF] transition-colors duration-300 font-medium"
+              >
+                Get Support →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <HoloFooter />
+    </main>
   )
 }
-

@@ -1,0 +1,441 @@
+Build a complete, multi-page website for DONNA (Digital Office Neural Network Assistant) using the structure and content below. Match and enhance the existing dark neon theme with the Neural Glow futuristic styling defined here.
+
+Use modular components, clean code, responsive layout, and SEO optimization.
+Make the entire site feel like a high-end AI operating system for business automation.
+
+=========================================
+1. SITE MAP / PAGE STRUCTURE
+=========================================
+HOME PAGE
+
+Hero Section
+
+What is DONNA?
+
+Why DONNA Is Different
+
+Core Capabilities
+
+Verticals (4 industries)
+
+Real-Time Agentic Actions
+
+Roadmap
+
+Pricing tiers: $2,500 / $5,000 / Contact Us
+
+Investor Callout
+
+Footer
+
+ABOUT PAGE
+
+Story + mission
+
+The problem
+
+The solution
+
+Differentiators
+
+FEATURES PAGE
+
+One detailed section per feature:
+
+Email bot
+
+Voice bot
+
+SMS bot
+
+Secretary bot
+
+Chatbot
+
+Lead gen engine
+
+Marketing bot
+
+Sales agent bot
+
+Landing page generator
+
+Knowledge base integrations
+
+Scraper module
+
+Agentic workflows
+
+Use modular “hologram panel” components.
+
+VERTICALS PAGE
+
+Four industry blocks:
+
+Health & Beauty
+
+Hospitality
+
+Real Estate
+
+Professional Services
+
+Each shows use cases, automations, and customer journeys.
+
+PRICING PAGE
+
+Three-tier grid:
+
+Starter — $2,500/mo
+Pro — $5,000/mo
+Enterprise — Contact Us
+
+Side-by-side comparison table beneath.
+
+INVESTOR PAGE
+
+Use your SAFE investment chart values:
+
+Tier 1 — $50k SAFE
+
+Cap: $8M
+
+Equity: 0.625%
+
+Payouts: $50k / $93,750 / $312,500
+
+Tier 2 — $100k SAFE
+
+Cap: $7M
+
+Equity: 1.4286%
+
+Payouts: $100k / $214,290 / $714,300
+
+Tier 3 — $300k SAFE
+
+Cap: $5M
+
+Equity: 6%
+
+Payouts: $300k / $900k / $3M
+
+Include:
+
+Market opportunity
+
+AI legislative incentives
+
+High-margin model
+
+CTA to schedule investor call
+
+CONTACT PAGE
+
+Contact form
+
+Email: derek@bemdonna.com
+
+Optional scheduling link
+
+Separate investor inquiry channel
+
+=========================================
+2. COMPONENT LIBRARY DEFINITIONS
+=========================================
+
+All components should be modular, reusable, responsive, and built around the Neural Glow theme.
+
+Below is the full library Augment should generate.
+
+A. HERO COMPONENT
+
+Name: HeroNeural
+Props:
+
+title
+
+subtitle
+
+primaryCTA
+
+secondaryCTA
+
+backgroundAnimation (boolean)
+
+brainGraphic (image/video)
+
+Features:
+
+Parallax neural-grid background
+
+Soft glowing gradients
+
+Central brain visual (3D, animated, or static)
+
+Fade-in headline and CTA buttons
+
+B. SECTION HEADER
+
+Name: SectionTitleGlow
+Props:
+
+title
+
+subtitle
+
+alignment (“left”, “center”)
+
+Style:
+
+Gradient text (violet → blue → magenta)
+
+Soft neon glow
+
+Animated underline line
+
+C. FEATURE CARD
+
+Name: HoloFeatureCard
+Props:
+
+icon
+
+title
+
+description
+
+link (optional)
+
+Style:
+
+Glassmorphism
+
+Neon 1px border
+
+Hover lift + glow
+
+Subtle internal gradient sweep
+
+D. CAPABILITY GRID
+
+Name: CapabilitiesGrid
+Props:
+
+items: array of {icon, title, description}
+
+Style:
+
+3 or 4 column layout
+
+Animated grid lines
+
+E. VERTICAL INDUSTRY BLOCK
+
+Name: VerticalBlock
+Props:
+
+industryName
+
+description
+
+automations[]
+
+useCases[]
+
+icon
+
+Style:
+
+Vertical hologram panel
+
+Neon industry icon
+
+Animated divider lines
+
+F. PRICING CARD
+
+Name: PricingTierCard
+Props:
+
+tierName
+
+price
+
+features[]
+
+highlight (boolean)
+
+Style:
+
+Transparent frosted glass
+
+Neon border matching tier
+
+Glow pulse around highlighted tier
+
+Animated background circuitry
+
+G. INVESTOR SAFE TABLE
+
+Name: InvestorPayoutTable
+Props:
+
+rows[] (amount, cap, equity, payouts)
+
+Style:
+
+Futuristic HUD style
+
+Glow highlights on hover rows
+
+Animated chart line (optional)
+
+H. CTA BUTTON
+
+Name: NeonButton
+Props:
+
+label
+
+link
+
+variant (“primary”, “outline”)
+
+Primary Style:
+
+Neon gradient
+
+Soft glow ring
+
+Ripple effect on click
+
+Outline Style:
+
+Transparent
+
+Neon stroke
+
+I. CONTACT FORM
+
+Name: ContactFormHolo
+Props:
+
+fields
+
+submitLabel
+
+endpointURL
+
+Style:
+
+Glass card
+
+Neon field outlines
+
+Glow on input focus
+
+J. FOOTER
+
+Name: HoloFooter
+Props:
+
+logo
+
+links[]
+
+social[]
+
+legalLinks[]
+
+tagline
+
+Style:
+
+Circuitry lines
+
+Slow pulsing accents
+
+Dark neon theme
+
+=========================================
+3. FUTURISTIC STYLING (“NEURAL GLOW THEME”)
+=========================================
+
+Apply this throughout every page, every component.
+
+COLORS
+
+Deep space: #030314
+
+Neon violet: #8A2FFF
+
+Electric magenta: #FF1F99
+
+Ice blue: #3DE0FF
+
+Infrared amber: #FF6B3D (sparingly)
+
+ANIMATION STYLE
+
+Slow gradient flows
+
+Particle drift
+
+Glowing circuitry lines
+
+Hover glows
+
+Parallax backgrounds
+
+Light pulse every 6–8 seconds
+
+Smooth fades on scroll
+
+BACKGROUND LAYERS
+
+Use a 3-layer composition:
+
+Dark gradient
+
+Animated neural grid
+
+Particle and data nodes
+
+Should feel alive, subtle, futuristic.
+
+TYPOGRAPHY
+
+Headings: Space Grotesk / Inter Tight
+
+Body: Inter / Satoshi / IBM Plex Sans
+
+Numbers/accent: Orbitron / Rajdhani
+
+Headline text uses gradient + 1px glow.
+
+BUTTONS
+
+Primary: Neon gradient + ring glow
+Secondary: Glass outline + neon stroke
+Interaction: Neural ripple effect
+
+PANELS & CARDS
+
+Glassmorphism
+
+Frosted transparency
+
+Neon borders
+
+Holographic highlights
+
+Hover lift
+
+ICON STYLE
+
+Thin-line vector
+
+Neon glow
+
+Slight animation on hover

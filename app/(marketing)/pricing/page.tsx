@@ -1,154 +1,175 @@
-import type { Metadata } from 'next'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import { Breadcrumb } from '@/components/breadcrumb'
-import { generatePageMetadata } from '@/lib/metadata'
-import { offerSchema } from '@/lib/schema-markup'
-import { Check } from 'lucide-react'
-
-export const metadata: Metadata = generatePageMetadata({
-  title: 'Pricing',
-  description: 'Simple, transparent pricing for businesses of all sizes. Start free, scale as you grow.',
-  path: '/pricing',
-})
-
-const pricingPlans = [
-  {
-    name: 'Starter',
-    price: '$99',
-    period: '/month',
-    description: 'Perfect for small businesses getting started with AI',
-    features: [
-      '1,000 conversations/month',
-      'Voice Receptionist',
-      'Email Assistant',
-      'Basic Chatbot',
-      'Email support',
-      '5 integrations',
-    ],
-    cta: 'Start Free Trial',
-    popular: false,
-  },
-  {
-    name: 'Professional',
-    price: '$299',
-    period: '/month',
-    description: 'For growing businesses that need more power',
-    features: [
-      '5,000 conversations/month',
-      'All Starter features',
-      'Marketing Bot',
-      'Knowledge Base',
-      'Priority support',
-      'Unlimited integrations',
-      'Custom workflows',
-      'Analytics dashboard',
-    ],
-    cta: 'Start Free Trial',
-    popular: true,
-  },
-  {
-    name: 'Enterprise',
-    price: 'Custom',
-    period: '',
-    description: 'For large organizations with custom needs',
-    features: [
-      'Unlimited conversations',
-      'All Professional features',
-      'Dedicated account manager',
-      '24/7 phone support',
-      'Custom integrations',
-      'SLA guarantee',
-      'Advanced security',
-      'On-premise deployment',
-    ],
-    cta: 'Contact Sales',
-    popular: false,
-  },
-]
+import { SectionTitleGlow } from "@/components/neural/section-title-glow"
+import { PricingTierCard } from "@/components/neural/pricing-tier-card"
+import { HoloFooter } from "@/components/neural/holo-footer"
+import { Check, X } from "lucide-react"
 
 export default function PricingPage() {
-  const schemas = pricingPlans.map((plan) =>
-    offerSchema({
-      name: plan.name,
-      price: plan.price === 'Custom' ? '0' : plan.price.replace('$', ''),
-      description: plan.description,
-    })
-  )
+  const comparisonFeatures = [
+    { feature: "Monthly Conversations", starter: "1,000", pro: "5,000", enterprise: "Unlimited" },
+    { feature: "Email Bot", starter: true, pro: true, enterprise: true },
+    { feature: "SMS Bot", starter: true, pro: true, enterprise: true },
+    { feature: "Chatbot", starter: true, pro: true, enterprise: true },
+    { feature: "Voice Bot", starter: false, pro: true, enterprise: true },
+    { feature: "Secretary Bot", starter: false, pro: true, enterprise: true },
+    { feature: "Lead Gen Engine", starter: true, pro: true, enterprise: true },
+    { feature: "Marketing Bot", starter: false, pro: true, enterprise: true },
+    { feature: "Sales Agent Bot", starter: false, pro: true, enterprise: true },
+    { feature: "Landing Page Generator", starter: false, pro: true, enterprise: true },
+    { feature: "Knowledge Base Integration", starter: true, pro: true, enterprise: true },
+    { feature: "Scraper Module", starter: false, pro: true, enterprise: true },
+    { feature: "Agentic Workflows", starter: "Basic", pro: "Advanced", enterprise: "Custom" },
+    { feature: "Support", starter: "Email", pro: "Priority", enterprise: "Dedicated Manager" },
+    { feature: "Custom Integrations", starter: false, pro: "Limited", enterprise: "Unlimited" },
+    { feature: "Custom AI Training", starter: false, pro: false, enterprise: true },
+    { feature: "White-Label Options", starter: false, pro: false, enterprise: true },
+    { feature: "SLA Guarantees", starter: false, pro: false, enterprise: true }
+  ]
 
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@graph': schemas,
-          }),
-        }}
-      />
+    <main className="min-h-screen bg-[#030314]">
+      {/* Hero Section */}
+      <section className="relative py-32 px-4 overflow-hidden">
+        <div className="absolute inset-0 neural-grid-animated opacity-20" />
+        <div className="absolute inset-0 circuitry-lines" />
 
-      <div className="container mx-auto px-4 py-8">
-        <Breadcrumb />
-
-        <section className="py-12 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">Simple, Transparent Pricing</h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Start free, scale as you grow. No hidden fees, cancel anytime.
+        <div className="relative z-10 container mx-auto max-w-4xl text-center">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 gradient-text text-glow-violet animate-fade-in">
+            Pricing Plans
+          </h1>
+          <p className="text-2xl text-gray-300 leading-relaxed animate-slide-up">
+            Choose the perfect plan to automate and scale your business
           </p>
-        </section>
+        </div>
+      </section>
 
-        <section className="py-12">
-          <div className="grid md:grid-cols-3 gap-8">
-            {pricingPlans.map((plan) => (
-              <div
-                key={plan.name}
-                className={`relative p-8 border rounded-lg ${
-                  plan.popular ? 'border-primary shadow-lg scale-105' : ''
-                }`}
-              >
-                {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-semibold">
-                    Most Popular
-                  </div>
-                )}
-                <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-                <div className="mb-4">
-                  <span className="text-4xl font-bold">{plan.price}</span>
-                  <span className="text-muted-foreground">{plan.period}</span>
-                </div>
-                <p className="text-muted-foreground mb-6">{plan.description}</p>
-                <Button className="w-full mb-6" variant={plan.popular ? 'default' : 'outline'} asChild>
-                  <Link href={plan.name === 'Enterprise' ? '/contact' : '/#demo-form'}>
-                    {plan.cta}
-                  </Link>
-                </Button>
-                <ul className="space-y-3">
-                  {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2">
-                      <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                      <span className="text-sm">{feature}</span>
-                    </li>
+      {/* Pricing Tiers */}
+      <section className="py-20 px-4">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid md:grid-cols-3 gap-8 mb-20">
+            <PricingTierCard
+              tierName="Starter"
+              price="$2,500"
+              features={[
+                "Up to 1,000 conversations/month",
+                "Email & SMS automation",
+                "Basic chatbot",
+                "Lead gen engine",
+                "Knowledge base integration",
+                "Basic workflows",
+                "Email support",
+                "Standard integrations"
+              ]}
+              ctaLabel="Get Started"
+              ctaLink="/contact"
+            />
+
+            <PricingTierCard
+              tierName="Pro"
+              price="$5,000"
+              features={[
+                "Up to 5,000 conversations/month",
+                "All Starter features",
+                "Voice bot included",
+                "Secretary bot",
+                "Marketing & Sales bots",
+                "Landing page generator",
+                "Advanced workflows",
+                "Priority support",
+                "Custom integrations"
+              ]}
+              highlight={true}
+              ctaLabel="Get Started"
+              ctaLink="/contact"
+            />
+
+            <PricingTierCard
+              tierName="Enterprise"
+              price="Contact Us"
+              features={[
+                "Unlimited conversations",
+                "All Pro features",
+                "Dedicated account manager",
+                "Custom AI training",
+                "White-label options",
+                "SLA guarantees",
+                "Advanced security features",
+                "Custom workflows",
+                "24/7 phone support"
+              ]}
+              ctaLabel="Contact Sales"
+              ctaLink="/contact"
+            />
+          </div>
+
+          {/* Comparison Table */}
+          <SectionTitleGlow
+            title="Feature Comparison"
+            subtitle="See what's included in each plan"
+          />
+
+          <div className="overflow-x-auto">
+            <div className="holo-panel p-8 rounded-2xl min-w-[800px]">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-[#8A2FFF]/30">
+                    <th className="text-left py-4 px-4 text-[#3DE0FF] font-bold">Feature</th>
+                    <th className="text-center py-4 px-4 text-[#3DE0FF] font-bold">Starter</th>
+                    <th className="text-center py-4 px-4 text-[#3DE0FF] font-bold">Pro</th>
+                    <th className="text-center py-4 px-4 text-[#3DE0FF] font-bold">Enterprise</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {comparisonFeatures.map((row, index) => (
+                    <tr
+                      key={index}
+                      className="border-b border-[#8A2FFF]/20 hover:bg-[#8A2FFF]/10 transition-colors duration-300"
+                    >
+                      <td className="py-4 px-4 text-gray-300 font-medium">
+                        {row.feature}
+                      </td>
+                      <td className="py-4 px-4 text-center">
+                        {typeof row.starter === 'boolean' ? (
+                          row.starter ? (
+                            <Check className="w-5 h-5 text-[#3DE0FF] mx-auto" />
+                          ) : (
+                            <X className="w-5 h-5 text-gray-600 mx-auto" />
+                          )
+                        ) : (
+                          <span className="text-gray-300">{row.starter}</span>
+                        )}
+                      </td>
+                      <td className="py-4 px-4 text-center">
+                        {typeof row.pro === 'boolean' ? (
+                          row.pro ? (
+                            <Check className="w-5 h-5 text-[#3DE0FF] mx-auto" />
+                          ) : (
+                            <X className="w-5 h-5 text-gray-600 mx-auto" />
+                          )
+                        ) : (
+                          <span className="text-gray-300">{row.pro}</span>
+                        )}
+                      </td>
+                      <td className="py-4 px-4 text-center">
+                        {typeof row.enterprise === 'boolean' ? (
+                          row.enterprise ? (
+                            <Check className="w-5 h-5 text-[#3DE0FF] mx-auto" />
+                          ) : (
+                            <X className="w-5 h-5 text-gray-600 mx-auto" />
+                          )
+                        ) : (
+                          <span className="text-gray-300">{row.enterprise}</span>
+                        )}
+                      </td>
+                    </tr>
                   ))}
-                </ul>
-              </div>
-            ))}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="py-12 text-center">
-          <h2 className="text-3xl font-bold mb-4">All plans include:</h2>
-          <div className="grid md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-8">
-            {['14-day free trial', 'No credit card required', 'Cancel anytime', '99.9% uptime SLA'].map((item) => (
-              <div key={item} className="p-4 border rounded-lg">
-                <Check className="h-6 w-6 text-primary mx-auto mb-2" />
-                <p className="text-sm font-medium">{item}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-      </div>
-    </>
+      <HoloFooter />
+    </main>
   )
 }
-

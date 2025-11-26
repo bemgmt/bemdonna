@@ -4,40 +4,53 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Updated design tokens for DONNA futuristic theme */
-  --background: oklch(0.08 0 0); /* Ink background */
-  --foreground: oklch(0.96 0 0); /* Warm white */
-  --card: oklch(0.12 0 0); /* Slightly lighter ink */
-  --card-foreground: oklch(0.96 0 0);
-  --popover: oklch(0.12 0 0);
-  --popover-foreground: oklch(0.96 0 0);
-  --primary: oklch(0.65 0.23 308); /* Violet */
-  --primary-foreground: oklch(0.08 0 0);
-  --secondary: oklch(0.95 0.1 276); /* Mint */
-  --secondary-foreground: oklch(0.08 0 0);
-  --muted: oklch(0.25 0 0);
-  --muted-foreground: oklch(0.65 0 0);
-  --accent: oklch(0.85 0.18 225); /* Electric cyan */
-  --accent-foreground: oklch(0.08 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.2 0 0);
-  --input: oklch(0.15 0 0);
-  --ring: oklch(0.85 0.18 225);
-  --chart-1: oklch(0.85 0.18 225);
-  --chart-2: oklch(0.75 0.2 308);
-  --chart-3: oklch(0.95 0.1 276);
-  --chart-4: oklch(0.7 0.15 225);
-  --chart-5: oklch(0.6 0.2 308);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.12 0 0);
-  --sidebar-foreground: oklch(0.96 0 0);
-  --sidebar-primary: oklch(0.85 0.18 225);
-  --sidebar-primary-foreground: oklch(0.08 0 0);
-  --sidebar-accent: oklch(0.75 0.2 308);
-  --sidebar-accent-foreground: oklch(0.96 0 0);
-  --sidebar-border: oklch(0.2 0 0);
-  --sidebar-ring: oklch(0.85 0.18 225);
+  /* Neural Glow Theme - DONNA AI Operating System */
+  /* Deep space: #030314 */
+  /* Neon violet: #8A2FFF */
+  /* Electric magenta: #FF1F99 */
+  /* Ice blue: #3DE0FF */
+  /* Infrared amber: #FF6B3D */
+
+  --background: #030314; /* Deep space */
+  --foreground: #F5F5F7; /* Warm white */
+  --card: #0A0A1A; /* Slightly lighter than background */
+  --card-foreground: #F5F5F7;
+  --popover: #0A0A1A;
+  --popover-foreground: #F5F5F7;
+  --primary: #8A2FFF; /* Neon violet */
+  --primary-foreground: #F5F5F7;
+  --secondary: #3DE0FF; /* Ice blue */
+  --secondary-foreground: #030314;
+  --muted: #1A1A2E;
+  --muted-foreground: #A0A0B0;
+  --accent: #FF1F99; /* Electric magenta */
+  --accent-foreground: #F5F5F7;
+  --destructive: #FF6B3D; /* Infrared amber */
+  --destructive-foreground: #F5F5F7;
+  --border: rgba(138, 47, 255, 0.2); /* Neon violet border */
+  --input: #0F0F1F;
+  --ring: #8A2FFF;
+  --chart-1: #3DE0FF;
+  --chart-2: #8A2FFF;
+  --chart-3: #FF1F99;
+  --chart-4: #FF6B3D;
+  --chart-5: #6B4FFF;
+  --radius: 0.75rem;
+  --sidebar: #0A0A1A;
+  --sidebar-foreground: #F5F5F7;
+  --sidebar-primary: #8A2FFF;
+  --sidebar-primary-foreground: #F5F5F7;
+  --sidebar-accent: #3DE0FF;
+  --sidebar-accent-foreground: #030314;
+  --sidebar-border: rgba(138, 47, 255, 0.2);
+  --sidebar-ring: #8A2FFF;
+
+  /* Neural Glow specific colors */
+  --neon-violet: #8A2FFF;
+  --electric-magenta: #FF1F99;
+  --ice-blue: #3DE0FF;
+  --infrared-amber: #FF6B3D;
+  --deep-space: #030314;
 }
 
 .dark {
@@ -125,36 +138,120 @@
   }
 }
 
-/* Add custom animations for futuristic effects */
+/* Neural Glow Theme - Custom Animations & Components */
 @layer components {
+  /* Gradient Text Effects */
   .gradient-text {
-    @apply bg-gradient-to-r from-accent via-primary to-secondary bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-[#8A2FFF] via-[#3DE0FF] to-[#FF1F99] bg-clip-text text-transparent;
   }
 
+  .gradient-text-violet {
+    @apply bg-gradient-to-r from-[#8A2FFF] to-[#FF1F99] bg-clip-text text-transparent;
+  }
+
+  /* Glassmorphism Panels */
   .glass-card {
-    @apply bg-white/5 backdrop-blur-md border border-white/10;
+    @apply bg-white/5 backdrop-blur-xl border border-white/10;
   }
 
-  .glow-accent {
-    @apply shadow-[0_0_20px_rgba(132,204,255,0.3)];
+  .glass-panel {
+    background: rgba(10, 10, 26, 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(138, 47, 255, 0.3);
   }
 
-  .glow-primary {
-    @apply shadow-[0_0_20px_rgba(122,92,255,0.2)];
+  .holo-panel {
+    background: linear-gradient(135deg, rgba(138, 47, 255, 0.1) 0%, rgba(61, 224, 255, 0.05) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(138, 47, 255, 0.4);
+    box-shadow: 0 8px 32px rgba(138, 47, 255, 0.15);
   }
 
+  /* Neon Glow Effects */
+  .glow-violet {
+    box-shadow: 0 0 20px rgba(138, 47, 255, 0.4), 0 0 40px rgba(138, 47, 255, 0.2);
+  }
+
+  .glow-magenta {
+    box-shadow: 0 0 20px rgba(255, 31, 153, 0.4), 0 0 40px rgba(255, 31, 153, 0.2);
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 20px rgba(61, 224, 255, 0.4), 0 0 40px rgba(61, 224, 255, 0.2);
+  }
+
+  .text-glow-violet {
+    text-shadow: 0 0 10px rgba(138, 47, 255, 0.6), 0 0 20px rgba(138, 47, 255, 0.3);
+  }
+
+  .text-glow-blue {
+    text-shadow: 0 0 10px rgba(61, 224, 255, 0.6), 0 0 20px rgba(61, 224, 255, 0.3);
+  }
+
+  /* Neural Grid Background */
+  .neural-grid {
+    background-image:
+      linear-gradient(rgba(138, 47, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(138, 47, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .neural-grid-animated {
+    background-image:
+      linear-gradient(rgba(138, 47, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(138, 47, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: gridMove 20s linear infinite;
+  }
+
+  /* Circuitry Lines */
+  .circuitry-lines {
+    background-image:
+      radial-gradient(circle at 20% 50%, rgba(138, 47, 255, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(61, 224, 255, 0.15) 0%, transparent 50%);
+  }
+
+  /* Animations */
   .animate-fade-in {
-    animation: fadeIn 0.6s ease-in-out;
+    animation: fadeIn 0.8s ease-in-out;
   }
 
   .animate-slide-up {
-    animation: slideUp 0.6s ease-out;
+    animation: slideUp 0.8s ease-out;
   }
 
   .animate-float {
-    animation: float 3s ease-in-out infinite;
+    animation: float 6s ease-in-out infinite;
   }
 
+  .animate-pulse-glow {
+    animation: pulseGlow 6s ease-in-out infinite;
+  }
+
+  .animate-gradient-flow {
+    animation: gradientFlow 8s ease infinite;
+    background-size: 200% 200%;
+  }
+
+  .animate-border-glow {
+    animation: borderGlow 3s ease-in-out infinite;
+  }
+
+  /* Hover Effects */
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(138, 47, 255, 0.3);
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 30px rgba(138, 47, 255, 0.5), 0 0 60px rgba(138, 47, 255, 0.3);
+  }
+
+  /* Keyframe Animations */
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -167,7 +264,7 @@
   @keyframes slideUp {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(30px);
     }
     to {
       opacity: 1;
@@ -176,29 +273,52 @@
   }
 
   @keyframes float {
-    0%,
-    100% {
+    0%, 100% {
       transform: translateY(0px);
     }
     50% {
-      transform: translateY(-10px);
+      transform: translateY(-15px);
     }
   }
 
-  /* Add pulse glow animation for hero image */
   @keyframes pulseGlow {
-    0%,
-    100% {
-      box-shadow: 0 0 20px rgba(132, 204, 255, 0.3), 0 0 40px rgba(122, 92, 255, 0.1);
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(138, 47, 255, 0.4), 0 0 40px rgba(138, 47, 255, 0.2);
       opacity: 1;
     }
     50% {
-      box-shadow: 0 0 30px rgba(132, 204, 255, 0.5), 0 0 60px rgba(122, 92, 255, 0.2);
+      box-shadow: 0 0 40px rgba(138, 47, 255, 0.6), 0 0 80px rgba(138, 47, 255, 0.3);
       opacity: 0.95;
     }
   }
 
-  .animate-pulse-glow {
-    animation: pulseGlow 3s ease-in-out infinite;
+  @keyframes gradientFlow {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes borderGlow {
+    0%, 100% {
+      border-color: rgba(138, 47, 255, 0.4);
+    }
+    50% {
+      border-color: rgba(61, 224, 255, 0.6);
+    }
+  }
+
+  @keyframes gridMove {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 50px 50px;
+    }
   }
 }
