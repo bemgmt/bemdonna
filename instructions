@@ -1,0 +1,470 @@
+PROJECT: Build the full production website for DONNA – The AI Office Assistant.
+This website replaces the prelaunch landing page and will serve as Donna’s main public-facing SaaS platform.
+
+OBJECTIVE FOR TRAYCER
+
+Create a complete development plan, including:
+
+Full site architecture
+
+Page-by-page structure and content outlines
+
+Component list
+
+UX flow
+
+API + integration considerations
+
+SEO strategy
+
+Suggested technology stack for front-end + CMS
+
+Wireframe description for each page
+
+Prioritized build phases (MVP → Beta → Full Release)
+
+1. SITE MAP (FULL STRUCTURE)
+Home
+Product
+    Overview
+    Voice Receptionist
+    Email Assistant
+    Chatbot
+    Marketing Bot
+    Knowledge Base
+    Integrations
+    Security
+Use Cases
+    Lead Response
+    Customer Support
+    Appointment Scheduling
+    Lead Nurturing
+Industries
+    Real Estate
+    Hospitality
+    Property Management
+    Health & Beauty
+    Insurance
+    Nonprofits & Chambers
+    Clubs & Nightlife
+Pricing
+Resources
+    Blog
+    Case Studies
+    Tutorials
+    Documentation
+    Webinars
+    Downloads
+Company
+    About Us
+    Careers
+    Press
+    Investors
+    Contact
+Legal
+    Terms of Service
+    Privacy Policy
+
+2. PAGE-BY-PAGE REQUIREMENTS
+
+Traycer should generate a detailed build plan for each page.
+
+Below are the functional expectations.
+
+Home Page
+
+Modern SaaS hero section
+
+Product preview video / animation
+
+Feature summary cards
+
+Vertical industry highlights
+
+CTA blocks (“Start Free”, “Book Demo”)
+
+Integrations scroller
+
+Testimonials / social proof
+
+Security badges
+
+Footer with full nav
+
+Product Pages (8 total)
+Product Overview
+
+High-level explainer
+
+Donna’s core architecture (voice + chat + email + KB + workflows)
+
+Dashboard screenshots
+
+Why Donna exists
+
+How it works (step-by-step)
+
+CTA: Start Free
+
+Voice Receptionist
+
+How real-time voice works
+
+Call routing logic
+
+Demo audio player
+
+Workflow diagram
+
+Industry examples
+
+Email Assistant
+
+Thread-aware logic
+
+Auto-draft examples
+
+Lead classification
+
+Inbox demos
+
+KB reasoning explanation
+
+Chatbot
+
+Embedded widget demo
+
+Funnel logic
+
+Lead capture forms
+
+White-label branding options
+
+API integration notes
+
+Marketing Bot
+
+Campaign builder
+
+Lead scoring
+
+SMS (Verizon), Email, Chat channel support
+
+Dashboard preview
+
+Knowledge Base
+
+DonnaBrain architecture
+
+Semantic reasoning
+
+Document ingestion
+
+Versioned KB
+
+Permissions & access control
+
+Integrations
+
+Logos grid
+
+Integration categories
+
+Example workflows
+
+API documentation link
+
+Security
+
+SOC2 style layout
+
+Data encryption
+
+Privacy policies
+
+No-training-on-user-data statement
+
+Compliance list
+
+Use Case Pages
+
+Each should include:
+
+Pain point description
+
+“Before Donna / After Donna”
+
+Specific workflows
+
+Short demo / animation
+
+Industry testimonials
+
+Industry Pages
+
+Each vertical gets:
+
+Industry intro copy
+
+Prebuilt Donna workflows
+
+Common scenarios (voice, chat, email)
+
+Compliance notes
+
+CTA to start onboarding
+
+Industries:
+
+Real Estate
+
+Hospitality
+
+Property Management
+
+Health & Beauty
+
+Insurance
+
+Nonprofits / Chambers
+
+Nightlife / Clubs
+
+Pricing Page
+
+Three-tier layout:
+
+Free (Starter)
+
+Professional (mid-tier)
+
+Enterprise / White-Label
+
+Feature comparison table
+
+FAQ
+
+CTA: Choose Plan
+
+Resources Section
+Blog
+
+Category filters
+
+SEO-ready article layout
+
+Featured articles
+
+Case Studies
+
+ROI-based storytelling format
+
+Quote blocks
+
+Downloadable PDF
+
+Tutorials
+
+Step-by-step onboarding videos
+
+KB setup guide
+
+Agent configuration guide
+
+Documentation
+
+API reference
+
+Webhooks
+
+Embedding Donna widget
+
+Voice gateway setup
+
+Webinars
+
+On-demand recordings
+
+Upcoming live session signup
+
+Downloads
+
+PDFs
+
+One-pagers
+
+Industry playbooks
+
+Security white paper
+
+Company Pages
+
+About (mission, story, team photos)
+
+Careers (roles, culture, benefits)
+
+Press kit (logos, screenshots)
+
+Investor portal (pitch deck, data room link)
+
+Contact (form + map + email)
+
+Legal Pages
+
+Terms
+
+Privacy
+
+Acceptable Use
+
+GDPR notice
+
+3. TECHNICAL & DESIGN REQUIREMENTS
+
+Tell Traycer to plan for:
+
+Frontend
+
+Next.js (recommended)
+
+TailwindCSS
+
+React Server Components
+
+Vercel hosting
+
+CMS options: Sanity, Contentful, or Strapi
+
+Backend (if required)
+
+API endpoints (for docs, KB previews, demos)
+
+Analytics tracking
+
+SEO metadata automation
+
+Internationalization support (English → Spanish → Mandarin future)
+
+UI/UX Guidelines
+
+Modern SaaS aesthetic
+
+Clean white + purple accents (Donna brand)
+
+Bento-grid component sections
+
+Animated transitions for product demos
+
+Mobile-first responsive design
+
+Option for dark mode
+
+Components
+
+Traycer should define reusable blocks:
+
+Hero
+
+Video block
+
+Tabbed feature sections
+
+Grid icons
+
+Pricing table
+
+Comparison chart
+
+FAQ accordion
+
+Integration logo carousel
+
+Testimonial slider
+
+4. SEO REQUIREMENTS
+
+Traycer should include:
+
+Full keyword strategy for each page
+
+Schema markup (SaaS, Product, FAQ, Organization)
+
+Sitemap structure
+
+OpenGraph
+
+Tag structure (H1–H4)
+
+301 redirect plan for old URLs
+
+Blog template for AI-generated + human-edited content
+
+5. BUILD PHASES
+
+Traycer should output a phased plan:
+
+Phase 1 — MVP
+
+Home
+
+Product Overview
+
+Pricing
+
+About
+
+Contact
+
+Phase 2 — Product Expansion
+
+Voice, Email, Chatbot, KB, Security
+
+Industry pages
+
+Use case pages
+
+Phase 3 — Resources / SEO Engine
+
+Blog
+
+Docs
+
+Tutorials
+
+Case Studies
+
+Phase 4 — Investor + Enterprise
+
+White-label page
+
+Investor portal
+
+Press section
+
+Careers
+
+Phase 5 — Interactive Demos
+
+Embedded voice demo
+
+Simulated dashboard
+
+Playable chat demo
+
+6. OUTPUT FORMAT
+
+Tell Traycer to deliver:
+
+A full architecture diagram
+
+A detailed page-by-page FSD (Functional Spec Document)
+
+A component catalogue
+
+A prioritized roadmap Gantt chart
+
+Wireframe descriptions for every page
+
+Tech stack recommendations
+
+A build plan with milestones

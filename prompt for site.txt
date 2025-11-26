@@ -1,0 +1,2047 @@
+I have created the following plan after thorough exploration and analysis of the codebase. Follow the below plan verbatim. Trust the files and references. Do not re-verify what's written in the plan. Explore only when absolutely necessary. First implement all the proposed file changes and then I'll review all the changes together at the end.
+
+### Observations
+
+The current codebase is a single-page prelaunch landing page built with Next.js 16, React 19, and TailwindCSS 4. It features a modern SaaS design with glass morphism, gradient accents (cyan/purple), and includes basic sections: Hero, Features, Pricing, FAQ, and a waitlist form. The instructions require transforming this into a comprehensive production SaaS website with 40+ pages across 7 main sections, CMS integration, SEO optimization, blog infrastructure, industry-specific pages, product pages, resources section, and interactive demos. The project follows a 5-phase build approach from MVP to full interactive demos.
+
+### Approach
+
+Transform the single-page landing into a multi-page Next.js application using the App Router with proper routing structure. Integrate a headless CMS (Sanity recommended for its real-time collaboration and Next.js integration). Create a comprehensive component library extending existing components. Implement SEO infrastructure with metadata API, schema markup, and sitemap generation. Build reusable page templates for blog, case studies, and documentation. Establish a design system with shared layouts and consistent styling. Structure the project in 5 phases: MVP (core pages), Product Expansion (product/industry pages), Resources/SEO Engine (blog/docs), Enterprise features (investor/careers), and Interactive Demos.
+
+### Reasoning
+
+I explored the repository structure to understand the current implementation, read the comprehensive instructions file detailing all requirements, examined existing components to understand the design system and patterns, reviewed the package.json to identify available libraries, and analyzed the styling approach to ensure consistency across new pages.
+
+## Proposed File Changes
+
+### next.config.mjs(MODIFY)
+
+**Update Next.js configuration for production:**
+
+- Enable image optimization by removing `unoptimized: true`
+- Add redirects configuration for old URLs (301 redirects from prelaunch to new structure)
+- Configure internationalization (i18n) support for future English → Spanish → Mandarin expansion
+- Add environment variable configuration for CMS endpoints
+- Configure sitemap and robots.txt generation
+- Add security headers (CSP, X-Frame-Options, etc.)
+- Enable experimental features: serverActions, optimizeCss
+- Configure rewrites for clean URLs (e.g., /blog/:slug instead of /blog/[slug])
+
+### package.json(MODIFY)
+
+**Add new dependencies for production features:**
+
+- **CMS Integration**: `@sanity/client`, `@sanity/image-url`, `next-sanity` for Sanity CMS integration
+- **SEO**: `next-sitemap` for sitemap generation, `schema-dts` for TypeScript schema markup
+- **MDX Support**: `@next/mdx`, `@mdx-js/loader`, `@mdx-js/react` for blog/documentation
+- **Analytics**: `@vercel/speed-insights` (already has @vercel/analytics)
+- **Forms**: Already has `react-hook-form` and `zod` - keep these
+- **Syntax Highlighting**: `prismjs` or `shiki` for code blocks in documentation
+- **RSS Feed**: `rss` for blog RSS generation
+- **Internationalization**: `next-intl` for i18n support
+- **Video Player**: `react-player` for product demo videos
+- **PDF Generation**: `@react-pdf/renderer` for downloadable case studies
+
+Add new scripts:
+- `"generate:sitemap": "next-sitemap"`
+- `"cms:deploy": "sanity deploy"`
+- `"build:production": "next build && npm run generate:sitemap"`
+
+### .env.local.example(MODIFY)
+
+**Create environment variables template:**
+
+Define all required environment variables:
+- `NEXT_PUBLIC_SITE_URL` - Production site URL
+- `NEXT_PUBLIC_SANITY_PROJECT_ID` - Sanity project ID
+- `NEXT_PUBLIC_SANITY_DATASET` - Sanity dataset (production/staging)
+- `SANITY_API_TOKEN` - Sanity API token for server-side operations
+- `NODEMAILER_EMAIL` - Email configuration (already in use)
+- `NODEMAILER_PASSWORD` - Email password
+- `OPENAI_API_KEY` - For chatbot (if not already configured)
+- `GOOGLE_ANALYTICS_ID` - GA4 tracking ID
+- `NEXT_PUBLIC_VERCEL_ENV` - Environment detection
+
+Include comments explaining each variable's purpose and where to obtain values.
+
+### sanity(NEW)
+
+**Create Sanity CMS directory structure:**
+
+This directory will contain the Sanity Studio configuration and schema definitions. It will be a separate Sanity project that can be deployed independently but shares the same data with the Next.js frontend.
+
+Structure:
+- `/schemas` - Content type definitions
+- `/lib` - Sanity client configuration
+- `sanity.config.ts` - Studio configuration
+- `sanity.cli.ts` - CLI configuration
+
+### sanity\sanity.config.ts(NEW)
+
+**Configure Sanity Studio:**
+
+Define Sanity Studio configuration:
+- Project ID and dataset configuration
+- Studio title: "DONNA CMS"
+- Schema types import from `./schemas`
+- Plugins: `deskTool`, `visionTool` (for GROQ testing), `media` (for asset management)
+- Custom branding with DONNA colors (cyan/purple theme)
+- Document actions configuration
+- Custom input components for rich text
+- Preview configuration for live preview in Next.js
+
+### sanity\schemas\index.ts(NEW)
+
+**Define Sanity schema types:**
+
+Export all schema types for CMS content models:
+- `blogPost` - Blog articles with categories, tags, author, SEO fields
+- `caseStudy` - Case studies with ROI metrics, testimonials, downloadable PDF
+- `tutorial` - Step-by-step tutorials with video embeds
+- `documentation` - API docs, guides, references
+- `webinar` - Webinar recordings and upcoming sessions
+- `industryPage` - Industry-specific content (Real Estate, Hospitality, etc.)
+- `productPage` - Product feature pages (Voice, Email, Chatbot, etc.)
+- `useCasePage` - Use case pages (Lead Response, Customer Support, etc.)
+- `teamMember` - Team profiles for About page
+- `pressRelease` - Press kit items
+- `career` - Job postings
+- `testimonial` - Customer testimonials
+- `integration` - Integration partner details
+- `faqItem` - FAQ entries
+- `siteSettings` - Global site configuration
+
+Each schema includes:
+- Title, slug, description
+- Rich text content with portable text
+- SEO metadata (meta title, description, OG image)
+- Publication date and status
+- Categories/tags
+- Featured image
+- Author/contributor references
+
+### sanity\schemas\blogPost.ts(NEW)
+
+**Define blog post schema:**
+
+Create comprehensive blog post content type:
+- `title` (string, required) - Post title
+- `slug` (slug, required) - URL-friendly slug
+- `excerpt` (text) - Short description for listings
+- `mainImage` (image) - Featured image with alt text
+- `body` (portable text) - Rich content with custom blocks for code, images, videos, callouts
+- `author` (reference to teamMember) - Post author
+- `categories` (array of references) - Blog categories
+- `tags` (array of strings) - Post tags
+- `publishedAt` (datetime) - Publication date
+- `seo` (object) - SEO metadata (metaTitle, metaDescription, ogImage, keywords)
+- `readTime` (number) - Estimated reading time in minutes
+- `featured` (boolean) - Mark as featured post
+- `relatedPosts` (array of references) - Related blog posts
+
+Include validation rules and preview configuration.
+
+### sanity\lib\client.ts(NEW)
+
+**Create Sanity client configuration:**
+
+Set up Sanity client for data fetching:
+- Import `createClient` from `@sanity/client`
+- Configure with project ID, dataset, API version (2024-01-01)
+- Set `useCdn: true` for production reads
+- Export client instance for use in Next.js
+- Create helper functions for common queries:
+  - `getClient(preview)` - Returns client with/without CDN based on preview mode
+  - `sanityFetch(query, params, options)` - Wrapper with error handling and caching
+- Configure image URL builder from `@sanity/image-url`
+- Export `urlFor(source)` helper for image transformations
+
+### lib\sanity\queries.ts(NEW)
+
+References: 
+
+- sanity\lib\client.ts(NEW)
+
+**Define GROQ queries for content fetching:**
+
+Create reusable GROQ queries for all content types:
+- `allBlogPostsQuery` - Fetch all blog posts with pagination
+- `blogPostBySlugQuery` - Fetch single blog post by slug
+- `featuredBlogPostsQuery` - Fetch featured posts
+- `blogCategoriesQuery` - Fetch all categories with post counts
+- `allCaseStudiesQuery` - Fetch case studies
+- `caseStudyBySlugQuery` - Fetch single case study
+- `allIndustryPagesQuery` - Fetch industry pages
+- `industryPageBySlugQuery` - Fetch single industry page
+- `allProductPagesQuery` - Fetch product pages
+- `productPageBySlugQuery` - Fetch single product page
+- `allUseCasePagesQuery` - Fetch use case pages
+- `useCasePageBySlugQuery` - Fetch single use case page
+- `allTutorialsQuery` - Fetch tutorials
+- `allDocumentationQuery` - Fetch documentation pages
+- `allWebinarsQuery` - Fetch webinars
+- `teamMembersQuery` - Fetch team members for About page
+- `careersQuery` - Fetch job postings
+- `testimonialsQuery` - Fetch testimonials
+- `siteSettingsQuery` - Fetch global settings
+
+Each query includes proper field selection, references resolution, and ordering.
+
+### app\layout.tsx(MODIFY)
+
+References: 
+
+- components\theme-provider.tsx
+
+**Enhance root layout for production:**
+
+- Update metadata to use dynamic metadata from Sanity site settings
+- Add comprehensive SEO metadata: OpenGraph, Twitter cards, canonical URLs
+- Include JSON-LD schema markup for Organization
+- Add Google Analytics script (gtag.js) with consent management
+- Import and wrap with `ThemeProvider` from `@/components/theme-provider` for dark mode support
+- Add `<SpeedInsights />` from `@vercel/speed-insights/next`
+- Include global error boundary
+- Add skip-to-content link for accessibility
+- Configure font loading strategy for performance
+- Add viewport meta tags for responsive design
+- Include favicon and app icons configuration
+
+### app\page.tsx(MODIFY)
+
+References: 
+
+- components\header.tsx(MODIFY)
+- components\hero.tsx
+- components\testimonials.tsx(MODIFY)
+- lib\sanity\queries.ts(NEW)
+
+**Update home page for production:**
+
+- Keep existing component structure (Header, Hero, Outcomes, Features, etc.)
+- Fetch dynamic content from Sanity for testimonials, integrations, FAQ
+- Add `generateMetadata` function for SEO optimization
+- Include JSON-LD schema markup for SoftwareApplication and FAQPage
+- Update testimonials to use real data from CMS instead of hardcoded
+- Update integrations to fetch from CMS
+- Update FAQ to fetch from CMS
+- Add structured data for pricing
+- Optimize images with Next.js Image component
+- Add tracking events for CTA buttons
+- Ensure all sections have proper semantic HTML and ARIA labels
+
+### app\(marketing)(NEW)
+
+**Create marketing layout group:**
+
+Group all marketing pages under a shared layout. This directory uses Next.js route groups (parentheses) to apply a common layout without affecting the URL structure.
+
+This layout will include:
+- Shared header navigation (updated from current `Header` component)
+- Shared footer (updated from current `Footer` component)
+- Common SEO defaults
+- Analytics tracking
+- Cookie consent banner
+
+Pages in this group: product pages, industry pages, use cases, pricing, about, contact, etc.
+
+### app\(marketing)\layout.tsx(NEW)
+
+References: 
+
+- components\header.tsx(MODIFY)
+- components\footer.tsx(MODIFY)
+
+**Create marketing layout:**
+
+Define shared layout for all marketing pages:
+- Import `Header` component from `@/components/header`
+- Import `Footer` component from `@/components/footer`
+- Import `CookieConsent` component (to be created)
+- Wrap children with consistent structure:
+  - Header at top (sticky/fixed)
+  - Main content area with proper spacing
+  - Footer at bottom
+  - Cookie consent banner
+- Add layout-specific metadata defaults
+- Include breadcrumb schema markup
+- Add scroll-to-top button component
+- Ensure proper semantic HTML structure
+
+### app\(marketing)\product(NEW)
+
+**Create product section directory:**
+
+Container for all product-related pages. This will house 8 product pages as specified in the instructions:
+- Overview
+- Voice Receptionist
+- Email Assistant
+- Chatbot
+- Marketing Bot
+- Knowledge Base
+- Integrations
+- Security
+
+Each will be a separate route under `/product/[slug]`.
+
+### app\(marketing)\product\page.tsx(NEW)
+
+References: 
+
+- components\how-it-works.tsx
+- lib\sanity\queries.ts(NEW)
+
+**Create product overview page:**
+
+Main product landing page at `/product`:
+- Hero section explaining DONNA's core architecture (voice + chat + email + KB + workflows)
+- "Why DONNA exists" section with problem/solution narrative
+- "How it works" step-by-step visual flow (similar to existing `HowItWorks` component but more detailed)
+- Dashboard screenshots showcase (use Next.js Image with proper optimization)
+- Feature grid linking to individual product pages
+- CTA section: "Start Free" button
+- Fetch content from Sanity using product overview schema
+- Include JSON-LD schema for Product
+- Add breadcrumb navigation
+- Implement tab navigation for switching between product features
+- Add animated transitions for product demos
+
+### app\(marketing)\product\[slug]\page.tsx(NEW)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+- sanity\schemas\index.ts(NEW)
+
+**Create dynamic product page:**
+
+Dynamic route for individual product pages (voice-receptionist, email-assistant, chatbot, marketing-bot, knowledge-base, integrations, security):
+
+- Implement `generateStaticParams` to pre-render all product pages at build time
+- Implement `generateMetadata` for dynamic SEO based on product
+- Fetch product data from Sanity using `productPageBySlugQuery`
+- Create flexible page structure:
+  - Hero section with product-specific headline and description
+  - Feature highlights with icons and descriptions
+  - Demo section (audio player for Voice, inbox demo for Email, widget for Chatbot, etc.)
+  - Workflow diagram visualization
+  - Industry-specific examples
+  - Technical specifications section
+  - Integration points
+  - CTA section
+- Use portable text renderer for rich content from CMS
+- Add product-specific schema markup (SoftwareApplication with specific features)
+- Include related products section
+- Add video player component for product demos
+- Implement interactive demos where applicable (e.g., chatbot widget preview)
+
+### app\(marketing)\industries(NEW)
+
+**Create industries section directory:**
+
+Container for all industry-specific pages. According to instructions, there are 7 industries:
+- Real Estate
+- Hospitality
+- Property Management
+- Health & Beauty
+- Insurance
+- Nonprofits & Chambers
+- Clubs & Nightlife
+
+Each will be accessible via `/industries/[slug]`.
+
+### app\(marketing)\industries\page.tsx(NEW)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+
+**Create industries overview page:**
+
+Main industries landing page at `/industries`:
+- Hero section: "DONNA for Every Industry"
+- Grid of industry cards with icons, brief descriptions, and links to detailed pages
+- Each card shows:
+  - Industry icon/image
+  - Industry name
+  - Brief description (1-2 sentences)
+  - Key use cases (3-4 bullet points)
+  - "Learn More" CTA
+- Fetch industries from Sanity
+- Add filtering/search functionality
+- Include testimonials from various industries
+- Add comparison table showing which features are most relevant per industry
+- Include JSON-LD schema for ItemList
+- Add breadcrumb navigation
+
+### app\(marketing)\industries\[slug]\page.tsx(NEW)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+
+**Create dynamic industry page:**
+
+Dynamic route for individual industry pages:
+
+- Implement `generateStaticParams` for all 7 industries
+- Implement `generateMetadata` for industry-specific SEO
+- Fetch industry data from Sanity using `industryPageBySlugQuery`
+- Page structure:
+  - Hero with industry-specific imagery and headline
+  - Industry introduction copy explaining pain points
+  - "Prebuilt DONNA workflows" section showing ready-to-use templates
+  - Common scenarios section (voice, chat, email examples specific to industry)
+  - Compliance notes section (HIPAA for healthcare, GDPR, industry-specific regulations)
+  - Case studies from this industry
+  - Testimonials from industry clients
+  - Integration partners relevant to industry
+  - CTA: "Start Onboarding" with industry-specific messaging
+- Use portable text for flexible content
+- Add industry-specific schema markup
+- Include related industries section
+- Add downloadable industry playbook (PDF)
+
+### app\(marketing)\use-cases(NEW)
+
+**Create use cases section directory:**
+
+Container for use case pages. According to instructions, there are 4 use cases:
+- Lead Response
+- Customer Support
+- Appointment Scheduling
+- Lead Nurturing
+
+Each accessible via `/use-cases/[slug]`.
+
+### app\(marketing)\use-cases\page.tsx(NEW)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+- components\use-cases.tsx
+
+**Create use cases overview page:**
+
+Main use cases landing page at `/use-cases`:
+- Hero section: "Transform Your Business Operations"
+- Grid of use case cards with problem/solution format
+- Each card shows:
+  - Use case icon
+  - Use case name
+  - Pain point description
+  - How DONNA solves it
+  - Key benefits (3-4 points)
+  - "See How It Works" CTA
+- Fetch use cases from Sanity
+- Add interactive filtering by industry
+- Include ROI calculator component
+- Add video testimonials
+- Include comparison: "Before DONNA / After DONNA" visual
+- Add breadcrumb navigation
+
+### app\(marketing)\use-cases\[slug]\page.tsx(NEW)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+
+**Create dynamic use case page:**
+
+Dynamic route for individual use case pages:
+
+- Implement `generateStaticParams` for all 4 use cases
+- Implement `generateMetadata` for use case-specific SEO
+- Fetch use case data from Sanity using `useCasePageBySlugQuery`
+- Page structure:
+  - Hero with use case-specific headline
+  - Pain point description section (detailed problem statement)
+  - "Before DONNA / After DONNA" comparison section with metrics
+  - Specific workflows section showing step-by-step process
+  - Demo/animation section (short video or interactive demo)
+  - Industry testimonials relevant to this use case
+  - ROI metrics and statistics
+  - Related use cases section
+  - CTA: "Try This Workflow" or "Book Demo"
+- Use portable text for content
+- Add HowTo schema markup for workflows
+- Include downloadable workflow template
+- Add interactive workflow builder preview
+
+### app\(marketing)\pricing\page.tsx(NEW)
+
+References: 
+
+- components\pricing.tsx
+- lib\sanity\queries.ts(NEW)
+
+**Create dedicated pricing page:**
+
+Expanded pricing page at `/pricing` (separate from home page pricing section):
+
+- Hero section: "Choose Your Plan"
+- Three-tier pricing layout as specified:
+  - **Free (Starter)**: Basic features, limited usage
+  - **Professional (mid-tier)**: Full features, higher limits
+  - **Enterprise / White-Label**: Custom pricing, unlimited, white-label options
+- Detailed feature comparison table with expandable rows
+- FAQ section specific to pricing and billing
+- "Choose Plan" CTAs for each tier
+- Annual/monthly toggle with savings indicator
+- Add-ons section (extra users, additional integrations, etc.)
+- ROI calculator component
+- Testimonials focused on value/ROI
+- Fetch pricing data from Sanity for easy updates
+- Include Offer schema markup
+- Add comparison with competitors (optional)
+- Include "Contact Sales" form for Enterprise tier
+
+### app\(marketing)\about\page.tsx(NEW)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+
+**Create About Us page:**
+
+Company about page at `/about`:
+
+- Hero section with company mission statement
+- "Our Story" section explaining why DONNA was created
+- Company values and culture section
+- Team section with photos and bios (fetch from Sanity `teamMember` schema)
+- Timeline of company milestones
+- Office locations/remote work culture
+- Company statistics (customers served, messages processed, etc.)
+- Press mentions and awards
+- CTA: "Join Our Team" linking to careers page
+- Fetch team members and company info from Sanity
+- Include Organization schema markup
+- Add video: "Meet the Team" or founder story
+- Include social proof: customer count, funding info, etc.
+
+### app\(marketing)\contact\page.tsx(NEW)
+
+References: 
+
+- app\api\send-email\route.ts(MODIFY)
+- components\demo-form.tsx
+
+**Create Contact page:**
+
+Contact page at `/contact`:
+
+- Hero section: "Get in Touch"
+- Multi-column layout:
+  - Left: Contact form (name, email, company, message, inquiry type)
+  - Right: Contact information (email, phone, office address)
+- Office locations with map embed (Google Maps or Mapbox)
+- Alternative contact methods:
+  - Sales: sales@bemdonna.com
+  - Support: support@bemdonna.com
+  - Press: press@bemdonna.com
+- Social media links
+- FAQ section: "Before you reach out"
+- Form submission using existing `/api/send-email` route
+- Add form validation with `react-hook-form` and `zod`
+- Include ContactPage schema markup
+- Add success/error toast notifications using `sonner`
+- Include CAPTCHA or honeypot for spam prevention
+
+### app\(resources)(NEW)
+
+**Create resources layout group:**
+
+Group for all resource pages (blog, case studies, tutorials, documentation, webinars, downloads). This uses a route group to apply a shared layout optimized for content consumption.
+
+This layout will include:
+- Simplified header (less prominent than marketing pages)
+- Sidebar navigation for documentation
+- Table of contents for long-form content
+- Search functionality
+- Related content suggestions
+- Newsletter signup CTA
+
+### app\(resources)\layout.tsx(NEW)
+
+References: 
+
+- components\header.tsx(MODIFY)
+- components\footer.tsx(MODIFY)
+
+**Create resources layout:**
+
+Shared layout for all resource pages:
+
+- Import simplified `Header` component
+- Import `Footer` component
+- Add sidebar navigation component for docs/tutorials
+- Add search bar component (Algolia or built-in search)
+- Add breadcrumb navigation
+- Add progress indicator for long articles
+- Add table of contents component (auto-generated from headings)
+- Add "Share this article" component (social sharing)
+- Add "Was this helpful?" feedback component
+- Include newsletter signup section in sidebar
+- Add related content recommendations
+- Ensure proper semantic HTML for articles
+
+### app\(resources)\blog(NEW)
+
+**Create blog section directory:**
+
+Container for blog-related pages:
+- Main blog listing page
+- Individual blog post pages
+- Category pages
+- Tag pages
+- Author pages
+
+### app\(resources)\blog\page.tsx(NEW)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+
+**Create blog listing page:**
+
+Main blog page at `/blog`:
+
+- Hero section: "DONNA Blog" with tagline
+- Featured articles section (2-3 featured posts with large cards)
+- Category filter navigation (All, Product Updates, Industry Insights, Tutorials, Company News)
+- Grid of blog post cards with:
+  - Featured image
+  - Category badge
+  - Title
+  - Excerpt
+  - Author info (avatar, name)
+  - Publication date
+  - Read time
+  - "Read More" link
+- Pagination component (load more or numbered pages)
+- Sidebar with:
+  - Search box
+  - Popular posts
+  - Categories with post counts
+  - Tags cloud
+  - Newsletter signup
+- Fetch blog posts from Sanity using `allBlogPostsQuery`
+- Implement server-side pagination
+- Add RSS feed link
+- Include Blog schema markup
+- Add SEO metadata for blog index
+
+### app\(resources)\blog\[slug]\page.tsx(NEW)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+
+**Create dynamic blog post page:**
+
+Individual blog post page at `/blog/[slug]`:
+
+- Implement `generateStaticParams` to pre-render all blog posts
+- Implement `generateMetadata` for post-specific SEO (title, description, OG image)
+- Fetch post data from Sanity using `blogPostBySlugQuery`
+- Page structure:
+  - Hero section with featured image, title, author, date, read time
+  - Article content using portable text renderer with custom components:
+    - Headings with anchor links
+    - Code blocks with syntax highlighting (Prism or Shiki)
+    - Images with captions
+    - Callout boxes (info, warning, tip)
+    - Embedded videos
+    - Quotes
+  - Author bio section at end
+  - Tags section
+  - Social sharing buttons
+  - Related posts section (3-4 posts)
+  - Comments section (optional: Disqus or custom)
+  - Newsletter signup CTA
+- Add Article schema markup with author, publisher, datePublished
+- Add table of contents for long articles
+- Add reading progress indicator
+- Implement view tracking for analytics
+
+### app\(resources)\blog\category\[slug]\page.tsx(NEW)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+- app\(resources)\blog\page.tsx(NEW)
+
+**Create blog category page:**
+
+Category-filtered blog listing at `/blog/category/[slug]`:
+
+- Similar to main blog page but filtered by category
+- Implement `generateStaticParams` for all categories
+- Hero section with category name and description
+- Filtered blog post grid
+- Breadcrumb: Home > Blog > [Category Name]
+- Fetch posts filtered by category from Sanity
+- Add category-specific SEO metadata
+- Include CollectionPage schema markup
+
+### app\(resources)\case-studies(NEW)
+
+**Create case studies section directory:**
+
+Container for case study pages:
+- Main case studies listing
+- Individual case study pages
+
+### app\(resources)\case-studies\page.tsx(NEW)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+
+**Create case studies listing page:**
+
+Main case studies page at `/case-studies`:
+
+- Hero section: "Success Stories"
+- Filter by industry and use case
+- Grid of case study cards with:
+  - Company logo
+  - Company name and industry
+  - Headline/result (e.g., "Increased leads by 300%")
+  - Brief description
+  - Key metrics (3-4 numbers)
+  - "Read Case Study" CTA
+- Fetch case studies from Sanity using `allCaseStudiesQuery`
+- Add testimonial quotes in cards
+- Include ROI metrics prominently
+- Add "Download PDF" option for each case study
+- Include CollectionPage schema markup
+
+### app\(resources)\case-studies\[slug]\page.tsx(NEW)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+
+**Create dynamic case study page:**
+
+Individual case study page at `/case-studies/[slug]`:
+
+- Implement `generateStaticParams` for all case studies
+- Implement `generateMetadata` for case study SEO
+- Fetch case study from Sanity using `caseStudyBySlugQuery`
+- ROI-based storytelling format:
+  - Hero with company logo, name, industry
+  - Executive summary with key results
+  - "The Challenge" section
+  - "The Solution" section (how DONNA was implemented)
+  - "The Results" section with metrics and charts
+  - Quote blocks from client testimonials
+  - Implementation timeline
+  - Products/features used
+  - "Download PDF" CTA button
+- Use portable text for content
+- Add charts/graphs for metrics (using `recharts`)
+- Include before/after comparisons
+- Add related case studies section
+- Include CaseStudy schema markup
+- Generate downloadable PDF version using `@react-pdf/renderer`
+
+### app\(resources)\tutorials(NEW)
+
+**Create tutorials section directory:**
+
+Container for tutorial pages:
+- Main tutorials listing
+- Individual tutorial pages
+
+### app\(resources)\tutorials\page.tsx(NEW)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+
+**Create tutorials listing page:**
+
+Main tutorials page at `/tutorials`:
+
+- Hero section: "Learn DONNA"
+- Categories:
+  - Getting Started
+  - Knowledge Base Setup
+  - Agent Configuration
+  - Integrations
+  - Advanced Features
+- Grid of tutorial cards with:
+  - Thumbnail/icon
+  - Title
+  - Description
+  - Difficulty level (Beginner, Intermediate, Advanced)
+  - Duration
+  - "Start Tutorial" CTA
+- Fetch tutorials from Sanity using `allTutorialsQuery`
+- Add search and filter functionality
+- Include video tutorials prominently
+- Add learning path recommendations
+- Include CollectionPage schema markup
+
+### app\(resources)\tutorials\[slug]\page.tsx(NEW)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+
+**Create dynamic tutorial page:**
+
+Individual tutorial page at `/tutorials/[slug]`:
+
+- Implement `generateStaticParams` for all tutorials
+- Implement `generateMetadata` for tutorial SEO
+- Fetch tutorial from Sanity
+- Step-by-step format:
+  - Hero with tutorial title, difficulty, duration
+  - Video embed (YouTube, Vimeo, or self-hosted)
+  - Prerequisites section
+  - Step-by-step instructions with:
+    - Numbered steps
+    - Screenshots/GIFs
+    - Code snippets with syntax highlighting
+    - Tips and warnings
+  - "What's Next" section with related tutorials
+  - Comments/questions section
+- Use portable text for content
+- Add video player component with chapters
+- Include progress tracking (mark as complete)
+- Add HowTo schema markup
+- Include downloadable resources (templates, scripts)
+
+### app\(resources)\docs(NEW)
+
+**Create documentation section directory:**
+
+Container for technical documentation:
+- API reference
+- Webhooks documentation
+- Widget embedding guide
+- Voice gateway setup
+- SDK documentation
+- Integration guides
+
+### app\(resources)\docs\page.tsx(NEW)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+
+**Create documentation home page:**
+
+Main documentation page at `/docs`:
+
+- Hero section: "DONNA Documentation"
+- Quick start guide section
+- Documentation categories:
+  - API Reference
+  - Webhooks
+  - Embedding Widget
+  - Voice Gateway
+  - Integrations
+  - SDKs & Libraries
+- Search bar (prominent)
+- Popular documentation links
+- Getting started checklist
+- Link to tutorials and support
+- Fetch documentation structure from Sanity
+- Include TechArticle schema markup
+
+### app\(resources)\docs\[...slug]\page.tsx(NEW)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+
+**Create dynamic documentation page:**
+
+Nested documentation pages at `/docs/[...slug]` (catch-all route for nested docs):
+
+- Implement `generateStaticParams` for all documentation pages
+- Implement `generateMetadata` for doc-specific SEO
+- Fetch documentation from Sanity
+- Layout with sidebar navigation:
+  - Left sidebar: Documentation tree navigation
+  - Main content: Documentation article
+  - Right sidebar: Table of contents (auto-generated from headings)
+- Content structure:
+  - Title and description
+  - Content with portable text renderer
+  - Code examples with syntax highlighting and copy button
+  - API endpoint examples with request/response
+  - Interactive API playground (optional)
+  - "Was this helpful?" feedback
+  - "Edit on GitHub" link (if docs are in Git)
+- Add TechArticle schema markup
+- Include version selector for API docs
+- Add search functionality within docs
+- Implement keyboard navigation (arrow keys for prev/next)
+
+### app\(resources)\webinars(NEW)
+
+**Create webinars section directory:**
+
+Container for webinar pages:
+- Webinars listing (upcoming and on-demand)
+- Individual webinar pages
+
+### app\(resources)\webinars\page.tsx(NEW)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+
+**Create webinars listing page:**
+
+Main webinars page at `/webinars`:
+
+- Hero section: "DONNA Webinars"
+- Two sections:
+  - **Upcoming Live Sessions**: Cards with date, time, topic, speakers, registration CTA
+  - **On-Demand Recordings**: Grid of past webinars with thumbnails, titles, duration, watch CTA
+- Filter by topic/category
+- Fetch webinars from Sanity using `allWebinarsQuery`
+- Add calendar integration (Add to Google Calendar, iCal)
+- Include Event schema markup for upcoming webinars
+- Add email reminder signup for upcoming webinars
+
+### app\(resources)\webinars\[slug]\page.tsx(NEW)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+
+**Create dynamic webinar page:**
+
+Individual webinar page at `/webinars/[slug]`:
+
+- Implement `generateStaticParams` for all webinars
+- Implement `generateMetadata` for webinar SEO
+- Fetch webinar from Sanity
+- For upcoming webinars:
+  - Hero with webinar title, date, time, duration
+  - Speaker bios with photos
+  - What you'll learn section
+  - Registration form
+  - Add to calendar button
+  - Related webinars
+- For on-demand webinars:
+  - Video player (YouTube, Vimeo, or self-hosted)
+  - Webinar description
+  - Speaker bios
+  - Key takeaways
+  - Related resources (blog posts, case studies)
+  - Download slides/resources
+  - Related webinars
+- Include Event schema markup
+- Add social sharing buttons
+- Track video engagement analytics
+
+### app\(resources)\downloads\page.tsx(NEW)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+
+**Create downloads page:**
+
+Downloads/resources page at `/downloads`:
+
+- Hero section: "Resources & Downloads"
+- Categories:
+  - One-Pagers (product sheets)
+  - Industry Playbooks
+  - Security White Paper
+  - Case Study PDFs
+  - Templates & Guides
+  - Brand Assets (logos, screenshots for press)
+- Grid of downloadable resources with:
+  - Thumbnail/icon
+  - Title
+  - Description
+  - File type and size
+  - "Download" button
+- Some downloads may require email gate (lead capture)
+- Fetch downloads from Sanity
+- Track download events for analytics
+- Include DigitalDocument schema markup
+
+### app\(company)(NEW)
+
+**Create company layout group:**
+
+Group for company-related pages (careers, press, investors). Uses route group for shared layout.
+
+### app\(company)\layout.tsx(NEW)
+
+References: 
+
+- components\header.tsx(MODIFY)
+- components\footer.tsx(MODIFY)
+
+**Create company layout:**
+
+Shared layout for company pages:
+
+- Import `Header` and `Footer` components
+- Add company-specific navigation (About, Careers, Press, Investors)
+- Include company branding elements
+- Add social proof section in footer
+- Ensure consistent styling across company pages
+
+### app\(company)\careers\page.tsx(NEW)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+
+**Create careers page:**
+
+Careers page at `/careers`:
+
+- Hero section: "Join the DONNA Team"
+- Company culture section with photos/videos
+- Benefits section:
+  - Compensation & equity
+  - Health & wellness
+  - Remote work options
+  - Professional development
+  - Work-life balance
+- Open positions section:
+  - Filter by department (Engineering, Sales, Marketing, Support)
+  - Job cards with title, location, department, "Apply" CTA
+- "Why work at DONNA" section with employee testimonials
+- Office locations/remote culture
+- Application process overview
+- Fetch job postings from Sanity using `careersQuery`
+- Include JobPosting schema markup for each position
+- Add "No open positions? Send us your resume" section
+
+### app\(company)\careers\[slug]\page.tsx(NEW)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+
+**Create dynamic job posting page:**
+
+Individual job posting at `/careers/[slug]`:
+
+- Implement `generateStaticParams` for all job postings
+- Implement `generateMetadata` for job-specific SEO
+- Fetch job posting from Sanity
+- Page structure:
+  - Hero with job title, location, department
+  - Job description
+  - Responsibilities section
+  - Qualifications section
+  - Nice-to-haves section
+  - Benefits section
+  - Application form or "Apply via [ATS]" button
+  - Company culture section
+  - Related positions
+- Include JobPosting schema markup
+- Add social sharing buttons
+- Track application starts/completions
+
+### app\(company)\press\page.tsx(NEW)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+
+**Create press page:**
+
+Press kit page at `/press`:
+
+- Hero section: "Press & Media"
+- Press releases section (chronological list)
+- Media coverage section (logos and links to articles)
+- Press kit downloads:
+  - Company logos (various formats and sizes)
+  - Product screenshots
+  - Executive headshots
+  - Company fact sheet
+  - Brand guidelines PDF
+- Media contact information
+- Recent news section
+- Fetch press releases from Sanity
+- Include NewsArticle schema markup for press releases
+- Add "Subscribe to press updates" email signup
+
+### app\(company)\investors\page.tsx(NEW)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+
+**Create investors page:**
+
+Investor portal at `/investors`:
+
+- Hero section: "Investor Relations"
+- Company overview section
+- Key metrics and traction (if public)
+- Investment highlights
+- Pitch deck download (password-protected or gated)
+- Data room link (external, password-protected)
+- Investor contact information
+- FAQ for investors
+- News and updates section
+- This page may require authentication for sensitive information
+- Include Organization schema markup
+- Add "Interested in investing?" contact form
+
+### app\(legal)(NEW)
+
+**Create legal layout group:**
+
+Group for legal pages (Terms, Privacy, etc.). Uses route group for shared layout.
+
+### app\(legal)\layout.tsx(NEW)
+
+References: 
+
+- components\header.tsx(MODIFY)
+- components\footer.tsx(MODIFY)
+
+**Create legal layout:**
+
+Shared layout for legal pages:
+
+- Import simplified `Header` and `Footer`
+- Add sidebar navigation for legal pages
+- Include last updated date
+- Add "Download PDF" option
+- Ensure proper typography for legal content
+- Add table of contents for long legal documents
+
+### app\(legal)\terms\page.tsx(NEW)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+
+**Create Terms of Service page:**
+
+Terms of Service at `/terms`:
+
+- Hero section: "Terms of Service"
+- Last updated date prominently displayed
+- Table of contents with anchor links
+- Legal content sections:
+  - Acceptance of Terms
+  - Description of Service
+  - User Accounts
+  - Acceptable Use
+  - Intellectual Property
+  - Payment Terms
+  - Termination
+  - Disclaimers
+  - Limitation of Liability
+  - Governing Law
+  - Contact Information
+- Fetch content from Sanity or use MDX for version control
+- Include WebPage schema markup
+- Add "Download PDF" button
+- Add "Print" button
+
+### app\(legal)\privacy\page.tsx(NEW)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+
+**Create Privacy Policy page:**
+
+Privacy Policy at `/privacy`:
+
+- Hero section: "Privacy Policy"
+- Last updated date
+- Table of contents
+- Legal content sections:
+  - Information We Collect
+  - How We Use Information
+  - Information Sharing
+  - Data Security
+  - Your Rights (GDPR, CCPA)
+  - Cookies and Tracking
+  - Children's Privacy
+  - International Data Transfers
+  - Changes to Policy
+  - Contact Information
+- Fetch content from Sanity or use MDX
+- Include WebPage schema markup
+- Add "Download PDF" button
+- Highlight GDPR compliance and user rights
+
+### app\(legal)\acceptable-use\page.tsx(NEW)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+
+**Create Acceptable Use Policy page:**
+
+Acceptable Use Policy at `/acceptable-use`:
+
+- Hero section: "Acceptable Use Policy"
+- Last updated date
+- Table of contents
+- Policy sections:
+  - Prohibited Activities
+  - Content Guidelines
+  - Security Requirements
+  - Enforcement
+  - Reporting Violations
+- Fetch content from Sanity or use MDX
+- Include WebPage schema markup
+
+### app\(legal)\gdpr\page.tsx(NEW)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+
+**Create GDPR Notice page:**
+
+GDPR Notice at `/gdpr`:
+
+- Hero section: "GDPR Compliance"
+- Explanation of GDPR rights
+- How DONNA complies with GDPR
+- User rights:
+  - Right to Access
+  - Right to Rectification
+  - Right to Erasure
+  - Right to Data Portability
+  - Right to Object
+- How to exercise rights (contact form or email)
+- Data processing information
+- Fetch content from Sanity or use MDX
+- Include WebPage schema markup
+
+### components\header.tsx(MODIFY)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+
+**Enhance header navigation for full site:**
+
+- Update navigation items to include all main sections:
+  - Product (dropdown with 8 product pages)
+  - Industries (dropdown with 7 industries)
+  - Use Cases (dropdown with 4 use cases)
+  - Pricing (link to `/pricing`)
+  - Resources (dropdown: Blog, Case Studies, Tutorials, Docs, Webinars, Downloads)
+  - Company (dropdown: About, Careers, Press, Investors, Contact)
+- Implement mega menu for Product and Resources dropdowns
+- Add search icon/button that opens search modal
+- Update logo to link to home page
+- Add "Login" button (if user portal exists)
+- Keep "Join Waitlist" or update to "Get Started" CTA
+- Ensure mobile menu includes all navigation items
+- Add active state styling for current page
+- Implement sticky header with background blur on scroll
+- Fetch navigation structure from Sanity for easy updates
+
+### components\footer.tsx(MODIFY)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+
+**Enhance footer for full site:**
+
+- Update footer to include all site sections in organized columns:
+  - **Product**: Links to all 8 product pages
+  - **Industries**: Links to all 7 industry pages
+  - **Use Cases**: Links to all 4 use case pages
+  - **Resources**: Blog, Case Studies, Tutorials, Docs, Webinars, Downloads
+  - **Company**: About, Careers, Press, Investors, Contact
+  - **Legal**: Terms, Privacy, Acceptable Use, GDPR
+- Add newsletter signup section
+- Add social media links (LinkedIn, Twitter, Facebook, YouTube)
+- Add contact information (email, phone)
+- Add copyright notice with current year
+- Add "Built with ❤️ by DONNA Team" or similar
+- Fetch footer content from Sanity for easy updates
+- Ensure mobile-responsive layout (collapsible sections on mobile)
+- Add trust badges (SOC 2, GDPR, etc.)
+
+### components\testimonials.tsx(MODIFY)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+
+**Update testimonials component to use CMS data:**
+
+- Remove hardcoded testimonials
+- Fetch testimonials from Sanity using `testimonialsQuery`
+- Add props to filter testimonials by industry or use case
+- Support different display formats:
+  - Carousel/slider (current format)
+  - Grid layout
+  - Featured testimonial (large format)
+- Include company logo, person name, title, company, testimonial text, rating
+- Add video testimonials support
+- Ensure component is reusable across different pages
+
+### components\integrations.tsx(MODIFY)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+
+**Update integrations component to use CMS data:**
+
+- Remove hardcoded integrations
+- Fetch integrations from Sanity
+- Display integration logos in scrolling carousel or grid
+- Add categories: CRM, Email, Calendar, Payment, Communication, etc.
+- Support filtering by category
+- Add hover state showing integration name and description
+- Link to individual integration detail pages (if needed)
+- Ensure component is reusable across different pages
+
+### components\faq.tsx(MODIFY)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+
+**Update FAQ component to use CMS data:**
+
+- Remove hardcoded FAQ items
+- Fetch FAQ items from Sanity
+- Add props to filter FAQs by category (General, Pricing, Technical, Security, etc.)
+- Keep accordion functionality (already using Radix UI)
+- Add search functionality within FAQs
+- Support rich text answers (not just plain text)
+- Ensure component is reusable across different pages
+- Add "Was this helpful?" feedback for each FAQ item
+
+### components\portable-text.tsx(NEW)
+
+**Create portable text renderer component:**
+
+Custom renderer for Sanity portable text (rich content):
+
+- Install `@portabletext/react`
+- Create custom components for:
+  - Headings (h1-h6) with anchor links
+  - Paragraphs with proper spacing
+  - Lists (ordered and unordered)
+  - Links (external with icon, internal)
+  - Images with captions and zoom functionality
+  - Code blocks with syntax highlighting (Prism or Shiki)
+  - Blockquotes with styling
+  - Callout boxes (info, warning, tip, success)
+  - Embedded videos (YouTube, Vimeo)
+  - Tables
+  - Custom blocks (e.g., CTA blocks, comparison tables)
+- Export `PortableText` component for use in blog posts, case studies, documentation
+- Ensure responsive design and accessibility
+
+### components\search-modal.tsx(NEW)
+
+**Create search modal component:**
+
+Global search functionality:
+
+- Use Radix UI Dialog for modal
+- Implement search input with keyboard shortcut (Cmd/Ctrl + K)
+- Search across:
+  - Pages (product, industry, use case pages)
+  - Blog posts
+  - Documentation
+  - Case studies
+  - Tutorials
+- Display search results grouped by type
+- Highlight matching text
+- Keyboard navigation (arrow keys, enter to select)
+- Recent searches
+- Popular searches
+- Use Algolia for search backend (recommended) or implement custom search with Sanity
+- Add search analytics tracking
+
+### components\cookie-consent.tsx(NEW)
+
+**Create cookie consent banner component:**
+
+GDPR-compliant cookie consent:
+
+- Banner appears at bottom of page on first visit
+- Options:
+  - Accept All
+  - Reject All
+  - Customize (opens modal with categories)
+- Cookie categories:
+  - Essential (always on)
+  - Analytics
+  - Marketing
+  - Preferences
+- Store consent in localStorage or cookie
+- Integrate with Google Analytics consent mode
+- Link to Privacy Policy
+- Ensure GDPR and CCPA compliance
+- Use `sonner` for toast notifications or custom banner
+
+### components\newsletter-signup.tsx(NEW)
+
+**Create newsletter signup component:**
+
+Email newsletter subscription:
+
+- Input field for email address
+- "Subscribe" button
+- Form validation with `react-hook-form` and `zod`
+- Submit to email marketing service (Mailchimp, ConvertKit, or custom API)
+- Success/error messages using `sonner`
+- GDPR consent checkbox
+- Multiple variants:
+  - Inline (for footer)
+  - Modal (popup)
+  - Sidebar (for blog/resources)
+- Track subscription events for analytics
+- Add honeypot for spam prevention
+
+### components\video-player.tsx(NEW)
+
+**Create video player component:**
+
+Custom video player for product demos and tutorials:
+
+- Use `react-player` library for multi-source support (YouTube, Vimeo, self-hosted)
+- Custom controls with DONNA branding
+- Features:
+  - Play/pause
+  - Volume control
+  - Fullscreen
+  - Playback speed
+  - Chapters/timestamps (for tutorials)
+  - Captions/subtitles support
+- Track video engagement (play, pause, completion) for analytics
+- Responsive design
+- Thumbnail preview on hover (for video grids)
+- Autoplay option (with mute for accessibility)
+
+### components\breadcrumb.tsx(NEW)
+
+**Create breadcrumb navigation component:**
+
+Breadcrumb navigation for all pages:
+
+- Display hierarchical navigation path (Home > Product > Voice Receptionist)
+- Use Next.js `usePathname` to determine current path
+- Generate breadcrumb items dynamically
+- Include BreadcrumbList schema markup
+- Style with separators (chevrons or slashes)
+- Make breadcrumb items clickable links
+- Ensure mobile-responsive (truncate on small screens)
+- Add ARIA labels for accessibility
+
+### components\table-of-contents.tsx(NEW)
+
+**Create table of contents component:**
+
+Auto-generated TOC for long-form content:
+
+- Extract headings (h2, h3) from content
+- Generate nested list of links
+- Smooth scroll to sections on click
+- Highlight current section on scroll (intersection observer)
+- Sticky positioning in sidebar
+- Collapsible sections for nested headings
+- "Back to top" button
+- Ensure accessibility with proper ARIA labels
+- Use for blog posts, documentation, case studies
+
+### components\social-share.tsx(NEW)
+
+**Create social sharing component:**
+
+Social media sharing buttons:
+
+- Share buttons for:
+  - Twitter/X
+  - LinkedIn
+  - Facebook
+  - Email
+  - Copy link
+- Accept props: url, title, description
+- Use Web Share API on mobile devices
+- Track share events for analytics
+- Multiple variants:
+  - Icon buttons (compact)
+  - Button with text
+  - Floating share bar
+- Ensure accessibility
+- Add success toast when link copied
+
+### components\comparison-table.tsx(NEW)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+
+**Create comparison table component:**
+
+Feature comparison table for pricing page:
+
+- Display features across pricing tiers (Free, Professional, Enterprise)
+- Checkmarks, X marks, or custom values for each feature
+- Sticky header on scroll
+- Highlight recommended tier
+- Expandable rows for detailed feature descriptions
+- Mobile-responsive (horizontal scroll or stacked layout)
+- Fetch comparison data from Sanity
+- Add "Choose Plan" CTAs in table
+- Ensure accessibility with proper table semantics
+
+### components\roi-calculator.tsx(NEW)
+
+**Create ROI calculator component:**
+
+Interactive ROI calculator:
+
+- Input fields:
+  - Number of employees
+  - Average hourly rate
+  - Hours spent on manual tasks per week
+  - Current customer response time
+- Calculate and display:
+  - Time saved per month
+  - Cost savings per year
+  - ROI percentage
+  - Payback period
+- Use sliders or number inputs
+- Real-time calculation updates
+- "Get Started" CTA based on results
+- Track calculator usage for analytics
+- Ensure mobile-responsive design
+
+### lib\metadata.ts(NEW)
+
+**Create metadata utilities:**
+
+Helper functions for SEO metadata generation:
+
+- `generatePageMetadata(params)` - Generate metadata for any page
+- `generateOGImage(params)` - Generate Open Graph image URL
+- `generateSchemaMarkup(type, data)` - Generate JSON-LD schema
+- Default metadata values (site name, default OG image, etc.)
+- Metadata templates for different page types:
+  - Blog post metadata
+  - Product page metadata
+  - Industry page metadata
+  - Documentation metadata
+- Ensure all metadata follows best practices:
+  - Title length (50-60 characters)
+  - Description length (150-160 characters)
+  - Proper OG tags
+  - Twitter card tags
+  - Canonical URLs
+
+### lib\schema-markup.ts(NEW)
+
+**Create schema markup utilities:**
+
+JSON-LD schema markup generators:
+
+- `organizationSchema()` - Organization schema for site
+- `softwareApplicationSchema(data)` - For product pages
+- `faqSchema(faqs)` - For FAQ sections
+- `articleSchema(post)` - For blog posts
+- `breadcrumbSchema(items)` - For breadcrumb navigation
+- `productSchema(product)` - For product pages
+- `offerSchema(pricing)` - For pricing page
+- `eventSchema(webinar)` - For webinar pages
+- `jobPostingSchema(job)` - For career pages
+- `howToSchema(tutorial)` - For tutorial pages
+- `caseStudySchema(study)` - For case studies
+- Each function returns properly formatted JSON-LD object
+- Use `schema-dts` for TypeScript types
+- Include in page metadata or render in script tag
+
+### app\sitemap.ts(NEW)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+
+**Create dynamic sitemap:**
+
+Generate sitemap.xml dynamically:
+
+- Use Next.js 13+ sitemap generation
+- Include all static pages:
+  - Home
+  - Product pages (8)
+  - Industry pages (7)
+  - Use case pages (4)
+  - Pricing
+  - About, Contact
+  - Legal pages
+- Fetch dynamic pages from Sanity:
+  - Blog posts
+  - Case studies
+  - Tutorials
+  - Documentation pages
+  - Webinars
+  - Career postings
+- Set appropriate priority and changefreq for each URL type
+- Include lastmod dates from CMS
+- Generate separate sitemaps for different sections if needed
+- Ensure sitemap is accessible at `/sitemap.xml`
+
+### app\robots.ts(NEW)
+
+**Create robots.txt:**
+
+Generate robots.txt dynamically:
+
+- Use Next.js 13+ robots.txt generation
+- Allow all crawlers by default
+- Disallow admin/private routes (if any)
+- Include sitemap URL
+- Set crawl-delay if needed
+- Different rules for production vs staging environments
+
+### app\api\newsletter\route.ts(NEW)
+
+**Create newsletter subscription API:**
+
+API endpoint for newsletter signups:
+
+- POST endpoint at `/api/newsletter`
+- Accept email address and optional name
+- Validate input with `zod`
+- Integrate with email marketing service:
+  - Mailchimp API
+  - ConvertKit API
+  - SendGrid
+  - Or custom database storage
+- Handle errors gracefully
+- Return success/error response
+- Add rate limiting to prevent abuse
+- Log subscription events
+- Send confirmation email
+
+### app\api\search\route.ts(NEW)
+
+References: 
+
+- lib\sanity\queries.ts(NEW)
+
+**Create search API endpoint:**
+
+API for site-wide search:
+
+- GET endpoint at `/api/search?q=[query]`
+- Search across:
+  - Pages (product, industry, use case)
+  - Blog posts
+  - Documentation
+  - Case studies
+  - Tutorials
+- Use Sanity GROQ queries with text search
+- Or integrate with Algolia for better search
+- Return results grouped by type
+- Include relevance scoring
+- Implement pagination
+- Add rate limiting
+- Track search queries for analytics
+
+### app\api\og\route.tsx(NEW)
+
+**Create dynamic OG image generator:**
+
+API endpoint for generating Open Graph images:
+
+- Use `@vercel/og` or `satori` for image generation
+- Generate OG images dynamically based on page content
+- Accept parameters: title, description, type (blog, product, etc.)
+- Use DONNA branding (colors, logo)
+- Different templates for different page types
+- Cache generated images
+- Return image as PNG
+- Endpoint: `/api/og?title=[title]&type=[type]`
+
+### app\api\analytics\route.ts(NEW)
+
+**Create analytics tracking API:**
+
+Custom analytics endpoint for tracking events:
+
+- POST endpoint at `/api/analytics`
+- Track custom events:
+  - CTA clicks
+  - Video plays
+  - Download clicks
+  - Form submissions
+  - Search queries
+  - Newsletter signups
+- Send events to Google Analytics 4
+- Or store in custom database for analysis
+- Validate event data
+- Add rate limiting
+- Return success response
+
+### app\api\send-email\route.ts(MODIFY)
+
+**Enhance email sending API:**
+
+- Keep existing nodemailer implementation
+- Add email templates for different types:
+  - Demo request
+  - Contact form
+  - Newsletter confirmation
+  - Download notification
+- Add email validation
+- Implement rate limiting to prevent spam
+- Add honeypot field for spam prevention
+- Log email sends for analytics
+- Add error handling and retry logic
+- Support attachments (for case study PDFs, etc.)
+- Add email queue for high volume (optional: use service like SendGrid, AWS SES)
+
+### middleware.ts(NEW)
+
+**Create Next.js middleware:**
+
+Middleware for request handling:
+
+- Implement redirects for old URLs (301 redirects from prelaunch structure)
+- Add security headers:
+  - Content-Security-Policy
+  - X-Frame-Options
+  - X-Content-Type-Options
+  - Referrer-Policy
+  - Permissions-Policy
+- Implement rate limiting for API routes
+- Add geolocation-based redirects (if needed for i18n)
+- Add A/B testing logic (optional)
+- Log requests for analytics
+- Handle preview mode for CMS content
+
+### app\not-found.tsx(NEW)
+
+References: 
+
+- components\header.tsx(MODIFY)
+- components\footer.tsx(MODIFY)
+
+**Create custom 404 page:**
+
+Custom 404 error page:
+
+- Hero section: "Page Not Found"
+- Friendly error message
+- Search bar to help find content
+- Links to popular pages:
+  - Home
+  - Product Overview
+  - Pricing
+  - Blog
+  - Contact
+- Animated illustration or graphic
+- Maintain header and footer
+- Track 404 errors for analytics
+- Include proper metadata
+
+### app\error.tsx(NEW)
+
+References: 
+
+- components\header.tsx(MODIFY)
+- components\footer.tsx(MODIFY)
+
+**Create custom error page:**
+
+Custom error boundary page:
+
+- Hero section: "Something went wrong"
+- Friendly error message
+- "Try again" button to reset error boundary
+- Link to home page
+- Contact support link
+- Log errors to error tracking service (Sentry, LogRocket, etc.)
+- Maintain header and footer
+- Include proper metadata
+
+### app\loading.tsx(NEW)
+
+**Create loading UI:**
+
+Global loading component:
+
+- Display while pages are loading (Suspense fallback)
+- DONNA-branded loading spinner or animation
+- Use brand colors (cyan/purple)
+- Smooth fade-in/out transitions
+- Ensure accessibility (ARIA labels)
+- Keep it minimal and fast
+
+### public\images(NEW)
+
+**Create images directory structure:**
+
+Organize public images:
+
+- `/products` - Product screenshots and demos
+- `/industries` - Industry-specific images
+- `/team` - Team member photos
+- `/logos` - Company and partner logos
+- `/icons` - Custom icons and graphics
+- `/og` - Default Open Graph images
+- `/press` - Press kit assets
+
+Ensure all images are optimized for web (WebP format, proper sizing).
+
+### README.md(MODIFY)
+
+**Update README for production site:**
+
+- Update project description to reflect full production site (not just landing page)
+- Add comprehensive documentation:
+  - Project overview and architecture
+  - Tech stack details
+  - Setup instructions (local development)
+  - Environment variables configuration
+  - Sanity CMS setup instructions
+  - Deployment instructions
+  - Build phases overview
+  - Contributing guidelines
+  - Code structure explanation
+  - Component library documentation
+- Add links to:
+  - Live site
+  - Sanity Studio
+  - Documentation
+  - Design system
+- Remove v0.app references (no longer applicable)
+- Add badges for build status, deployment, etc.
+
+### docs\ARCHITECTURE.md(NEW)
+
+**Create architecture documentation:**
+
+Comprehensive architecture document:
+
+- Site structure overview (route groups, layouts)
+- Component architecture (atomic design principles)
+- Data flow (Sanity CMS → Next.js → Components)
+- SEO strategy implementation
+- Performance optimization techniques
+- Security considerations
+- Deployment architecture (Vercel)
+- CMS content modeling
+- API endpoints documentation
+- Third-party integrations
+- Analytics and tracking setup
+- Internationalization strategy
+- Accessibility standards
+- Testing strategy
+
+### docs\COMPONENT_LIBRARY.md(NEW)
+
+**Create component library documentation:**
+
+Component catalogue as requested in instructions:
+
+- List all reusable components with:
+  - Component name
+  - Purpose and usage
+  - Props documentation
+  - Examples
+  - Variants
+- Organize by category:
+  - Layout components (Header, Footer, Sidebar)
+  - Content components (Hero, Features, Testimonials)
+  - Form components (Input, Button, Select)
+  - Navigation components (Breadcrumb, Menu, Tabs)
+  - Media components (VideoPlayer, ImageGallery)
+  - Utility components (Modal, Toast, Tooltip)
+- Include design system tokens (colors, typography, spacing)
+- Add screenshots/examples for visual reference
+- Link to Storybook (if implemented)
+
+### docs\SEO_STRATEGY.md(NEW)
+
+**Create SEO strategy documentation:**
+
+Comprehensive SEO strategy as requested:
+
+- **Keyword Strategy**: Target keywords for each page type
+- **Schema Markup**: Implementation details for all schema types
+- **Sitemap Structure**: How sitemap is generated and organized
+- **OpenGraph**: OG tag strategy for social sharing
+- **Tag Structure**: H1-H4 hierarchy guidelines
+- **301 Redirects**: Redirect plan from old prelaunch URLs to new structure
+- **Blog Template**: SEO-optimized blog post template
+- **Content Guidelines**: SEO best practices for content creation
+- **Technical SEO**: Performance, mobile-friendliness, Core Web Vitals
+- **Local SEO**: If applicable for office locations
+- **International SEO**: Strategy for future i18n expansion
+- **Monitoring**: Tools and metrics for SEO tracking
+
+### docs\BUILD_PHASES.md(NEW)
+
+**Create build phases roadmap:**
+
+Detailed build phases as requested in instructions:
+
+## **Phase 1 — MVP** (Weeks 1-3)
+- Home page (enhanced from current)
+- Product Overview page
+- Pricing page (dedicated)
+- About page
+- Contact page
+- Basic CMS setup
+- Core components
+- SEO foundation
+
+## **Phase 2 — Product Expansion** (Weeks 4-6)
+- 8 Product pages (Voice, Email, Chatbot, Marketing Bot, KB, Integrations, Security)
+- 7 Industry pages (Real Estate, Hospitality, Property Management, Health & Beauty, Insurance, Nonprofits, Nightlife)
+- 4 Use Case pages (Lead Response, Customer Support, Appointment Scheduling, Lead Nurturing)
+- Enhanced navigation
+
+## **Phase 3 — Resources / SEO Engine** (Weeks 7-10)
+- Blog infrastructure and initial posts
+- Documentation pages
+- Tutorials section
+- Case Studies
+- Webinars section
+- Downloads page
+- Search functionality
+- Newsletter integration
+
+## **Phase 4 — Investor + Enterprise** (Weeks 11-12)
+- Careers page and job postings
+- Press section
+- Investor portal
+- Legal pages (Terms, Privacy, GDPR)
+- Enhanced pricing (white-label tier)
+- Enterprise features
+
+## **Phase 5 — Interactive Demos** (Weeks 13-14)
+- Embedded voice demo
+- Simulated dashboard preview
+- Playable chatbot demo
+- Interactive workflow builders
+- ROI calculator enhancements
+- A/B testing setup
+
+Each phase includes:
+- Deliverables list
+- Timeline estimates
+- Dependencies
+- Testing requirements
+- Deployment checklist
+
+### docs\WIREFRAMES.md(NEW)
+
+**Create wireframe descriptions:**
+
+Wireframe descriptions for every page as requested:
+
+For each page type, provide detailed wireframe descriptions:
+
+**Home Page:**
+- Header: Logo, navigation, CTA buttons
+- Hero: Full-width with background image, headline, subheadline, CTA
+- Outcomes: 3-column grid with metrics
+- Features: 4-column grid with icons and descriptions
+- How It Works: Step-by-step visual flow
+- Use Cases: Card grid with images
+- Integrations: Logo carousel
+- Security: Badge grid with descriptions
+- Pricing: 3-tier comparison
+- FAQ: Accordion list
+- Demo Form: Contact form
+- Footer: Multi-column links, newsletter, social
+
+**Product Pages:**
+- Hero: Product name, description, demo CTA
+- Feature highlights: Bento grid layout
+- Demo section: Video or interactive demo
+- Workflow diagram: Visual flow
+- Industry examples: Card grid
+- Technical specs: Expandable sections
+- Related products: Card carousel
+- CTA: Get started section
+
+**Blog Post:**
+- Hero: Featured image, title, author, date
+- Content: Single column with TOC sidebar
+- Author bio: Card at bottom
+- Related posts: 3-column grid
+- Newsletter: Inline CTA
+
+[Continue for all page types...]
+
+Include ASCII diagrams or descriptions for layout structure.
+
+### docs\TECH_STACK.md(NEW)
+
+**Create tech stack documentation:**
+
+Comprehensive tech stack recommendations:
+
+## **Frontend**
+- **Framework**: Next.js 16 (App Router, React Server Components)
+- **UI Library**: React 19
+- **Styling**: TailwindCSS 4
+- **Component Library**: Radix UI (already in use)
+- **Animations**: Framer Motion or CSS animations
+- **Forms**: React Hook Form + Zod
+- **State Management**: React Context + Server State (minimal client state)
+
+## **CMS**
+- **Recommended**: Sanity (real-time, great Next.js integration, flexible schema)
+- **Alternatives**: Contentful (enterprise features), Strapi (self-hosted)
+
+## **Backend/API**
+- **API Routes**: Next.js API routes
+- **Email**: Nodemailer (current) or SendGrid/AWS SES
+- **Search**: Algolia (recommended) or custom with Sanity
+- **Analytics**: Google Analytics 4, Vercel Analytics, Vercel Speed Insights
+
+## **Hosting & Deployment**
+- **Hosting**: Vercel (optimized for Next.js)
+- **CDN**: Vercel Edge Network
+- **Database**: Sanity (CMS) + optional PostgreSQL for custom data
+- **File Storage**: Sanity Assets or AWS S3
+
+## **SEO & Performance**
+- **Sitemap**: next-sitemap
+- **Schema Markup**: schema-dts
+- **OG Images**: @vercel/og
+- **Image Optimization**: Next.js Image component
+
+## **Development Tools**
+- **TypeScript**: Type safety
+- **ESLint**: Code linting
+- **Prettier**: Code formatting
+- **Husky**: Git hooks
+- **Testing**: Jest + React Testing Library (optional)
+
+## **Third-Party Integrations**
+- **Email Marketing**: Mailchimp or ConvertKit
+- **Video**: YouTube/Vimeo or Mux
+- **Maps**: Google Maps or Mapbox
+- **Chat**: Existing chatbot implementation
+- **Error Tracking**: Sentry (optional)
+
+Justification for each choice and alternatives.
