@@ -2,8 +2,6 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Breadcrumb } from '@/components/breadcrumb'
 import { generatePageMetadata } from '@/lib/metadata'
-import { sanityFetch } from '@/sanity/lib/client'
-import { careersQuery } from '@/lib/sanity/queries'
 import { MapPin, Briefcase, Clock } from 'lucide-react'
 
 export const metadata: Metadata = generatePageMetadata({
@@ -13,7 +11,7 @@ export const metadata: Metadata = generatePageMetadata({
 })
 
 export default async function CareersPage() {
-  const jobs = await sanityFetch<any[]>(careersQuery)
+  const jobs: any[] = []
 
   // Group jobs by department
   const jobsByDepartment = jobs.reduce((acc, job) => {

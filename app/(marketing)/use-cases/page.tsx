@@ -2,8 +2,6 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Breadcrumb } from '@/components/breadcrumb'
 import { generatePageMetadata } from '@/lib/metadata'
-import { sanityFetch } from '@/sanity/lib/client'
-import { allUseCasePagesQuery } from '@/lib/sanity/queries'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Use Cases',
@@ -12,7 +10,7 @@ export const metadata: Metadata = generatePageMetadata({
 })
 
 export default async function UseCasesPage() {
-  const useCases = await sanityFetch<any[]>(allUseCasePagesQuery)
+  const useCases: any[] = []
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -26,21 +24,29 @@ export default async function UseCasesPage() {
       </section>
 
       <section className="py-12">
-        <div className="grid md:grid-cols-2 gap-8">
-          {useCases.map((useCase) => (
-            <Link
-              key={useCase._id}
-              href={`/use-cases/${useCase.slug.current}`}
-              className="group p-8 border rounded-lg hover:border-primary hover:shadow-lg transition-all"
-            >
-              <h2 className="text-2xl font-semibold mb-3 group-hover:text-primary transition-colors">
-                {useCase.title}
-              </h2>
-              <p className="text-muted-foreground mb-4">{useCase.description}</p>
-              <span className="text-primary font-medium">Learn More →</span>
-            </Link>
-          ))}
-        </div>
+        {useCases.length === 0 ? (
+          <div className="text-center p-12 border rounded-lg">
+            <p className="text-lg text-muted-foreground">
+              Use case examples coming soon.
+            </p>
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-2 gap-8">
+            {useCases.map((useCase) => (
+              <Link
+                key={useCase._id}
+                href={`/use-cases/${useCase.slug.current}`}
+                className="group p-8 border rounded-lg hover:border-primary hover:shadow-lg transition-all"
+              >
+                <h2 className="text-2xl font-semibold mb-3 group-hover:text-primary transition-colors">
+                  {useCase.title}
+                </h2>
+                <p className="text-muted-foreground mb-4">{useCase.description}</p>
+                <span className="text-primary font-medium">Learn More →</span>
+              </Link>
+            ))}
+          </div>
+        )}
       </section>
     </div>
   )

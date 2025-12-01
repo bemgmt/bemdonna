@@ -2,8 +2,6 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Breadcrumb } from '@/components/breadcrumb'
 import { generatePageMetadata } from '@/lib/metadata'
-import { sanityFetch } from '@/sanity/lib/client'
-import { allIndustryPagesQuery } from '@/lib/sanity/queries'
 import { Building2, Hotel, Home, Scissors, Shield, Heart, Music } from 'lucide-react'
 
 export const metadata: Metadata = generatePageMetadata({
@@ -23,7 +21,7 @@ const iconMap: Record<string, any> = {
 }
 
 export default async function IndustriesPage() {
-  const industries = await sanityFetch<any[]>(allIndustryPagesQuery)
+  const industries: any[] = []
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -37,25 +35,33 @@ export default async function IndustriesPage() {
       </section>
 
       <section className="py-12">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {industries.map((industry) => {
-            const Icon = iconMap[industry.icon] || Building2
-            return (
-              <Link
-                key={industry._id}
-                href={`/industries/${industry.slug.current}`}
-                className="group p-8 border rounded-lg hover:border-primary hover:shadow-lg transition-all"
-              >
-                <Icon className="h-12 w-12 mb-4 text-primary" />
-                <h2 className="text-2xl font-semibold mb-3 group-hover:text-primary transition-colors">
-                  {industry.title}
-                </h2>
-                <p className="text-muted-foreground mb-4">{industry.description}</p>
-                <span className="text-primary font-medium">Learn More →</span>
-              </Link>
-            )
-          })}
-        </div>
+        {industries.length === 0 ? (
+          <div className="text-center p-12 border rounded-lg">
+            <p className="text-lg text-muted-foreground">
+              Industry-specific solutions coming soon.
+            </p>
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {industries.map((industry) => {
+              const Icon = iconMap[industry.icon] || Building2
+              return (
+                <Link
+                  key={industry._id}
+                  href={`/industries/${industry.slug.current}`}
+                  className="group p-8 border rounded-lg hover:border-primary hover:shadow-lg transition-all"
+                >
+                  <Icon className="h-12 w-12 mb-4 text-primary" />
+                  <h2 className="text-2xl font-semibold mb-3 group-hover:text-primary transition-colors">
+                    {industry.title}
+                  </h2>
+                  <p className="text-muted-foreground mb-4">{industry.description}</p>
+                  <span className="text-primary font-medium">Learn More →</span>
+                </Link>
+              )
+            })}
+          </div>
+        )}
       </section>
     </div>
   )

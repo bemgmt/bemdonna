@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { generatePageMetadata } from '@/lib/metadata'
 import { Brain, MessageSquare, Mail, Phone, Database, Zap } from 'lucide-react'
 import { FeatureGrid } from '@/components/feature-grid'
-import { VideoPlayer } from '@/components/video-player'
 import { StatsSection } from '@/components/stats-section'
 import Link from 'next/link'
 

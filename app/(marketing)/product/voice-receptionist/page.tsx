@@ -1,15 +1,9 @@
-import type { Metadata } from 'next'
-import { generatePageMetadata } from '@/lib/metadata'
-import { Phone, Clock, Users, Zap, Calendar, MessageCircle } from 'lucide-react'
+'use client'
+
+import { Phone, Clock, Users, Zap, Calendar, MessageCircle, Brain, Database } from 'lucide-react'
 import { FeatureGrid } from '@/components/feature-grid'
 import { WorkflowDiagram } from '@/components/workflow-diagram'
 import { TabbedContent } from '@/components/tabbed-content'
-
-export const metadata: Metadata = generatePageMetadata({
-  title: 'Voice Receptionist - AI Phone Assistant | DONNA',
-  description: 'DONNA\'s AI Voice Receptionist handles calls 24/7 with real-time voice recognition, intelligent call routing, and appointment scheduling.',
-  path: '/product/voice-receptionist',
-})
 
 export default function VoiceReceptionistPage() {
   const features = [

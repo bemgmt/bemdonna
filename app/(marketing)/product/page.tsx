@@ -4,8 +4,6 @@ import { Button } from '@/components/ui/button'
 import { Breadcrumb } from '@/components/breadcrumb'
 import { generatePageMetadata } from '@/lib/metadata'
 import { productSchema } from '@/lib/schema-markup'
-import { sanityFetch } from '@/sanity/lib/client'
-import { allProductPagesQuery } from '@/lib/sanity/queries'
 import { Phone, Mail, MessageSquare, Zap, Database, Shield, Puzzle, Bot } from 'lucide-react'
 
 export const metadata: Metadata = generatePageMetadata({
@@ -26,7 +24,7 @@ const iconMap: Record<string, any> = {
 }
 
 export default async function ProductPage() {
-  const products = await sanityFetch<any[]>(allProductPagesQuery)
+  const products: any[] = []
 
   const schema = productSchema({
     name: 'DONNA Platform',
@@ -39,10 +37,10 @@ export default async function ProductPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', ...schema }) }}
       />
-      
+
       <div className="container mx-auto px-4 py-8">
         <Breadcrumb />
-        
+
         {/* Hero Section */}
         <section className="py-12 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
@@ -75,24 +73,32 @@ export default async function ProductPage() {
         {/* Product Grid */}
         <section className="py-12">
           <h2 className="text-3xl font-bold mb-8 text-center">Explore Our Products</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {products.map((product) => {
-              const Icon = iconMap[product.icon] || Bot
-              return (
-                <Link
-                  key={product._id}
-                  href={`/product/${product.slug.current}`}
-                  className="group p-6 border rounded-lg hover:border-primary transition-colors"
-                >
-                  <Icon className="h-12 w-12 mb-4 text-primary" />
-                  <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
-                    {product.title}
-                  </h3>
-                  <p className="text-muted-foreground">{product.description}</p>
-                </Link>
-              )
-            })}
-          </div>
+          {products.length === 0 ? (
+            <div className="text-center p-12 border rounded-lg">
+              <p className="text-lg text-muted-foreground">
+                Product details coming soon.
+              </p>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {products.map((product) => {
+                const Icon = iconMap[product.icon] || Bot
+                return (
+                  <Link
+                    key={product._id}
+                    href={`/product/${product.slug.current}`}
+                    className="group p-6 border rounded-lg hover:border-primary transition-colors"
+                  >
+                    <Icon className="h-12 w-12 mb-4 text-primary" />
+                    <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+                      {product.title}
+                    </h3>
+                    <p className="text-muted-foreground">{product.description}</p>
+                  </Link>
+                )
+              })}
+            </div>
+          )}
         </section>
 
         {/* CTA Section */}

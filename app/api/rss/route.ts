@@ -1,12 +1,10 @@
 import { NextResponse } from 'next/server'
-import { sanityFetch } from '@/sanity/lib/client'
-import { allBlogPostsQuery } from '@/lib/sanity/queries'
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bemdonna.com'
 
 export async function GET() {
   try {
-    const posts = await sanityFetch<any[]>(allBlogPostsQuery)
+    const posts: any[] = []
 
     const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
