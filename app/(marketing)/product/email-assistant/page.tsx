@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { generatePageMetadata } from '@/lib/metadata'
-import { Mail, Brain, Zap, Filter, FileText, Users, Video, Mic } from 'lucide-react'
+import { Mail, Brain, Zap, Filter, FileText, Users } from 'lucide-react'
 import { FeatureGrid } from '@/components/feature-grid'
 import { BeforeAfter } from '@/components/before-after'
 
@@ -139,95 +139,6 @@ export default function EmailAssistantPage() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Meeting Integration - Major Differentiator */}
-      <section className="py-20 px-4 bg-black/20">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <div className="inline-block p-4 rounded-lg bg-gradient-to-br from-[#8A2FFF]/20 to-[#3DE0FF]/20 mb-6">
-              <Video className="w-12 h-12 text-[#3DE0FF]" />
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
-              Real-Time Meeting Integration
-            </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              A game-changing feature that sets DONNA apart from every competitor
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="holo-panel p-8 rounded-xl">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-16 rounded-lg bg-gradient-to-br from-[#8A2FFF] to-[#6B4FFF] flex items-center justify-center">
-                  <Mic className="w-8 h-8 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-white">"Hey Donna" Activation</h3>
-                  <p className="text-gray-400">Simple voice activation in any meeting</p>
-                </div>
-              </div>
-              <p className="text-gray-300 leading-relaxed mb-4">
-                DONNA seamlessly joins your video meetings (Zoom, Teams, Google Meet, etc.) and sits quietly in the background, 
-                ready to assist whenever you need her. Simply say <strong className="text-[#8A2FFF]">"Hey Donna"</strong> and 
-                she instantly activates, ready to answer questions, provide information, or assist with any task.
-              </p>
-              <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <span className="text-[#3DE0FF] font-bold mt-1">✓</span>
-                  <span className="text-gray-300">Works in any video conferencing platform</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="text-[#3DE0FF] font-bold mt-1">✓</span>
-                  <span className="text-gray-300">Real-time voice interaction with meeting participants</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="text-[#3DE0FF] font-bold mt-1">✓</span>
-                  <span className="text-gray-300">Accesses your knowledge base instantly</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="text-[#3DE0FF] font-bold mt-1">✓</span>
-                  <span className="text-gray-300">Answers questions live during presentations and demos</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="holo-panel p-8 rounded-xl">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-16 rounded-lg bg-gradient-to-br from-[#3DE0FF] to-[#8A2FFF] flex items-center justify-center">
-                  <Brain className="w-8 h-8 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-white">Live Meeting Assistant</h3>
-                  <p className="text-gray-400">Intelligent real-time support</p>
-                </div>
-              </div>
-              <p className="text-gray-300 leading-relaxed mb-4">
-                During client meetings, sales calls, or team presentations, DONNA can instantly answer questions from 
-                participants, pull up relevant information from your knowledge base, provide pricing details, explain 
-                features, or clarify any aspect of your business—all in real-time, without interrupting the flow of conversation.
-              </p>
-              <div className="bg-gradient-to-br from-[#8A2FFF]/10 to-[#3DE0FF]/10 p-6 rounded-lg border border-[#8A2FFF]/30">
-                <h4 className="font-bold text-[#3DE0FF] mb-3">Example Use Cases:</h4>
-                <ul className="space-y-2 text-gray-300 text-sm">
-                  <li>• Client asks about pricing → "Hey Donna, what's our enterprise pricing?"</li>
-                  <li>• Prospect needs feature details → "Hey Donna, explain our API integration"</li>
-                  <li>• Team member needs data → "Hey Donna, what were last month's conversion rates?"</li>
-                  <li>• Customer support question → "Hey Donna, what's our refund policy?"</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div className="glass-panel p-8 rounded-xl text-center">
-            <h3 className="text-2xl font-bold mb-4 text-[#8A2FFF]">Why This Sets DONNA Apart</h3>
-            <p className="text-lg text-gray-300 max-w-4xl mx-auto leading-relaxed">
-              No other AI assistant can join your meetings and interact with participants in real-time. While competitors 
-              require you to leave the meeting to get information, DONNA is right there with you, ready to assist instantly. 
-              This creates a seamless, professional experience that impresses clients and accelerates decision-making.
-            </p>
           </div>
         </div>
       </section>

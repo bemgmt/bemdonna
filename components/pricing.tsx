@@ -22,24 +22,24 @@ export default function Pricing() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           {[
             {
-              name: "Free",
-              price: "Free",
-              description: "Join the waitlist",
-              cta: "Join Waitlist",
-              featured: true
-            },
-            {
-              name: "Pilot",
-              price: "5,000",
-              description: "Early access program",
-              cta: "Join Pilot",
+              name: "Starter",
+              price: "1,500",
+              description: "Up to 1,000 conversations/month",
+              cta: "Get Started",
               featured: false
             },
             {
-              name: "Custom",
-              price: "Contact Us",
-              description: "Custom build/investment/partnership",
-              cta: "Contact Us",
+              name: "Pro",
+              price: "5,000",
+              description: "Up to 5,000 conversations/month",
+              cta: "Get Started",
+              featured: true
+            },
+            {
+              name: "Enterprise",
+              price: "12,000",
+              description: "Unlimited conversations",
+              cta: "Contact Sales",
               featured: false
             },
           ].map((tier, index) => (
@@ -52,18 +52,11 @@ export default function Pricing() {
               }`}
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              {tier.featured && <div className="text-xs font-bold text-accent mb-3 uppercase">Most Popular</div>}
+              {tier.featured && <div className="text-xs font-bold text-accent mb-3 uppercase">Popular</div>}
               <h3 className="text-xl font-bold mb-2">{tier.name}</h3>
               <div className="mb-4">
-                {tier.price === "Free" ? (
-                  <span className="text-3xl font-bold gradient-text">Free</span>
-                ) : tier.price === "Contact Us" ? (
-                  <span className="text-3xl font-bold gradient-text">Custom</span>
-                ) : (
-                  <>
-                    <span className="text-3xl font-bold gradient-text">${tier.price}</span>
-                  </>
-                )}
+                <span className="text-3xl font-bold gradient-text">${tier.price}</span>
+                {tier.price !== "12,000" && <span className="text-foreground/60 ml-2">/month</span>}
               </div>
               <div className="text-sm text-foreground/70 mb-6">{tier.description}</div>
               <button
