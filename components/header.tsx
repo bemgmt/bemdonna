@@ -1,12 +1,13 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import Link from "next/link"
 import { Menu, X, ChevronDown } from "lucide-react"
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   const navigation = {
     product: {
@@ -73,8 +74,18 @@ export default function Header() {
               <div
                 key={key}
                 className="relative"
-                onMouseEnter={() => setActiveDropdown(key)}
-                onMouseLeave={() => setActiveDropdown(null)}
+                onMouseEnter={() => {
+                  if (timeoutRef.current) {
+                    clearTimeout(timeoutRef.current)
+                    timeoutRef.current = null
+                  }
+                  setActiveDropdown(key)
+                }}
+                onMouseLeave={() => {
+                  timeoutRef.current = setTimeout(() => {
+                    setActiveDropdown(null)
+                  }, 200) // 200ms delay before closing
+                }}
               >
                 <button className="flex items-center gap-1 text-sm text-foreground/70 hover:text-accent transition-colors py-2">
                   {section.label}
@@ -82,7 +93,20 @@ export default function Header() {
                 </button>
 
                 {activeDropdown === key && (
-                  <div className="absolute top-full left-0 mt-1 w-56 glass-card border border-white/10 rounded-lg shadow-lg py-2">
+                  <div 
+                    className="absolute top-full left-0 mt-1 w-56 glass-card border border-white/10 rounded-lg shadow-lg py-2 z-50"
+                    onMouseEnter={() => {
+                      if (timeoutRef.current) {
+                        clearTimeout(timeoutRef.current)
+                        timeoutRef.current = null
+                      }
+                    }}
+                    onMouseLeave={() => {
+                      timeoutRef.current = setTimeout(() => {
+                        setActiveDropdown(null)
+                      }, 200)
+                    }}
+                  >
                     {section.items.map((item) => (
                       <Link
                         key={item.href}

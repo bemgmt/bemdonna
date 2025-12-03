@@ -26,11 +26,12 @@ export default function PricingPage() {
   ]
 
   return (
-    <main className="min-h-screen bg-[#030314]">
+    <main className="min-h-screen bg-[#030314] bg-radial-glow relative overflow-hidden">
       {/* Hero Section */}
       <section className="relative py-32 px-4 overflow-hidden">
         <div className="absolute inset-0 neural-grid-animated opacity-20" />
         <div className="absolute inset-0 circuitry-lines" />
+        <div className="absolute inset-0 bg-mesh-gradient opacity-30" />
 
         <div className="relative z-10 container mx-auto max-w-4xl text-center">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 gradient-text text-glow-violet animate-fade-in">
@@ -43,12 +44,19 @@ export default function PricingPage() {
       </section>
 
       {/* Pricing Tiers */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto max-w-7xl">
+      <section className="py-20 px-4 relative">
+        <div className="absolute inset-0 bg-mesh-gradient opacity-20" />
+        <div className="container mx-auto max-w-7xl relative z-10">
+          <div className="text-center mb-12">
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+              All plans include 24/7 support, secure infrastructure, and regular feature updates. 
+              No hidden fees, cancel anytime.
+            </p>
+          </div>
           <div className="grid md:grid-cols-3 gap-8 mb-20">
             <PricingTierCard
               tierName="Starter"
-              price="$2,500"
+              price="$1,500"
               features={[
                 "Up to 1,000 conversations/month",
                 "Email & SMS automation",
@@ -84,7 +92,7 @@ export default function PricingPage() {
 
             <PricingTierCard
               tierName="Enterprise"
-              price="Contact Us"
+              price="$12,000"
               features={[
                 "Unlimited conversations",
                 "All Pro features",
@@ -108,62 +116,65 @@ export default function PricingPage() {
           />
 
           <div className="overflow-x-auto">
-            <div className="holo-panel p-8 rounded-2xl min-w-[800px]">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-[#8A2FFF]/30">
-                    <th className="text-left py-4 px-4 text-[#3DE0FF] font-bold">Feature</th>
-                    <th className="text-center py-4 px-4 text-[#3DE0FF] font-bold">Starter</th>
-                    <th className="text-center py-4 px-4 text-[#3DE0FF] font-bold">Pro</th>
-                    <th className="text-center py-4 px-4 text-[#3DE0FF] font-bold">Enterprise</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {comparisonFeatures.map((row, index) => (
-                    <tr
-                      key={index}
-                      className="border-b border-[#8A2FFF]/20 hover:bg-[#8A2FFF]/10 transition-colors duration-300"
-                    >
-                      <td className="py-4 px-4 text-gray-300 font-medium">
-                        {row.feature}
-                      </td>
-                      <td className="py-4 px-4 text-center">
-                        {typeof row.starter === 'boolean' ? (
-                          row.starter ? (
-                            <Check className="w-5 h-5 text-[#3DE0FF] mx-auto" />
-                          ) : (
-                            <X className="w-5 h-5 text-gray-600 mx-auto" />
-                          )
-                        ) : (
-                          <span className="text-gray-300">{row.starter}</span>
-                        )}
-                      </td>
-                      <td className="py-4 px-4 text-center">
-                        {typeof row.pro === 'boolean' ? (
-                          row.pro ? (
-                            <Check className="w-5 h-5 text-[#3DE0FF] mx-auto" />
-                          ) : (
-                            <X className="w-5 h-5 text-gray-600 mx-auto" />
-                          )
-                        ) : (
-                          <span className="text-gray-300">{row.pro}</span>
-                        )}
-                      </td>
-                      <td className="py-4 px-4 text-center">
-                        {typeof row.enterprise === 'boolean' ? (
-                          row.enterprise ? (
-                            <Check className="w-5 h-5 text-[#3DE0FF] mx-auto" />
-                          ) : (
-                            <X className="w-5 h-5 text-gray-600 mx-auto" />
-                          )
-                        ) : (
-                          <span className="text-gray-300">{row.enterprise}</span>
-                        )}
-                      </td>
+            <div className="holo-panel p-8 rounded-2xl min-w-[800px] relative overflow-hidden">
+              <div className="absolute inset-0 circuitry-lines opacity-20" />
+              <div className="relative z-10">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-[#8A2FFF]/30">
+                      <th className="text-left py-4 px-4 text-[#3DE0FF] font-bold text-glow-blue">Feature</th>
+                      <th className="text-center py-4 px-4 text-[#3DE0FF] font-bold text-glow-blue">Starter</th>
+                      <th className="text-center py-4 px-4 text-[#3DE0FF] font-bold text-glow-blue">Pro</th>
+                      <th className="text-center py-4 px-4 text-[#3DE0FF] font-bold text-glow-blue">Enterprise</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {comparisonFeatures.map((row, index) => (
+                      <tr
+                        key={index}
+                        className="border-b border-[#8A2FFF]/20 hover:bg-[#8A2FFF]/10 transition-all duration-300 hover:border-[#8A2FFF]/40"
+                      >
+                        <td className="py-4 px-4 text-gray-300 font-medium">
+                          {row.feature}
+                        </td>
+                        <td className="py-4 px-4 text-center">
+                          {typeof row.starter === 'boolean' ? (
+                            row.starter ? (
+                              <Check className="w-5 h-5 text-[#3DE0FF] mx-auto text-glow-blue" />
+                            ) : (
+                              <X className="w-5 h-5 text-gray-600 mx-auto opacity-50" />
+                            )
+                          ) : (
+                            <span className="text-gray-300 font-medium">{row.starter}</span>
+                          )}
+                        </td>
+                        <td className="py-4 px-4 text-center">
+                          {typeof row.pro === 'boolean' ? (
+                            row.pro ? (
+                              <Check className="w-5 h-5 text-[#3DE0FF] mx-auto text-glow-blue" />
+                            ) : (
+                              <X className="w-5 h-5 text-gray-600 mx-auto opacity-50" />
+                            )
+                          ) : (
+                            <span className="text-gray-300 font-medium">{row.pro}</span>
+                          )}
+                        </td>
+                        <td className="py-4 px-4 text-center">
+                          {typeof row.enterprise === 'boolean' ? (
+                            row.enterprise ? (
+                              <Check className="w-5 h-5 text-[#3DE0FF] mx-auto text-glow-blue" />
+                            ) : (
+                              <X className="w-5 h-5 text-gray-600 mx-auto opacity-50" />
+                            )
+                          ) : (
+                            <span className="text-gray-300 font-medium">{row.enterprise}</span>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>

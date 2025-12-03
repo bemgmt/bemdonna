@@ -99,7 +99,7 @@ export default function HomePage() {
   ]
 
   return (
-    <main className="min-h-screen bg-[#030314]">
+    <main className="min-h-screen bg-[#030314] bg-radial-glow relative overflow-hidden">
       {/* Hero Section */}
       <HeroNeural
         title="Meet DONNA"
@@ -256,7 +256,7 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-8">
             <PricingTierCard
               tierName="Starter"
-              price="$2,500"
+              price="$1,500"
               features={[
                 "Up to 1,000 conversations/month",
                 "Email & SMS automation",
@@ -280,7 +280,7 @@ export default function HomePage() {
             />
             <PricingTierCard
               tierName="Enterprise"
-              price="Contact Us"
+              price="$12,000"
               features={[
                 "Unlimited conversations",
                 "All Pro features",
