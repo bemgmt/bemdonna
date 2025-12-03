@@ -52,10 +52,10 @@ export default function LeadNurturingPage() {
   ]
 
   const stats = [
-    { value: '50', suffix: '%', label: 'More Qualified Leads' },
-    { value: '33', suffix: '%', label: 'Lower Cost Per Lead' },
-    { value: '451', suffix: '%', label: 'Increase in Conversions' },
-    { value: '100', suffix: '%', label: 'Lead Follow-Up' },
+    { value: '50', suffix: '%', label: 'More Sales-Ready Leads*' },
+    { value: '20', suffix: '%', label: 'More Sales Opportunities*' },
+    { value: '42:1', label: 'Email Marketing ROI**' },
+    { value: '24/7', label: 'Automated Nurturing' },
   ]
 
   return (
@@ -75,6 +75,9 @@ export default function LeadNurturingPage() {
       <section className="py-20 px-4">
         <div className="container mx-auto max-w-6xl">
           <StatsSection stats={stats} />
+          <p className="text-center text-sm text-gray-500 mt-6">
+            *Marketo/Forrester research | **DMA industry average
+          </p>
         </div>
       </section>
 

@@ -69,11 +69,11 @@ export default function PressPage() {
               For press inquiries, interviews, or media requests, please contact our PR team:
             </p>
             <a
-              href="mailto:press@donna.ai"
+              href="mailto:derek@bem.studio"
               className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#8A2FFF] to-[#6B4FFF] rounded-lg font-semibold text-white hover:scale-105 transition-transform"
             >
               <Mail className="w-5 h-5" />
-              press@donna.ai
+              derek@bem.studio
             </a>
           </div>
         </div>

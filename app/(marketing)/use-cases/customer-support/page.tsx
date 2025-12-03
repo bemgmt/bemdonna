@@ -52,10 +52,10 @@ export default function CustomerSupportPage() {
   ]
 
   const stats = [
-    { value: '80', suffix: '%', label: 'Tickets Automated' },
-    { value: '<1min', label: 'Average Response Time' },
-    { value: '24/7', label: 'Support Coverage' },
-    { value: '95', suffix: '%', label: 'Customer Satisfaction' },
+    { value: '60-80', suffix: '%', label: 'AI Can Handle Routinely*' },
+    { value: '12', label: 'Hours Avg Industry Response**' },
+    { value: '24/7', label: 'AI Support Coverage' },
+    { value: '80', suffix: '%', label: 'Expect Response <1 Hour***' },
   ]
 
   return (
@@ -75,6 +75,9 @@ export default function CustomerSupportPage() {
       <section className="py-20 px-4">
         <div className="container mx-auto max-w-6xl">
           <StatsSection stats={stats} />
+          <p className="text-center text-sm text-gray-500 mt-6">
+            *Gartner research | **Zendesk industry average | ***HubSpot customer expectations survey
+          </p>
         </div>
       </section>
 

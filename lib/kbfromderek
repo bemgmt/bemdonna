@@ -114,13 +114,13 @@
     },
     {
       "question": "How do I contact support?",
-      "answer": "You can reach the Bird's Eye support team at support@bemdonna.com or use the chatbot’s contact form."
+      "answer": "You can reach the Bird's Eye support team at derek@bem.studio or use the chatbot’s contact form."
     }
   ],
 
   "call_to_action": {
     "demo": "Request a live demo of Donna’s capabilities.",
     "beta_signup": "Join the Donna Beta Program.",
-    "contact": "Chat with Donna below or email info@bemdonna.com."
+    "contact": "Chat with Donna below or email derek@bem.studio."
   }
 }

@@ -30,10 +30,10 @@ export default function LeadResponsePage() {
   ]
 
   const stats = [
-    { value: '<30s', label: 'Average Response Time' },
-    { value: '391', suffix: '%', label: 'Increase in Conversions' },
-    { value: '24/7', label: 'Lead Coverage' },
-    { value: '100', suffix: '%', label: 'Lead Follow-Up Rate' },
+    { value: '5+', label: 'Hours Avg Industry Response' },
+    { value: '78', suffix: '%', label: 'Buy from First Responder*' },
+    { value: '100x', label: 'More Likely to Connect**' },
+    { value: '24/7', label: 'AI Availability' },
   ]
 
   const workflowSteps = [
@@ -81,6 +81,9 @@ export default function LeadResponsePage() {
       <section className="py-20 px-4">
         <div className="container mx-auto max-w-6xl">
           <StatsSection stats={stats} />
+          <p className="text-center text-sm text-gray-500 mt-6">
+            *Harvard Business Review study | **InsideSales.com research
+          </p>
         </div>
       </section>
 

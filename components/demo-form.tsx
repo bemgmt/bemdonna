@@ -53,7 +53,7 @@ export default function DemoForm() {
         setTimeout(() => setSubmitSuccess(false), 5000)
       } else {
         console.error("Form submission error:", data)
-        alert(`Error: ${data.error || "Failed to send email. Please try again or contact us at info@bemdonna.com"}`)
+        alert(`Error: ${data.error || "Failed to send email. Please try again or contact us at derek@bem.studio"}`)
       }
     } catch (error) {
       console.error("Error submitting form:", error)

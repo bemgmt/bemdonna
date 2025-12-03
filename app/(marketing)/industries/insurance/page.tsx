@@ -45,10 +45,10 @@ export default function InsurancePage() {
   ]
 
   const stats = [
-    { value: '391', suffix: '%', label: 'More Quote Requests' },
-    { value: '<2min', label: 'Quote Response Time' },
+    { value: '78', suffix: '%', label: 'Buy from First Responder*' },
+    { value: '<2min', label: 'AI Quote Response Time' },
     { value: '24/7', label: 'Lead Capture' },
-    { value: '65', suffix: '%', label: 'Higher Retention' },
+    { value: '5+', label: 'Hours Avg Industry Response*' },
   ]
 
   return (
@@ -68,6 +68,9 @@ export default function InsurancePage() {
       <section className="py-20 px-4">
         <div className="container mx-auto max-w-6xl">
           <StatsSection stats={stats} />
+          <p className="text-center text-sm text-gray-500 mt-6">
+            *Harvard Business Review study
+          </p>
         </div>
       </section>
 

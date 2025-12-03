@@ -24,6 +24,12 @@ export default function Chatbot() {
   const [isLoading, setIsLoading] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
+  const suggestedPrompts = [
+    "How does DONNA join meetings?",
+    "What makes DONNA different from other AI assistants?",
+    "What are your pricing plans?"
+  ]
+
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
   }
@@ -71,7 +77,7 @@ export default function Chatbot() {
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: "assistant",
-        content: "I apologize, but I'm having trouble responding right now. Please try again or contact us at info@bemdonna.com.",
+        content: "I apologize, but I'm having trouble responding right now. Please try again or contact us at derek@bem.studio.",
         timestamp: new Date(),
       }
       setMessages((prev) => [...prev, errorMessage])
@@ -149,6 +155,61 @@ export default function Chatbot() {
                 <div className="bg-white/5 text-foreground border border-white/10 rounded-2xl px-4 py-2">
                   <Loader2 className="w-5 h-5 animate-spin" />
                 </div>
+              </div>
+            )}
+            {messages.length === 1 && !isLoading && (
+              <div className="space-y-2">
+                <p className="text-xs text-foreground/60 mb-2">Try asking:</p>
+                {suggestedPrompts.map((prompt, index) => (
+                  <button
+                    key={index}
+                    onClick={async () => {
+                      const userMessage: Message = {
+                        id: Date.now().toString(),
+                        role: "user",
+                        content: prompt,
+                        timestamp: new Date(),
+                      }
+                      setMessages((prev) => [...prev, userMessage])
+                      setIsLoading(true)
+
+                      try {
+                        const response = await fetch("/api/chatbot", {
+                          method: "POST",
+                          headers: { "Content-Type": "application/json" },
+                          body: JSON.stringify({ message: prompt, history: messages }),
+                        })
+
+                        if (!response.ok) throw new Error("Failed to get response")
+
+                        const data = await response.json()
+
+                        const assistantMessage: Message = {
+                          id: (Date.now() + 1).toString(),
+                          role: "assistant",
+                          content: data.message,
+                          timestamp: new Date(),
+                        }
+
+                        setMessages((prev) => [...prev, assistantMessage])
+                      } catch (error) {
+                        console.error("Chatbot error:", error)
+                        const errorMessage: Message = {
+                          id: (Date.now() + 1).toString(),
+                          role: "assistant",
+                          content: "I apologize, but I'm having trouble responding right now. Please try again or contact us at derek@bem.studio.",
+                          timestamp: new Date(),
+                        }
+                        setMessages((prev) => [...prev, errorMessage])
+                      } finally {
+                        setIsLoading(false)
+                      }
+                    }}
+                    className="w-full text-left px-3 py-2 text-sm bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-foreground/80 hover:text-foreground transition-colors"
+                  >
+                    {prompt}
+                  </button>
+                ))}
               </div>
             )}
             <div ref={messagesEndRef} />

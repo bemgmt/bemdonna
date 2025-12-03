@@ -77,7 +77,7 @@ export default function AcceptableUsePage() {
         <h2>7. Reporting Violations</h2>
         <p>
           If you become aware of any violation of this Policy, please report it to{' '}
-          <a href="mailto:abuse@bemdonna.com">abuse@bemdonna.com</a>.
+          <a href="mailto:derek@bem.studio">derek@bem.studio</a>.
         </p>
 
         <h2>8. Enforcement</h2>
@@ -102,7 +102,7 @@ export default function AcceptableUsePage() {
         <h2>10. Contact Us</h2>
         <p>
           If you have questions about this Policy, please contact us at{' '}
-          <a href="mailto:legal@bemdonna.com">legal@bemdonna.com</a>.
+          <a href="mailto:derek@bem.studio">derek@bem.studio</a>.
         </p>
       </article>
     </div>

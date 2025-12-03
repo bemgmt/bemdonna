@@ -45,10 +45,10 @@ export default function RealEstatePage() {
   ]
 
   const stats = [
-    { value: '5x', label: 'More Showings Booked' },
-    { value: '<30s', label: 'Lead Response Time' },
+    { value: '78', suffix: '%', label: 'Buy from First Responder*' },
+    { value: '<30s', label: 'AI Response Time' },
     { value: '24/7', label: 'Availability' },
-    { value: '78', suffix: '%', label: 'Lead Conversion Increase' },
+    { value: '5+', label: 'Hours Avg Industry Response*' },
   ]
 
   return (
@@ -68,6 +68,9 @@ export default function RealEstatePage() {
       <section className="py-20 px-4">
         <div className="container mx-auto max-w-6xl">
           <StatsSection stats={stats} />
+          <p className="text-center text-sm text-gray-500 mt-6">
+            *Harvard Business Review study
+          </p>
         </div>
       </section>
 

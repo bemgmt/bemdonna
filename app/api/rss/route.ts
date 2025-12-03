@@ -24,7 +24,7 @@ export async function GET() {
       <guid isPermaLink="true">${siteUrl}/blog/${post.slug.current}</guid>
       <description><![CDATA[${post.excerpt || ''}]]></description>
       <pubDate>${new Date(post.publishedAt).toUTCString()}</pubDate>
-      ${post.author ? `<author>${post.author.email || 'noreply@bemdonna.com'} (${post.author.name})</author>` : ''}
+      ${post.author ? `<author>${post.author.email || 'derek@bem.studio'} (${post.author.name})</author>` : ''}
       ${post.categories ? post.categories.map((cat: any) => `<category>${cat.title}</category>`).join('\n      ') : ''}
     </item>`
       )

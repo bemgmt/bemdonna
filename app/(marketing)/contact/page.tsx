@@ -32,10 +32,10 @@ export default function ContactPage() {
                 General inquiries and support
               </p>
               <a
-                href="mailto:derek@bemdonna.com"
+                href="mailto:derek@bem.studio"
                 className="text-[#3DE0FF] hover:text-[#8A2FFF] transition-colors duration-300 font-medium"
               >
-                derek@bemdonna.com
+                derek@bem.studio
               </a>
             </div>
 
@@ -46,7 +46,7 @@ export default function ContactPage() {
                 See DONNA in action
               </p>
               <a
-                href="mailto:derek@bemdonna.com?subject=Demo Request"
+                href="mailto:derek@bem.studio?subject=Demo Request"
                 className="text-[#8A2FFF] hover:text-[#3DE0FF] transition-colors duration-300 font-medium"
               >
                 Book a time
@@ -60,7 +60,7 @@ export default function ContactPage() {
                 Investment opportunities
               </p>
               <a
-                href="mailto:derek@bemdonna.com?subject=Investor Inquiry"
+                href="mailto:derek@bem.studio?subject=Investor Inquiry"
                 className="text-[#8A2FFF] hover:text-[#3DE0FF] transition-colors duration-300 font-medium"
               >
                 Learn more
@@ -91,7 +91,7 @@ export default function ContactPage() {
                 organization? Our sales team is ready to discuss custom solutions and enterprise packages.
               </p>
               <a
-                href="mailto:derek@bemdonna.com?subject=Sales Inquiry"
+                href="mailto:derek@bem.studio?subject=Sales Inquiry"
                 className="text-[#3DE0FF] hover:text-[#8A2FFF] transition-colors duration-300 font-medium"
               >
                 Contact Sales →
@@ -106,7 +106,7 @@ export default function ContactPage() {
                 your AI automation platform. We typically respond within 2-4 hours during business hours.
               </p>
               <a
-                href="mailto:derek@bemdonna.com?subject=Support Request"
+                href="mailto:derek@bem.studio?subject=Support Request"
                 className="text-[#8A2FFF] hover:text-[#3DE0FF] transition-colors duration-300 font-medium"
               >
                 Get Support →

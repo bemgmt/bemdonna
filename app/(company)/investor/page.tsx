@@ -296,7 +296,7 @@ export default function InvestorPage() {
                 <NeonButton label="Download Deck" link="/contact" variant="outline" />
               </div>
               <p className="text-sm text-gray-400 mt-6">
-                Contact: derek@bemdonna.com
+                Contact: derek@bem.studio
               </p>
             </div>
           </div>

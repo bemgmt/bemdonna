@@ -54,8 +54,8 @@ export default async function CareersPage() {
             </p>
             <p className="text-muted-foreground">
               Send your resume to{' '}
-              <a href="mailto:careers@bemdonna.com" className="text-primary hover:underline">
-                careers@bemdonna.com
+              <a href="mailto:derek@bem.studio" className="text-primary hover:underline">
+                derek@bem.studio
               </a>
             </p>
           </div>

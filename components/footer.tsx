@@ -29,7 +29,7 @@ export default function Footer() {
               <a href="https://github.com/bemgmt" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-accent transition-colors">
                 <Github className="h-5 w-5" />
               </a>
-              <a href="mailto:hello@bemdonna.com" className="text-foreground/60 hover:text-accent transition-colors">
+              <a href="mailto:derek@bem.studio" className="text-foreground/60 hover:text-accent transition-colors">
                 <Mail className="h-5 w-5" />
               </a>
             </div>

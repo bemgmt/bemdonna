@@ -45,10 +45,10 @@ export default function PropertyManagementPage() {
   ]
 
   const stats = [
-    { value: '70', suffix: '%', label: 'Fewer Support Calls' },
-    { value: '24/7', label: 'Tenant Support' },
-    { value: '3x', label: 'Faster Response Time' },
-    { value: '50', suffix: '%', label: 'More Lease Renewals' },
+    { value: '24/7', label: 'AI Tenant Support' },
+    { value: '60-80', suffix: '%', label: 'Routine Inquiries Automated*' },
+    { value: '12', label: 'Hours Avg Industry Response**' },
+    { value: '<30s', label: 'AI Response Time' },
   ]
 
   return (
@@ -68,6 +68,9 @@ export default function PropertyManagementPage() {
       <section className="py-20 px-4">
         <div className="container mx-auto max-w-6xl">
           <StatsSection stats={stats} />
+          <p className="text-center text-sm text-gray-500 mt-6">
+            *Gartner research | **Zendesk industry average
+          </p>
         </div>
       </section>
 

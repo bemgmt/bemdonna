@@ -45,10 +45,10 @@ export default function NightlifePage() {
   ]
 
   const stats = [
-    { value: '85', suffix: '%', label: 'More Table Bookings' },
     { value: '24/7', label: 'Reservation Availability' },
-    { value: '3x', label: 'Guest List Growth' },
-    { value: '70', suffix: '%', label: 'Reduced No-Shows' },
+    { value: '20-30', suffix: '%', label: 'Industry No-Show Rate*' },
+    { value: '10-15', suffix: '%', label: 'Reduction with Reminders**' },
+    { value: '<30s', label: 'AI Response Time' },
   ]
 
   return (
@@ -68,6 +68,9 @@ export default function NightlifePage() {
       <section className="py-20 px-4">
         <div className="container mx-auto max-w-6xl">
           <StatsSection stats={stats} />
+          <p className="text-center text-sm text-gray-500 mt-6">
+            *Industry standard | **Automated reminder studies
+          </p>
         </div>
       </section>
 

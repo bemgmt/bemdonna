@@ -124,10 +124,10 @@ export default function InvestorsPage() {
           For investment opportunities and investor relations, please contact:
         </p>
         <a
-          href="mailto:investors@bemdonna.com"
+          href="mailto:derek@bem.studio"
           className="inline-block px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium"
         >
-          investors@bemdonna.com
+          derek@bem.studio
         </a>
       </section>
     </div>

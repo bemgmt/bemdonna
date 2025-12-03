@@ -53,9 +53,9 @@ export default function AppointmentSchedulingPage() {
 
   const stats = [
     { value: '24/7', label: 'Booking Availability' },
-    { value: '80', suffix: '%', label: 'Fewer No-Shows' },
-    { value: '3x', label: 'More Appointments' },
-    { value: '<30s', label: 'Booking Time' },
+    { value: '20-30', suffix: '%', label: 'Industry No-Show Rate*' },
+    { value: '10-15', suffix: '%', label: 'Reduction with Reminders**' },
+    { value: '<30s', label: 'Average Booking Time' },
   ]
 
   return (
@@ -75,6 +75,9 @@ export default function AppointmentSchedulingPage() {
       <section className="py-20 px-4">
         <div className="container mx-auto max-w-6xl">
           <StatsSection stats={stats} />
+          <p className="text-center text-sm text-gray-500 mt-6">
+            *Industry standard | **Automated reminder studies
+          </p>
         </div>
       </section>
 

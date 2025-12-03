@@ -50,7 +50,7 @@ Pricing:
 - Custom: Enterprise solutions and partnerships
 
 Core Modules:
-1. Donna Email - Inbox analysis and lead classification
+1. Donna Email - Inbox analysis and lead classification, includes real-time meeting integration
 2. Donna Chat - Website chatbot with human routing
 3. Donna Voice - AI receptionist with real-time transcription
 4. Donna CRM - Lead tracking and analytics
@@ -60,11 +60,14 @@ Core Modules:
 8. Donna Landing Page Generator - Automated page creation
 9. Donna Photobooth - Event-based photo/video capture
 
+Major Differentiator - Meeting Integration:
+DONNA can join video meetings (Zoom, Teams, Google Meet, etc.) and interact in real-time. Simply say "Hey Donna" to activate her during any meeting, and she can instantly answer questions from participants, provide information from your knowledge base, explain features, provide pricing details, or clarify any aspect of your business—all live during the meeting. This is a game-changing feature that sets DONNA apart from every competitor. No other AI assistant offers this real-time meeting interaction capability.
+
 Industries: Real Estate, Hospitality, Professional Services, Health & Beauty, Construction/ADU, Nonprofits
 
 Security: SOC 2 Type II, GDPR compliant, AWS infrastructure, bank-level encryption
 
-Contact: info@bemdonna.com, support@bemdonna.com
+Contact: derek@bem.studio
 
 Be professional, friendly, and helpful. Keep responses concise but informative. Always encourage users to request a demo or join the waitlist.`
 
@@ -154,7 +157,12 @@ function generateResponse(message: string, history: Message[]): string {
 
   // Modules questions
   if (message.match(/\b(module|donna email|donna chat|donna voice|donna crm|donna books)\b/)) {
-    return `DONNA includes 9 specialized modules:\n\n• **Email** - Inbox analysis and lead classification\n• **Chat** - Website chatbot with human routing\n• **Voice** - AI receptionist with real-time transcription\n• **CRM** - Lead tracking and pipeline visualization\n• **Books** - QuickBooks-style financial integration\n• **Lead Generation** - Hybrid AI and human lead conversion\n• **Secretary** - Real-time scheduling and executive assistance\n• **Landing Page Generator** - Automated page creation\n• **Photobooth** - Event-based photo/video capture\n\nWhich module interests you?`
+    return `DONNA includes 9 specialized modules:\n\n• **Email** - Inbox analysis and lead classification with real-time meeting integration\n• **Chat** - Website chatbot with human routing\n• **Voice** - AI receptionist with real-time transcription\n• **CRM** - Lead tracking and pipeline visualization\n• **Books** - QuickBooks-style financial integration\n• **Lead Generation** - Hybrid AI and human lead conversion\n• **Secretary** - Real-time scheduling and executive assistance\n• **Landing Page Generator** - Automated page creation\n• **Photobooth** - Event-based photo/video capture\n\n**Special Feature**: DONNA can join your video meetings and interact live when you say "Hey Donna" - a feature no competitor offers!\n\nWhich module interests you?`
+  }
+
+  // Meeting integration questions
+  if (message.match(/\b(meeting|zoom|teams|google meet|hey donna|join meeting|live meeting|real-time meeting)\b/)) {
+    return `Yes! DONNA's meeting integration is one of our most unique features that sets us apart from every competitor:\n\n**How It Works**:\n• DONNA seamlessly joins your video meetings (Zoom, Teams, Google Meet, etc.)\n• She sits quietly in the background, ready to assist\n• Simply say **"Hey Donna"** to activate her instantly\n• She can answer questions from participants, provide information from your knowledge base, explain features, give pricing details, or clarify any aspect of your business—all in real-time during the meeting\n\n**Perfect For**:\n• Sales calls and client presentations\n• Team meetings where you need instant data\n• Demos where questions come up\n• Any meeting where you need quick access to information\n\nNo other AI assistant can join meetings and interact with participants in real-time like DONNA can!`
   }
 
   // Industry/use case questions
@@ -184,7 +192,7 @@ function generateResponse(message: string, history: Message[]): string {
 
   // Demo/contact questions
   if (message.match(/\b(demo|contact|talk|speak|call|email|support)\b/)) {
-    return `I'd be happy to connect you with our team!\n\n**Contact Options**:\n• **Email**: info@bemdonna.com\n• **Support**: support@bemdonna.com\n• **Request Demo**: Fill out the form on this page\n• **Join Beta**: Sign up with your business email\n\nYou can also scroll down to our contact form to request a personalized demo. What works best for you?`
+    return `I'd be happy to connect you with our team!\n\n**Contact Options**:\n• **Email**: derek@bem.studio\n• **Request Demo**: Fill out the form on this page\n• **Join Beta**: Sign up with your business email\n\nYou can also scroll down to our contact form to request a personalized demo. What works best for you?`
   }
 
   // Difference from other AI
@@ -199,7 +207,7 @@ function generateResponse(message: string, history: Message[]): string {
 
   // Thank you / goodbye
   if (message.match(/\b(thank|thanks|appreciate|bye|goodbye)\b/)) {
-    return "You're welcome! If you have any other questions about DONNA, feel free to ask. You can also reach us at info@bemdonna.com or request a demo using the form on this page. Have a great day!"
+    return "You're welcome! If you have any other questions about DONNA, feel free to ask. You can also reach us at derek@bem.studio or request a demo using the form on this page. Have a great day!"
   }
 
   // Default response with helpful suggestions

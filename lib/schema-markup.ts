@@ -18,7 +18,7 @@ export function organizationSchema(): Organization {
       '@type': 'ContactPoint',
       telephone: '+1-XXX-XXX-XXXX',
       contactType: 'customer service',
-      email: 'support@bemdonna.com',
+      email: 'derek@bem.studio',
       areaServed: 'US',
       availableLanguage: ['en', 'es', 'zh'],
     },

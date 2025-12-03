@@ -45,10 +45,10 @@ export default function HospitalityPage() {
   ]
 
   const stats = [
-    { value: '40', suffix: '%', label: 'More Direct Bookings' },
-    { value: '24/7', label: 'Guest Support' },
-    { value: '95', suffix: '%', label: 'Guest Satisfaction' },
-    { value: '60', suffix: '%', label: 'Reduced Call Volume' },
+    { value: '24/7', label: 'AI Guest Support' },
+    { value: '60-80', suffix: '%', label: 'Routine Inquiries Automated*' },
+    { value: '12', label: 'Hours Avg Response Time**' },
+    { value: '80', suffix: '%', label: 'Expect Response <1 Hour***' },
   ]
 
   return (
@@ -68,6 +68,9 @@ export default function HospitalityPage() {
       <section className="py-20 px-4">
         <div className="container mx-auto max-w-6xl">
           <StatsSection stats={stats} />
+          <p className="text-center text-sm text-gray-500 mt-6">
+            *Gartner research | **Zendesk industry average | ***HubSpot customer expectations
+          </p>
         </div>
       </section>
 

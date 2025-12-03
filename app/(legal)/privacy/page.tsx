@@ -95,7 +95,7 @@ export default function PrivacyPage() {
         <h2>11. Contact Us</h2>
         <p>
           For privacy-related questions, contact us at{' '}
-          <a href="mailto:privacy@bemdonna.com">privacy@bemdonna.com</a>
+          <a href="mailto:derek@bem.studio">derek@bem.studio</a>
         </p>
       </div>
     </div>

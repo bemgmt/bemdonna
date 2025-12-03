@@ -92,7 +92,7 @@ export default function GDPRPage() {
         <h2>9. Data Protection Officer</h2>
         <p>
           For questions about data protection or to exercise your rights, contact our Data Protection
-          Officer at <a href="mailto:dpo@bemdonna.com">dpo@bemdonna.com</a>.
+          Officer at <a href="mailto:derek@bem.studio">derek@bem.studio</a>.
         </p>
 
         <h2>10. Supervisory Authority</h2>
@@ -127,7 +127,7 @@ export default function GDPRPage() {
         <h2>13. Contact Us</h2>
         <p>
           For GDPR-related inquiries, please contact us at{' '}
-          <a href="mailto:privacy@bemdonna.com">privacy@bemdonna.com</a>.
+          <a href="mailto:derek@bem.studio">derek@bem.studio</a>.
         </p>
       </article>
     </div>

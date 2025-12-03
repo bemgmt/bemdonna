@@ -63,7 +63,7 @@ export function HoloFooter({
             </p>
             <div className="flex gap-4">
               <a 
-                href="mailto:derek@bemdonna.com" 
+                href="mailto:derek@bem.studio" 
                 className="p-2 rounded-lg bg-[#8A2FFF]/10 hover:bg-[#8A2FFF]/20 transition-colors duration-300 hover:glow-violet"
                 aria-label="Email"
               >
@@ -115,7 +115,7 @@ export function HoloFooter({
               Contact
             </h4>
             <p className="text-gray-400 mb-2">
-              derek@bemdonna.com
+              derek@bem.studio
             </p>
           </div>
         </div>

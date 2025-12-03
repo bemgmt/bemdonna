@@ -45,10 +45,10 @@ export default function HealthBeautyPage() {
   ]
 
   const stats = [
-    { value: '80', suffix: '%', label: 'Fewer No-Shows' },
-    { value: '3x', label: 'More Bookings' },
     { value: '24/7', label: 'Booking Availability' },
-    { value: '95', suffix: '%', label: 'Client Satisfaction' },
+    { value: '20-30', suffix: '%', label: 'Industry No-Show Rate*' },
+    { value: '10-15', suffix: '%', label: 'Reduction with Reminders**' },
+    { value: '<30s', label: 'AI Booking Time' },
   ]
 
   return (
@@ -68,6 +68,9 @@ export default function HealthBeautyPage() {
       <section className="py-20 px-4">
         <div className="container mx-auto max-w-6xl">
           <StatsSection stats={stats} />
+          <p className="text-center text-sm text-gray-500 mt-6">
+            *Industry standard | **Automated reminder studies
+          </p>
         </div>
       </section>
 

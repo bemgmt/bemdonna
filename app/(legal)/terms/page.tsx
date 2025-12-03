@@ -78,7 +78,7 @@ export default function TermsPage() {
         <h2>10. Contact Information</h2>
         <p>
           For questions about these Terms, please contact us at{' '}
-          <a href="mailto:legal@bemdonna.com">legal@bemdonna.com</a>
+          <a href="mailto:derek@bem.studio">derek@bem.studio</a>
         </p>
       </div>
     </div>

@@ -92,9 +92,9 @@ export default function SecretaryBotPage() {
 
   const stats = [
     { value: '24/7', label: 'Availability' },
-    { value: '90%', label: 'Time Saved' },
-    { value: '<2min', label: 'Average Scheduling Time' },
-    { value: '100%', label: 'Meeting Coordination Success' },
+    { value: '<2min', label: 'AI Scheduling Time' },
+    { value: '20-30', suffix: '%', label: 'Industry No-Show Rate*' },
+    { value: '10-15', suffix: '%', label: 'Reduction with Reminders**' },
   ]
 
   return (
@@ -117,6 +117,9 @@ export default function SecretaryBotPage() {
       <section className="py-20 px-4">
         <div className="container mx-auto max-w-6xl">
           <StatsSection stats={stats} />
+          <p className="text-center text-sm text-gray-500 mt-6">
+            *Industry standard | **Automated reminder studies
+          </p>
         </div>
       </section>
 
