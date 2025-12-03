@@ -23,7 +23,7 @@ export function NeonButton({
   const baseStyles = "px-8 py-4 rounded-lg font-semibold text-base transition-all duration-300 relative overflow-hidden group"
   
   const variantStyles = {
-    primary: "bg-gradient-to-r from-[#8A2FFF] to-[#FF1F99] text-white hover:shadow-[0_0_30px_rgba(138,47,255,0.6)] hover:scale-105",
+    primary: "bg-gradient-to-r from-[#8A2FFF] to-[#6B4FFF] text-white hover:shadow-[0_0_30px_rgba(138,47,255,0.6)] hover:scale-105",
     outline: "bg-transparent border-2 border-[#8A2FFF] text-[#8A2FFF] hover:bg-[#8A2FFF]/10 hover:shadow-[0_0_20px_rgba(138,47,255,0.4)]"
   }
 

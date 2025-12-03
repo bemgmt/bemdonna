@@ -73,7 +73,7 @@ export default function InvestorPage() {
             </div>
 
             <div className="holo-panel p-8 rounded-xl hover-lift">
-              <Rocket className="w-12 h-12 text-[#FF1F99] mb-4" />
+              <Rocket className="w-12 h-12 text-[#8A2FFF] mb-4" />
               <h3 className="text-2xl font-bold mb-4 text-white">Early Stage</h3>
               <p className="text-gray-300 leading-relaxed">
                 Ground-floor opportunity with proven technology and early customer traction.
@@ -153,22 +153,22 @@ export default function InvestorPage() {
               </div>
 
               <div>
-                <h4 className="text-2xl font-bold mb-4 text-[#FF1F99]">Competitive Advantages</h4>
+                <h4 className="text-2xl font-bold mb-4 text-[#8A2FFF]">Competitive Advantages</h4>
                 <ul className="space-y-2 text-gray-300">
                   <li className="flex items-start gap-2">
-                    <span className="text-[#FF1F99] mt-1">▸</span>
+                    <span className="text-[#8A2FFF] mt-1">▸</span>
                     <span>All-in-one platform vs. fragmented point solutions</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-[#FF1F99] mt-1">▸</span>
+                    <span className="text-[#8A2FFF] mt-1">▸</span>
                     <span>True AI intelligence, not just rule-based automation</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-[#FF1F99] mt-1">▸</span>
+                    <span className="text-[#8A2FFF] mt-1">▸</span>
                     <span>Industry-specific solutions with proven ROI</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-[#FF1F99] mt-1">▸</span>
+                    <span className="text-[#8A2FFF] mt-1">▸</span>
                     <span>Rapid deployment (days vs. months)</span>
                   </li>
                 </ul>
@@ -210,7 +210,7 @@ export default function InvestorPage() {
             </div>
 
             <div className="holo-panel p-8 rounded-xl">
-              <Users className="w-12 h-12 text-[#FF1F99] mb-4" />
+              <Users className="w-12 h-12 text-[#8A2FFF] mb-4" />
               <h3 className="text-2xl font-bold mb-4 text-white">Regulatory Tailwinds</h3>
               <p className="text-gray-300 leading-relaxed mb-4">
                 New regulations are pushing businesses toward AI adoption for compliance, efficiency,
@@ -218,15 +218,15 @@ export default function InvestorPage() {
               </p>
               <ul className="space-y-2 text-gray-300">
                 <li className="flex items-start gap-2">
-                  <span className="text-[#FF1F99] mt-1">•</span>
+                  <span className="text-[#8A2FFF] mt-1">•</span>
                   <span>Data privacy and security mandates</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-[#FF1F99] mt-1">•</span>
+                  <span className="text-[#8A2FFF] mt-1">•</span>
                   <span>Customer service standards</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-[#FF1F99] mt-1">•</span>
+                  <span className="text-[#8A2FFF] mt-1">•</span>
                   <span>Accessibility requirements</span>
                 </li>
               </ul>
@@ -266,7 +266,7 @@ export default function InvestorPage() {
                 provide predictable, recurring revenue with high customer lifetime value.
               </p>
               <p className="text-lg">
-                <strong className="text-[#FF1F99]">Low Marginal Costs:</strong> Cloud infrastructure
+                <strong className="text-[#8A2FFF]">Low Marginal Costs:</strong> Cloud infrastructure
                 scales efficiently with minimal incremental costs per customer.
               </p>
               <p className="text-lg">

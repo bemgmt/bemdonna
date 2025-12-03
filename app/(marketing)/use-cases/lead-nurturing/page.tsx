@@ -119,7 +119,7 @@ export default function LeadNurturingPage() {
             </div>
 
             <div className="glass-panel p-8 rounded-xl">
-              <h3 className="text-2xl font-bold mb-6 text-[#FF1F99]">Re-Engagement Campaign</h3>
+              <h3 className="text-2xl font-bold mb-6 text-[#8A2FFF]">Re-Engagement Campaign</h3>
               <div className="space-y-4">
                 <div className="flex gap-4">
                   <div className="font-bold text-[#3DE0FF]">Week 1:</div>

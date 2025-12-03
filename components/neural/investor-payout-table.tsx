@@ -28,9 +28,9 @@ export function InvestorPayoutTable({ rows, className }: InvestorPayoutTableProp
               <th className="text-left py-4 px-4 text-[#3DE0FF] font-bold">Investment</th>
               <th className="text-left py-4 px-4 text-[#3DE0FF] font-bold">Valuation Cap</th>
               <th className="text-left py-4 px-4 text-[#3DE0FF] font-bold">Equity %</th>
-              <th className="text-left py-4 px-4 text-[#FF1F99] font-bold">$15M Exit</th>
-              <th className="text-left py-4 px-4 text-[#FF1F99] font-bold">$50M Exit</th>
-              <th className="text-left py-4 px-4 text-[#FF1F99] font-bold">$150M Exit</th>
+              <th className="text-left py-4 px-4 text-[#8A2FFF] font-bold">$15M Exit</th>
+              <th className="text-left py-4 px-4 text-[#8A2FFF] font-bold">$50M Exit</th>
+              <th className="text-left py-4 px-4 text-[#8A2FFF] font-bold">$150M Exit</th>
             </tr>
           </thead>
           <tbody>
@@ -54,7 +54,7 @@ export function InvestorPayoutTable({ rows, className }: InvestorPayoutTableProp
                 <td className="py-4 px-4 font-semibold text-[#3DE0FF]">
                   {row.payouts.exit2}
                 </td>
-                <td className="py-4 px-4 font-semibold text-[#FF1F99]">
+                <td className="py-4 px-4 font-semibold text-[#8A2FFF]">
                   {row.payouts.exit3}
                 </td>
               </tr>

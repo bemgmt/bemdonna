@@ -21,7 +21,7 @@ export function WorkflowDiagram({ steps, className = '' }: WorkflowDiagramProps)
           return (
             <div key={index} className="flex items-center gap-6">
               <div className="glass-panel p-6 rounded-xl flex-1 hover:border-[#8A2FFF] transition-all">
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#8A2FFF] to-[#FF1F99] flex items-center justify-center mb-4">
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#8A2FFF] to-[#6B4FFF] flex items-center justify-center mb-4">
                   <Icon className="w-6 h-6 text-white" />
                 </div>
                 <h4 className="font-bold text-white mb-2">{step.title}</h4>

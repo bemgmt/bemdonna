@@ -110,7 +110,7 @@ export default function TutorialsPage() {
                 key={index}
                 className={`px-6 py-2 rounded-full font-semibold transition-all ${
                   index === 0
-                    ? 'bg-gradient-to-r from-[#8A2FFF] to-[#FF1F99] text-white'
+                    ? 'bg-gradient-to-r from-[#8A2FFF] to-[#6B4FFF] text-white'
                     : 'glass-panel text-gray-300 hover:border-[#8A2FFF]'
                 }`}
               >
@@ -178,7 +178,7 @@ export default function TutorialsPage() {
             </p>
             <Link
               href="/contact"
-              className="inline-block px-8 py-4 bg-gradient-to-r from-[#8A2FFF] to-[#FF1F99] rounded-lg font-semibold text-white hover:scale-105 transition-transform"
+              className="inline-block px-8 py-4 bg-gradient-to-r from-[#8A2FFF] to-[#6B4FFF] rounded-lg font-semibold text-white hover:scale-105 transition-transform"
             >
               Contact Support
             </Link>

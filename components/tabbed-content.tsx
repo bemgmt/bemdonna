@@ -31,7 +31,7 @@ export function TabbedContent({ tabs, className = '' }: TabbedContentProps) {
           >
             {tab.label}
             {activeTab === tab.id && (
-              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#8A2FFF] to-[#FF1F99]" />
+              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#8A2FFF] to-[#6B4FFF]" />
             )}
           </button>
         ))}

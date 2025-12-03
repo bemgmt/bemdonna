@@ -119,7 +119,7 @@ export default function EmailAssistantPage() {
             </div>
 
             <div className="glass-panel p-8 rounded-xl">
-              <h3 className="text-2xl font-bold mb-4 text-[#FF1F99]">Lead Classification</h3>
+              <h3 className="text-2xl font-bold mb-4 text-[#8A2FFF]">Lead Classification</h3>
               <div className="space-y-4">
                 <div className="p-4 bg-white/5 rounded-lg">
                   <div className="font-bold text-[#3DE0FF] mb-2">Hot Lead</div>
@@ -160,7 +160,7 @@ export default function EmailAssistantPage() {
               <div className="flex gap-2 flex-wrap">
                 <span className="px-3 py-1 bg-[#3DE0FF]/20 text-[#3DE0FF] rounded-full text-sm">Warm Lead</span>
                 <span className="px-3 py-1 bg-[#8A2FFF]/20 text-[#8A2FFF] rounded-full text-sm">Property Management</span>
-                <span className="px-3 py-1 bg-[#FF1F99]/20 text-[#FF1F99] rounded-full text-sm">Pricing Inquiry</span>
+                <span className="px-3 py-1 bg-[#8A2FFF]/20 text-[#8A2FFF] rounded-full text-sm">Pricing Inquiry</span>
               </div>
             </div>
             <div>

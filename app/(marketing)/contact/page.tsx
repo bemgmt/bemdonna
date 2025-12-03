@@ -33,21 +33,21 @@ export default function ContactPage() {
               </p>
               <a
                 href="mailto:derek@bemdonna.com"
-                className="text-[#3DE0FF] hover:text-[#FF1F99] transition-colors duration-300 font-medium"
+                className="text-[#3DE0FF] hover:text-[#8A2FFF] transition-colors duration-300 font-medium"
               >
                 derek@bemdonna.com
               </a>
             </div>
 
             <div className="holo-panel p-8 rounded-xl text-center hover-lift">
-              <Calendar className="w-12 h-12 text-[#FF1F99] mx-auto mb-4" />
+              <Calendar className="w-12 h-12 text-[#8A2FFF] mx-auto mb-4" />
               <h3 className="text-2xl font-bold mb-2 text-white">Schedule a Demo</h3>
               <p className="text-gray-300 mb-4">
                 See DONNA in action
               </p>
               <a
                 href="mailto:derek@bemdonna.com?subject=Demo Request"
-                className="text-[#FF1F99] hover:text-[#3DE0FF] transition-colors duration-300 font-medium"
+                className="text-[#8A2FFF] hover:text-[#3DE0FF] transition-colors duration-300 font-medium"
               >
                 Book a time
               </a>
@@ -92,14 +92,14 @@ export default function ContactPage() {
               </p>
               <a
                 href="mailto:derek@bemdonna.com?subject=Sales Inquiry"
-                className="text-[#3DE0FF] hover:text-[#FF1F99] transition-colors duration-300 font-medium"
+                className="text-[#3DE0FF] hover:text-[#8A2FFF] transition-colors duration-300 font-medium"
               >
                 Contact Sales →
               </a>
             </div>
 
             <div className="glass-panel p-8 rounded-xl">
-              <Mail className="w-10 h-10 text-[#FF1F99] mb-4" />
+              <Mail className="w-10 h-10 text-[#8A2FFF] mb-4" />
               <h3 className="text-2xl font-bold mb-4 text-white">Support</h3>
               <p className="text-gray-300 leading-relaxed mb-4">
                 Already a DONNA customer? Our support team is here to help you get the most out of
@@ -107,7 +107,7 @@ export default function ContactPage() {
               </p>
               <a
                 href="mailto:derek@bemdonna.com?subject=Support Request"
-                className="text-[#FF1F99] hover:text-[#3DE0FF] transition-colors duration-300 font-medium"
+                className="text-[#8A2FFF] hover:text-[#3DE0FF] transition-colors duration-300 font-medium"
               >
                 Get Support →
               </a>

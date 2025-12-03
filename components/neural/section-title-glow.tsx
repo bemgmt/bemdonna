@@ -28,7 +28,7 @@ export function SectionTitleGlow({
           {subtitle}
         </p>
       )}
-      <div className="mt-6 h-1 w-24 mx-auto bg-gradient-to-r from-[#8A2FFF] via-[#3DE0FF] to-[#FF1F99] rounded-full animate-gradient-flow" />
+      <div className="mt-6 h-1 w-24 mx-auto bg-gradient-to-r from-[#8A2FFF] via-[#3DE0FF] to-[#6B4FFF] rounded-full animate-gradient-flow" />
     </div>
   )
 }

@@ -100,7 +100,7 @@ export default function DocumentationPage() {
               const Icon = section.icon
               return (
                 <div key={index} className="glass-panel p-8 rounded-xl">
-                  <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-[#8A2FFF] to-[#FF1F99] flex items-center justify-center mb-6">
+                  <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-[#8A2FFF] to-[#6B4FFF] flex items-center justify-center mb-6">
                     <Icon className="w-7 h-7 text-white" />
                   </div>
                   <h3 className="text-2xl font-bold mb-3 text-white">{section.title}</h3>

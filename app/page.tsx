@@ -65,7 +65,6 @@ export default function Home() {
       <main id="main-content" className="min-h-screen bg-background">
         <Header />
         <Hero />
-        <Outcomes />
         <Features />
         <HowItWorks />
         <UseCases />
@@ -76,7 +75,6 @@ export default function Home() {
         <div id="demo-form">
           <DemoForm />
         </div>
-        <CTAFooter />
         <Footer />
         <Chatbot />
       </main>

@@ -202,7 +202,7 @@ export default function HomePage() {
             </div>
             <div className="glass-panel p-8 rounded-xl">
               <div className="text-4xl mb-4">🧠</div>
-              <h3 className="text-2xl font-bold mb-3 text-[#FF1F99]">Contextual Understanding</h3>
+              <h3 className="text-2xl font-bold mb-3 text-[#8A2FFF]">Contextual Understanding</h3>
               <p className="text-gray-300">
                 DONNA remembers every interaction and understands the full context of your business.
               </p>

@@ -129,7 +129,7 @@ export default function WebinarsPage() {
                     </div>
                     <Link
                       href={`/webinars/register/${webinar.title.toLowerCase().replace(/\s+/g, '-')}`}
-                      className="inline-block px-8 py-4 bg-gradient-to-r from-[#8A2FFF] to-[#FF1F99] rounded-lg font-semibold text-white hover:scale-105 transition-transform"
+                      className="inline-block px-8 py-4 bg-gradient-to-r from-[#8A2FFF] to-[#6B4FFF] rounded-lg font-semibold text-white hover:scale-105 transition-transform"
                     >
                       Register Now
                     </Link>

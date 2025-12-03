@@ -144,7 +144,7 @@ export default function ProductOverviewPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/contact"
-                className="px-8 py-4 bg-gradient-to-r from-[#8A2FFF] to-[#FF1F99] rounded-lg font-semibold text-white hover:scale-105 transition-transform"
+                className="px-8 py-4 bg-gradient-to-r from-[#8A2FFF] to-[#6B4FFF] rounded-lg font-semibold text-white hover:scale-105 transition-transform"
               >
                 Start Free Trial
               </Link>

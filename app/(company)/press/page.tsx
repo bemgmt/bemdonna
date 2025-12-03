@@ -70,7 +70,7 @@ export default function PressPage() {
             </p>
             <a
               href="mailto:press@donna.ai"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#8A2FFF] to-[#FF1F99] rounded-lg font-semibold text-white hover:scale-105 transition-transform"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#8A2FFF] to-[#6B4FFF] rounded-lg font-semibold text-white hover:scale-105 transition-transform"
             >
               <Mail className="w-5 h-5" />
               press@donna.ai
@@ -124,7 +124,7 @@ export default function PressPage() {
             ))}
           </div>
           <div className="mt-8 text-center">
-            <button className="px-8 py-4 bg-gradient-to-r from-[#8A2FFF] to-[#FF1F99] rounded-lg font-semibold text-white hover:scale-105 transition-transform">
+            <button className="px-8 py-4 bg-gradient-to-r from-[#8A2FFF] to-[#6B4FFF] rounded-lg font-semibold text-white hover:scale-105 transition-transform">
               Download Complete Press Kit
             </button>
           </div>

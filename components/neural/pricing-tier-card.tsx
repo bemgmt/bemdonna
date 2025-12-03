@@ -28,7 +28,7 @@ export function PricingTierCard({
       className
     )}>
       {highlight && (
-        <div className="absolute top-0 right-0 bg-gradient-to-r from-[#8A2FFF] to-[#FF1F99] text-white px-6 py-2 text-sm font-bold rounded-bl-xl">
+        <div className="absolute top-0 right-0 bg-gradient-to-r from-[#8A2FFF] to-[#6B4FFF] text-white px-6 py-2 text-sm font-bold rounded-bl-xl">
           POPULAR
         </div>
       )}

@@ -89,7 +89,7 @@ export default function LeadResponsePage() {
           <h2 className="text-4xl font-bold mb-12 text-center gradient-text">The Problem</h2>
           <div className="glass-panel p-12 rounded-2xl max-w-4xl mx-auto">
             <p className="text-xl text-gray-300 leading-relaxed mb-6">
-              Studies show that <strong className="text-[#FF1F99]">78% of customers buy from the company that responds first</strong>. 
+              Studies show that <strong className="text-[#8A2FFF]">78% of customers buy from the company that responds first</strong>. 
               Yet most businesses take hours or even days to follow up with new leads.
             </p>
             <p className="text-xl text-gray-300 leading-relaxed">

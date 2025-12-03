@@ -107,26 +107,26 @@ export default function AboutPage() {
           />
           <div className="grid md:grid-cols-2 gap-8">
             <div className="glass-panel p-8 rounded-xl">
-              <h3 className="text-2xl font-bold mb-4 text-[#FF1F99]">Before DONNA</h3>
+              <h3 className="text-2xl font-bold mb-4 text-[#8A2FFF]">Before DONNA</h3>
               <ul className="space-y-3 text-gray-300">
                 <li className="flex items-start gap-2">
-                  <span className="text-[#FF1F99] mt-1">✗</span>
+                  <span className="text-[#8A2FFF] mt-1">✗</span>
                   <span>Multiple disconnected tools and platforms</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-[#FF1F99] mt-1">✗</span>
+                  <span className="text-[#8A2FFF] mt-1">✗</span>
                   <span>Hours wasted on repetitive manual tasks</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-[#FF1F99] mt-1">✗</span>
+                  <span className="text-[#8A2FFF] mt-1">✗</span>
                   <span>Inconsistent customer experiences</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-[#FF1F99] mt-1">✗</span>
+                  <span className="text-[#8A2FFF] mt-1">✗</span>
                   <span>Limited scalability without hiring more staff</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-[#FF1F99] mt-1">✗</span>
+                  <span className="text-[#8A2FFF] mt-1">✗</span>
                   <span>Complex integrations requiring technical expertise</span>
                 </li>
               </ul>
@@ -190,7 +190,7 @@ export default function AboutPage() {
               </div>
               <div className="text-center">
                 <div className="text-5xl mb-4">⚡</div>
-                <h4 className="text-xl font-bold mb-2 text-[#FF1F99]">Fast</h4>
+                <h4 className="text-xl font-bold mb-2 text-[#8A2FFF]">Fast</h4>
                 <p className="text-gray-400">
                   Sub-second response times across all channels
                 </p>

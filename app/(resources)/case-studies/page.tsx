@@ -150,7 +150,7 @@ export default function CaseStudiesPage() {
 
                     <Link
                       href={`/case-studies/${study.slug}`}
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#8A2FFF] to-[#FF1F99] rounded-lg font-semibold text-white hover:scale-105 transition-transform"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#8A2FFF] to-[#6B4FFF] rounded-lg font-semibold text-white hover:scale-105 transition-transform"
                     >
                       Read Full Case Study
                     </Link>

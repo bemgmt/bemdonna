@@ -91,7 +91,7 @@ export default function MarketingBotPage() {
               </ul>
             </div>
             <div className="glass-panel p-8 rounded-xl">
-              <MessageSquare className="w-12 h-12 text-[#FF1F99] mb-4" />
+              <MessageSquare className="w-12 h-12 text-[#8A2FFF] mb-4" />
               <h3 className="text-2xl font-bold mb-4 text-white">Chat Campaigns</h3>
               <p className="text-gray-400 mb-4">Proactive chat engagement</p>
               <ul className="space-y-2 text-gray-400 text-sm">
@@ -124,7 +124,7 @@ export default function MarketingBotPage() {
                 </ul>
               </div>
               <div>
-                <h3 className="text-xl font-bold mb-4 text-[#FF1F99]">Demographic Data</h3>
+                <h3 className="text-xl font-bold mb-4 text-[#8A2FFF]">Demographic Data</h3>
                 <ul className="space-y-3 text-gray-300">
                   <li>• Company size and industry</li>
                   <li>• Job title and seniority</li>

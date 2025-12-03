@@ -29,7 +29,7 @@ export function VideoPlayer({ src, poster, title, className = '' }: VideoPlayerP
         <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm">
           <button
             onClick={() => setIsPlaying(true)}
-            className="w-20 h-20 rounded-full bg-[#8A2FFF] hover:bg-[#FF1F99] transition-all duration-300 flex items-center justify-center group"
+            className="w-20 h-20 rounded-full bg-[#8A2FFF] hover:bg-[#6B4FFF] transition-all duration-300 flex items-center justify-center group"
             aria-label={`Play ${title || 'video'}`}
           >
             <Play className="w-10 h-10 text-white ml-1 group-hover:scale-110 transition-transform" />
