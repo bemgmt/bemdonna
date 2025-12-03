@@ -16,6 +16,7 @@ export default function Header() {
         { label: "Voice Receptionist", href: "/product/voice-receptionist" },
         { label: "Email Assistant", href: "/product/email-assistant" },
         { label: "Chatbot", href: "/product/chatbot" },
+        { label: "Secretary Bot", href: "/product/secretary-bot" },
         { label: "Marketing Bot", href: "/product/marketing-bot" },
         { label: "Knowledge Base", href: "/product/knowledge-base" },
         { label: "Integrations", href: "/product/integrations" },
