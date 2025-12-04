@@ -24,7 +24,64 @@ const iconMap: Record<string, any> = {
 }
 
 export default async function ProductPage() {
-  const products: any[] = []
+  const products = [
+    {
+      _id: 'voice-receptionist',
+      title: 'Voice Receptionist',
+      description: 'AI-powered phone assistant that never sleeps, answers calls instantly, and handles scheduling 24/7.',
+      slug: { current: 'voice-receptionist' },
+      icon: 'phone',
+    },
+    {
+      _id: 'email-assistant',
+      title: 'Email Assistant',
+      description: 'Thread-aware email automation with intelligent lead classification and auto-draft responses.',
+      slug: { current: 'email-assistant' },
+      icon: 'mail',
+    },
+    {
+      _id: 'chatbot',
+      title: 'AI Chatbot',
+      description: 'Embedded chat widget with lead capture, funnel logic, and white-label branding for your website.',
+      slug: { current: 'chatbot' },
+      icon: 'message-square',
+    },
+    {
+      _id: 'secretary-bot',
+      title: 'Secretary Bot',
+      description: 'AI executive assistant that manages schedules, coordinates meetings, and handles administrative tasks 24/7.',
+      slug: { current: 'secretary-bot' },
+      icon: 'bot',
+    },
+    {
+      _id: 'marketing-bot',
+      title: 'Marketing Bot',
+      description: 'Automate campaigns across SMS, email, and chat with intelligent lead scoring and personalization.',
+      slug: { current: 'marketing-bot' },
+      icon: 'zap',
+    },
+    {
+      _id: 'knowledge-base',
+      title: 'Knowledge Base',
+      description: 'Centralized knowledge management system that powers all DONNA interactions with accurate, up-to-date information.',
+      slug: { current: 'knowledge-base' },
+      icon: 'database',
+    },
+    {
+      _id: 'integrations',
+      title: 'Integrations',
+      description: 'Seamlessly connect with your existing tools: CRM, calendar, email, and hundreds of other platforms.',
+      slug: { current: 'integrations' },
+      icon: 'puzzle',
+    },
+    {
+      _id: 'security',
+      title: 'Security',
+      description: 'Enterprise-grade security with SOC 2 compliance, GDPR compliance, and end-to-end encryption.',
+      slug: { current: 'security' },
+      icon: 'shield',
+    },
+  ]
 
   const schema = productSchema({
     name: 'DONNA Platform',
@@ -73,32 +130,24 @@ export default async function ProductPage() {
         {/* Product Grid */}
         <section className="py-12">
           <h2 className="text-3xl font-bold mb-8 text-center">Explore Our Products</h2>
-          {products.length === 0 ? (
-            <div className="text-center p-12 border rounded-lg">
-              <p className="text-lg text-muted-foreground">
-                Product details coming soon.
-              </p>
-            </div>
-          ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {products.map((product) => {
-                const Icon = iconMap[product.icon] || Bot
-                return (
-                  <Link
-                    key={product._id}
-                    href={`/product/${product.slug.current}`}
-                    className="group p-6 border rounded-lg hover:border-primary transition-colors"
-                  >
-                    <Icon className="h-12 w-12 mb-4 text-primary" />
-                    <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
-                      {product.title}
-                    </h3>
-                    <p className="text-muted-foreground">{product.description}</p>
-                  </Link>
-                )
-              })}
-            </div>
-          )}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {products.map((product) => {
+              const Icon = iconMap[product.icon] || Bot
+              return (
+                <Link
+                  key={product._id}
+                  href={`/product/${product.slug.current}`}
+                  className="group p-6 border rounded-lg hover:border-primary transition-colors"
+                >
+                  <Icon className="h-12 w-12 mb-4 text-primary" />
+                  <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+                    {product.title}
+                  </h3>
+                  <p className="text-muted-foreground">{product.description}</p>
+                </Link>
+              )
+            })}
+          </div>
         </section>
 
         {/* CTA Section */}

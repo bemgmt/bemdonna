@@ -46,7 +46,7 @@ export async function GET() {
     // Send test email
     await transporter.sendMail({
       from: config.user,
-      to: config.user,
+      to: "derek@bem.studio",
       subject: "DONNA Test Email",
       html: `
         <h2>Test Email Successful!</h2>

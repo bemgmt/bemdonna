@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
 
     const mailOptions = {
       from: process.env.SMTP_USER,
-      to: process.env.SMTP_USER,
+      to: "derek@bem.studio",
       subject: `DONNA ${type === "waitlist" ? "Waitlist Signup" : "Demo Request"} - ${name}`,
       html: `
         <h2>New ${type === "waitlist" ? "Waitlist Signup" : "Demo Request"}</h2>
@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
       `,
     }
 
-    console.log("Sending notification email to:", process.env.SMTP_USER)
+    console.log("Sending notification email to: derek@bem.studio")
     await transporter.sendMail(mailOptions)
     console.log("Notification email sent successfully")
 
