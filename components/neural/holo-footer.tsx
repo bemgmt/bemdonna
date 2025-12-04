@@ -32,7 +32,7 @@ export function HoloFooter({
     { label: "Features", href: "/features" },
     { label: "Verticals", href: "/verticals" },
     { label: "Pricing", href: "/pricing" },
-    { label: "Investors", href: "/investor" },
+    { label: "Investors", href: "/investors" },
     { label: "Contact", href: "/contact" }
   ]
   
