@@ -11,7 +11,80 @@ export const metadata: Metadata = generatePageMetadata({
 })
 
 export default async function CareersPage() {
-  const jobs: any[] = []
+  const jobs = [
+    // Sales Positions
+    {
+      _id: 'sales-1',
+      title: 'Enterprise Sales Executive',
+      department: 'Sales',
+      location: 'Remote',
+      employmentType: 'Full-time',
+      experienceLevel: '5+ years',
+      summary: 'Drive enterprise sales for DONNA AI platform. Target Fortune 500 companies and large organizations seeking AI-powered communication solutions.',
+      slug: { current: 'enterprise-sales-executive' }
+    },
+    {
+      _id: 'sales-2',
+      title: 'SMB Sales Representative',
+      department: 'Sales',
+      location: 'Remote',
+      employmentType: 'Full-time',
+      experienceLevel: '2-4 years',
+      summary: 'Focus on small and medium-sized businesses across real estate, hospitality, and property management verticals. High-velocity sales role with competitive commission structure.',
+      slug: { current: 'smb-sales-representative' }
+    },
+    {
+      _id: 'sales-3',
+      title: 'Sales Development Representative (SDR)',
+      department: 'Sales',
+      location: 'Remote',
+      employmentType: 'Full-time',
+      experienceLevel: '0-2 years',
+      summary: 'Generate qualified leads through outbound prospecting, cold calling, and email campaigns. Perfect entry point into SaaS sales with clear path to Account Executive role.',
+      slug: { current: 'sales-development-representative' }
+    },
+    {
+      _id: 'sales-4',
+      title: 'Channel Sales Manager',
+      department: 'Sales',
+      location: 'Remote',
+      employmentType: 'Full-time',
+      experienceLevel: '4+ years',
+      summary: 'Build and manage strategic partnerships with CRM providers, real estate platforms, and industry associations. Develop channel sales programs and co-marketing initiatives.',
+      slug: { current: 'channel-sales-manager' }
+    },
+    // Influencer Positions
+    {
+      _id: 'influencer-1',
+      title: 'Real Estate Industry Influencer',
+      department: 'Marketing & Influencer Relations',
+      location: 'Remote',
+      employmentType: 'Contract/Commission',
+      experienceLevel: 'Established following',
+      summary: 'Promote DONNA to real estate professionals through social media, webinars, and industry events. Earn commission on referred customers. Must have 10K+ followers in real estate niche.',
+      slug: { current: 'real-estate-influencer' }
+    },
+    {
+      _id: 'influencer-2',
+      title: 'Hospitality & Service Industry Influencer',
+      department: 'Marketing & Influencer Relations',
+      location: 'Remote',
+      employmentType: 'Contract/Commission',
+      experienceLevel: 'Established following',
+      summary: 'Create content showcasing DONNA for hotels, restaurants, salons, and service businesses. Commission-based with performance bonuses. 5K+ engaged followers required.',
+      slug: { current: 'hospitality-influencer' }
+    },
+    {
+      _id: 'influencer-3',
+      title: 'Tech & SaaS Influencer',
+      department: 'Marketing & Influencer Relations',
+      location: 'Remote',
+      employmentType: 'Contract/Commission',
+      experienceLevel: 'Established following',
+      summary: 'Review and promote DONNA AI platform to tech-savvy business owners and entrepreneurs. Create video content, tutorials, and case studies. Generous affiliate commission structure.',
+      slug: { current: 'tech-saas-influencer' }
+    },
+  ]
 
   // Group jobs by department
   const jobsByDepartment = jobs.reduce((acc, job) => {

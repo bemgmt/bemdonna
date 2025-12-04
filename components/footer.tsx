@@ -42,6 +42,7 @@ export default function Footer() {
               <li><Link href="/product/voice-receptionist" className="text-foreground/70 hover:text-accent transition-colors">Voice Receptionist</Link></li>
               <li><Link href="/product/email-assistant" className="text-foreground/70 hover:text-accent transition-colors">Email Assistant</Link></li>
               <li><Link href="/product/chatbot" className="text-foreground/70 hover:text-accent transition-colors">Chatbot</Link></li>
+              <li><Link href="/product/secretary-bot" className="text-foreground/70 hover:text-accent transition-colors">Secretary Bot</Link></li>
               <li><Link href="/product/integrations" className="text-foreground/70 hover:text-accent transition-colors">Integrations</Link></li>
               <li><Link href="/product/security" className="text-foreground/70 hover:text-accent transition-colors">Security</Link></li>
               <li><Link href="/pricing" className="text-foreground/70 hover:text-accent transition-colors">Pricing</Link></li>
@@ -80,6 +81,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li><Link href="/about" className="text-foreground/70 hover:text-accent transition-colors">About Us</Link></li>
               <li><Link href="/careers" className="text-foreground/70 hover:text-accent transition-colors">Careers</Link></li>
+              <li><Link href="/investors" className="text-foreground/70 hover:text-accent transition-colors">Investors</Link></li>
               <li><Link href="/press" className="text-foreground/70 hover:text-accent transition-colors">Press</Link></li>
               <li><Link href="/contact" className="text-foreground/70 hover:text-accent transition-colors">Contact</Link></li>
               <li><Link href="/terms" className="text-foreground/70 hover:text-accent transition-colors">Terms</Link></li>
