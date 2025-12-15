@@ -9,8 +9,8 @@ export default function PricingPage() {
     { feature: "Email Bot", starter: true, pro: true, enterprise: true },
     { feature: "SMS Bot", starter: true, pro: true, enterprise: true },
     { feature: "Chatbot", starter: true, pro: true, enterprise: true },
-    { feature: "Voice Bot", starter: false, pro: true, enterprise: true },
-    { feature: "Secretary Bot", starter: false, pro: true, enterprise: true },
+    { feature: "Voice Bot", starter: "Pay-as-you-go*", pro: true, enterprise: true },
+    { feature: "Secretary Bot", starter: "Pay-as-you-go*", pro: true, enterprise: true },
     { feature: "Lead Gen Engine", starter: true, pro: true, enterprise: true },
     { feature: "Marketing Bot", starter: false, pro: true, enterprise: true },
     { feature: "Sales Agent Bot", starter: false, pro: true, enterprise: true },
@@ -59,6 +59,8 @@ export default function PricingPage() {
               price="$1,500"
               features={[
                 "Up to 1,000 conversations/month",
+                "Voice bot* (pay-as-you-go limits)",
+                "Secretary bot* (pay-as-you-go limits)",
                 "Email & SMS automation",
                 "Basic chatbot",
                 "Lead gen engine",
@@ -180,6 +182,7 @@ export default function PricingPage() {
               </div>
             </div>
           </div>
+          <p className="text-sm text-gray-400 mt-4">* Pay-as-you-go limits apply to Starter voice and secretary bots.</p>
         </div>
       </section>
 

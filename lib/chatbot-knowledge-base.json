@@ -61,7 +61,8 @@
     "donna_lead_generation": "Hybrid AI and human lead generation system that qualifies prospects, nurtures relationships, and converts leads through intelligent automation and human oversight.",
     "donna_secretary": "Real-time AI secretary bot that manages schedules, handles appointments, coordinates meetings, and provides executive assistance 24/7.",
     "donna_landing_page_generator": "Automated landing page creation tool that generates custom, conversion-optimized pages tailored to your business needs and brand identity.",
-    "donna_meeting_integration": "Game-changing feature that sets DONNA apart from competitors. DONNA seamlessly joins video meetings (Zoom, Teams, Google Meet, etc.) and sits quietly in the background. Simply say 'Hey Donna' to activate her, and she instantly answers questions, provides information from your knowledge base, explains features, or clarifies any aspect of your business—all in real-time during the meeting. This allows you to answer client questions, provide pricing details, explain features, or access data instantly without leaving the meeting. No other AI assistant offers this real-time meeting interaction capability."
+    "donna_meeting_integration": "Game-changing feature that sets DONNA apart from competitors. DONNA seamlessly joins video meetings (Zoom, Teams, Google Meet, etc.) and sits quietly in the background. Simply say 'Hey Donna' to activate her, and she instantly answers questions, provides information from your knowledge base, explains features, or clarifies any aspect of your business—all in real-time during the meeting. This allows you to answer client questions, provide pricing details, explain features, or access data instantly without leaving the meeting. No other AI assistant offers this real-time meeting interaction capability.",
+    "donna_network": "DONNA to DONNA coordination feature that allows multiple DONNA digital employees to work together securely. Unlike most AI tools that work in isolation, DONNA can coordinate with other DONNAs to pass tasks, share approved context, and move work forward automatically. This results in fewer delays, fewer mistakes, and far less manual coordination between people and systems. Benefits include less manual handoff between teams, faster execution across departments, consistent responses and decision logic, and easier scaling without adding staff. All DONNA-to-DONNA actions follow predefined rules, permissions, and safeguards, ensuring businesses remain fully in control of what is shared, when actions occur, and when human approval is required."
   },
   "core_features": {
     "communication": [
@@ -123,6 +124,11 @@
       "name": "Client Onboarding & Management",
       "description": "Persona-based onboarding across 12 user profiles. Guided setup for Quick Suite, connectors, and workflows. Includes monitoring dashboards, admin guides, and runbooks for self-service management.",
       "benefits": ["15-30 minute setup", "12 user profiles", "Self-service management", "Personalized AI model per organization"]
+    },
+    {
+      "name": "DONNA Network",
+      "description": "DONNA to DONNA coordination feature that enables multiple DONNA digital employees to work together securely. Unlike most AI tools that work in isolation, DONNA can coordinate with other DONNAs to pass tasks, share approved context, and move work forward automatically. This results in fewer delays, fewer mistakes, and far less manual coordination between people and systems.",
+      "benefits": ["Less manual handoff between teams", "Faster execution across departments", "Consistent responses and decision logic", "Easier scaling without adding staff", "Controlled and secure with predefined rules and permissions"]
     }
   ],
   "target_audience": {
@@ -330,6 +336,10 @@
     {
       "question": "How does the 'Hey Donna' feature work?",
       "answer": "The 'Hey Donna' activation feature allows DONNA to join your video meetings and interact in real-time. DONNA joins the meeting and waits quietly in the background. When you or any participant says 'Hey Donna', she instantly activates and can answer questions, provide information, explain features, or access data from your knowledge base—all live during the meeting. This is perfect for sales calls, client presentations, or team meetings where you need instant access to information without interrupting the flow of conversation."
+    },
+    {
+      "question": "What is DONNA Network and how does DONNA-to-DONNA coordination work?",
+      "answer": "DONNA Network is a feature that allows multiple DONNA digital employees to work together securely. Unlike most AI tools that work in isolation, DONNA can coordinate with other DONNAs to pass tasks, share approved context, and move work forward automatically. This means fewer delays, fewer mistakes, and far less manual coordination between people and systems. Benefits include less manual handoff between teams, faster execution across departments, consistent responses and decision logic, and easier scaling without adding staff. Access varies by plan: Starter plans have internal DONNA only with no cross-DONNA coordination; Pro plans include limited DONNA-to-DONNA actions and approved task handoffs; Enterprise plans have full DONNA network access with multi-team and multi-location workflows. All DONNA-to-DONNA actions follow predefined rules, permissions, and safeguards, ensuring businesses remain fully in control of what is shared, when actions occur, and when human approval is required."
     }
   ],
   "call_to_action": {
