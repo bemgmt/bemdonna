@@ -65,7 +65,8 @@ export default function PricingPage() {
                 "Knowledge base integration",
                 "Basic workflows",
                 "Email support",
-                "Standard integrations"
+                "Standard integrations",
+                "Networked DONNA features restricted"
               ]}
               ctaLabel="Get Started"
               ctaLink="/contact"
@@ -83,7 +84,8 @@ export default function PricingPage() {
                 "Landing page generator",
                 "Advanced workflows",
                 "Priority support",
-                "Custom integrations"
+                "Custom integrations",
+                "Limited networked DONNA capabilities"
               ]}
               highlight={true}
               ctaLabel="Get Started"
@@ -102,7 +104,8 @@ export default function PricingPage() {
                 "SLA guarantees",
                 "Advanced security features",
                 "Custom workflows",
-                "24/7 phone support"
+                "24/7 phone support",
+                "Full DONNA-to-DONNA coordination included"
               ]}
               ctaLabel="Contact Sales"
               ctaLink="/contact"

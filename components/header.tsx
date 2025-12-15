@@ -121,6 +121,9 @@ export default function Header() {
                 )}
               </div>
             ))}
+            <Link href="/donna-network" className="text-sm text-foreground/70 hover:text-accent transition-colors">
+              DONNA Network
+            </Link>
             <Link href="/pricing" className="text-sm text-foreground/70 hover:text-accent transition-colors">
               Pricing
             </Link>
@@ -169,6 +172,13 @@ export default function Header() {
                 ))}
               </div>
             ))}
+            <Link
+              href="/donna-network"
+              onClick={() => setIsOpen(false)}
+              className="text-sm text-foreground/70 hover:text-accent transition-colors py-2 px-2"
+            >
+              DONNA Network
+            </Link>
             <Link
               href="/pricing"
               onClick={() => setIsOpen(false)}
