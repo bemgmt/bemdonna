@@ -1,7 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import { Twitter, Linkedin, Github, Mail } from "lucide-react"
+import { Twitter, Linkedin, Github, Mail, Youtube, Facebook } from "lucide-react"
+import NewsletterSignup from "./newsletter-signup"
 
 export default function Footer() {
   return (
@@ -19,7 +20,7 @@ export default function Footer() {
             <p className="text-foreground/60 text-sm mb-4">
               AI-powered business communication platform that never misses a lead.
             </p>
-            <div className="flex gap-3">
+            <div className="flex gap-3 mb-4">
               <a href="https://twitter.com/bemdonna" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-accent transition-colors">
                 <Twitter className="h-5 w-5" />
               </a>
@@ -29,9 +30,15 @@ export default function Footer() {
               <a href="https://github.com/bemgmt" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-accent transition-colors">
                 <Github className="h-5 w-5" />
               </a>
-              <a href="mailto:derek@bem.studio" className="text-foreground/60 hover:text-accent transition-colors">
-                <Mail className="h-5 w-5" />
+              <a href="https://youtube.com/@bemdonna" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-accent transition-colors">
+                <Youtube className="h-5 w-5" />
               </a>
+              <a href="https://facebook.com/bemdonna" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-accent transition-colors">
+                <Facebook className="h-5 w-5" />
+              </a>
+            </div>
+            <div className="mt-4">
+              <NewsletterSignup variant="inline" />
             </div>
           </div>
 
@@ -39,13 +46,14 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold mb-4 text-sm">Product</h3>
             <ul className="space-y-2 text-sm">
+              <li><Link href="/product" className="text-foreground/70 hover:text-accent transition-colors">Overview</Link></li>
               <li><Link href="/product/voice-receptionist" className="text-foreground/70 hover:text-accent transition-colors">Voice Receptionist</Link></li>
               <li><Link href="/product/email-assistant" className="text-foreground/70 hover:text-accent transition-colors">Email Assistant</Link></li>
               <li><Link href="/product/chatbot" className="text-foreground/70 hover:text-accent transition-colors">Chatbot</Link></li>
-              <li><Link href="/product/secretary-bot" className="text-foreground/70 hover:text-accent transition-colors">Secretary Bot</Link></li>
+              <li><Link href="/product/marketing-bot" className="text-foreground/70 hover:text-accent transition-colors">Marketing Bot</Link></li>
+              <li><Link href="/product/knowledge-base" className="text-foreground/70 hover:text-accent transition-colors">Knowledge Base</Link></li>
               <li><Link href="/product/integrations" className="text-foreground/70 hover:text-accent transition-colors">Integrations</Link></li>
               <li><Link href="/product/security" className="text-foreground/70 hover:text-accent transition-colors">Security</Link></li>
-              <li><Link href="/pricing" className="text-foreground/70 hover:text-accent transition-colors">Pricing</Link></li>
             </ul>
           </div>
 
@@ -53,12 +61,26 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold mb-4 text-sm">Industries</h3>
             <ul className="space-y-2 text-sm">
+              <li><Link href="/industries" className="text-foreground/70 hover:text-accent transition-colors">All Industries</Link></li>
               <li><Link href="/industries/real-estate" className="text-foreground/70 hover:text-accent transition-colors">Real Estate</Link></li>
               <li><Link href="/industries/hospitality" className="text-foreground/70 hover:text-accent transition-colors">Hospitality</Link></li>
               <li><Link href="/industries/property-management" className="text-foreground/70 hover:text-accent transition-colors">Property Management</Link></li>
-              <li><Link href="/industries/legal" className="text-foreground/70 hover:text-accent transition-colors">Legal</Link></li>
-              <li><Link href="/industries/healthcare" className="text-foreground/70 hover:text-accent transition-colors">Healthcare</Link></li>
-              <li><Link href="/industries" className="text-foreground/70 hover:text-accent transition-colors">View All</Link></li>
+              <li><Link href="/industries/health-beauty" className="text-foreground/70 hover:text-accent transition-colors">Health & Beauty</Link></li>
+              <li><Link href="/industries/insurance" className="text-foreground/70 hover:text-accent transition-colors">Insurance</Link></li>
+              <li><Link href="/industries/nonprofits" className="text-foreground/70 hover:text-accent transition-colors">Nonprofits</Link></li>
+              <li><Link href="/industries/nightlife" className="text-foreground/70 hover:text-accent transition-colors">Clubs & Nightlife</Link></li>
+            </ul>
+          </div>
+          
+          {/* Use Cases */}
+          <div>
+            <h3 className="font-semibold mb-4 text-sm">Use Cases</h3>
+            <ul className="space-y-2 text-sm">
+              <li><Link href="/use-cases" className="text-foreground/70 hover:text-accent transition-colors">All Use Cases</Link></li>
+              <li><Link href="/use-cases/lead-response" className="text-foreground/70 hover:text-accent transition-colors">Lead Response</Link></li>
+              <li><Link href="/use-cases/customer-support" className="text-foreground/70 hover:text-accent transition-colors">Customer Support</Link></li>
+              <li><Link href="/use-cases/appointment-scheduling" className="text-foreground/70 hover:text-accent transition-colors">Appointment Scheduling</Link></li>
+              <li><Link href="/use-cases/lead-nurturing" className="text-foreground/70 hover:text-accent transition-colors">Lead Nurturing</Link></li>
             </ul>
           </div>
 
@@ -68,8 +90,8 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li><Link href="/blog" className="text-foreground/70 hover:text-accent transition-colors">Blog</Link></li>
               <li><Link href="/case-studies" className="text-foreground/70 hover:text-accent transition-colors">Case Studies</Link></li>
-              <li><Link href="/docs" className="text-foreground/70 hover:text-accent transition-colors">Documentation</Link></li>
               <li><Link href="/tutorials" className="text-foreground/70 hover:text-accent transition-colors">Tutorials</Link></li>
+              <li><Link href="/docs" className="text-foreground/70 hover:text-accent transition-colors">Documentation</Link></li>
               <li><Link href="/webinars" className="text-foreground/70 hover:text-accent transition-colors">Webinars</Link></li>
               <li><Link href="/downloads" className="text-foreground/70 hover:text-accent transition-colors">Downloads</Link></li>
             </ul>
@@ -91,8 +113,12 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-foreground/60">
-          <p>&copy; {new Date().getFullYear()} DONNA. All rights reserved.</p>
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row items-center gap-2">
+            <p>&copy; {new Date().getFullYear()} DONNA. All rights reserved.</p>
+            <span className="hidden sm:inline">•</span>
+            <p className="text-foreground/50">Built with ❤️ by DONNA Team</p>
+          </div>
+          <div className="flex flex-wrap gap-4 justify-center">
             <Link href="/terms" className="hover:text-accent transition-colors">Terms</Link>
             <Link href="/privacy" className="hover:text-accent transition-colors">Privacy</Link>
             <Link href="/acceptable-use" className="hover:text-accent transition-colors">Acceptable Use</Link>

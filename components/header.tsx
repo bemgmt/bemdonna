@@ -3,6 +3,7 @@
 import { useState, useRef } from "react"
 import Link from "next/link"
 import { Menu, X, ChevronDown } from "lucide-react"
+import SearchModal from "./search-modal"
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -134,6 +135,7 @@ export default function Header() {
 
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center gap-3">
+            <SearchModal />
             <Link
               href="/contact"
               className="px-4 py-2 text-sm font-medium text-foreground/70 hover:text-accent transition-colors"
@@ -194,6 +196,9 @@ export default function Header() {
               About
             </Link>
             <div className="flex flex-col gap-2 pt-2 px-2">
+              <div className="px-2">
+                <SearchModal />
+              </div>
               <Link
                 href="/contact"
                 onClick={() => setIsOpen(false)}

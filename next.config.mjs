@@ -15,6 +15,11 @@ const nextConfig = {
         hostname: '*.replicate.delivery',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+        pathname: '/**',
+      },
     ],
   },
   // Enable experimental features
@@ -24,7 +29,7 @@ const nextConfig = {
     },
     optimizeCss: true,
   },
-  // Redirects for old URLs
+  // Redirects for old URLs (301 redirects from prelaunch to new structure)
   async redirects() {
     return [
       {
@@ -38,6 +43,10 @@ const nextConfig = {
         permanent: true,
       },
     ]
+  },
+  // Rewrites for clean URLs
+  async rewrites() {
+    return []
   },
   // Security headers
   async headers() {

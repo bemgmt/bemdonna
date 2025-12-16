@@ -9,8 +9,19 @@ export const metadata: Metadata = generatePageMetadata({
   path: '/press',
 })
 
-export default function PressPage() {
-  const pressReleases = [
+export default async function PressPage() {
+  // Try to fetch from CMS, fallback to static data
+  let pressReleases: any[] = []
+  try {
+    // Note: Press release query would need to be added to queries.ts
+    // For now, using static data
+  } catch (error) {
+    console.log('CMS not configured, using static press data')
+  }
+
+  // Fallback static press releases
+  if (!Array.isArray(pressReleases) || pressReleases.length === 0) {
+    pressReleases = [
     {
       title: 'DONNA Raises $15M Series A to Expand AI Communication Platform',
       date: 'January 20, 2025',
@@ -35,7 +46,8 @@ export default function PressPage() {
       excerpt: 'Milestone reflects growing adoption of AI automation across industries and company sizes.',
       link: '/press/10k-users-milestone',
     },
-  ]
+    ]
+  }
 
   const mediaKit = [
     { name: 'Company Logo (PNG)', size: '2.4 MB', type: 'logo' },

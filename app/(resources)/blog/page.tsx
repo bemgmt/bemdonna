@@ -3,6 +3,9 @@ import Link from 'next/link'
 import { Breadcrumb } from '@/components/breadcrumb'
 import { generatePageMetadata } from '@/lib/metadata'
 import { Calendar, Clock, User } from 'lucide-react'
+import { getAllBlogPosts, getFeaturedBlogPosts } from '@/lib/sanity/queries'
+import Image from 'next/image'
+import { urlFor } from '../../../../sanity/lib/client'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Blog',
@@ -11,7 +14,15 @@ export const metadata: Metadata = generatePageMetadata({
 })
 
 export default async function BlogPage() {
-  const posts: any[] = []
+  let posts: any[] = []
+  let featuredPosts: any[] = []
+
+  try {
+    posts = await getAllBlogPosts()
+    featuredPosts = await getFeaturedBlogPosts()
+  } catch (error) {
+    console.log('CMS not configured, showing empty blog')
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">

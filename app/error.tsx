@@ -3,6 +3,8 @@
 import { useEffect } from 'react'
 import Link from 'next/link'
 import { AlertTriangle, Home, RefreshCw } from 'lucide-react'
+import Header from '@/components/header'
+import Footer from '@/components/footer'
 
 export default function Error({
   error,
@@ -17,7 +19,9 @@ export default function Error({
   }, [error])
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
+    <>
+      <Header />
+      <div className="min-h-screen flex items-center justify-center px-4 pt-20">
       <div className="text-center max-w-2xl mx-auto">
         <div className="mb-8">
           <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-destructive/10 mb-6">
@@ -51,14 +55,15 @@ export default function Error({
           </Link>
         </div>
 
-        <div className="mt-12 pt-8 border-t">
-          <p className="text-muted-foreground mb-4">Need immediate assistance?</p>
-          <Link href="/contact" className="text-primary hover:underline font-medium">
+        <div className="mt-12 pt-8 border-t border-white/10">
+          <p className="text-foreground/70 mb-4">Need immediate assistance?</p>
+          <Link href="/contact" className="text-accent hover:underline font-medium">
             Contact Support
           </Link>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   )
 }
 

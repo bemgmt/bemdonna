@@ -11,7 +11,18 @@ export const metadata: Metadata = generatePageMetadata({
 })
 
 export default async function CareersPage() {
-  const jobs = [
+  // Try to fetch from CMS, fallback to static data
+  let jobs: any[] = []
+  try {
+    const { getAllCareers } = await import('@/lib/sanity/queries')
+    jobs = await getAllCareers()
+  } catch (error) {
+    console.log('CMS not configured, using static job data')
+  }
+
+  // Fallback static jobs if CMS not configured
+  if (!Array.isArray(jobs) || jobs.length === 0) {
+    jobs = [
     // Sales Positions
     {
       _id: 'sales-1',
@@ -84,7 +95,8 @@ export default async function CareersPage() {
       summary: 'Review and promote DONNA AI platform to tech-savvy business owners and entrepreneurs. Create video content, tutorials, and case studies. Generous affiliate commission structure.',
       slug: { current: 'tech-saas-influencer' }
     },
-  ]
+    ]
+  }
 
   // Group jobs by department
   const jobsByDepartment = jobs.reduce((acc, job) => {
@@ -141,7 +153,7 @@ export default async function CareersPage() {
                   {departmentJobs.map((job) => (
                     <Link
                       key={job._id}
-                      href={`/careers/${job.slug.current}`}
+                      href={`/careers/${job.slug?.current || job.slug}`}
                       className="block p-6 border rounded-lg hover:border-primary hover:shadow-lg transition-all"
                     >
                       <h4 className="text-xl font-semibold mb-2">{job.title}</h4>

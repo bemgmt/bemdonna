@@ -4,54 +4,48 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Checkbox } from '@/components/ui/checkbox'
 import { toast } from 'sonner'
-import { Loader2 } from 'lucide-react'
+import { Mail } from 'lucide-react'
 
-const schema = z.object({
+const newsletterSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
-  consent: z.boolean().refine((val) => val === true, {
-    message: 'You must agree to receive emails',
-  }),
+  name: z.string().optional(),
 })
 
-type FormData = z.infer<typeof schema>
+type NewsletterFormData = z.infer<typeof newsletterSchema>
 
 interface NewsletterSignupProps {
   variant?: 'inline' | 'modal' | 'sidebar'
 }
 
-export function NewsletterSignup({ variant = 'inline' }: NewsletterSignupProps) {
+export default function NewsletterSignup({ variant = 'inline' }: NewsletterSignupProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
-  
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<FormData>({
-    resolver: zodResolver(schema),
+  } = useForm<NewsletterFormData>({
+    resolver: zodResolver(newsletterSchema),
   })
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (data: NewsletterFormData) => {
     setIsSubmitting(true)
-    
     try {
-      // TODO: Integrate with email marketing service (Mailchimp, ConvertKit, etc.)
       const response = await fetch('/api/newsletter', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify(data),
       })
 
-      if (response.ok) {
-        toast.success('Successfully subscribed to newsletter!')
-        reset()
-      } else {
+      if (!response.ok) {
         throw new Error('Subscription failed')
       }
+
+      toast.success('Successfully subscribed to our newsletter!')
+      reset()
     } catch (error) {
       toast.error('Failed to subscribe. Please try again.')
     } finally {
@@ -59,47 +53,63 @@ export function NewsletterSignup({ variant = 'inline' }: NewsletterSignupProps) 
     }
   }
 
-  return (
-    <div className={variant === 'sidebar' ? 'space-y-4' : 'space-y-4'}>
-      <div>
-        <h3 className="text-lg font-semibold">Subscribe to our newsletter</h3>
-        <p className="text-sm text-muted-foreground mt-1">
-          Get the latest updates, tips, and insights delivered to your inbox.
-        </p>
-      </div>
-      
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
-        <div>
-          <Input
+  if (variant === 'inline') {
+    return (
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col sm:flex-row gap-2">
+        <div className="flex-1">
+          <input
             type="email"
             placeholder="Enter your email"
             {...register('email')}
-            className={errors.email ? 'border-destructive' : ''}
+            className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-accent text-foreground placeholder:text-foreground/50"
           />
           {errors.email && (
-            <p className="text-sm text-destructive mt-1">{errors.email.message}</p>
+            <p className="mt-1 text-xs text-red-400">{errors.email.message}</p>
           )}
         </div>
-
-        <div className="flex items-start space-x-2">
-          <Checkbox id="consent" {...register('consent')} />
-          <label
-            htmlFor="consent"
-            className="text-sm text-muted-foreground leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-          >
-            I agree to receive emails from DONNA. You can unsubscribe at any time.
-          </label>
-        </div>
-        {errors.consent && (
-          <p className="text-sm text-destructive">{errors.consent.message}</p>
-        )}
-
-        <Button type="submit" className="w-full" disabled={isSubmitting}>
-          {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-          Subscribe
-        </Button>
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="px-6 py-2 rounded-lg bg-accent text-background hover:bg-accent/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium whitespace-nowrap"
+        >
+          {isSubmitting ? 'Subscribing...' : 'Subscribe'}
+        </button>
       </form>
-    </div>
-  )
-}
+    )
+  }
 
+  if (variant === 'sidebar') {
+    return (
+      <div className="p-4 rounded-lg border border-white/10 bg-white/5">
+        <div className="flex items-center gap-2 mb-2">
+          <Mail className="h-5 w-5 text-accent" />
+          <h3 className="font-semibold text-sm">Newsletter</h3>
+        </div>
+        <p className="text-xs text-foreground/70 mb-3">
+          Get the latest updates and insights delivered to your inbox.
+        </p>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-2">
+          <input
+            type="email"
+            placeholder="Your email"
+            {...register('email')}
+            className="w-full px-3 py-2 rounded-lg bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-accent text-foreground placeholder:text-foreground/50 text-sm"
+          />
+          {errors.email && (
+            <p className="text-xs text-red-400">{errors.email.message}</p>
+          )}
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full px-4 py-2 rounded-lg bg-accent text-background hover:bg-accent/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium"
+          >
+            {isSubmitting ? 'Subscribing...' : 'Subscribe'}
+          </button>
+        </form>
+      </div>
+    )
+  }
+
+  // Modal variant would be handled by parent component
+  return null
+}
