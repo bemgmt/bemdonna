@@ -7,7 +7,7 @@ import PortableText from '@/components/portable-text'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
-import { urlFor } from '../../../../sanity/lib/client'
+import { urlFor } from '@/sanity/lib/client'
 
 const productSlugs = [
   'voice-receptionist',

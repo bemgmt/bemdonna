@@ -4,7 +4,7 @@ import { PortableText as PortableTextComponent } from '@portabletext/react'
 import type { PortableTextBlock } from '@portabletext/types'
 import Image from 'next/image'
 import Link from 'next/link'
-import { urlFor } from '../../sanity/lib/client'
+import { urlFor } from '@/sanity/lib/client'
 
 interface PortableTextProps {
   content: PortableTextBlock[]

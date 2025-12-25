@@ -5,7 +5,7 @@ import { generatePageMetadata } from '@/lib/metadata'
 import { Calendar, Clock, User } from 'lucide-react'
 import { getAllBlogPosts, getFeaturedBlogPosts } from '@/lib/sanity/queries'
 import Image from 'next/image'
-import { urlFor } from '../../../../sanity/lib/client'
+import { urlFor } from '@/sanity/lib/client'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Blog',

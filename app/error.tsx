@@ -22,7 +22,7 @@ export default function Error({
     <>
       <Header />
       <div className="min-h-screen flex items-center justify-center px-4 pt-20">
-      <div className="text-center max-w-2xl mx-auto">
+        <div className="text-center max-w-2xl mx-auto">
         <div className="mb-8">
           <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-destructive/10 mb-6">
             <AlertTriangle className="h-10 w-10 text-destructive" />
@@ -60,6 +60,7 @@ export default function Error({
           <Link href="/contact" className="text-accent hover:underline font-medium">
             Contact Support
           </Link>
+        </div>
         </div>
       </div>
       <Footer />

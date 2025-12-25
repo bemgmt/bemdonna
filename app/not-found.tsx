@@ -11,7 +11,7 @@ export default function NotFound() {
     <>
       <Header />
       <div className="min-h-screen flex items-center justify-center px-4 pt-20">
-      <div className="text-center max-w-2xl mx-auto">
+        <div className="text-center max-w-2xl mx-auto">
         <div className="mb-8">
           <h1 className="text-9xl font-bold gradient-text mb-4">404</h1>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Page Not Found</h2>
@@ -63,6 +63,7 @@ export default function NotFound() {
               Contact
             </Link>
           </div>
+        </div>
         </div>
       </div>
       <Footer />

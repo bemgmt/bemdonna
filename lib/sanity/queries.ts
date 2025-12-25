@@ -1,4 +1,4 @@
-import { sanityFetch } from '../../sanity/lib/client'
+import { sanityFetch } from '@/sanity/lib/client'
 
 // Blog Post Queries
 export const allBlogPostsQuery = `*[_type == "blogPost" && defined(publishedAt)] | order(publishedAt desc) {
