@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Breadcrumb } from '@/components/breadcrumb'
+import Breadcrumb from '@/components/breadcrumb'
 import { generatePageMetadata } from '@/lib/metadata'
 import { Calendar, Clock, User } from 'lucide-react'
 import { getAllBlogPosts, getFeaturedBlogPosts } from '@/lib/sanity/queries'

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Breadcrumb } from '@/components/breadcrumb'
+import Breadcrumb from '@/components/breadcrumb'
 import { generatePageMetadata } from '@/lib/metadata'
 import {
   Building2, Hotel, Home, Scissors, Shield, Heart, Music,

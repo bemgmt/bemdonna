@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Breadcrumb } from '@/components/breadcrumb'
+import Breadcrumb from '@/components/breadcrumb'
 import { generatePageMetadata } from '@/lib/metadata'
 import { Download, FileText, BookOpen, Video, Code } from 'lucide-react'
 
