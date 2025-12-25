@@ -72,7 +72,7 @@
     "next-sanity": "^6.0.0",
     "@portabletext/react": "^3.0.11",
     "react-player": "^2.16.0",
-    "@vercel/og": "^1.1.1",
+    "@vercel/og": "^1.0.0",
     "prismjs": "^1.29.0"
   },
   "devDependencies": {
