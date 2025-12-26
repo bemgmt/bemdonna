@@ -37,9 +37,13 @@ export default async function BlogPage() {
 
       <section className="py-12">
         {posts.length === 0 ? (
-          <div className="text-center p-12 border rounded-lg">
-            <p className="text-lg text-muted-foreground">
-              Blog posts coming soon.
+          <div className="text-center p-12 border rounded-lg bg-foreground/5">
+            <h2 className="text-2xl font-bold mb-4">Content Coming Soon</h2>
+            <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
+              We're preparing insightful articles about AI-powered business operations, network collaboration, and best practices for implementing DONNA in your organization.
+            </p>
+            <p className="text-sm text-muted-foreground">
+              Subscribe to our newsletter to be notified when new content is published.
             </p>
           </div>
         ) : (

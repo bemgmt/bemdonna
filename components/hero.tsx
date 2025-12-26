@@ -100,14 +100,11 @@ export default function Hero() {
           {/* Left: Text content */}
           <div className="animate-slide-up">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              <span className="gradient-text">Meet DONNA</span>
-              <br />
-              Your AI Office Assistant That Never Sleeps
+              <span className="gradient-text">DONNA:</span> The Digital Operations Layer for Your Business
             </h1>
 
             <p className="text-lg md:text-xl text-foreground/90 mb-8 leading-relaxed">
-              DONNA handles calls, schedules, lead generation, emails, customer service, and more 24/7. Enhance your
-              office operations with enterprise-grade AI that actually understands your business.
+              An agentic, network-aware AI that executes and coordinates work across all your departments, tools, and even partner organizations – so you can focus on what matters.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
@@ -120,12 +117,22 @@ export default function Hero() {
               >
                 Join the Waitlist
               </button>
+              <button
+                onClick={() => {
+                  const form = document.getElementById("demo-form")
+                  form?.scrollIntoView({ behavior: "smooth" })
+                }}
+                className="px-8 py-3 rounded-lg border-2 border-accent text-accent hover:bg-accent/10 transition-all duration-300 font-semibold text-lg"
+              >
+                Request a Demo
+              </button>
             </div>
 
             {/* Trust badge */}
             <div className="text-sm text-foreground/70 flex items-center gap-2">
               <span>⬢</span>
               <span>Enterprise-grade security • GDPR compliant • SOC 2 Type II</span>
+              <span className="ml-2 px-2 py-0.5 rounded bg-accent/20 text-accent text-xs font-medium">Beta</span>
             </div>
           </div>
         </div>

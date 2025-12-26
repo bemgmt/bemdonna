@@ -28,7 +28,7 @@ export default async function ProductPage() {
     {
       _id: 'voice-receptionist',
       title: 'Voice Receptionist',
-      description: 'AI-powered phone assistant that never sleeps, answers calls instantly, and handles scheduling 24/7.',
+      description: 'AI-powered voice receptionist that handles calls, schedules appointments, and manages phone communications with intelligent routing and context awareness.',
       slug: { current: 'voice-receptionist' },
       icon: 'phone',
     },

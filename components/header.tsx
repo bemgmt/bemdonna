@@ -71,7 +71,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-6">
+          <nav className="hidden lg:flex items-center gap-8">
             {Object.entries(navigation).map(([key, section]) => (
               <div
                 key={key}
@@ -89,7 +89,7 @@ export default function Header() {
                   }, 200) // 200ms delay before closing
                 }}
               >
-                <button className="flex items-center gap-1 text-sm text-foreground/70 hover:text-accent transition-colors py-2">
+                <button className="flex items-center gap-1 text-sm text-foreground/70 hover:text-accent transition-colors py-2 px-1">
                   {section.label}
                   <ChevronDown className="h-4 w-4" />
                 </button>
@@ -122,19 +122,19 @@ export default function Header() {
                 )}
               </div>
             ))}
-            <Link href="/donna-network" className="text-sm text-foreground/70 hover:text-accent transition-colors">
+            <Link href="/donna-network" className="text-sm text-foreground/70 hover:text-accent transition-colors px-1">
               DONNA Network
             </Link>
-            <Link href="/pricing" className="text-sm text-foreground/70 hover:text-accent transition-colors">
+            <Link href="/pricing" className="text-sm text-foreground/70 hover:text-accent transition-colors px-1">
               Pricing
             </Link>
-            <Link href="/about" className="text-sm text-foreground/70 hover:text-accent transition-colors">
+            <Link href="/about" className="text-sm text-foreground/70 hover:text-accent transition-colors px-1">
               About
             </Link>
           </nav>
 
           {/* CTA Buttons */}
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-4 ml-4">
             <SearchModal />
             <Link
               href="/contact"

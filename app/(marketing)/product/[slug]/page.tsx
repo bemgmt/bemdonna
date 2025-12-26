@@ -76,7 +76,7 @@ export default async function ProductDetailPage({ params }: { params: { slug: st
   const fallbackContent: Record<string, any> = {
     'voice-receptionist': {
       title: 'Voice Receptionist',
-      description: 'AI-powered phone assistant that never sleeps',
+      description: 'AI-powered voice receptionist that handles calls intelligently with context awareness and seamless integration',
       features: [
         { title: '24/7 Availability', description: 'Never miss a call, even outside business hours' },
         { title: 'Natural Conversations', description: 'Real-time voice AI that sounds human' },

@@ -48,10 +48,7 @@ export default async function AboutPage() {
               answers, traditional business hours and manual processes just don't cut it anymore.
             </p>
             <p className="text-foreground/90 leading-relaxed mb-4">
-              We set out to solve this problem by creating an AI-powered platform that never sleeps,
-              never takes a break, and never misses an opportunity. DONNA combines the best of voice AI,
-              email automation, and intelligent chat to create a comprehensive communication solution
-              that works 24/7.
+              We set out to solve this problem by creating DONNA—a networked AI operations system that executes and coordinates work across all your departments, tools, and even partner organizations. DONNA is not just a chatbot or CRM; it's an agentic, network-aware AI built to actually get work done, operating directly within your software tools and APIs.
             </p>
             <p className="text-foreground/90 leading-relaxed">
               Today, DONNA helps businesses across industries automate their customer communication,
@@ -100,13 +97,10 @@ export default async function AboutPage() {
           <h2 className="text-3xl font-bold mb-6">Our Solution</h2>
           <div className="prose prose-lg dark:prose-invert max-w-none">
             <p className="text-foreground/90 leading-relaxed mb-4">
-              DONNA is an AI-powered digital employee that handles all your customer communication
-              across voice, email, and chat. Our platform integrates seamlessly with your existing
-              tools and workflows, so you can automate without disruption.
+              DONNA is an AI-powered digital operations system that works alongside your team. It can log into your applications, handle communications, and automate workflows—all while securely coordinating with other AI 'employees' in a networked ecosystem. Our platform operates directly within your software tools and APIs, executing tasks autonomously while maintaining human-in-the-loop control.
             </p>
             <p className="text-foreground/90 leading-relaxed">
-              With DONNA, you get instant lead response, 24/7 availability, consistent quality,
-              and unlimited scalability—all at a fraction of the cost of traditional staffing.
+              With DONNA, you get agentic AI that reasons and takes action autonomously, role-fluid adaptation across departments, tool-native integration with your existing stack, and network-aware collaboration that enables cross-organization workflows—all designed with human oversight and control.
             </p>
           </div>
         </section>

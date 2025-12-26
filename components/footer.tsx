@@ -18,7 +18,7 @@ export default function Footer() {
               <span className="font-bold gradient-text">DONNA</span>
             </div>
             <p className="text-foreground/60 text-sm mb-4">
-              AI-powered business communication platform that never misses a lead.
+              The digital operations layer for your business. A networked AI operations system that executes and coordinates work across departments, tools, and partner organizations.
             </p>
             <div className="flex gap-3 mb-4">
               <a href="https://twitter.com/bemdonna" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-accent transition-colors">
@@ -118,11 +118,13 @@ export default function Footer() {
             <span className="hidden sm:inline">•</span>
             <p className="text-foreground/50">Built with ❤️ by DONNA Team</p>
           </div>
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="flex flex-wrap gap-4 justify-center items-center">
             <Link href="/terms" className="hover:text-accent transition-colors">Terms</Link>
             <Link href="/privacy" className="hover:text-accent transition-colors">Privacy</Link>
             <Link href="/acceptable-use" className="hover:text-accent transition-colors">Acceptable Use</Link>
             <Link href="/gdpr" className="hover:text-accent transition-colors">GDPR</Link>
+            <span className="hidden sm:inline text-foreground/40">•</span>
+            <span className="text-xs text-foreground/50">SOC 2 Type II • GDPR Compliant • Enterprise Security</span>
           </div>
         </div>
       </div>

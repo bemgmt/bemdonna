@@ -25,9 +25,13 @@ export default async function UseCasesPage() {
 
       <section className="py-12">
         {useCases.length === 0 ? (
-          <div className="text-center p-12 border rounded-lg">
-            <p className="text-lg text-muted-foreground">
-              Use case examples coming soon.
+          <div className="text-center p-12 border rounded-lg bg-foreground/5">
+            <h2 className="text-2xl font-bold mb-4">Use Case Examples Coming Soon</h2>
+            <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
+              We're compiling detailed use case examples showing how DONNA transforms operations across different industries and business functions. Check back soon for real-world scenarios and case studies.
+            </p>
+            <p className="text-sm text-muted-foreground mb-4">
+              In the meantime, explore our <Link href="/industries" className="text-accent hover:underline">industry pages</Link> to see how DONNA serves different verticals.
             </p>
           </div>
         ) : (
