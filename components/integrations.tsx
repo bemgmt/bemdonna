@@ -71,7 +71,6 @@ export default function Integrations() {
                 </div>
               </div>
             ))}
-            </div>
           </div>
           <div className="text-center mt-8">
             <Link
