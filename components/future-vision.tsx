@@ -7,10 +7,10 @@ export default function FutureVision() {
   const { ref, inView } = useInView({ threshold: 0.1, once: true })
 
   return (
-    <section id="future-vision" ref={ref} className="py-20 px-4 sm:px-6 lg:px-8 bg-background">
+    <section id="future-vision" ref={ref} className="py-12 md:py-20 px-4 sm:px-6 lg:px-8 bg-background">
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
-        <div className="text-center mb-12 animate-fade-in">
+        <div className="text-center mb-8 md:mb-12 animate-fade-in">
           <div className="inline-block px-3 py-1 rounded-full bg-accent/20 text-accent text-sm font-semibold mb-4">
             Future Vision
           </div>

@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { Twitter, Linkedin, Github, Mail, Youtube, Facebook } from "lucide-react"
 import NewsletterSignup from "./newsletter-signup"
 
@@ -12,9 +13,13 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-3 lg:col-span-2">
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent to-primary flex items-center justify-center">
-                <span className="text-sm font-bold">D</span>
-              </div>
+              <Image
+                src="/DONNA-logo.png"
+                alt="DONNA Logo"
+                width={32}
+                height={32}
+                className="h-8 w-auto"
+              />
               <span className="font-bold gradient-text">DONNA</span>
             </div>
             <p className="text-foreground/60 text-sm mb-4">
@@ -102,6 +107,7 @@ export default function Footer() {
             <h3 className="font-semibold mb-4 text-sm">Company</h3>
             <ul className="space-y-2 text-sm">
               <li><Link href="/about" className="text-foreground/70 hover:text-accent transition-colors">About Us</Link></li>
+              <li><Link href="/system-brief" className="text-foreground/70 hover:text-accent transition-colors">System Brief</Link></li>
               <li><Link href="/careers" className="text-foreground/70 hover:text-accent transition-colors">Careers</Link></li>
               <li><Link href="/investors" className="text-foreground/70 hover:text-accent transition-colors">Investors</Link></li>
               <li><Link href="/press" className="text-foreground/70 hover:text-accent transition-colors">Press</Link></li>

@@ -7,10 +7,10 @@ export default function DonnaNetwork() {
   const { ref, inView } = useInView({ threshold: 0.1, once: true })
 
   return (
-    <section id="network" ref={ref} className="py-20 px-4 sm:px-6 lg:px-8 bg-foreground/5">
+    <section id="network" ref={ref} className="py-12 md:py-20 px-4 sm:px-6 lg:px-8 bg-foreground/5">
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
-        <div className="text-center mb-12 animate-fade-in">
+        <div className="text-center mb-8 md:mb-12 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             The <span className="gradient-text">DONNA Network</span>
           </h2>

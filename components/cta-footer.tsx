@@ -15,7 +15,7 @@ export default function CTAFooter() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             href="/#demo-form"
-            className="px-8 py-3 rounded-lg bg-accent text-background hover:bg-accent/90 transition-all duration-300 font-semibold text-lg glow-accent hover:shadow-[0_0_30px_rgba(132,204,255,0.5)]"
+            className="px-8 py-3 rounded-lg bg-accent text-background hover:bg-accent/90 transition-all duration-300 font-semibold text-lg glow-accent hover:shadow-[0_0_30px_rgba(138,47,255,0.5)]"
           >
             Join the Waitlist
           </Link>

@@ -76,7 +76,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+    <section className="relative min-h-[85vh] md:min-h-screen flex items-center justify-center overflow-hidden pt-16">
       <div className="absolute inset-0 z-0">
         <Image
           src="/hero-ai-brain-wide.jpg"
@@ -99,11 +99,11 @@ export default function Hero() {
         <div className="max-w-2xl">
           {/* Left: Text content */}
           <div className="animate-slide-up">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="text-3xl md:text-6xl font-bold mb-4 md:mb-6 leading-tight">
               <span className="gradient-text">DONNA:</span> The Digital Operations Layer for Your Business
             </h1>
 
-            <p className="text-lg md:text-xl text-foreground/90 mb-8 leading-relaxed">
+            <p className="text-base md:text-xl text-foreground/90 mb-6 md:mb-8 leading-relaxed">
               An agentic, network-aware AI that executes and coordinates work across all your departments, tools, and even partner organizations – so you can focus on what matters.
             </p>
 
@@ -113,7 +113,7 @@ export default function Hero() {
                   const form = document.getElementById("demo-form")
                   form?.scrollIntoView({ behavior: "smooth" })
                 }}
-                className="px-8 py-3 rounded-lg bg-accent text-background hover:bg-accent/90 transition-all duration-300 font-semibold text-lg glow-accent hover:shadow-[0_0_30px_rgba(132,204,255,0.5)]"
+                className="px-8 py-3 rounded-lg bg-accent text-background hover:bg-accent/90 transition-all duration-300 font-semibold text-lg glow-accent hover:shadow-[0_0_30px_rgba(138,47,255,0.5)]"
               >
                 Join the Waitlist
               </button>

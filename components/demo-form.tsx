@@ -168,7 +168,7 @@ export default function DemoForm() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full px-6 py-3 rounded-lg bg-accent text-background hover:bg-accent/90 disabled:opacity-50 transition-all font-semibold glow-accent hover:shadow-[0_0_30px_rgba(132,204,255,0.5)]"
+              className="w-full px-6 py-3 rounded-lg bg-accent text-background hover:bg-accent/90 disabled:opacity-50 transition-all font-semibold glow-accent hover:shadow-[0_0_30px_rgba(138,47,255,0.5)]"
             >
               {isSubmitting ? "Submitting..." : formData.type === "waitlist" ? "Join Waitlist" : "Request Demo"}
             </button>

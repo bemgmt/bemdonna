@@ -36,11 +36,41 @@ export default async function BlogPage() {
       </section>
 
       <section className="py-12">
+        {/* Featured Blog Post */}
+        <div className="mb-12">
+          <h2 className="text-2xl font-bold mb-6">Featured Article</h2>
+          <Link
+            href="/blog/the-real-ai-revolution-isnt-what-you-think"
+            className="group block glass-card p-8 rounded-xl hover:border-accent/50 transition-all"
+          >
+            <div className="flex gap-2 mb-3">
+              <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">AI</span>
+              <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">Future of Work</span>
+            </div>
+            <h3 className="text-2xl font-bold mb-3 group-hover:text-accent transition-colors">
+              The Real AI Revolution Isn't What You Think: 5 Surprising Truths About the Future of Work
+            </h3>
+            <p className="text-foreground/70 mb-4">
+              The most profound changes are happening at a systemic level, where AI assistants start working with each other. This is not just about making one business smarter; it's about creating an intelligent, interconnected economic fabric.
+            </p>
+            <div className="flex items-center gap-4 text-sm text-foreground/60">
+              <div className="flex items-center gap-1">
+                <Calendar className="h-4 w-4" />
+                <span>January 15, 2025</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <Clock className="h-4 w-4" />
+                <span>12 min read</span>
+              </div>
+            </div>
+          </Link>
+        </div>
+
         {posts.length === 0 ? (
           <div className="text-center p-12 border rounded-lg bg-foreground/5">
-            <h2 className="text-2xl font-bold mb-4">Content Coming Soon</h2>
+            <h2 className="text-2xl font-bold mb-4">More Content Coming Soon</h2>
             <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
-              We're preparing insightful articles about AI-powered business operations, network collaboration, and best practices for implementing DONNA in your organization.
+              We're preparing more insightful articles about AI-powered business operations, network collaboration, and best practices for implementing DONNA in your organization.
             </p>
             <p className="text-sm text-muted-foreground">
               Subscribe to our newsletter to be notified when new content is published.

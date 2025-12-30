@@ -7,9 +7,9 @@ export default function Overview() {
   const { ref, inView } = useInView({ threshold: 0.1, once: true })
 
   return (
-    <section id="overview" ref={ref} className="py-20 px-4 sm:px-6 lg:px-8 bg-background">
+    <section id="overview" ref={ref} className="py-12 md:py-20 px-4 sm:px-6 lg:px-8 bg-background">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
           {/* Text Content */}
           <div className={`animate-fade-in ${inView ? 'opacity-100' : 'opacity-0'}`}>
             <h2 className="text-3xl md:text-4xl font-bold mb-6">

@@ -2,8 +2,38 @@
 
 import { useState, useRef } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Menu, X, ChevronDown } from "lucide-react"
 import SearchModal from "./search-modal"
+
+function MobileNavItem({ section, onItemClick }: { section: { label: string; items: Array<{ label: string; href: string }> }; onItemClick: () => void }) {
+  const [isExpanded, setIsExpanded] = useState(false)
+  return (
+    <div className="border-b border-white/5">
+      <button
+        onClick={() => setIsExpanded(!isExpanded)}
+        className="w-full flex items-center justify-between font-semibold text-sm text-foreground/90 py-2 px-2 hover:text-accent transition-colors"
+      >
+        <span>{section.label}</span>
+        <ChevronDown className={`h-4 w-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+      </button>
+      {isExpanded && (
+        <div className="pb-2">
+          {section.items.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={onItemClick}
+              className="block text-sm text-foreground/70 hover:text-accent transition-colors py-1.5 pl-4"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -64,9 +94,14 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent to-primary flex items-center justify-center">
-              <span className="text-sm font-bold text-foreground">D</span>
-            </div>
+            <Image
+              src="/DONNA-logo.png"
+              alt="DONNA Logo"
+              width={32}
+              height={32}
+              className="h-8 w-auto"
+              priority
+            />
             <span className="text-lg font-bold gradient-text">DONNA</span>
           </Link>
 
@@ -158,21 +193,13 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <nav className="lg:hidden pb-4 flex flex-col gap-2 max-h-[80vh] overflow-y-auto">
+          <nav className="lg:hidden pb-4 flex flex-col gap-1 max-h-[80vh] overflow-y-auto">
             {Object.entries(navigation).map(([key, section]) => (
-              <div key={key}>
-                <div className="font-semibold text-sm text-foreground/90 py-2 px-2">{section.label}</div>
-                {section.items.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setIsOpen(false)}
-                    className="block text-sm text-foreground/70 hover:text-accent transition-colors py-2 pl-4"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
+              <MobileNavItem
+                key={key}
+                section={section}
+                onItemClick={() => setIsOpen(false)}
+              />
             ))}
             <Link
               href="/donna-network"
