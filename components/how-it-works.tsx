@@ -52,6 +52,7 @@ export default function HowItWorks() {
             ))}
           </div>
         </div>
+      </div>
     </section>
   )
 }
