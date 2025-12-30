@@ -72,60 +72,29 @@ export default function FunctionalDomains() {
           </p>
         </div>
 
-        {/* Domains Grid */}
-        <div className="mb-8 md:mb-12">
-          {/* Mobile: Horizontal Scroll */}
-          <div className="md:hidden overflow-x-auto -mx-4 px-4 pb-4 snap-x snap-mandatory scrollbar-hide">
-            <div className="flex gap-4 w-max">
-              {domains.map((domain, index) => (
-                <div
-                  key={domain.id}
-                  className={`glass-card p-5 rounded-xl border border-accent/10 hover:border-accent/30 transition-all duration-300 hover:shadow-lg hover:shadow-accent/20 animate-slide-up min-w-[300px] snap-start ${
-                    inView ? 'opacity-100' : 'opacity-0'
-                  }`}
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <div className="text-3xl mb-3">{domain.icon}</div>
-                  <h3 className="text-lg font-bold text-foreground mb-2">
-                    {domain.name}
-                  </h3>
-                  <p className="text-xs text-foreground/70 leading-relaxed mb-2">
-                    {domain.description}
-                  </p>
-                  <details className="mt-3">
-                    <summary className="text-xs text-accent cursor-pointer hover:text-accent/80 font-medium">
-                      Learn more
-                    </summary>
-                    <p className="text-xs text-foreground/60 mt-2 leading-relaxed">
-                      {domain.example}
-                    </p>
-                  </details>
-                </div>
-              ))}
-            </div>
-          </div>
-          {/* Desktop: Grid */}
-          <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Domains - Horizontal Scroll (All Devices) */}
+        <div className="mb-8 md:mb-12 overflow-x-auto -mx-4 px-4 pb-4 snap-x snap-mandatory scrollbar-hide">
+          <div className="flex gap-4 md:gap-6 w-max">
             {domains.map((domain, index) => (
               <div
                 key={domain.id}
-                className={`glass-card p-6 rounded-xl border border-accent/10 hover:border-accent/30 transition-all duration-300 hover:shadow-lg hover:shadow-accent/20 animate-slide-up ${
+                className={`glass-card p-5 md:p-6 rounded-xl border border-accent/10 hover:border-accent/30 transition-all duration-300 hover:shadow-lg hover:shadow-accent/20 animate-slide-up min-w-[300px] md:min-w-[350px] snap-start ${
                   inView ? 'opacity-100' : 'opacity-0'
                 }`}
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="text-4xl mb-4">{domain.icon}</div>
-                <h3 className="text-xl font-bold text-foreground mb-3">
+                <div className="text-3xl md:text-4xl mb-3 md:mb-4">{domain.icon}</div>
+                <h3 className="text-lg md:text-xl font-bold text-foreground mb-2 md:mb-3">
                   {domain.name}
                 </h3>
-                <p className="text-sm text-foreground/70 leading-relaxed mb-3">
+                <p className="text-xs md:text-sm text-foreground/70 leading-relaxed mb-2 md:mb-3">
                   {domain.description}
                 </p>
-                <details className="mt-4">
-                  <summary className="text-sm text-accent cursor-pointer hover:text-accent/80 font-medium">
+                <details className="mt-3 md:mt-4">
+                  <summary className="text-xs md:text-sm text-accent cursor-pointer hover:text-accent/80 font-medium">
                     Learn more
                   </summary>
-                  <p className="text-sm text-foreground/60 mt-2 leading-relaxed">
+                  <p className="text-xs md:text-sm text-foreground/60 mt-2 leading-relaxed">
                     {domain.example}
                   </p>
                 </details>

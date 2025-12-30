@@ -19,9 +19,9 @@ export default function Pricing() {
           </h2>
         </div>
 
-        {/* Mobile: Horizontal Scroll */}
-        <div className="md:hidden overflow-x-auto -mx-4 px-4 pb-4 snap-x snap-mandatory scrollbar-hide mb-6">
-          <div className="flex gap-4 w-max">
+        {/* Pricing Tiers - Horizontal Scroll (All Devices) */}
+        <div className="overflow-x-auto -mx-4 px-4 pb-4 snap-x snap-mandatory scrollbar-hide mb-6 md:mb-8">
+          <div className="flex gap-4 md:gap-6 w-max">
             {[
               {
                 name: "Starter",
@@ -47,28 +47,26 @@ export default function Pricing() {
             ].map((tier, index) => (
               <div
                 key={index}
-                className={`p-6 rounded-xl transition-all duration-300 animate-slide-up min-w-[280px] snap-start ${
+                className={`p-6 md:p-8 rounded-xl transition-all duration-300 animate-slide-up min-w-[280px] md:min-w-[320px] snap-start ${
                   tier.featured
                     ? "glass-card border-2 border-accent glow-accent scale-105"
-                    : "glass-card"
+                    : "glass-card border border-white/10"
                 }`}
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                {tier.featured && (
-                  <div className="text-xs font-bold text-accent mb-2">Most Popular</div>
-                )}
+                {tier.featured && <div className="text-xs font-bold text-accent mb-3 uppercase">Popular</div>}
                 <h3 className="text-xl font-bold mb-2">{tier.name}</h3>
                 <div className="mb-4">
-                  <span className="text-3xl font-bold">${tier.price}</span>
-                  <span className="text-foreground/60 text-sm">/mo</span>
+                  <span className="text-3xl font-bold gradient-text">${tier.price}</span>
+                  {tier.price !== "12,000" && <span className="text-foreground/60 ml-2">/month</span>}
                 </div>
-                <p className="text-sm text-foreground/70 mb-4">{tier.description}</p>
+                <div className="text-sm text-foreground/70 mb-6">{tier.description}</div>
                 <button
                   onClick={handleScrollToForm}
-                  className={`w-full py-2 rounded-lg font-semibold transition-all ${
+                  className={`w-full py-2 rounded-lg font-medium transition-all duration-300 ${
                     tier.featured
                       ? "bg-accent text-background hover:bg-accent/90"
-                      : "border border-accent text-accent hover:bg-accent/10"
+                      : "border border-accent/50 text-accent hover:bg-accent/10"
                   }`}
                 >
                   {tier.cta}
@@ -76,60 +74,6 @@ export default function Pricing() {
               </div>
             ))}
           </div>
-        </div>
-        {/* Desktop: Grid */}
-        <div className="hidden md:grid md:grid-cols-3 gap-6 mb-8">
-          {[
-            {
-              name: "Starter",
-              price: "1,500",
-              description: "Up to 1,000 conversations/month",
-              cta: "Get Started",
-              featured: false
-            },
-            {
-              name: "Pro",
-              price: "5,000",
-              description: "Up to 5,000 conversations/month",
-              cta: "Get Started",
-              featured: true
-            },
-            {
-              name: "Enterprise",
-              price: "12,000",
-              description: "Unlimited conversations",
-              cta: "Contact Sales",
-              featured: false
-            },
-          ].map((tier, index) => (
-            <div
-              key={index}
-              className={`p-8 rounded-xl transition-all duration-300 animate-slide-up ${
-                tier.featured
-                  ? "glass-card border-2 border-accent glow-accent scale-105 md:scale-110"
-                  : "glass-card border border-white/10"
-              }`}
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              {tier.featured && <div className="text-xs font-bold text-accent mb-3 uppercase">Popular</div>}
-              <h3 className="text-xl font-bold mb-2">{tier.name}</h3>
-              <div className="mb-4">
-                <span className="text-3xl font-bold gradient-text">${tier.price}</span>
-                {tier.price !== "12,000" && <span className="text-foreground/60 ml-2">/month</span>}
-              </div>
-              <div className="text-sm text-foreground/70 mb-6">{tier.description}</div>
-              <button
-                onClick={handleScrollToForm}
-                className={`w-full py-2 rounded-lg font-medium transition-all duration-300 ${
-                  tier.featured
-                    ? "bg-accent text-background hover:bg-accent/90"
-                    : "border border-accent/50 text-accent hover:bg-accent/10"
-                }`}
-              >
-                {tier.cta}
-              </button>
-            </div>
-          ))}
         </div>
 
         <p className="text-center text-foreground/50 text-sm">

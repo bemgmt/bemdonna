@@ -22,33 +22,18 @@ export default function Security() {
           <p className="text-foreground/60 max-w-2xl mx-auto text-sm md:text-base">Your security and privacy are our top priority</p>
         </div>
 
-        {/* Mobile: Horizontal Scroll */}
-        <div className="md:hidden overflow-x-auto -mx-4 px-4 pb-4 snap-x snap-mandatory scrollbar-hide">
-          <div className="flex gap-4 w-max">
+        {/* Security Items - Horizontal Scroll (All Devices) */}
+        <div className="overflow-x-auto -mx-4 px-4 pb-4 snap-x snap-mandatory scrollbar-hide">
+          <div className="flex gap-4 md:gap-6 w-max">
             {securityItems.map((item, index) => (
               <div
                 key={index}
-                className="glass-card p-5 rounded-xl text-center glow-accent hover:shadow-[0_0_30px_rgba(61,224,255,0.2)] transition-all duration-300 animate-slide-up min-w-[260px] snap-start"
+                className="glass-card p-5 md:p-6 rounded-xl text-center glow-accent hover:shadow-[0_0_30px_rgba(61,224,255,0.2)] transition-all duration-300 animate-slide-up min-w-[260px] md:min-w-[280px] snap-start"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="text-3xl mb-2">{item.icon}</div>
-                <h3 className="font-bold mb-2 text-sm">{item.title}</h3>
-                <p className="text-foreground/60 text-xs">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-        {/* Desktop: Grid */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {securityItems.map((item, index) => (
-              <div
-                key={index}
-                className="glass-card p-6 rounded-xl text-center glow-accent hover:shadow-[0_0_30px_rgba(61,224,255,0.2)] transition-all duration-300 animate-slide-up"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="text-4xl mb-3">{item.icon}</div>
-                <h3 className="font-bold mb-2">{item.title}</h3>
-                <p className="text-foreground/60 text-sm">{item.description}</p>
+                <div className="text-3xl md:text-4xl mb-2 md:mb-3">{item.icon}</div>
+                <h3 className="font-bold mb-2 text-sm md:text-base">{item.title}</h3>
+                <p className="text-foreground/60 text-xs md:text-sm">{item.description}</p>
               </div>
             ))}
           </div>

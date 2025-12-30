@@ -32,45 +32,26 @@ export default function Integrations() {
         </div>
 
         <div className="glass-card p-4 md:p-8 rounded-xl">
-          {/* Mobile: Horizontal Scroll */}
-          <div className="md:hidden overflow-x-auto -mx-4 px-4 pb-4 snap-x snap-mandatory scrollbar-hide">
-            <div className="flex gap-4 w-max">
+          {/* Integrations - Horizontal Scroll (All Devices) */}
+          <div className="overflow-x-auto -mx-4 px-4 pb-4 snap-x snap-mandatory scrollbar-hide">
+            <div className="flex gap-4 md:gap-6 w-max">
               {integrations.map((integration, index) => (
                 <div
                   key={integration.id}
-                  className="py-3 px-3 rounded-lg border border-white/5 hover:border-accent/50 transition-all duration-300 animate-fade-in group min-w-[120px] snap-start"
+                  className="py-3 md:py-4 px-3 md:px-4 rounded-lg border border-white/5 hover:border-accent/50 transition-all duration-300 animate-fade-in group min-w-[120px] md:min-w-[140px] snap-start text-center"
                   style={{ animationDelay: `${index * 30}ms` }}
                 >
                   <div className="flex justify-center mb-2">
-                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-accent/20 to-primary/20 flex items-center justify-center text-base font-bold text-accent">
+                    <div className="w-10 md:w-12 h-10 md:h-12 rounded-lg bg-gradient-to-br from-accent/20 to-primary/20 flex items-center justify-center text-base md:text-lg font-bold text-accent">
                       {integration.name.charAt(0)}
                     </div>
                   </div>
-                  <div className="text-xs font-medium text-foreground/70 group-hover:text-accent transition-colors">
+                  <div className="text-xs md:text-sm font-medium text-foreground/70 group-hover:text-accent transition-colors">
                     {integration.name}
                   </div>
                 </div>
               ))}
             </div>
-          </div>
-          {/* Desktop: Grid */}
-          <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-6 gap-6 text-center">
-            {integrations.map((integration, index) => (
-              <div
-                key={integration.id}
-                className="py-4 px-2 rounded-lg border border-white/5 hover:border-accent/50 transition-all duration-300 animate-fade-in group"
-                style={{ animationDelay: `${index * 30}ms` }}
-              >
-                <div className="flex justify-center mb-2">
-                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-accent/20 to-primary/20 flex items-center justify-center text-lg font-bold text-accent">
-                    {integration.name.charAt(0)}
-                  </div>
-                </div>
-                <div className="text-sm font-medium text-foreground/70 group-hover:text-accent transition-colors">
-                  {integration.name}
-                </div>
-              </div>
-            ))}
           </div>
           <div className="text-center mt-8">
             <Link

@@ -105,95 +105,25 @@ export default function Header() {
             <span className="text-lg font-bold gradient-text">DONNA</span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
-            {Object.entries(navigation).map(([key, section]) => (
-              <div
-                key={key}
-                className="relative"
-                onMouseEnter={() => {
-                  if (timeoutRef.current) {
-                    clearTimeout(timeoutRef.current)
-                    timeoutRef.current = null
-                  }
-                  setActiveDropdown(key)
-                }}
-                onMouseLeave={() => {
-                  timeoutRef.current = setTimeout(() => {
-                    setActiveDropdown(null)
-                  }, 200) // 200ms delay before closing
-                }}
-              >
-                <button className="flex items-center gap-1 text-sm text-foreground/70 hover:text-accent transition-colors py-2 px-1">
-                  {section.label}
-                  <ChevronDown className="h-4 w-4" />
-                </button>
-
-                {activeDropdown === key && (
-                  <div 
-                    className="absolute top-full left-0 mt-1 w-56 glass-card border border-white/10 rounded-lg shadow-lg py-2 z-50"
-                    onMouseEnter={() => {
-                      if (timeoutRef.current) {
-                        clearTimeout(timeoutRef.current)
-                        timeoutRef.current = null
-                      }
-                    }}
-                    onMouseLeave={() => {
-                      timeoutRef.current = setTimeout(() => {
-                        setActiveDropdown(null)
-                      }, 200)
-                    }}
-                  >
-                    {section.items.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className="block px-4 py-2 text-sm text-foreground/70 hover:text-accent hover:bg-white/5 transition-colors"
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-            <Link href="/donna-network" className="text-sm text-foreground/70 hover:text-accent transition-colors px-1">
-              DONNA Network
-            </Link>
-            <Link href="/pricing" className="text-sm text-foreground/70 hover:text-accent transition-colors px-1">
-              Pricing
-            </Link>
-            <Link href="/about" className="text-sm text-foreground/70 hover:text-accent transition-colors px-1">
-              About
-            </Link>
-          </nav>
-
-          {/* CTA Buttons */}
-          <div className="hidden lg:flex items-center gap-4 ml-4">
+          {/* CTA Buttons - Always visible */}
+          <div className="flex items-center gap-4">
             <SearchModal />
-            <Link
-              href="/contact"
-              className="px-4 py-2 text-sm font-medium text-foreground/70 hover:text-accent transition-colors"
-            >
-              Contact
-            </Link>
             <Link
               href="/#demo-form"
               className="px-4 py-2 rounded-lg bg-accent text-background hover:bg-accent/90 transition-colors text-sm font-medium"
             >
               Get Started
             </Link>
+            {/* Hamburger menu button - Always visible */}
+            <button onClick={() => setIsOpen(!isOpen)}>
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
-
-          {/* Mobile menu button */}
-          <button className="lg:hidden" onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Navigation Menu - Always hamburger */}
         {isOpen && (
-          <nav className="lg:hidden pb-4 flex flex-col gap-1 max-h-[80vh] overflow-y-auto">
+          <nav className="pb-4 flex flex-col gap-1 max-h-[80vh] overflow-y-auto">
             {Object.entries(navigation).map(([key, section]) => (
               <MobileNavItem
                 key={key}
