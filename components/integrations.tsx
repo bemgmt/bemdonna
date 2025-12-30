@@ -55,22 +55,22 @@ export default function Integrations() {
           </div>
           {/* Desktop: Grid */}
           <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-6 gap-6 text-center">
-              {integrations.map((integration, index) => (
-                <div
-                  key={integration.id}
-                  className="py-4 px-2 rounded-lg border border-white/5 hover:border-accent/50 transition-all duration-300 animate-fade-in group"
-                  style={{ animationDelay: `${index * 30}ms` }}
-                >
-                  <div className="flex justify-center mb-2">
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-accent/20 to-primary/20 flex items-center justify-center text-lg font-bold text-accent">
-                      {integration.name.charAt(0)}
-                    </div>
-                  </div>
-                  <div className="text-sm font-medium text-foreground/70 group-hover:text-accent transition-colors">
-                    {integration.name}
+            {integrations.map((integration, index) => (
+              <div
+                key={integration.id}
+                className="py-4 px-2 rounded-lg border border-white/5 hover:border-accent/50 transition-all duration-300 animate-fade-in group"
+                style={{ animationDelay: `${index * 30}ms` }}
+              >
+                <div className="flex justify-center mb-2">
+                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-accent/20 to-primary/20 flex items-center justify-center text-lg font-bold text-accent">
+                    {integration.name.charAt(0)}
                   </div>
                 </div>
-              ))}
+                <div className="text-sm font-medium text-foreground/70 group-hover:text-accent transition-colors">
+                  {integration.name}
+                </div>
+              </div>
+            ))}
             </div>
           </div>
           <div className="text-center mt-8">

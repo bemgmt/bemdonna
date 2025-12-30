@@ -53,7 +53,6 @@ export default function Security() {
             ))}
           </div>
         </div>
-      </div>
     </section>
   )
 }
