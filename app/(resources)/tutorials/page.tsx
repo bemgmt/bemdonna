@@ -169,6 +169,7 @@ export default function TutorialsPage() {
                     </div>
                   </div>
                 </div>
+                    </Link>
                   ) : (
                     <div className="glass-panel p-6 rounded-xl hover:border-[#8A2FFF] transition-all h-full flex flex-col">
                       <div className="bg-gradient-to-br from-[#8A2FFF]/20 to-[#FF1F99]/20 rounded-lg aspect-video flex items-center justify-center mb-4 group-hover:from-[#8A2FFF]/30 group-hover:to-[#FF1F99]/30 transition-all">
