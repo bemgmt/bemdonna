@@ -124,8 +124,14 @@ export default function TutorialsPage() {
       <section className="py-20 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {tutorials.map((tutorial, index) => (
-              <Link key={index} href={`/tutorials/${tutorial.title.toLowerCase().replace(/\s+/g, '-')}`} className="block group">
+            {tutorials.map((tutorial, index) => {
+              // Tutorial detail pages don't exist yet, so link to main tutorials page
+              const tutorialSlug = tutorial.title.toLowerCase().replace(/\s+/g, '-')
+              const hasDetailPage = false // Set to true when detail pages are created
+              return (
+                <div key={index} className="block group">
+                  {hasDetailPage ? (
+                    <Link href={`/tutorials/${tutorialSlug}`} className="block">
                 <div className="glass-panel p-6 rounded-xl hover:border-[#8A2FFF] transition-all h-full flex flex-col">
                   <div className="bg-gradient-to-br from-[#8A2FFF]/20 to-[#FF1F99]/20 rounded-lg aspect-video flex items-center justify-center mb-4 group-hover:from-[#8A2FFF]/30 group-hover:to-[#FF1F99]/30 transition-all">
                     <Play className="w-16 h-16 text-white opacity-80" />
@@ -163,8 +169,51 @@ export default function TutorialsPage() {
                     </div>
                   </div>
                 </div>
-              </Link>
-            ))}
+                  ) : (
+                    <div className="glass-panel p-6 rounded-xl hover:border-[#8A2FFF] transition-all h-full flex flex-col">
+                      <div className="bg-gradient-to-br from-[#8A2FFF]/20 to-[#FF1F99]/20 rounded-lg aspect-video flex items-center justify-center mb-4 group-hover:from-[#8A2FFF]/30 group-hover:to-[#FF1F99]/30 transition-all">
+                        <Play className="w-16 h-16 text-white opacity-80" />
+                      </div>
+
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="px-3 py-1 bg-[#8A2FFF]/20 text-[#8A2FFF] rounded-full text-xs font-semibold">
+                          {tutorial.category}
+                        </span>
+                        <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                          tutorial.level === 'Beginner' ? 'bg-[#3DE0FF]/20 text-[#3DE0FF]' :
+                          tutorial.level === 'Intermediate' ? 'bg-[#FF1F99]/20 text-[#FF1F99]' :
+                          'bg-[#FF6B3D]/20 text-[#FF6B3D]'
+                        }`}>
+                          {tutorial.level}
+                        </span>
+                      </div>
+
+                      <h3 className="text-xl font-bold mb-3 text-white group-hover:gradient-text transition-all">
+                        {tutorial.title}
+                      </h3>
+
+                      <p className="text-gray-400 mb-4 flex-grow text-sm">
+                        {tutorial.description}
+                      </p>
+
+                      <div className="flex items-center gap-4 text-xs text-gray-500">
+                        <div className="flex items-center gap-1">
+                          <Clock className="w-3 h-3" />
+                          {tutorial.duration}
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <BookOpen className="w-3 h-3" />
+                          {tutorial.lessons} lessons
+                        </div>
+                      </div>
+                      <div className="mt-4 text-xs text-gray-500 italic">
+                        Coming soon
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )
+            })}
           </div>
         </div>
       </section>

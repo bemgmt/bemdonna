@@ -115,29 +115,40 @@ export default function DownloadsPage() {
                   {category.category}
                 </h2>
                 <div className="grid md:grid-cols-2 gap-6">
-                  {category.items.map((item) => (
-                    <div
-                      key={item.title}
-                      className="border rounded-lg p-6 hover:border-primary hover:shadow-lg transition-all"
-                    >
-                      <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-                      <p className="text-muted-foreground text-sm mb-4">{item.description}</p>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                          <span>{item.format}</span>
-                          <span>•</span>
-                          <span>{item.size}</span>
+                  {category.items.map((item) => {
+                    const isPlaceholder = item.url === '#'
+                    const isExternalLink = item.url.startsWith('http') || item.url.startsWith('/')
+                    return (
+                      <div
+                        key={item.title}
+                        className="border rounded-lg p-6 hover:border-primary hover:shadow-lg transition-all"
+                      >
+                        <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
+                        <p className="text-muted-foreground text-sm mb-4">{item.description}</p>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                            <span>{item.format}</span>
+                            <span>•</span>
+                            <span>{item.size}</span>
+                          </div>
+                          {isPlaceholder ? (
+                            <span className="inline-flex items-center gap-2 px-4 py-2 bg-muted text-muted-foreground rounded-lg text-sm font-medium cursor-not-allowed">
+                              <Download className="h-4 w-4 opacity-50" />
+                              Coming soon
+                            </span>
+                          ) : (
+                            <a
+                              href={item.url}
+                              className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium"
+                            >
+                              <Download className="h-4 w-4" />
+                              {isExternalLink && item.url.startsWith('/') ? 'View' : 'Download'}
+                            </a>
+                          )}
                         </div>
-                        <a
-                          href={item.url}
-                          className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium"
-                        >
-                          <Download className="h-4 w-4" />
-                          Download
-                        </a>
                       </div>
-                    </div>
-                  ))}
+                    )
+                  })}
                 </div>
               </div>
             )

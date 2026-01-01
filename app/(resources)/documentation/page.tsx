@@ -106,17 +106,28 @@ export default function DocumentationPage() {
                   <h3 className="text-2xl font-bold mb-3 text-white">{section.title}</h3>
                   <p className="text-gray-400 mb-6">{section.description}</p>
                   <ul className="space-y-2">
-                    {section.links.map((link, i) => (
-                      <li key={i}>
-                        <Link
-                          href={link.href}
-                          className="text-[#8A2FFF] hover:text-[#FF1F99] transition-colors flex items-center gap-2"
-                        >
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#3DE0FF]"></span>
-                          {link.name}
-                        </Link>
-                      </li>
-                    ))}
+                    {section.links.map((link, i) => {
+                      // Mark all documentation sub-routes as coming soon since they don't exist yet
+                      const isComingSoon = link.href.startsWith('/documentation/') && link.href !== '/documentation'
+                      return (
+                        <li key={i}>
+                          {isComingSoon ? (
+                            <span className="text-[#8A2FFF]/50 flex items-center gap-2 cursor-not-allowed">
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#3DE0FF]/50"></span>
+                              {link.name} <span className="text-xs text-gray-500">(Coming soon)</span>
+                            </span>
+                          ) : (
+                            <Link
+                              href={link.href}
+                              className="text-[#8A2FFF] hover:text-[#FF1F99] transition-colors flex items-center gap-2"
+                            >
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#3DE0FF]"></span>
+                              {link.name}
+                            </Link>
+                          )}
+                        </li>
+                      )
+                    })}
                   </ul>
                 </div>
               )

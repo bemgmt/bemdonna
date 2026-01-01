@@ -127,12 +127,9 @@ export default function WebinarsPage() {
                     <div className="text-gray-400 mb-6">
                       Presented by <span className="text-[#8A2FFF] font-semibold">{webinar.presenter}</span>
                     </div>
-                    <Link
-                      href={`/webinars/register/${webinar.title.toLowerCase().replace(/\s+/g, '-')}`}
-                      className="inline-block px-8 py-4 bg-gradient-to-r from-[#8A2FFF] to-[#6B4FFF] rounded-lg font-semibold text-white hover:scale-105 transition-transform"
-                    >
-                      Register Now
-                    </Link>
+                    <span className="inline-block px-8 py-4 bg-gradient-to-r from-[#8A2FFF]/50 to-[#6B4FFF]/50 rounded-lg font-semibold text-white/70 cursor-not-allowed">
+                      Registration coming soon
+                    </span>
                   </div>
                   <div className="flex items-center justify-center">
                     <div className="bg-gradient-to-br from-[#8A2FFF]/20 to-[#FF1F99]/20 rounded-xl p-12 text-center">
@@ -153,8 +150,13 @@ export default function WebinarsPage() {
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold mb-12 gradient-text">On-Demand Webinars</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {onDemandWebinars.map((webinar, index) => (
-              <Link key={index} href={`/webinars/watch/${webinar.title.toLowerCase().replace(/\s+/g, '-')}`} className="block group">
+            {onDemandWebinars.map((webinar, index) => {
+              // Webinar detail pages don't exist yet
+              const hasDetailPage = false // Set to true when detail pages are created
+              return (
+                <div key={index} className="block group">
+                  {hasDetailPage ? (
+                    <Link href={`/webinars/watch/${webinar.title.toLowerCase().replace(/\s+/g, '-')}`} className="block">
                 <div className="glass-panel p-6 rounded-xl hover:border-[#8A2FFF] transition-all h-full flex flex-col">
                   <div className="bg-gradient-to-br from-[#8A2FFF]/20 to-[#FF1F99]/20 rounded-lg aspect-video flex items-center justify-center mb-4 group-hover:from-[#8A2FFF]/30 group-hover:to-[#FF1F99]/30 transition-all">
                     <Play className="w-16 h-16 text-white opacity-80" />
@@ -176,8 +178,35 @@ export default function WebinarsPage() {
                     </div>
                   </div>
                 </div>
-              </Link>
-            ))}
+                  ) : (
+                    <div className="glass-panel p-6 rounded-xl hover:border-[#8A2FFF] transition-all h-full flex flex-col">
+                      <div className="bg-gradient-to-br from-[#8A2FFF]/20 to-[#FF1F99]/20 rounded-lg aspect-video flex items-center justify-center mb-4 group-hover:from-[#8A2FFF]/30 group-hover:to-[#FF1F99]/30 transition-all">
+                        <Play className="w-16 h-16 text-white opacity-80" />
+                      </div>
+                      <h3 className="text-xl font-bold mb-3 text-white group-hover:gradient-text transition-all">
+                        {webinar.title}
+                      </h3>
+                      <p className="text-gray-400 mb-4 flex-grow text-sm">
+                        {webinar.description}
+                      </p>
+                      <div className="flex items-center gap-4 text-xs text-gray-500">
+                        <div className="flex items-center gap-1">
+                          <Clock className="w-3 h-3" />
+                          {webinar.duration}
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Users className="w-3 h-3" />
+                          {webinar.views} views
+                        </div>
+                      </div>
+                      <div className="mt-4 text-xs text-gray-500 italic">
+                        Coming soon
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )
+            })}
           </div>
         </div>
       </section>
