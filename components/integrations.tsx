@@ -19,7 +19,7 @@ const integrations = [
 ]
 
 export default function Integrations() {
-  const { ref, inView } = useInView({ threshold: 0.2, once: true })
+  const { ref } = useInView({ threshold: 0.2, once: true })
 
   return (
     <section ref={ref} className="py-12 md:py-20 px-4 sm:px-6 lg:px-8">
@@ -53,6 +53,7 @@ export default function Integrations() {
               ))}
             </div>
           </div>
+
           {/* Desktop: Grid */}
           <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-6 gap-6 text-center">
             {integrations.map((integration, index) => (
@@ -71,16 +72,16 @@ export default function Integrations() {
                 </div>
               </div>
             ))}
-            </div>
           </div>
-          <div className="text-center mt-8">
-            <Link
-              href="/product/integrations"
-              className="text-accent hover:text-accent/80 transition-colors font-medium"
-            >
-              View All Integrations →
-            </Link>
-          </div>
+        </div>
+
+        <div className="text-center mt-8">
+          <Link
+            href="/product/integrations"
+            className="text-accent hover:text-accent/80 transition-colors font-medium"
+          >
+            View All Integrations →
+          </Link>
         </div>
       </div>
     </section>
