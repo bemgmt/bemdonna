@@ -8,7 +8,7 @@ import { Phone, Mail, MessageSquare, Zap, Database, Shield, Puzzle, Bot } from '
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Product Overview',
-  description: 'Discover DONNA\'s comprehensive AI-powered communication platform. Voice, email, chat, and more.',
+  description: 'Explore DONNA’s operational intelligence layer: agentic, multi-modal, tool-native, and network-aware.',
   path: '/product',
 })
 
@@ -101,14 +101,13 @@ export default async function ProductPage() {
         {/* Hero Section */}
         <section className="py-12 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            The Complete AI Communication Platform
+            The Digital Operations Layer
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            DONNA combines voice, email, chat, and knowledge base into one powerful platform
-            that works 24/7 to grow your business.
+            DONNA connects to your tools, coordinates across channels, and executes workflows with human-in-the-loop control.
           </p>
           <Button size="lg" asChild>
-            <Link href="/#demo-form">Start Free Trial</Link>
+            <Link href="/#demo-form">Join the Waitlist</Link>
           </Button>
         </section>
 
@@ -117,12 +116,11 @@ export default async function ProductPage() {
           <h2 className="text-3xl font-bold mb-6 text-center">Why DONNA Exists</h2>
           <div className="max-w-4xl mx-auto prose prose-lg dark:prose-invert">
             <p>
-              Every day, businesses lose thousands of dollars because they can't respond to leads fast enough.
-              Customers expect instant answers, but hiring 24/7 staff is expensive and inefficient.
+              Businesses run on fragmented tools and manual handoffs. DONNA was built to act as the operational layer that
+              coordinates work across departments and systems.
             </p>
             <p>
-              DONNA was built to solve this problem. Our AI-powered platform handles customer communication
-              across all channels—voice, email, and chat—so you never miss an opportunity.
+              It takes action inside your existing stack, escalates exceptions, and keeps humans in control.
             </p>
           </div>
         </section>
@@ -152,12 +150,12 @@ export default async function ProductPage() {
 
         {/* CTA Section */}
         <section className="py-12 text-center bg-muted rounded-lg">
-          <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Business?</h2>
+          <h2 className="text-3xl font-bold mb-4">Ready to Deploy DONNA?</h2>
           <p className="text-xl text-muted-foreground mb-6">
-            Start your free trial today. No credit card required.
+            Join the waitlist or request a demo to see the platform in action.
           </p>
           <Button size="lg" asChild>
-            <Link href="/#demo-form">Get Started Free</Link>
+            <Link href="/#demo-form">Join the Waitlist</Link>
           </Button>
         </section>
       </div>

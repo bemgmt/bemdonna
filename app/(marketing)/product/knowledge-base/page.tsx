@@ -5,7 +5,7 @@ import { FeatureGrid } from '@/components/feature-grid'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Knowledge Base - DonnaBrain AI | DONNA',
-  description: 'DonnaBrain is DONNA\'s semantic reasoning engine with document ingestion, versioned KB, and intelligent search capabilities.',
+  description: 'Operational knowledge system that powers DONNA’s reasoning, retrieval, and execution.',
   path: '/product/knowledge-base',
 })
 
@@ -52,7 +52,7 @@ export default function KnowledgeBasePage() {
             DonnaBrain Knowledge Base
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            The intelligent core that powers DONNA's understanding of your business
+            The operational knowledge layer that powers DONNA’s reasoning and actions
           </p>
         </div>
       </section>

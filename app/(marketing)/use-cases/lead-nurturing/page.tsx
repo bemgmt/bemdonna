@@ -7,7 +7,7 @@ import { FeatureGrid } from '@/components/feature-grid'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Lead Nurturing Automation - AI-Powered Campaigns | DONNA',
-  description: 'Nurture leads automatically with DONNA\'s intelligent drip campaigns. Convert more prospects with personalized, timely follow-ups.',
+  description: 'Agentic lead nurturing across channels with personalized follow-ups and escalation.',
   path: '/use-cases/lead-nurturing',
 })
 
@@ -67,7 +67,7 @@ export default function LeadNurturingPage() {
             Lead Nurturing
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            Turn cold leads into hot prospects with intelligent, automated nurture campaigns
+            Keep prospects warm with multi-modal, tool-native nurture workflows
           </p>
         </div>
       </section>

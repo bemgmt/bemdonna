@@ -23,7 +23,7 @@ import { softwareApplicationSchema, faqSchema } from '@/lib/schema-markup'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'DONNA - The Digital Operations Layer for Your Business',
-  description: 'DONNA is a networked AI operations system that executes and coordinates work across all your departments, tools, and partner organizations. Not a chatbot. Not a CRM. An agentic, network-aware AI built to actually get work done.',
+  description: 'One AI. Every industry. DONNA is the operational intelligence layer that runs workflows, communication, and decision support across your business.',
   path: '/',
 })
 
@@ -47,23 +47,23 @@ export default function Home() {
       faqSchema([
         {
           question: 'What is DONNA?',
-          answer: 'DONNA is an AI-powered digital operations system that works alongside your team. It can log into your applications, handle communications, and automate workflows – all while securely coordinating with other AI employees in a networked ecosystem. Think of DONNA as a new type of digital team member who takes on the busywork across your organization.',
+          answer: 'DONNA is a digital operations layer that connects to your tools, runs workflows, and coordinates communication across departments. It is infrastructure your business runs on.',
         },
         {
           question: 'Is DONNA a chatbot?',
-          answer: 'No. DONNA is not a chatbot, not a CRM, and not a workflow app. DONNA is a networked AI operations system built to actually get work done. It operates directly within your software tools and APIs, executing tasks autonomously while maintaining human-in-the-loop control.',
+          answer: 'No. DONNA is an AI operator that executes work inside your tools and escalates when human judgment is required.',
         },
         {
           question: 'What are DONNA\'s core operating principles?',
-          answer: 'DONNA is built on five key principles: Agentic (reasons and takes action autonomously), Human-in-the-Loop (always keeps you in control), Role-Fluid (adapts to different departments without retraining), Tool-Native (operates directly within your software), and Network-Aware (communicates with other DONNAs across organizations).',
+          answer: 'Agentic execution, human-in-the-loop governance, role-fluid deployment, tool-native control, and network-aware coordination.',
         },
         {
           question: 'What is the DONNA Network?',
-          answer: 'The DONNA-to-DONNA Network enables AI agents from different organizations to communicate and collaborate securely. Your DONNA can discover other trusted AI assistants, exchange structured requests, and coordinate tasks directly, system-to-system, turning days of emails into instant AI-to-AI interactions.',
+          answer: 'A secure, permissioned network where DONNAs coordinate across teams, vendors, and partners to automate inter-company workflows.',
         },
         {
           question: 'Is DONNA secure?',
-          answer: 'Yes, DONNA is built with enterprise-grade security, including SOC 2 compliance, GDPR compliance, and end-to-end encryption. All network interactions are opt-in, permission-controlled, and fully auditable.',
+          answer: 'Yes. DONNA includes enterprise-grade security, SOC 2 and GDPR practices, encryption, and auditable controls.',
         },
       ]),
     ],

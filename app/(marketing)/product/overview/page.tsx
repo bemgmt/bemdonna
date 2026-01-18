@@ -7,7 +7,7 @@ import Link from 'next/link'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Product Overview - DONNA AI Platform',
-  description: 'Discover how DONNA\'s AI-powered platform automates voice, email, and chat communications for your business with intelligent workflows and knowledge base.',
+  description: 'Explore the operational intelligence layer that runs workflows across voice, email, and chat.',
   path: '/product/overview',
 })
 
@@ -65,7 +65,7 @@ export default function ProductOverviewPage() {
               DONNA Product Overview
             </h1>
             <p className="text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto animate-slide-up">
-              The AI operating system that automates your entire business communication workflow
+              The digital operations layer that executes workflows across every channel
             </p>
           </div>
 

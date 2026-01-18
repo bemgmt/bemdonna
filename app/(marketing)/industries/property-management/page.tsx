@@ -6,7 +6,7 @@ import { StatsSection } from '@/components/stats-section'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Property Management AI - DONNA for Property Managers',
-  description: 'DONNA automates tenant communications, maintenance requests, and leasing for property management companies.',
+  description: 'Operational intelligence for property management: tenant communication, maintenance, and leasing workflows.',
   path: '/industries/property-management',
 })
 
@@ -60,7 +60,7 @@ export default function PropertyManagementPage() {
             DONNA for Property Management
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            Automate tenant communications and streamline property operations
+            Automate tenant requests, maintenance updates, and leasing coordination
           </p>
         </div>
       </section>

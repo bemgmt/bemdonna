@@ -11,7 +11,7 @@ import {
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Industries - AI Solutions for Every Business',
-  description: 'DONNA serves businesses across multiple industries with tailored AI solutions. From real estate to healthcare, hospitality to legal services.',
+  description: 'Industry-agnostic operational intelligence with tailored deployments for your business.',
   path: '/industries',
 })
 
@@ -240,7 +240,7 @@ export default async function IndustriesPage() {
             DONNA for Every Industry
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            Tailored AI solutions designed for your industry's unique needs. From real estate to healthcare, hospitality to professional services.
+            One operational intelligence layer, adapted to the workflows and language of your industry.
           </p>
         </div>
       </section>
@@ -314,7 +314,7 @@ export default async function IndustriesPage() {
               Don't See Your Industry?
             </h2>
             <p className="text-xl text-gray-300 mb-8">
-              DONNA's AI platform is highly customizable and can be tailored to any industry. Contact us to discuss your specific needs.
+              DONNA is industry-agnostic by design and can be tailored to your workflows without rebuilding the core system.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link

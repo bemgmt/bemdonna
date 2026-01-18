@@ -17,7 +17,7 @@ export default function VerticalsPage() {
             Industry Solutions
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed animate-slide-up">
-            DONNA adapts to your industry with specialized automation workflows
+            One operational intelligence layer, tailored to your industry workflows
           </p>
         </div>
       </section>

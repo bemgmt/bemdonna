@@ -100,7 +100,7 @@ export async function GET(request: NextRequest) {
             type: 'Documentation',
             title: doc.title,
             description: doc.description,
-            url: `/docs/${doc.slug?.current || doc.slug}`,
+            url: `/documentation/${doc.slug?.current || doc.slug}`,
           })
         }
       })

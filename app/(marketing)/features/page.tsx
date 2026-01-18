@@ -246,10 +246,10 @@ export default function FeaturesPage() {
 
         <div className="relative z-10 container mx-auto max-w-4xl text-center">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 gradient-text text-glow-violet animate-fade-in">
-            DONNA Features
+            DONNA Capabilities
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed animate-slide-up">
-            12 powerful AI modules working together to automate your entire business
+            An operational intelligence layer built to execute real workflows across your business
           </p>
         </div>
       </section>

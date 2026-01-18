@@ -7,7 +7,7 @@ import { FeatureGrid } from '@/components/feature-grid'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Appointment Scheduling Automation - AI Booking | DONNA',
-  description: 'Automate appointment scheduling with DONNA\'s AI assistant. Book, confirm, and manage appointments 24/7 across all channels.',
+  description: 'Agentic scheduling across channels with confirmations, reminders, and escalation.',
   path: '/use-cases/appointment-scheduling',
 })
 
@@ -67,7 +67,7 @@ export default function AppointmentSchedulingPage() {
             Appointment Scheduling
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            Let customers book appointments instantly, 24/7, without the back-and-forth
+            Schedule across channels with human-in-the-loop approvals when needed
           </p>
         </div>
       </section>

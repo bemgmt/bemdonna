@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Integrations - Connect Your Tools | DONNA',
-  description: 'DONNA integrates with 50+ business tools including CRMs, calendars, email platforms, and more. Connect your entire tech stack.',
+  description: 'Tool-native integration across CRM, calendar, email, and operations systems.',
   path: '/product/integrations',
 })
 
@@ -78,7 +78,7 @@ export default function IntegrationsPage() {
             Integrations
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            Connect DONNA with your existing tools and workflows
+            Tool-native control across the systems you already run
           </p>
         </div>
       </section>

@@ -7,23 +7,23 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 const steps = [
   {
     number: "01",
-    title: "Setup",
-    description: "Connect your phone, email, calendar, and CRM in minutes",
+    title: "Connect",
+    description: "Link email, CRM, calendar, and communications channels.",
   },
   {
     number: "02",
-    title: "Train",
-    description: "Upload your knowledge base and business documents",
+    title: "Calibrate",
+    description: "Define goals, permissions, and escalation rules.",
   },
   {
     number: "03",
     title: "Deploy",
-    description: "Go live with DONNA managing your communications",
+    description: "Launch DONNA to run workflows across your tools.",
   },
   {
     number: "04",
-    title: "Optimize",
-    description: "Review analytics and continuously improve performance",
+    title: "Scale",
+    description: "Expand roles, integrate more systems, and refine results.",
   },
 ]
 

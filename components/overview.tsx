@@ -18,16 +18,18 @@ export default function Overview() {
             
             <div className="space-y-4 text-foreground/80 leading-relaxed">
               <p className="text-lg">
-                DONNA is an AI-powered digital operations system that works alongside your team. It can log into your applications, handle communications, and automate workflows – all while securely coordinating with other AI 'employees' in a networked ecosystem.
+                DONNA is operational intelligence that becomes part of your core infrastructure. It connects to your tools,
+                understands context across your organization, and executes work end-to-end without babysitting.
               </p>
-              
+
               <p className="text-lg">
-                Think of DONNA as a new type of digital team member who takes on the busywork across your organization.
+                This is not software you use occasionally. It is infrastructure your business runs on: a role-fluid AI
+                that shifts between sales, marketing, operations, and support as needed.
               </p>
-              
+
               <div className="mt-6 p-4 rounded-lg bg-accent/10 border-l-4 border-accent">
                 <p className="text-base font-medium text-foreground/90">
-                  Designed with a human-in-the-loop approach, DONNA automates routine tasks but always keeps you in control.
+                  Human-in-the-loop by design. DONNA automates the routine and escalates what requires judgment.
                 </p>
               </div>
             </div>
@@ -90,7 +92,7 @@ export default function Overview() {
         <div className="mt-12 text-center">
           <div className="inline-block p-4 rounded-lg bg-foreground/5 border border-foreground/10">
             <p className="text-base font-semibold text-foreground/90">
-              Not a Chatbot, Not a CRM, Not a Workflow Builder – It's something more.
+              Not a chatbot. Not a CRM. An AI operator that runs the day-to-day so your team stays focused.
             </p>
           </div>
         </div>

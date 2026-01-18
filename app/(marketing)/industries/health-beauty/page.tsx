@@ -6,7 +6,7 @@ import { StatsSection } from '@/components/stats-section'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Health & Beauty AI - DONNA for Salons & Spas',
-  description: 'DONNA automates appointment booking, client communications, and reminders for salons, spas, and wellness centers.',
+  description: 'Operational intelligence for salons, spas, and wellness teams across scheduling and client care.',
   path: '/industries/health-beauty',
 })
 
@@ -60,7 +60,7 @@ export default function HealthBeautyPage() {
             DONNA for Health & Beauty
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            Fill your schedule and reduce no-shows with intelligent automation
+            Automate bookings, reminders, and client communication with human oversight
           </p>
         </div>
       </section>

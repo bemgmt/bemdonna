@@ -5,7 +5,7 @@ import { FeatureGrid } from '@/components/feature-grid'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'AI Chatbot - Embedded Chat Widget | DONNA',
-  description: 'DONNA\'s AI Chatbot provides embedded chat widgets with lead capture, funnel logic, and white-label branding for your website.',
+  description: 'Always-on chat that qualifies, routes, and executes follow-ups with tool-native workflows.',
   path: '/product/chatbot',
 })
 
@@ -53,7 +53,7 @@ export default function ChatbotPage() {
             AI Chatbot
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            Convert website visitors into qualified leads with intelligent chat automation
+            Qualify, route, and execute follow-ups with human-in-the-loop control
           </p>
         </div>
       </section>

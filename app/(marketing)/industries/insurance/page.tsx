@@ -6,7 +6,7 @@ import { StatsSection } from '@/components/stats-section'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Insurance AI Solutions - DONNA for Insurance Agents',
-  description: 'DONNA automates quote requests, policy inquiries, and client communications for insurance agencies.',
+  description: 'Operational intelligence for insurance agencies across quotes, renewals, and client support.',
   path: '/industries/insurance',
 })
 
@@ -60,7 +60,7 @@ export default function InsurancePage() {
             DONNA for Insurance
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            Convert more leads and retain more clients with AI-powered automation
+            Automate quote requests, policy support, and renewals with human oversight
           </p>
         </div>
       </section>

@@ -6,7 +6,7 @@ import { StatsSection } from '@/components/stats-section'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Nonprofit AI Solutions - DONNA for Nonprofits & Chambers',
-  description: 'DONNA helps nonprofits and chambers of commerce automate member communications, event registration, and donor outreach.',
+  description: 'Operational intelligence for nonprofits across member communications, events, and donor outreach.',
   path: '/industries/nonprofits',
 })
 
@@ -60,7 +60,7 @@ export default function NonprofitsPage() {
             DONNA for Nonprofits & Chambers
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            Amplify your impact with AI-powered member and donor engagement
+            Automate member engagement, event registration, and donor coordination with oversight
           </p>
         </div>
       </section>

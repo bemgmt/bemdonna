@@ -15,10 +15,11 @@ export default function DonnaNetwork() {
             The <span className="gradient-text">DONNA Network</span>
           </h2>
           <p className="text-lg font-semibold text-foreground/90 max-w-3xl mx-auto mb-6">
-            AI that Collaborates Beyond Company Walls
+            Secure AI-to-AI coordination across organizations.
           </p>
           <p className="text-foreground/70 max-w-3xl mx-auto leading-relaxed">
-            DONNA doesn't work alone – it's part of a secure network of AI agents that can communicate and collaborate with each other on your behalf. Through the DONNA-to-DONNA Network, your DONNA can discover other trusted AI assistants (at your clients, vendors, or partners), exchange structured requests, and coordinate tasks directly, system-to-system.
+            DONNA isn’t isolated. It can connect with other DONNAs across your network of clients, vendors, and partners
+            to pass structured requests, sync status, and execute handoffs automatically — all with explicit permissions.
           </p>
         </div>
 
@@ -77,14 +78,16 @@ export default function DonnaNetwork() {
           <div className={`glass-card p-6 rounded-xl border border-accent/10 animate-slide-up ${inView ? 'opacity-100' : 'opacity-0'}`}>
             <h3 className="text-xl font-bold text-foreground mb-4">Discovery & Authentication</h3>
             <p className="text-foreground/70 leading-relaxed">
-              DONNAs can find and authenticate each other across organizations with proper permissions, then negotiate tasks or share required info autonomously. All of this happens only with the organizations' consent and oversight, ensuring trust.
+              DONNAs authenticate and collaborate only when both organizations allow it. Every connection is permissioned,
+              scoped, and observable.
             </p>
           </div>
 
           <div className={`glass-card p-6 rounded-xl border border-accent/10 animate-slide-up ${inView ? 'opacity-100' : 'opacity-0'}`} style={{ animationDelay: '100ms' }}>
             <h3 className="text-xl font-bold text-foreground mb-4">Security & Governance</h3>
             <p className="text-foreground/70 leading-relaxed">
-              Organizations explicitly opt in to any network connection and define what their DONNA is allowed to share or request. No raw sensitive data ever leaves your environment – only the necessary information or outcomes are exchanged – and every inter-agent interaction is logged and auditable.
+              Only the minimum required information is exchanged. Actions are logged and auditable, with human-in-the-loop
+              controls for exceptions.
             </p>
           </div>
         </div>
@@ -95,16 +98,17 @@ export default function DonnaNetwork() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="glass-card p-6 rounded-xl border border-accent/10">
               <div className="text-2xl mb-3">📅</div>
-              <h4 className="text-lg font-bold text-foreground mb-2">Auto-Scheduling Across Companies</h4>
+            <h4 className="text-lg font-bold text-foreground mb-2">Auto-Scheduling Across Companies</h4>
               <p className="text-foreground/70 leading-relaxed">
-                Your DONNA can coordinate a meeting between your team and a client's DONNA. The two AI assistants compare calendars, find an open slot that works for both parties, and send out calendar invites – all without humans emailing back-and-forth.
+                Your DONNA coordinates with a client’s DONNA to find availability, book the meeting, and send invites
+                without back-and-forth emails.
               </p>
             </div>
             <div className="glass-card p-6 rounded-xl border border-accent/10">
               <div className="text-2xl mb-3">📦</div>
-              <h4 className="text-lg font-bold text-foreground mb-2">Vendor Updates & Orders</h4>
+            <h4 className="text-lg font-bold text-foreground mb-2">Vendor Updates & Orders</h4>
               <p className="text-foreground/70 leading-relaxed">
-                A supplier's DONNA automatically sends order status updates or shipment tracking information directly into your system via your DONNA, so your team is instantly updated without waiting on emails or manual data entry.
+                A supplier’s DONNA sends order status and tracking data directly into your systems via your DONNA.
               </p>
             </div>
           </div>
@@ -122,10 +126,10 @@ export default function DonnaNetwork() {
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
-            href="/docs"
+            href="/system-brief"
             className="inline-block px-6 py-3 rounded-lg border-2 border-accent text-accent hover:bg-accent/10 transition-all duration-300 font-semibold text-center"
           >
-            Learn More – Technical Brief
+            Learn More – System Brief
           </Link>
           <Link
             href="/#demo-form"

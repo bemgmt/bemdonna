@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { Twitter, Linkedin, Github, Mail, Youtube, Facebook } from "lucide-react"
+import { Twitter, Linkedin, Youtube, Facebook, Music2 } from "lucide-react"
 import NewsletterSignup from "./newsletter-signup"
 
 export default function Footer() {
@@ -23,22 +23,22 @@ export default function Footer() {
               <span className="font-bold gradient-text">DONNA</span>
             </div>
             <p className="text-foreground/60 text-sm mb-4">
-              The digital operations layer for your business. A networked AI operations system that executes and coordinates work across departments, tools, and partner organizations.
+              One AI. Every industry. DONNA is the digital operations layer that runs workflows, communication, and decision support quietly in the background.
             </p>
             <div className="flex gap-3 mb-4">
-              <a href="https://twitter.com/bemdonna" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-accent transition-colors">
+              <a href="https://x.com/donnaai_" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-accent transition-colors" aria-label="DONNA on X">
                 <Twitter className="h-5 w-5" />
               </a>
-              <a href="https://linkedin.com/company/bemdonna" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-accent transition-colors">
+              <a href="https://www.linkedin.com/in/derek-talbird-65293977/" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-accent transition-colors" aria-label="DONNA on LinkedIn">
                 <Linkedin className="h-5 w-5" />
               </a>
-              <a href="https://github.com/bemgmt" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-accent transition-colors">
-                <Github className="h-5 w-5" />
+              <a href="https://www.tiktok.com/@donnaai_?lang=en" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-accent transition-colors" aria-label="DONNA on TikTok">
+                <Music2 className="h-5 w-5" />
               </a>
-              <a href="https://youtube.com/@bemdonna" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-accent transition-colors">
+              <a href="https://www.youtube.com/@bemdonna" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-accent transition-colors" aria-label="DONNA on YouTube">
                 <Youtube className="h-5 w-5" />
               </a>
-              <a href="https://facebook.com/bemdonna" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-accent transition-colors">
+              <a href="https://www.facebook.com/profile.php?id=61586503540067" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-accent transition-colors" aria-label="DONNA on Facebook">
                 <Facebook className="h-5 w-5" />
               </a>
             </div>
@@ -96,7 +96,7 @@ export default function Footer() {
               <li><Link href="/blog" className="text-foreground/70 hover:text-accent transition-colors">Blog</Link></li>
               <li><Link href="/case-studies" className="text-foreground/70 hover:text-accent transition-colors">Case Studies</Link></li>
               <li><Link href="/tutorials" className="text-foreground/70 hover:text-accent transition-colors">Tutorials</Link></li>
-              <li><Link href="/docs" className="text-foreground/70 hover:text-accent transition-colors">Documentation</Link></li>
+              <li><Link href="/documentation" className="text-foreground/70 hover:text-accent transition-colors">Documentation</Link></li>
               <li><Link href="/webinars" className="text-foreground/70 hover:text-accent transition-colors">Webinars</Link></li>
               <li><Link href="/downloads" className="text-foreground/70 hover:text-accent transition-colors">Downloads</Link></li>
             </ul>

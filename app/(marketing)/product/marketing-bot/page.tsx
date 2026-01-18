@@ -5,7 +5,7 @@ import { FeatureGrid } from '@/components/feature-grid'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Marketing Bot - Multi-Channel Campaigns | DONNA',
-  description: 'DONNA\'s Marketing Bot automates campaigns across SMS, email, and chat with intelligent lead scoring and personalization.',
+  description: 'Agentic campaign execution across channels with tool-native automation and reporting.',
   path: '/product/marketing-bot',
 })
 
@@ -52,7 +52,7 @@ export default function MarketingBotPage() {
             Marketing Bot
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            Automate your marketing campaigns across all channels with AI-powered personalization
+            Execute multi-channel campaigns with agentic workflows and human-in-the-loop controls
           </p>
         </div>
       </section>

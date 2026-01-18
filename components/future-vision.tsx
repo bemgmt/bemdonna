@@ -15,10 +15,10 @@ export default function FutureVision() {
             Future Vision
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Marketplace & <span className="gradient-text">Multi-DONNA Ecosystem</span>
+            Marketplace & <span className="gradient-text">Interoperable Network</span>
           </h2>
           <p className="text-lg font-semibold text-foreground/90 max-w-3xl mx-auto mb-6">
-            Imagine a world where every business has a network of AI employees (DONNAs) – each specialized in a function – and they can trade skills and services with each other.
+            A world where every business runs DONNA and interoperable agents coordinate across the network.
           </p>
         </div>
 
@@ -33,10 +33,13 @@ export default function FutureVision() {
                   <span className="px-2 py-1 rounded bg-accent/20 text-accent text-xs font-semibold">Coming Soon</span>
                 </div>
                 <p className="text-foreground/70 leading-relaxed mb-4">
-                  We're building towards the DONNA Marketplace – a connected ecosystem where organizations can offer and access specialized AI services through their DONNAs. For example, your company's DONNA could 'hire' a Legal DONNA from a partner law firm to review a contract, or consult a Finance DONNA from an accounting provider for an automated audit.
+                  The DONNA Marketplace is a connected ecosystem where organizations can offer and access specialized
+                  AI services through their DONNAs. Your DONNA can request a legal review, a finance check, or a vendor
+                  update as a structured, permissioned task.
                 </p>
                 <p className="text-foreground/70 leading-relaxed">
-                  This marketplace will enable sharing of AI expertise between businesses securely, without exposing sensitive data. This turns the network into a "marketplace of intelligence and execution", unlocking capabilities no single organization's AI could have alone.
+                  This keeps sensitive data protected while enabling secure AI-to-AI coordination across businesses,
+                  turning the network into a marketplace of execution.
                 </p>
               </div>
             </div>
@@ -54,10 +57,11 @@ export default function FutureVision() {
                   <span className="px-2 py-1 rounded bg-accent/20 text-accent text-xs font-semibold">In Development</span>
                 </div>
                 <p className="text-foreground/70 leading-relaxed mb-4">
-                  In the near future, a single company might deploy multiple DONNAs across departments or roles – e.g. a Marketing DONNA, a Sales DONNA, an HR DONNA, etc. Each agent is specialized for its function and handles day-to-day tasks independently, but they all seamlessly collaborate and share relevant knowledge when needed through the DONNA network.
+                  Organizations will deploy multiple DONNAs across departments — each focused on a role yet able to
+                  collaborate through shared context and governed permissions.
                 </p>
                 <p className="text-foreground/70 leading-relaxed">
-                  This shows that the platform can scale within an organization, mirroring its structure with specialized AI agents that still interoperate. It's a powerful message for large enterprises that might envisage an AI assistant for every department.
+                  This scales operational intelligence inside the enterprise while preserving control and accountability.
                 </p>
               </div>
             </div>
@@ -111,7 +115,8 @@ export default function FutureVision() {
         <div className="text-center mb-8">
           <div className="glass-card p-8 rounded-xl border-2 border-accent/30 bg-gradient-to-br from-accent/10 to-primary/10 inline-block max-w-3xl">
             <p className="text-lg text-foreground/90 leading-relaxed">
-              <strong className="text-foreground">Ultimately, our vision is that every business has a DONNA –</strong> work moves without friction between companies, and DONNA becomes the operational backbone of the modern enterprise. Humans focus on strategy and creativity, while DONNA handles the rest.
+              <strong className="text-foreground">Ultimately, every business runs DONNA.</strong> Work moves without friction
+              between companies while humans focus on strategy and creativity.
             </p>
           </div>
         </div>

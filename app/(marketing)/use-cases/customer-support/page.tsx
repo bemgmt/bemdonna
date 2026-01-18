@@ -7,7 +7,7 @@ import { FeatureGrid } from '@/components/feature-grid'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Customer Support Automation - 24/7 AI Support | DONNA',
-  description: 'Provide instant customer support 24/7 with DONNA\'s AI-powered support automation. Reduce costs while improving satisfaction.',
+  description: 'Multi-modal support workflows with escalation and human-in-the-loop controls.',
   path: '/use-cases/customer-support',
 })
 
@@ -67,7 +67,7 @@ export default function CustomerSupportPage() {
             Customer Support Automation
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            Deliver exceptional support experiences at scale with AI-powered automation
+            Resolve routine issues instantly and escalate complex cases with oversight
           </p>
         </div>
       </section>

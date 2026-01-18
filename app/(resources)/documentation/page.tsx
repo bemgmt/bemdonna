@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Documentation - API Reference & Developer Guides | DONNA',
-  description: 'Complete API documentation, webhooks, SDKs, and developer resources for integrating DONNA into your applications.',
+  description: 'Developer resources for integrating DONNA’s operational intelligence into your systems.',
   path: '/documentation',
 })
 
@@ -88,7 +88,7 @@ export default function DocumentationPage() {
             Documentation
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            Everything you need to integrate and customize DONNA
+            Integrate, govern, and extend DONNA across your stack
           </p>
         </div>
       </section>

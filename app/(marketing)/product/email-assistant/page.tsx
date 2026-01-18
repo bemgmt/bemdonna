@@ -6,7 +6,7 @@ import { BeforeAfter } from '@/components/before-after'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Email Assistant - AI Email Automation | DONNA',
-  description: 'DONNA\'s Email Assistant provides thread-aware automation, intelligent lead classification, and auto-draft responses powered by your knowledge base.',
+  description: 'Agentic, tool-native email operations with contextual drafting, routing, and escalation.',
   path: '/product/email-assistant',
 })
 
@@ -70,7 +70,7 @@ export default function EmailAssistantPage() {
             Email Assistant
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            Transform your inbox into a lead-generating machine with AI-powered email automation
+            Thread-aware email operations that execute, route, and escalate with human oversight
           </p>
         </div>
       </section>

@@ -5,7 +5,7 @@ import { FeatureGrid } from '@/components/feature-grid'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Security & Compliance - Enterprise-Grade Protection | DONNA',
-  description: 'DONNA provides SOC 2 compliant security with end-to-end encryption, GDPR compliance, and enterprise-grade data protection.',
+  description: 'Enterprise-grade security, permissions, and auditability for operational AI.',
   path: '/product/security',
 })
 
@@ -63,7 +63,7 @@ export default function SecurityPage() {
             Security & Compliance
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            Enterprise-grade security and privacy protection for your business
+            Security, governance, and auditability built for real operations
           </p>
         </div>
       </section>

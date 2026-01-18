@@ -170,7 +170,7 @@ export default function VoiceReceptionistPage() {
             Voice Receptionist
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            AI-powered voice receptionist that handles calls intelligently, schedules appointments, and manages phone communications with context awareness and seamless integration
+            Multi-modal voice operations that route, schedule, and execute with human-in-the-loop controls
           </p>
         </div>
       </section>

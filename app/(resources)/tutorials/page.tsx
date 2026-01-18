@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Tutorials - Learn DONNA | Video Guides & How-Tos',
-  description: 'Step-by-step video tutorials and guides to help you get the most out of DONNA\'s AI platform.',
+  description: 'Step-by-step guides for deploying operational intelligence with DONNA.',
   path: '/tutorials',
 })
 
@@ -96,7 +96,7 @@ export default function TutorialsPage() {
             Tutorials
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            Master DONNA with step-by-step video guides
+            Learn how to deploy DONNA across workflows and teams
           </p>
         </div>
       </section>

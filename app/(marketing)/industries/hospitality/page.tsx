@@ -6,7 +6,7 @@ import { StatsSection } from '@/components/stats-section'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Hospitality AI Solutions - DONNA for Hotels & Resorts',
-  description: 'DONNA automates reservations, guest services, and inquiries for hotels, resorts, and vacation rentals.',
+  description: 'Operational intelligence for hospitality teams across reservations, guest services, and coordination.',
   path: '/industries/hospitality',
 })
 
@@ -60,7 +60,7 @@ export default function HospitalityPage() {
             DONNA for Hospitality
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            Deliver exceptional guest experiences with AI-powered automation
+            Automate reservations, guest requests, and back-office coordination with human oversight
           </p>
         </div>
       </section>

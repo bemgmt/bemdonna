@@ -8,7 +8,7 @@ import { StatsSection } from '@/components/stats-section'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Secretary Bot - AI Executive Assistant | DONNA',
-  description: 'DONNA\'s Secretary Bot manages schedules, coordinates meetings, handles administrative tasks, and provides 24/7 executive assistance.',
+  description: 'Role-fluid executive assistant that schedules, coordinates, and executes admin workflows.',
   path: '/product/secretary-bot',
 })
 
@@ -108,7 +108,7 @@ export default function SecretaryBotPage() {
             Secretary Bot
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            Your AI executive assistant that manages schedules, coordinates meetings, and handles administrative tasks 24/7
+            An AI executive assistant that coordinates schedules, follows up, and executes tasks with human oversight
           </p>
         </div>
       </section>

@@ -8,7 +8,7 @@ import { Phone, Mail, MessageSquare, Database, CheckCircle } from 'lucide-react'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Lead Response Automation - Instant Follow-Up | DONNA',
-  description: 'Respond to leads instantly with DONNA\'s automated lead response system. Never miss an opportunity with 24/7 AI-powered follow-up.',
+  description: 'Agentic lead response workflows with multi-modal follow-up and tool-native execution.',
   path: '/use-cases/lead-response',
 })
 
@@ -73,7 +73,7 @@ export default function LeadResponsePage() {
             Lead Response Automation
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            Convert more leads with instant, intelligent responses that never sleep
+            Instant qualification and follow-up across channels with human-in-the-loop control
           </p>
         </div>
       </section>

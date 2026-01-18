@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'DONNA System Briefing: From AI Assistant to Economic Network',
-  description: 'Comprehensive overview of the DONNA platform, its capabilities, strategic vision, governance framework, and go-to-market strategy.',
+  description: 'Overview of DONNA’s operational intelligence platform, capabilities, governance, and network vision.',
   path: '/system-brief',
 })
 
@@ -21,7 +21,7 @@ export default function SystemBriefPage() {
             DONNA System Briefing: From AI Assistant to Economic Network
           </h1>
           <p className="text-xl text-foreground/80 leading-relaxed">
-            Executive Summary
+            Operational Intelligence Overview
           </p>
         </header>
 

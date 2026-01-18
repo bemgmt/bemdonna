@@ -14,31 +14,31 @@ const principles: Principle[] = [
     id: "agentic",
     name: "Agentic",
     icon: "🧠",
-    description: "Reasons, plans, and takes action autonomously rather than following pre-scripted flows.",
+    description: "Reasons, plans, and executes tasks end-to-end instead of following static scripts.",
   },
   {
     id: "human-in-the-loop",
     name: "Human-in-the-Loop",
     icon: "🛡️",
-    description: "Always keeps a human in control; you can review decisions and intervene at any time.",
+    description: "Escalates exceptions, requests approval when needed, and keeps you in control.",
   },
   {
     id: "role-fluid",
     name: "Role-Fluid",
     icon: "🔄",
-    description: "Adapts to different roles or departments on the fly without needing retraining.",
+    description: "One AI fills multiple roles across departments without separate deployments.",
   },
   {
     id: "tool-native",
     name: "Tool-Native",
     icon: "🔌",
-    description: "Operates directly within your software tools and APIs (not just via chat), executing tasks in the apps you already use.",
+    description: "Acts directly inside your tools and APIs to get work done, not just suggest it.",
   },
   {
     id: "network-aware",
     name: "Network-Aware",
     icon: "🌐",
-    description: "Understands and communicates with other AI agents (DONNAs) as peers, enabling cross-organization workflows.",
+    description: "Coordinates with other DONNAs across teams or partners with secure permissions.",
   },
 ]
 
@@ -58,22 +58,45 @@ export default function CorePrinciples() {
           </p>
         </div>
 
-        {/* Principles - Horizontal Scroll (All Devices) */}
-        <div className="overflow-x-auto -mx-4 px-4 pb-4 snap-x snap-mandatory scrollbar-hide">
-          <div className="flex gap-4 md:gap-6 w-max">
+        {/* Principles Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+          {/* Mobile: Horizontal Scroll */}
+          <div className="md:hidden overflow-x-auto -mx-4 px-4 pb-4 snap-x snap-mandatory scrollbar-hide">
+            <div className="flex gap-4 w-max">
+              {principles.map((principle, index) => (
+                <div
+                  key={principle.id}
+                  className={`glass-card p-4 rounded-xl border border-accent/10 hover:border-accent/30 transition-all duration-300 hover:shadow-lg hover:shadow-accent/20 animate-slide-up min-w-[280px] snap-start ${
+                    inView ? 'opacity-100' : 'opacity-0'
+                  }`}
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <div className="text-3xl mb-3 text-center">{principle.icon}</div>
+                  <h3 className="text-base font-bold text-foreground mb-2 text-center">
+                    {principle.name}
+                  </h3>
+                  <p className="text-xs text-foreground/70 leading-relaxed text-center">
+                    {principle.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* Desktop: Grid */}
+          <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-5 gap-6">
             {principles.map((principle, index) => (
               <div
                 key={principle.id}
-                className={`glass-card p-4 md:p-6 rounded-xl border border-accent/10 hover:border-accent/30 transition-all duration-300 hover:shadow-lg hover:shadow-accent/20 animate-slide-up min-w-[280px] md:min-w-[300px] snap-start ${
+                className={`glass-card p-6 rounded-xl border border-accent/10 hover:border-accent/30 transition-all duration-300 hover:shadow-lg hover:shadow-accent/20 animate-slide-up ${
                   inView ? 'opacity-100' : 'opacity-0'
                 }`}
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="text-3xl md:text-4xl mb-3 md:mb-4 text-center">{principle.icon}</div>
-                <h3 className="text-base md:text-lg font-bold text-foreground mb-2 md:mb-3 text-center">
+                <div className="text-4xl mb-4 text-center">{principle.icon}</div>
+                <h3 className="text-lg font-bold text-foreground mb-3 text-center">
                   {principle.name}
                 </h3>
-                <p className="text-xs md:text-sm text-foreground/70 leading-relaxed text-center">
+                <p className="text-sm text-foreground/70 leading-relaxed text-center">
                   {principle.description}
                 </p>
               </div>

@@ -50,7 +50,7 @@ export default function InvestorPage() {
             Invest in DONNA
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed animate-slide-up">
-            Join us in building the AI operating system for business automation
+            Join us in building the operational intelligence layer for modern business
           </p>
         </div>
       </section>

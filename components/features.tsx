@@ -12,68 +12,68 @@ interface FeatureCard {
 
 const features: FeatureCard[] = [
   {
-    id: "voice",
+    id: "agentic",
     icon: "⚡",
-    title: "Real-Time Voice & Chat Interface",
-    subtitle: "Seamless, human-like communication across voice and chat",
+    title: "Agentic Execution",
+    subtitle: "Plans, reasons, and completes work",
     description:
-      "Donna's AWS-powered voice layer handles 4,000+ concurrent users with adaptive streaming, smart call routing, and real-time transcription. WebSocket and phone integrations enable instant responses across any device.",
+      "Give DONNA an objective and it determines the steps, executes across your tools, and learns from outcomes.",
   },
   {
-    id: "knowledge",
-    icon: "◆",
-    title: "Intelligent Knowledge Base (AWS Quick Suite)",
-    subtitle: "Industry-specific knowledge that keeps learning",
+    id: "human-loop",
+    icon: "🛡️",
+    title: "Human-in-the-Loop",
+    subtitle: "Automation with real oversight",
     description:
-      "Four vertical-specific knowledge bases—Real Estate, Hospitality, Construction, and Property Management—each with 200+ curated questions and semantic understanding. Powered by AWS Bedrock + Amazon Q, with automatic data ingestion from 600+ sources.",
+      "Routine tasks run autonomously, while exceptions, approvals, and edge cases are routed to your team.",
   },
   {
-    id: "multi-tenant",
-    icon: "⬢",
-    title: "Multi-Tenant Architecture",
-    subtitle: "Built for scale, isolation, and reliability",
+    id: "role-fluid",
+    icon: "🔄",
+    title: "Role-Fluid AI",
+    subtitle: "One AI, multiple roles",
     description:
-      "Each client runs in its own secure environment with isolated data and compute resources. Scalable containers on AWS ECS/Fargate, governed by AWS Control Tower, with Aurora RDS for structured data and DynamoDB for real-time session state.",
+      "Sales assistant, receptionist, operations analyst, executive secretary — all in a single deployment.",
   },
   {
-    id: "collaboration",
-    icon: "∞",
-    title: "AI + Human Collaboration",
-    subtitle: "Automation that knows when to hand off",
+    id: "tool-native",
+    icon: "🔌",
+    title: "Tool-Native Control",
+    subtitle: "It doesn’t just suggest — it executes",
     description:
-      "Donna routes conversations intelligently across industries. AI manages everyday interactions, while human operators can review, approve, or step in with one click—all within a unified dashboard. Choose full automation or hybrid mode with live human support for complex inquiries and high-value interactions.",
+      "DONNA writes emails, updates CRMs, schedules meetings, generates documents, and triggers workflows directly.",
   },
   {
-    id: "integrations",
-    icon: "⟿",
-    title: "Automation & Integrations",
-    subtitle: "Connected to the tools your business already uses",
+    id: "network",
+    icon: "🌐",
+    title: "Network-Aware",
+    subtitle: "AI-to-AI coordination",
     description:
-      "Instant integration with 600+ platforms—Google Workspace, QuickBooks ('Donna Books'), Slack, Zendesk, CRMs, and document systems. Choose real-time or scheduled data refresh to keep Donna's knowledge base always current.",
+      "Secure DONNA-to-DONNA collaboration reduces handoffs across teams, vendors, and partners.",
   },
   {
-    id: "security",
+    id: "multimodal",
+    icon: "💬",
+    title: "Multi-Modal Communication",
+    subtitle: "Voice, email, SMS, and chat",
+    description:
+      "Interact with customers and teams in the channel they prefer — while maintaining a single shared context.",
+  },
+  {
+    id: "enterprise",
     icon: "✓",
-    title: "Monitoring, Security & Compliance",
-    subtitle: "Enterprise-grade protection from day one",
+    title: "Enterprise-Grade Security",
+    subtitle: "Built for real operations",
     description:
-      "Continuous monitoring with CloudWatch, X-Ray, and CloudTrail. GuardDuty and Security Hub detect threats automatically. SSL via Certificate Manager, DNS via Route 53, and IAM least-privilege access ensure data stays secure and compliant.",
+      "SOC 2, GDPR, encryption, permissions, and audit trails — with governance baked in.",
   },
   {
-    id: "performance",
-    icon: "⚙",
-    title: "Performance & Scalability",
-    subtitle: "Built for thousands of simultaneous users",
+    id: "operations",
+    icon: "◆",
+    title: "Operational Intelligence",
+    subtitle: "Decisions with context",
     description:
-      "Auto-scaling to 5,000+ active sessions, backed by optimized WebSocket and API layers. CI/CD with GitHub + CodePipeline delivers instant updates, while cost optimization keeps operations efficient.",
-  },
-  {
-    id: "onboarding",
-    icon: "◎",
-    title: "Client Onboarding & Management",
-    subtitle: "Ready for rapid deployment and growth",
-    description:
-      "Persona-based onboarding across 12 user profiles. Guided setup for Quick Suite, connectors, and workflows. Includes monitoring dashboards, admin guides, and runbooks for self-service management.",
+      "Analyzes business patterns, surfaces insights, and recommends actions in plain language.",
   },
 ]
 
@@ -89,7 +89,7 @@ export default function Features() {
             Powerful <span className="gradient-text">Features</span>
           </h2>
           <p className="text-foreground/60 max-w-2xl mx-auto">
-            Enterprise-grade capabilities designed for modern offices
+            The operational intelligence layer that runs workflows across your business.
           </p>
         </div>
 

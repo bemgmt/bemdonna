@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
   return generatePageMetadata({
     title: `${params.slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}`,
-    description: `Learn about DONNA's ${params.slug} feature.`,
+    description: `Explore how DONNA runs ${params.slug.replace('-', ' ')} workflows with agentic, tool-native execution.`,
     path: `/product/${params.slug}`,
   })
 }
@@ -76,29 +76,29 @@ export default async function ProductDetailPage({ params }: { params: { slug: st
   const fallbackContent: Record<string, any> = {
     'voice-receptionist': {
       title: 'Voice Receptionist',
-      description: 'AI-powered voice receptionist that handles calls intelligently with context awareness and seamless integration',
+      description: 'Multi-modal voice operations with context-aware routing, scheduling, and escalation.',
       features: [
-        { title: '24/7 Availability', description: 'Never miss a call, even outside business hours' },
-        { title: 'Natural Conversations', description: 'Real-time voice AI that sounds human' },
-        { title: 'Smart Routing', description: 'Intelligently routes calls to the right person or department' },
+        { title: '24/7 Coverage', description: 'Always-on call handling without missed opportunities.' },
+        { title: 'Context-Aware Routing', description: 'Transfers calls with full conversation history.' },
+        { title: 'Human-in-the-Loop', description: 'Escalates when judgment is required.' },
       ],
     },
     'email-assistant': {
       title: 'Email Assistant',
-      description: 'Thread-aware email automation with intelligent lead classification',
+      description: 'Thread-aware email operations with task execution and approvals.',
       features: [
-        { title: 'Thread Awareness', description: 'Understands email context and conversation history' },
-        { title: 'Auto-Draft', description: 'Generates intelligent email responses automatically' },
-        { title: 'Lead Classification', description: 'Automatically categorizes and prioritizes leads' },
+        { title: 'Context Memory', description: 'Understands full conversation history.' },
+        { title: 'Tool-Native Actions', description: 'Updates CRM records and triggers workflows.' },
+        { title: 'Escalation Controls', description: 'Routes exceptions for approval.' },
       ],
     },
     'chatbot': {
       title: 'AI Chatbot',
-      description: 'Embedded chat widget with lead capture and funnel logic',
+      description: 'Always-on web chat that qualifies, routes, and executes follow-ups.',
       features: [
-        { title: 'Website Integration', description: 'Easy-to-embed chat widget for your website' },
-        { title: 'Lead Capture', description: 'Automatically captures and qualifies leads' },
-        { title: 'White-Label Branding', description: 'Fully customizable to match your brand' },
+        { title: 'Lead Qualification', description: 'Captures intent and schedules next steps.' },
+        { title: 'Multi-Modal Handoff', description: 'Seamlessly moves to email or SMS.' },
+        { title: 'Brand Voice', description: 'Keeps tone consistent with your business.' },
       ],
     },
   }
@@ -190,13 +190,13 @@ export default async function ProductDetailPage({ params }: { params: { slug: st
 
         {/* CTA Section */}
         <section className="py-12 text-center bg-white/5 rounded-lg max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-4">Ready to Get Started?</h2>
+          <h2 className="text-3xl font-bold mb-4">Ready to Deploy DONNA?</h2>
           <p className="text-xl text-foreground/70 mb-6">
-            Start your free trial today. No credit card required.
+            Join the waitlist or request a demo to see this capability in action.
           </p>
           <div className="flex gap-4 justify-center">
             <Button size="lg" asChild>
-              <Link href="/#demo-form">Start Free Trial</Link>
+              <Link href="/#demo-form">Join the Waitlist</Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
               <Link href="/contact">Contact Sales</Link>

@@ -9,7 +9,7 @@ import { urlFor } from '@/sanity/lib/client'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Blog',
-  description: 'Insights, tips, and best practices for AI-powered business communication.',
+  description: 'Insights on operational intelligence, agentic workflows, and AI-driven business execution.',
   path: '/blog',
 })
 
@@ -31,7 +31,7 @@ export default async function BlogPage() {
       <section className="py-12 text-center">
         <h1 className="text-4xl md:text-6xl font-bold mb-6">DONNA Blog</h1>
         <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-          Insights, tips, and best practices for AI-powered business communication
+          Insights on operational intelligence, workflows, and AI execution
         </p>
       </section>
 

@@ -6,7 +6,7 @@ import { MapPin, Briefcase, Clock } from 'lucide-react'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Careers',
-  description: 'Join the DONNA team and help transform business communication with AI.',
+  description: 'Join the DONNA team and build the operational intelligence layer for modern business.',
   path: '/careers',
 })
 
@@ -113,7 +113,7 @@ export default async function CareersPage() {
       <section className="py-12 text-center">
         <h1 className="text-4xl md:text-6xl font-bold mb-6">Join Our Team</h1>
         <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-          Help us build the future of AI-powered business communication
+          Help us build the AI operations layer that runs real workflows
         </p>
       </section>
 

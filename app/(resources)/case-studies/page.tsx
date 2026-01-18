@@ -5,7 +5,7 @@ import { TrendingUp, Download } from 'lucide-react'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Case Studies - Customer Success Stories | DONNA',
-  description: 'See how businesses across industries use DONNA to automate communications and drive growth. Real results, real ROI.',
+  description: 'See how businesses use DONNA to run operational workflows and drive measurable results.',
   path: '/case-studies',
 })
 
@@ -112,7 +112,7 @@ export default function CaseStudiesPage() {
             Case Studies
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            Real businesses. Real results. Real ROI.
+            Real operations. Real results. Real ROI.
           </p>
         </div>
       </section>

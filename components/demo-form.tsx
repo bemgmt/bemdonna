@@ -72,8 +72,8 @@ export default function DemoForm() {
           </h2>
           <p className="text-foreground/70 mb-6">
             {formData.type === "waitlist"
-              ? "Be among the first to experience DONNA"
-              : "See DONNA in action with a personalized demo"}
+              ? "Be among the first to deploy the AI operations layer"
+              : "See how DONNA runs workflows across your systems"}
           </p>
 
           {submitSuccess && (

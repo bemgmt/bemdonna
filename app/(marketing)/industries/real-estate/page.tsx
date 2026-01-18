@@ -6,7 +6,7 @@ import { StatsSection } from '@/components/stats-section'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Real Estate AI Solutions - DONNA for Realtors',
-  description: 'DONNA helps real estate agents respond to leads instantly, schedule showings 24/7, and never miss an opportunity.',
+  description: 'Operational intelligence for real estate teams that automates inquiries, scheduling, and follow-ups.',
   path: '/industries/real-estate',
 })
 
@@ -60,7 +60,7 @@ export default function RealEstatePage() {
             DONNA for Real Estate
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            Never miss a lead. Book more showings. Close more deals.
+            Agentic workflows that capture inquiries, schedule showings, and keep your CRM current.
           </p>
         </div>
       </section>

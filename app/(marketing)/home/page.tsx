@@ -78,23 +78,23 @@ export default function HomePage() {
   const differentiators = [
     {
       icon: Brain,
-      title: "True AI Intelligence",
-      description: "Not just automation - DONNA learns, adapts, and makes intelligent decisions based on your business context"
+      title: "Agentic Execution",
+      description: "Reasons through objectives, creates plans, and completes tasks without scripts."
     },
     {
       icon: Workflow,
-      title: "Unified Platform",
-      description: "All your automation needs in one cohesive system, eliminating the need for multiple disconnected tools"
+      title: "Tool-Native Control",
+      description: "Executes directly inside your tools and APIs, not just recommendations."
     },
     {
       icon: Shield,
-      title: "Enterprise Security",
-      description: "Bank-level encryption and compliance with SOC 2, GDPR, and HIPAA standards"
+      title: "Enterprise Governance",
+      description: "Security, permissions, and audit trails designed for real operations."
     },
     {
       icon: Clock,
-      title: "Real-Time Actions",
-      description: "Instant responses and actions across all channels, 24/7/365 without human intervention"
+      title: "Multi-Modal, 24/7",
+      description: "Voice, email, SMS, and chat — always on, always consistent."
     }
   ]
 
@@ -102,9 +102,9 @@ export default function HomePage() {
     <main className="min-h-screen bg-[#030314] bg-radial-glow relative overflow-hidden">
       {/* Hero Section */}
       <HeroNeural
-        title="Meet DONNA"
-        subtitle="Your Digital Office Neural Network Assistant - The AI operating system that automates your entire business workflow"
-        primaryCTA={{ label: "Get Started", link: "/contact" }}
+        title="One AI. Every Industry."
+        subtitle="DONNA is the digital operations layer that runs workflows, communication, and decision support across your business."
+        primaryCTA={{ label: "Join the Waitlist", link: "/#demo-form" }}
         secondaryCTA={{ label: "Watch Demo", link: "#demo" }}
       />
 
@@ -113,17 +113,15 @@ export default function HomePage() {
         <div className="container mx-auto max-w-6xl">
           <SectionTitleGlow
             title="What is DONNA?"
-            subtitle="The world's first truly intelligent business automation platform"
+            subtitle="Operational intelligence embedded inside your business"
           />
           <div className="glass-panel p-12 rounded-2xl text-center">
             <p className="text-xl text-gray-300 leading-relaxed mb-6">
-              DONNA is not just another chatbot or automation tool. It's a comprehensive AI operating system
-              designed to handle every aspect of your business communication and workflow. From customer
-              interactions to internal processes, DONNA thinks, learns, and acts like your most capable team member.
+              DONNA is infrastructure your business runs on. It integrates with your tools, understands context,
+              and executes work end-to-end while keeping humans in control.
             </p>
             <p className="text-lg text-gray-400">
-              Built on cutting-edge neural networks and trained on millions of business interactions,
-              DONNA delivers human-level performance at machine scale.
+              This is not a chatbot or CRM. It is an AI operator that plans, acts, and improves over time.
             </p>
           </div>
         </div>
@@ -189,29 +187,29 @@ export default function HomePage() {
       <section className="py-20 px-4 relative">
         <div className="container mx-auto max-w-6xl">
           <SectionTitleGlow
-            title="Real-Time Agentic Actions"
-            subtitle="DONNA doesn't just respond - it acts"
+            title="Agentic Actions in Production"
+            subtitle="DONNA doesn’t just respond — it executes"
           />
           <div className="grid md:grid-cols-3 gap-6">
             <div className="glass-panel p-8 rounded-xl">
               <div className="text-4xl mb-4">⚡</div>
               <h3 className="text-2xl font-bold mb-3 text-[#3DE0FF]">Instant Response</h3>
               <p className="text-gray-300">
-                Sub-second response times across all channels. Your customers never wait.
+                Multi-modal responses across voice, email, chat, and SMS without delay.
               </p>
             </div>
             <div className="glass-panel p-8 rounded-xl">
               <div className="text-4xl mb-4">🧠</div>
               <h3 className="text-2xl font-bold mb-3 text-[#8A2FFF]">Contextual Understanding</h3>
               <p className="text-gray-300">
-                DONNA remembers every interaction and understands the full context of your business.
+                Shared memory across systems and conversations for consistent decisions.
               </p>
             </div>
             <div className="glass-panel p-8 rounded-xl">
               <div className="text-4xl mb-4">🎯</div>
               <h3 className="text-2xl font-bold mb-3 text-[#8A2FFF]">Autonomous Execution</h3>
               <p className="text-gray-300">
-                From lead qualification to appointment booking, DONNA handles complete workflows independently.
+                From lead qualification to scheduling, DONNA runs workflows end-to-end.
               </p>
             </div>
           </div>
@@ -251,17 +249,17 @@ export default function HomePage() {
         <div className="container mx-auto max-w-7xl">
           <SectionTitleGlow
             title="Simple, Transparent Pricing"
-            subtitle="Choose the plan that fits your business"
+            subtitle="Plans that scale with your operations"
           />
           <div className="grid md:grid-cols-3 gap-8">
             <PricingTierCard
               tierName="Starter"
               price="$1,500"
               features={[
-                "Up to 1,000 conversations/month",
-                "Email & SMS automation",
-                "Basic chatbot",
-                "Knowledge base integration",
+                "Dedicated DONNA for one team",
+                "Multi-modal communication",
+                "Core workflow automations",
+                "Basic integrations",
                 "Email support"
               ]}
             />
@@ -269,12 +267,11 @@ export default function HomePage() {
               tierName="Pro"
               price="$5,000"
               features={[
-                "Up to 5,000 conversations/month",
-                "All Starter features",
-                "Voice bot included",
-                "Advanced workflows",
+                "Multiple concurrent DONNAs",
+                "Advanced workflows & approvals",
+                "Expanded integrations",
                 "Priority support",
-                "Custom integrations"
+                "Department-level coverage"
               ]}
               highlight={true}
             />
@@ -282,12 +279,11 @@ export default function HomePage() {
               tierName="Enterprise"
               price="$12,000"
               features={[
-                "Unlimited conversations",
-                "All Pro features",
-                "Dedicated account manager",
-                "Custom AI training",
+                "Custom deployment options",
+                "Enterprise governance",
+                "Dedicated solutions team",
                 "SLA guarantees",
-                "White-label options"
+                "Network-level coordination"
               ]}
               ctaLabel="Contact Sales"
             />
@@ -305,11 +301,10 @@ export default function HomePage() {
             <div className="circuitry-lines absolute inset-0 opacity-20" />
             <div className="relative z-10">
               <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">
-                Invest in the Future of Business Automation
+                Invest in the Future of Business Operations
               </h2>
               <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                DONNA is revolutionizing how businesses operate. Join us in building the AI operating
-                system that will power millions of companies worldwide.
+                DONNA is the operational intelligence layer powering the next generation of businesses.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <NeonButton label="Investor Information" link="/investor" variant="primary" />

@@ -6,7 +6,7 @@ import { StatsSection } from '@/components/stats-section'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Nightlife AI Solutions - DONNA for Clubs & Entertainment',
-  description: 'DONNA automates reservations, guest lists, and customer communications for nightclubs, bars, and entertainment venues.',
+  description: 'Operational intelligence for nightlife venues across reservations, guest lists, and event coordination.',
   path: '/industries/nightlife',
 })
 
@@ -60,7 +60,7 @@ export default function NightlifePage() {
             DONNA for Nightlife
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            Fill your venue and maximize revenue with intelligent automation
+            Automate reservations, guest lists, and event coordination with human oversight
           </p>
         </div>
       </section>

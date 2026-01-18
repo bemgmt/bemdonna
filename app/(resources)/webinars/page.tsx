@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Webinars - Live Training & On-Demand Sessions | DONNA',
-  description: 'Join live webinars or watch on-demand sessions to learn best practices for AI automation and business communication.',
+  description: 'Live and on-demand sessions on operational intelligence and AI-driven execution.',
   path: '/webinars',
 })
 
@@ -94,7 +94,7 @@ export default function WebinarsPage() {
             Webinars
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            Learn from experts and master AI automation
+            Learn how teams deploy DONNA to run real workflows
           </p>
         </div>
       </section>

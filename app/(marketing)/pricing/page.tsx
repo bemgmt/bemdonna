@@ -5,23 +5,13 @@ import { Check, X } from "lucide-react"
 
 export default function PricingPage() {
   const comparisonFeatures = [
-    { feature: "Monthly Conversations", starter: "1,000", pro: "5,000", enterprise: "Unlimited" },
-    { feature: "Email Bot", starter: true, pro: true, enterprise: true },
-    { feature: "SMS Bot", starter: true, pro: true, enterprise: true },
-    { feature: "Chatbot", starter: true, pro: true, enterprise: true },
-    { feature: "Voice Bot", starter: "Pay-as-you-go*", pro: true, enterprise: true },
-    { feature: "Secretary Bot", starter: "Pay-as-you-go*", pro: true, enterprise: true },
-    { feature: "Lead Gen Engine", starter: true, pro: true, enterprise: true },
-    { feature: "Marketing Bot", starter: false, pro: true, enterprise: true },
-    { feature: "Sales Agent Bot", starter: false, pro: true, enterprise: true },
-    { feature: "Landing Page Generator", starter: false, pro: true, enterprise: true },
-    { feature: "Knowledge Base Integration", starter: true, pro: true, enterprise: true },
-    { feature: "Scraper Module", starter: false, pro: true, enterprise: true },
-    { feature: "Agentic Workflows", starter: "Basic", pro: "Advanced", enterprise: "Custom" },
-    { feature: "Support", starter: "Email", pro: "Priority", enterprise: "Dedicated Manager" },
-    { feature: "Custom Integrations", starter: false, pro: "Limited", enterprise: "Unlimited" },
-    { feature: "Custom AI Training", starter: false, pro: false, enterprise: true },
-    { feature: "White-Label Options", starter: false, pro: false, enterprise: true },
+    { feature: "Dedicated DONNA Agent", starter: "1", pro: "Multiple", enterprise: "Custom" },
+    { feature: "Multi-Modal Communication", starter: true, pro: true, enterprise: true },
+    { feature: "Workflow Automation", starter: "Core", pro: "Advanced", enterprise: "Custom" },
+    { feature: "Integrations", starter: "Standard", pro: "Expanded", enterprise: "Custom" },
+    { feature: "DONNA-to-DONNA Network", starter: "Limited", pro: "Limited", enterprise: "Full" },
+    { feature: "Support", starter: "Email", pro: "Priority", enterprise: "Dedicated Team" },
+    { feature: "Deployment Options", starter: "Cloud", pro: "Cloud", enterprise: "Cloud/Private" },
     { feature: "SLA Guarantees", starter: false, pro: false, enterprise: true }
   ]
 
@@ -38,7 +28,7 @@ export default function PricingPage() {
             Pricing Plans
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed animate-slide-up">
-            Choose the perfect plan to automate and scale your business
+            Transparent pricing that scales with your operations
           </p>
         </div>
       </section>
@@ -49,8 +39,8 @@ export default function PricingPage() {
         <div className="container mx-auto max-w-7xl relative z-10">
           <div className="text-center mb-12">
             <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-              All plans include 24/7 support, secure infrastructure, and regular feature updates. 
-              No hidden fees, cancel anytime.
+              All plans include continuous learning updates, enterprise-grade security, and support.
+              No hidden fees.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8 mb-20">
@@ -58,17 +48,12 @@ export default function PricingPage() {
               tierName="Starter"
               price="$1,500"
               features={[
-                "Up to 1,000 conversations/month",
-                "Voice bot* (pay-as-you-go limits)",
-                "Secretary bot* (pay-as-you-go limits)",
-                "Email & SMS automation",
-                "Basic chatbot",
-                "Lead gen engine",
+                "Dedicated DONNA for a single team",
+                "Multi-modal communication",
+                "Core workflow automations",
                 "Knowledge base integration",
-                "Basic workflows",
-                "Email support",
                 "Standard integrations",
-                "Networked DONNA features restricted"
+                "Email support"
               ]}
               ctaLabel="Get Started"
               ctaLink="/contact"
@@ -78,16 +63,11 @@ export default function PricingPage() {
               tierName="Pro"
               price="$5,000"
               features={[
-                "Up to 5,000 conversations/month",
-                "All Starter features",
-                "Voice bot included",
-                "Secretary bot",
-                "Marketing & Sales bots",
-                "Landing page generator",
-                "Advanced workflows",
+                "Multiple concurrent DONNAs",
+                "Advanced workflows and approvals",
+                "Expanded integrations",
                 "Priority support",
-                "Custom integrations",
-                "Limited networked DONNA capabilities"
+                "Department-level coverage"
               ]}
               highlight={true}
               ctaLabel="Get Started"
@@ -98,16 +78,12 @@ export default function PricingPage() {
               tierName="Enterprise"
               price="$12,000"
               features={[
-                "Unlimited conversations",
-                "All Pro features",
-                "Dedicated account manager",
-                "Custom AI training",
-                "White-label options",
+                "Custom deployment options",
+                "On-prem or private cloud",
+                "Dedicated solutions team",
+                "Enterprise governance",
                 "SLA guarantees",
-                "Advanced security features",
-                "Custom workflows",
-                "24/7 phone support",
-                "Full DONNA-to-DONNA coordination included"
+                "Full DONNA-to-DONNA coordination"
               ]}
               ctaLabel="Contact Sales"
               ctaLink="/contact"
@@ -182,7 +158,7 @@ export default function PricingPage() {
               </div>
             </div>
           </div>
-          <p className="text-sm text-gray-400 mt-4">* Pay-as-you-go limits apply to Starter voice and secretary bots.</p>
+          <p className="text-sm text-gray-400 mt-4">Need a custom plan? Contact us for tailored deployment options.</p>
         </div>
       </section>
 

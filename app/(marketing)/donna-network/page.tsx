@@ -4,7 +4,7 @@ import { generatePageMetadata } from '@/lib/metadata'
 export const metadata: Metadata = generatePageMetadata({
   title: 'DONNA to DONNA: Networked Digital Employees',
   description:
-    'Learn how DONNA to DONNA coordination lets digital employees work together securely so businesses move faster with fewer handoffs.',
+    'Learn how DONNA-to-DONNA coordination enables secure, permissioned AI-to-AI workflows across organizations.',
   path: '/donna-network',
 })
 
@@ -37,7 +37,7 @@ export default function DonnaNetworkPage() {
             DONNA to DONNA: Networked Digital Employees
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            How DONNAs collaborate to keep work moving for your teams and customers.
+            Secure AI-to-AI coordination that moves work across teams, vendors, and partners.
           </p>
         </div>
       </section>
@@ -47,14 +47,13 @@ export default function DonnaNetworkPage() {
         <div className="container mx-auto max-w-5xl">
           <div className="glass-panel p-10 rounded-2xl border border-white/10">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-              Your Digital Employees Can Work Together
+              Operational Intelligence That Coordinates
             </h2>
             <div className="space-y-4 text-lg text-gray-300 leading-relaxed">
               <p>Most AI tools work in isolation. DONNA doesn’t.</p>
               <p>
                 DONNA can securely coordinate with other DONNAs to pass tasks, share approved context, and move
-                work forward automatically. This means fewer delays, fewer mistakes, and far less manual coordination
-                between people and systems.
+                work forward automatically — with clear permissions, audit logs, and human oversight.
               </p>
             </div>
           </div>

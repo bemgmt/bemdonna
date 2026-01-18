@@ -10,7 +10,7 @@ export default function CTAFooter() {
           Ready to see <span className="gradient-text">DONNA</span> in action?
         </h2>
         <p className="text-lg text-foreground/70 mb-8 max-w-2xl mx-auto">
-          Join the waitlist to be among the first to experience the future of AI-powered business operations.
+          Join the waitlist for early access to the AI operations layer built for real business workflows.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link

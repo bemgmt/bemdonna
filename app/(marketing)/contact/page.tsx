@@ -1,7 +1,7 @@
 import { SectionTitleGlow } from "@/components/neural/section-title-glow"
 import { ContactFormHolo } from "@/components/neural/contact-form-holo"
 import { HoloFooter } from "@/components/neural/holo-footer"
-import { Mail, Calendar, MessageSquare, TrendingUp } from "lucide-react"
+import { Mail, Calendar, MessageSquare, TrendingUp, Twitter, Linkedin, Youtube, Facebook, Music2 } from "lucide-react"
 
 export default function ContactPage() {
   return (
@@ -13,10 +13,10 @@ export default function ContactPage() {
 
         <div className="relative z-10 container mx-auto max-w-4xl text-center">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 gradient-text text-glow-violet animate-fade-in">
-            Get in Touch
+            Talk to the DONNA Team
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed animate-slide-up">
-            Let's discuss how DONNA can transform your business
+            Let’s discuss how DONNA can run workflows inside your business
           </p>
         </div>
       </section>
@@ -110,6 +110,65 @@ export default function ContactPage() {
                 className="text-[#8A2FFF] hover:text-[#3DE0FF] transition-colors duration-300 font-medium"
               >
                 Get Support →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Social Follow */}
+      <section className="py-20 px-4">
+        <div className="container mx-auto max-w-4xl">
+          <div className="holo-panel p-10 rounded-2xl text-center">
+            <h2 className="text-3xl font-bold mb-4 text-white">Follow DONNA</h2>
+            <p className="text-gray-300 mb-8">
+              Product updates, insights on operational intelligence, and real-world deployments.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-6">
+              <a
+                href="https://www.facebook.com/profile.php?id=61586503540067"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-gray-300 hover:text-[#3DE0FF] transition-colors"
+              >
+                <Facebook className="h-5 w-5" />
+                <span>Facebook</span>
+              </a>
+              <a
+                href="https://www.tiktok.com/@donnaai_?lang=en"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-gray-300 hover:text-[#3DE0FF] transition-colors"
+              >
+                <Music2 className="h-5 w-5" />
+                <span>TikTok</span>
+              </a>
+              <a
+                href="https://x.com/donnaai_"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-gray-300 hover:text-[#3DE0FF] transition-colors"
+              >
+                <Twitter className="h-5 w-5" />
+                <span>X</span>
+              </a>
+              <a
+                href="https://www.youtube.com/@bemdonna"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-gray-300 hover:text-[#3DE0FF] transition-colors"
+              >
+                <Youtube className="h-5 w-5" />
+                <span>YouTube</span>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/derek-talbird-65293977/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-gray-300 hover:text-[#3DE0FF] transition-colors"
+              >
+                <Linkedin className="h-5 w-5" />
+                <span>LinkedIn</span>
               </a>
             </div>
           </div>

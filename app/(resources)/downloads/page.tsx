@@ -5,7 +5,7 @@ import { Download, FileText, BookOpen, Video, Code } from 'lucide-react'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Downloads',
-  description: 'Download whitepapers, guides, templates, and other resources.',
+  description: 'Download whitepapers, playbooks, and resources on operational intelligence.',
   path: '/downloads',
 })
 
@@ -100,7 +100,7 @@ export default function DownloadsPage() {
       <section className="py-12 text-center">
         <h1 className="text-4xl md:text-6xl font-bold mb-6">Downloads</h1>
         <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-          Access whitepapers, guides, templates, and other resources to help you succeed with DONNA
+          Whitepapers, playbooks, and resources to deploy DONNA effectively
         </p>
       </section>
 

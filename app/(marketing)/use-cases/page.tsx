@@ -5,7 +5,7 @@ import { generatePageMetadata } from '@/lib/metadata'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Use Cases',
-  description: 'Discover how DONNA can transform your business operations across different use cases.',
+  description: 'See how DONNA runs operational workflows across sales, marketing, support, and operations.',
   path: '/use-cases',
 })
 
@@ -17,18 +17,18 @@ export default async function UseCasesPage() {
       <Breadcrumb />
 
       <section className="py-12 text-center">
-        <h1 className="text-4xl md:text-6xl font-bold mb-6">DONNA Use Cases</h1>
+        <h1 className="text-4xl md:text-6xl font-bold mb-6">Use Cases in Action</h1>
         <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-          See how businesses use DONNA to automate communication and grow faster
+          Real workflows powered by agentic, tool-native execution
         </p>
       </section>
 
       <section className="py-12">
         {useCases.length === 0 ? (
           <div className="text-center p-12 border rounded-lg bg-foreground/5">
-            <h2 className="text-2xl font-bold mb-4">Use Case Examples Coming Soon</h2>
+            <h2 className="text-2xl font-bold mb-4">Use Case Playbooks Coming Soon</h2>
             <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
-              We're compiling detailed use case examples showing how DONNA transforms operations across different industries and business functions. Check back soon for real-world scenarios and case studies.
+              We’re building detailed playbooks that show how DONNA runs workflows across departments and industries.
             </p>
             <p className="text-sm text-muted-foreground mb-4">
               In the meantime, explore our <Link href="/industries" className="text-accent hover:underline">industry pages</Link> to see how DONNA serves different verticals.

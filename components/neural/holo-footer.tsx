@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Mail, Linkedin, Twitter } from "lucide-react"
+import { Mail, Linkedin, Twitter, Youtube, Facebook, Music2 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 interface FooterLink {
@@ -21,7 +21,7 @@ export function HoloFooter({
   links = [],
   social = [],
   legalLinks = [],
-  tagline = "Digital Office Neural Network Assistant",
+  tagline = "The digital operations layer for modern business.",
   className 
 }: HoloFooterProps) {
   const currentYear = new Date().getFullYear()
@@ -70,7 +70,7 @@ export function HoloFooter({
                 <Mail className="w-5 h-5 text-[#3DE0FF]" />
               </a>
               <a 
-                href="https://linkedin.com" 
+                href="https://www.linkedin.com/in/derek-talbird-65293977/" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-lg bg-[#8A2FFF]/10 hover:bg-[#8A2FFF]/20 transition-colors duration-300 hover:glow-violet"
@@ -79,13 +79,40 @@ export function HoloFooter({
                 <Linkedin className="w-5 h-5 text-[#3DE0FF]" />
               </a>
               <a 
-                href="https://twitter.com" 
+                href="https://x.com/donnaai_" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-lg bg-[#8A2FFF]/10 hover:bg-[#8A2FFF]/20 transition-colors duration-300 hover:glow-violet"
-                aria-label="Twitter"
+                aria-label="X"
               >
                 <Twitter className="w-5 h-5 text-[#3DE0FF]" />
+              </a>
+              <a 
+                href="https://www.tiktok.com/@donnaai_?lang=en" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg bg-[#8A2FFF]/10 hover:bg-[#8A2FFF]/20 transition-colors duration-300 hover:glow-violet"
+                aria-label="TikTok"
+              >
+                <Music2 className="w-5 h-5 text-[#3DE0FF]" />
+              </a>
+              <a 
+                href="https://www.youtube.com/@bemdonna" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg bg-[#8A2FFF]/10 hover:bg-[#8A2FFF]/20 transition-colors duration-300 hover:glow-violet"
+                aria-label="YouTube"
+              >
+                <Youtube className="w-5 h-5 text-[#3DE0FF]" />
+              </a>
+              <a 
+                href="https://www.facebook.com/profile.php?id=61586503540067" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg bg-[#8A2FFF]/10 hover:bg-[#8A2FFF]/20 transition-colors duration-300 hover:glow-violet"
+                aria-label="Facebook"
+              >
+                <Facebook className="w-5 h-5 text-[#3DE0FF]" />
               </a>
             </div>
           </div>

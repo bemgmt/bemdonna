@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Press & Media - DONNA Newsroom',
-  description: 'Latest news, press releases, and media resources for DONNA AI. Download press kit, logos, and screenshots.',
+  description: 'News, press releases, and media resources about DONNA’s operational intelligence platform.',
   path: '/press',
 })
 
@@ -67,7 +67,7 @@ export default async function PressPage() {
             Press & Media
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            Latest news and media resources
+            News and resources about the AI operations layer for modern business
           </p>
         </div>
       </section>

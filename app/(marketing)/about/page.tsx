@@ -9,7 +9,7 @@ import { Linkedin, Twitter, Mail } from 'lucide-react'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'About Us',
-  description: 'Learn about DONNA and our mission to transform business communication with AI.',
+  description: 'Learn about DONNA and our mission to build operational intelligence for modern businesses.',
   path: '/about',
 })
 
@@ -34,7 +34,7 @@ export default async function AboutPage() {
             About DONNA
           </h1>
           <p className="text-xl text-foreground/70 leading-relaxed">
-            We're building the future of business communication—one conversation at a time.
+            We’re building the operational intelligence layer for modern businesses.
           </p>
         </section>
 
@@ -43,16 +43,15 @@ export default async function AboutPage() {
           <h2 className="text-3xl font-bold mb-6">Our Story</h2>
           <div className="prose prose-lg dark:prose-invert max-w-none">
             <p className="text-foreground/90 leading-relaxed mb-4">
-              DONNA was born from a simple observation: businesses lose thousands of dollars every day
-              because they can't respond to leads fast enough. In an age where customers expect instant
-              answers, traditional business hours and manual processes just don't cut it anymore.
+              Businesses are running on fragmented tools and manual coordination. We built DONNA to become
+              the AI operations layer that executes work across systems and departments.
             </p>
             <p className="text-foreground/90 leading-relaxed mb-4">
-              We set out to solve this problem by creating DONNA—a networked AI operations system that executes and coordinates work across all your departments, tools, and even partner organizations. DONNA is not just a chatbot or CRM; it's an agentic, network-aware AI built to actually get work done, operating directly within your software tools and APIs.
+              DONNA is not a chatbot or CRM. It is agentic, tool-native, multi-modal, and network-aware — designed to
+              run day-to-day workflows with human-in-the-loop control.
             </p>
             <p className="text-foreground/90 leading-relaxed">
-              Today, DONNA helps businesses across industries automate their customer communication,
-              respond to leads instantly, and scale their operations without scaling their headcount.
+              Today, DONNA helps teams scale operations without scaling headcount, while keeping oversight and auditability.
             </p>
           </div>
         </section>
@@ -62,31 +61,27 @@ export default async function AboutPage() {
           <h2 className="text-3xl font-bold mb-6">The Problem We're Solving</h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="p-6 rounded-lg border border-white/10 bg-white/5">
-              <h3 className="text-xl font-semibold mb-3">Missed Opportunities</h3>
+              <h3 className="text-xl font-semibold mb-3">Manual Coordination</h3>
               <p className="text-foreground/70">
-                Studies show that responding to leads within 5 minutes increases conversion rates by 900%.
-                Most businesses can't meet this standard.
+                Businesses waste time moving work between tools, teams, and inboxes.
               </p>
             </div>
             <div className="p-6 rounded-lg border border-white/10 bg-white/5">
-              <h3 className="text-xl font-semibold mb-3">High Costs</h3>
+              <h3 className="text-xl font-semibold mb-3">Operational Drag</h3>
               <p className="text-foreground/70">
-                Hiring 24/7 staff is expensive. The average customer service representative costs
-                $35,000+ per year, plus benefits and training.
+                Scaling operations requires more people, training, and overhead.
               </p>
             </div>
             <div className="p-6 rounded-lg border border-white/10 bg-white/5">
-              <h3 className="text-xl font-semibold mb-3">Inconsistent Quality</h3>
+              <h3 className="text-xl font-semibold mb-3">Inconsistent Execution</h3>
               <p className="text-foreground/70">
-                Human agents have good days and bad days. AI provides consistent, high-quality service
-                every single time.
+                Workflows vary by person and process, leading to missed steps and errors.
               </p>
             </div>
             <div className="p-6 rounded-lg border border-white/10 bg-white/5">
-              <h3 className="text-xl font-semibold mb-3">Scalability Challenges</h3>
+              <h3 className="text-xl font-semibold mb-3">Scaling Complexity</h3>
               <p className="text-foreground/70">
-                Growing your team means hiring, training, and managing more people. DONNA scales
-                instantly to handle any volume.
+                Adding new workflows or departments multiplies coordination overhead.
               </p>
             </div>
           </div>
@@ -97,10 +92,12 @@ export default async function AboutPage() {
           <h2 className="text-3xl font-bold mb-6">Our Solution</h2>
           <div className="prose prose-lg dark:prose-invert max-w-none">
             <p className="text-foreground/90 leading-relaxed mb-4">
-              DONNA is an AI-powered digital operations system that works alongside your team. It can log into your applications, handle communications, and automate workflows—all while securely coordinating with other AI 'employees' in a networked ecosystem. Our platform operates directly within your software tools and APIs, executing tasks autonomously while maintaining human-in-the-loop control.
+              DONNA connects to your tools, handles multi-modal communication, and executes workflows with
+              permissioned control. It operates across departments and adapts without retraining.
             </p>
             <p className="text-foreground/90 leading-relaxed">
-              With DONNA, you get agentic AI that reasons and takes action autonomously, role-fluid adaptation across departments, tool-native integration with your existing stack, and network-aware collaboration that enables cross-organization workflows—all designed with human oversight and control.
+              With DONNA, you get agentic execution, role-fluid coverage, tool-native control, and network-aware
+              coordination — all built with human-in-the-loop oversight.
             </p>
           </div>
         </section>
@@ -111,26 +108,23 @@ export default async function AboutPage() {
           <div className="grid md:grid-cols-3 gap-6">
             <div className="text-center p-6">
               <div className="text-4xl mb-4">🤖</div>
-              <h3 className="text-xl font-semibold mb-2">True AI Intelligence</h3>
+              <h3 className="text-xl font-semibold mb-2">Agentic Execution</h3>
               <p className="text-foreground/70">
-                Not just chatbots—real AI that understands context, learns from your data, and
-                makes intelligent decisions.
+                AI that plans, executes, and improves outcomes across your operations.
               </p>
             </div>
             <div className="text-center p-6">
               <div className="text-4xl mb-4">🔗</div>
-              <h3 className="text-xl font-semibold mb-2">Deep Integrations</h3>
+              <h3 className="text-xl font-semibold mb-2">Tool-Native Control</h3>
               <p className="text-foreground/70">
-                Connect with your CRM, calendar, email, and hundreds of other tools to create
-                seamless workflows.
+                Executes inside the tools you already use, end-to-end.
               </p>
             </div>
             <div className="text-center p-6">
               <div className="text-4xl mb-4">🛡️</div>
-              <h3 className="text-xl font-semibold mb-2">Enterprise Security</h3>
+              <h3 className="text-xl font-semibold mb-2">Enterprise Governance</h3>
               <p className="text-foreground/70">
-                SOC 2 compliant, GDPR compliant, and built with security-first architecture
-                from the ground up.
+                SOC 2 and GDPR practices with permissions, auditability, and controls.
               </p>
             </div>
           </div>

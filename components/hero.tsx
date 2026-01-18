@@ -100,11 +100,11 @@ export default function Hero() {
           {/* Left: Text content */}
           <div className="animate-slide-up">
             <h1 className="text-3xl md:text-6xl font-bold mb-4 md:mb-6 leading-tight">
-              <span className="gradient-text">DONNA:</span> The Digital Operations Layer for Your Business
+              <span className="gradient-text">One AI.</span> Every Industry.
             </h1>
 
             <p className="text-base md:text-xl text-foreground/90 mb-6 md:mb-8 leading-relaxed">
-              An agentic, network-aware AI that executes and coordinates work across all your departments, tools, and even partner organizations – so you can focus on what matters.
+              DONNA is the digital operations layer that runs workflows, communication, and decision support quietly inside your business. Agentic, tool-native, multi-modal, and enterprise-grade.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
