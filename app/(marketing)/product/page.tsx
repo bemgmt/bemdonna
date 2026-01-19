@@ -4,82 +4,92 @@ import { Button } from '@/components/ui/button'
 import Breadcrumb from '@/components/breadcrumb'
 import { generatePageMetadata } from '@/lib/metadata'
 import { productSchema } from '@/lib/schema-markup'
-import { Phone, Mail, MessageSquare, Zap, Database, Shield, Puzzle, Bot } from 'lucide-react'
+import { Layers, Zap, Database, Shield, Puzzle, Bot } from 'lucide-react'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Product Overview',
-  description: 'Industry-ready AI products for communication, scheduling, and lead response across real estate, hospitality, healthcare, and more.',
+  description: 'Simple, AI-powered communication tools for calls, email, chat, knowledge, integrations, and security.',
   path: '/product',
 })
 
 const iconMap: Record<string, any> = {
-  phone: Phone,
-  mail: Mail,
-  'message-square': MessageSquare,
-  zap: Zap,
+  layers: Layers,
+  tools: Zap,
   database: Database,
-  shield: Shield,
   puzzle: Puzzle,
+  shield: Shield,
   bot: Bot,
 }
 
 export default async function ProductPage() {
   const products = [
     {
-      _id: 'voice-receptionist',
-      title: 'Voice Receptionist',
-      description: 'Always-on call handling with intelligent routing, booking, and industry-specific intake.',
-      slug: { current: 'voice-receptionist' },
-      icon: 'phone',
+      _id: 'communications-layer',
+      title: 'Communications Layer',
+      description: 'One place for calls, emails, and chats. Example: a missed call becomes a follow-up email automatically.',
+      slug: { current: 'communications-layer' },
+      icon: 'layers',
     },
     {
-      _id: 'email-assistant',
-      title: 'Email Assistant',
-      description: 'Goal-based email drafting, follow-ups, and approvals that preserve brand voice.',
-      slug: { current: 'email-assistant' },
-      icon: 'mail',
+      _id: 'donna-tools',
+      title: 'DONNA Tools/Features',
+      description: 'Email Center, live agent handoff, lead generation, and scheduling in plain language.',
+      slug: { current: 'donna-tools' },
+      icon: 'tools',
     },
     {
-      _id: 'chatbot',
-      title: 'AI Chatbot',
-      description: 'Web chat that captures intent, qualifies leads, and hands off to humans seamlessly.',
-      slug: { current: 'chatbot' },
-      icon: 'message-square',
-    },
-    {
-      _id: 'secretary-bot',
-      title: 'Secretary Bot',
-      description: 'Scheduling, reminders, and coordination that keep teams aligned without bottlenecks.',
-      slug: { current: 'secretary-bot' },
-      icon: 'bot',
-    },
-    {
-      _id: 'marketing-bot',
-      title: 'Marketing Bot',
-      description: 'Campaign automation across SMS, email, and chat aligned to industry intent signals.',
-      slug: { current: 'marketing-bot' },
-      icon: 'zap',
-    },
-    {
-      _id: 'knowledge-base',
-      title: 'Knowledge Base',
-      description: 'Living knowledge system with industry-specific segmentation and access controls.',
-      slug: { current: 'knowledge-base' },
+      _id: 'custom-knowledge-base',
+      title: 'Custom Knowledge Base',
+      description: 'Approved answers from your docs. Example: policy questions get the official response every time.',
+      slug: { current: 'custom-knowledge-base' },
       icon: 'database',
     },
     {
-      _id: 'integrations',
-      title: 'Integrations',
-      description: 'Tool-native integrations across CRM, calendar, email, and operational systems.',
-      slug: { current: 'integrations' },
+      _id: 'integrations-architecture',
+      title: 'Integrations & Architecture',
+      description: 'Connect CRM, calendar, and helpdesk. Example: a lead is logged to your CRM instantly.',
+      slug: { current: 'integrations-architecture' },
       icon: 'puzzle',
     },
     {
-      _id: 'security',
-      title: 'Security',
-      description: 'Enterprise-grade security with role-based access, encryption, and compliance readiness.',
-      slug: { current: 'security' },
+      _id: 'security-infrastructure',
+      title: 'Security & Infrastructure',
+      description: 'Encrypted data, access controls, and reliable uptime for customer communication.',
+      slug: { current: 'security-infrastructure' },
       icon: 'shield',
+    },
+  ]
+
+  const faqItems = [
+    {
+      question: 'What does the DONNA Communications Layer do?',
+      answer:
+        'It connects calls, emails, and chats into one system so nothing gets lost. Example: a missed call can automatically trigger a follow-up email with the call summary.',
+    },
+    {
+      question: 'How does DONNA help non-technical teams?',
+      answer:
+        'DONNA uses plain-language tools like shared inboxes, smart routing, and simple automation rules so teams can respond quickly without learning new software.',
+    },
+    {
+      question: 'Can DONNA use our existing tools like CRM and calendars?',
+      answer:
+        'Yes. DONNA integrates with popular CRMs, calendars, and helpdesks, and can connect to custom tools through APIs.',
+    },
+    {
+      question: 'How does the Custom Knowledge Base work?',
+      answer:
+        'You upload your policies, pricing, FAQs, and guides. DONNA answers questions using only approved information so responses stay accurate and compliant.',
+    },
+    {
+      question: 'Is DONNA secure for customer data?',
+      answer:
+        'Yes. Data is encrypted, access is controlled by roles, and activity is logged for compliance and audits.',
+    },
+    {
+      question: 'What is a real example of DONNA in action?',
+      answer:
+        'A customer asks for pricing on chat, DONNA confirms their needs, creates a lead in your CRM, schedules a call, and sends a summary to your team.',
     },
   ]
 
@@ -88,11 +98,28 @@ export default async function ProductPage() {
     description: 'AI-Powered Business Communication Platform',
   })
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  }
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', ...schema }) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
       <div className="container mx-auto px-4 py-8">
@@ -101,10 +128,10 @@ export default async function ProductPage() {
         {/* Hero Section */}
         <section className="py-12 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            The Digital Operations Layer
+            The Communications Layer for Every Business
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            DONNA connects to your tools, coordinates across channels, and executes industry workflows with human-in-the-loop control.
+            DONNA helps you answer calls, emails, and chats faster, with simple tools that keep your team in control.
           </p>
           <Button size="lg" asChild>
             <Link href="/#demo-form">Join the Waitlist</Link>
@@ -116,11 +143,11 @@ export default async function ProductPage() {
           <h2 className="text-3xl font-bold mb-6 text-center">Why DONNA Exists</h2>
           <div className="max-w-4xl mx-auto prose prose-lg dark:prose-invert">
             <p>
-              Businesses run on fragmented tools and manual handoffs. DONNA was built as the operational layer that
-              coordinates work across departments, industries, and systems.
+              Most businesses juggle phones, inboxes, and chat tools that do not talk to each other. DONNA connects
+              them so customers get quick answers and your team sees the full story.
             </p>
             <p>
-              It takes action inside your existing stack, escalates exceptions, and keeps humans in control of outcomes.
+              It automates the busywork, routes requests to the right person, and keeps humans in control of every outcome.
             </p>
           </div>
         </section>
@@ -148,11 +175,24 @@ export default async function ProductPage() {
           </div>
         </section>
 
+        {/* FAQ Section */}
+        <section className="py-12">
+          <h2 className="text-3xl font-bold mb-6 text-center">Frequently Asked Questions</h2>
+          <div className="max-w-4xl mx-auto grid gap-6">
+            {faqItems.map((item) => (
+              <div key={item.question} className="p-6 border rounded-lg bg-background">
+                <h3 className="text-lg font-semibold mb-2">{item.question}</h3>
+                <p className="text-muted-foreground">{item.answer}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* CTA Section */}
         <section className="py-12 text-center bg-muted rounded-lg">
           <h2 className="text-3xl font-bold mb-4">Ready to Deploy DONNA?</h2>
           <p className="text-xl text-muted-foreground mb-6">
-            Join the waitlist or request a demo to see industry-specific workflows in action.
+            Join the waitlist or request a demo to see DONNA handle real calls, emails, and chats for your business.
           </p>
           <Button size="lg" asChild>
             <Link href="/#demo-form">Join the Waitlist</Link>

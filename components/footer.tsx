@@ -52,13 +52,11 @@ export default function Footer() {
             <h3 className="font-semibold mb-4 text-sm">Product</h3>
             <ul className="space-y-2 text-sm">
               <li><Link href="/product" className="text-foreground/70 hover:text-accent transition-colors">Overview</Link></li>
-              <li><Link href="/product/voice-receptionist" className="text-foreground/70 hover:text-accent transition-colors">Voice Receptionist</Link></li>
-              <li><Link href="/product/email-assistant" className="text-foreground/70 hover:text-accent transition-colors">Email Assistant</Link></li>
-              <li><Link href="/product/chatbot" className="text-foreground/70 hover:text-accent transition-colors">Chatbot</Link></li>
-              <li><Link href="/product/marketing-bot" className="text-foreground/70 hover:text-accent transition-colors">Marketing Bot</Link></li>
-              <li><Link href="/product/knowledge-base" className="text-foreground/70 hover:text-accent transition-colors">Knowledge Base</Link></li>
-              <li><Link href="/product/integrations" className="text-foreground/70 hover:text-accent transition-colors">Integrations</Link></li>
-              <li><Link href="/product/security" className="text-foreground/70 hover:text-accent transition-colors">Security</Link></li>
+              <li><Link href="/product/communications-layer" className="text-foreground/70 hover:text-accent transition-colors">Communications Layer</Link></li>
+              <li><Link href="/product/donna-tools" className="text-foreground/70 hover:text-accent transition-colors">DONNA Tools/Features</Link></li>
+              <li><Link href="/product/custom-knowledge-base" className="text-foreground/70 hover:text-accent transition-colors">Custom Knowledge Base</Link></li>
+              <li><Link href="/product/integrations-architecture" className="text-foreground/70 hover:text-accent transition-colors">Integrations & Architecture</Link></li>
+              <li><Link href="/product/security-infrastructure" className="text-foreground/70 hover:text-accent transition-colors">Security & Infrastructure</Link></li>
             </ul>
           </div>
 

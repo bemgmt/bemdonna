@@ -77,7 +77,7 @@ export default function Integrations() {
 
         <div className="text-center mt-8">
           <Link
-            href="/product/integrations"
+            href="/product/integrations-architecture"
             className="text-accent hover:text-accent/80 transition-colors font-medium"
           >
             View All Integrations →
