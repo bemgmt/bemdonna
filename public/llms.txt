@@ -1,0 +1,18 @@
+# llms.txt
+## Site
+- Name: DONNA
+- URL: https://donna.business/
+- Description: AI-powered business communication platform for operational intelligence.
+
+## Key Pages
+- https://donna.business/product
+- https://donna.business/pricing
+- https://donna.business/documentation
+- https://donna.business/industries
+- https://donna.business/use-cases
+
+## Contact
+- Email: derek@bem.studio
+
+## Sitemap
+- https://donna.business/sitemap.xml

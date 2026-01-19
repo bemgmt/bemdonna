@@ -1,0 +1,16 @@
+{
+  "name": "DONNA",
+  "short_name": "DONNA",
+  "description": "AI-powered business communication platform for operational intelligence.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#030314",
+  "theme_color": "#6B4FFF",
+  "icons": [
+    {
+      "src": "/DONNA-logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
