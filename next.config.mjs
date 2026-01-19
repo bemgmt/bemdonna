@@ -62,6 +62,11 @@ const nextConfig = {
         destination: '/press/10k-users-milestone',
         permanent: true,
       },
+      {
+        source: '/resources/documentation',
+        destination: '/documentation',
+        permanent: true,
+      },
     ]
   },
   // Rewrites for clean URLs

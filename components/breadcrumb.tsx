@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { ChevronRight, Home } from 'lucide-react'
 import { breadcrumbSchema } from '@/lib/schema-markup'
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://donna.business'
+
 const pathMap: Record<string, string> = {
   '/': 'Home',
   '/product': 'Product',
@@ -46,7 +48,14 @@ export default function Breadcrumb() {
     }),
   ]
 
-  const schema = breadcrumbSchema(breadcrumbItems)
+  const absoluteItems = breadcrumbItems.map((item) => ({
+    ...item,
+    url: new URL(item.url, siteUrl).toString(),
+  }))
+  const schema = {
+    '@context': 'https://schema.org',
+    ...breadcrumbSchema(absoluteItems),
+  }
 
   return (
     <>

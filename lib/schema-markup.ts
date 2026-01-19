@@ -1,6 +1,6 @@
 import type { Organization, SoftwareApplication, FAQPage, Article, BreadcrumbList, Product, Offer, Event, JobPosting, HowTo } from 'schema-dts'
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bemdonna.com'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://donna.business'
 
 export function organizationSchema(): Organization {
   return {
@@ -8,7 +8,7 @@ export function organizationSchema(): Organization {
     '@id': `${siteUrl}/#organization`,
     name: 'DONNA',
     url: siteUrl,
-    logo: `${siteUrl}/logo.png`,
+    logo: `${siteUrl}/DONNA-logo.png`,
     description: 'AI-Powered Business Communication Platform',
     sameAs: [
       'https://www.linkedin.com/company/bemdonna',
@@ -16,7 +16,6 @@ export function organizationSchema(): Organization {
     ],
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+1-XXX-XXX-XXXX',
       contactType: 'customer service',
       email: 'derek@bem.studio',
       areaServed: 'US',

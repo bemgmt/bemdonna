@@ -1,8 +1,16 @@
+import type { Metadata } from 'next'
+import { generatePageMetadata } from '@/lib/metadata'
 import { SectionTitleGlow } from "@/components/neural/section-title-glow"
 import { InvestorPayoutTable } from "@/components/neural/investor-payout-table"
 import { HoloFooter } from "@/components/neural/holo-footer"
 import { NeonButton } from "@/components/neural/neon-button"
 import { TrendingUp, Target, DollarSign, Rocket, Shield, Users } from "lucide-react"
+
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Investors',
+  description: 'Investor overview of DONNA market opportunity, traction, and SAFE options.',
+  path: '/investors',
+})
 
 export default function InvestorsPage() {
   const safePayouts = [

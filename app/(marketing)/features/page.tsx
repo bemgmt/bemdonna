@@ -1,9 +1,17 @@
+import type { Metadata } from 'next'
+import { generatePageMetadata } from '@/lib/metadata'
 import { SectionTitleGlow } from "@/components/neural/section-title-glow"
 import { HoloFooter } from "@/components/neural/holo-footer"
 import {
   Mail, Phone, MessageSquare, Bot, Users, Zap,
   TrendingUp, Target, FileText, Database, Search, Workflow
 } from "lucide-react"
+
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Capabilities & Features',
+  description: 'Explore DONNA capabilities across voice, email, chat, workflows, and automation.',
+  path: '/features',
+})
 
 export default function FeaturesPage() {
   const features = [

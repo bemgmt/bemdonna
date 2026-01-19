@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bemdonna.com'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://donna.business'
 const siteName = 'DONNA'
 const defaultTitle = 'DONNA - AI-Powered Business Communication Platform'
 const defaultDescription =

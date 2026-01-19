@@ -1,7 +1,15 @@
+import type { Metadata } from 'next'
+import { generatePageMetadata } from '@/lib/metadata'
 import { SectionTitleGlow } from "@/components/neural/section-title-glow"
 import { PricingTierCard } from "@/components/neural/pricing-tier-card"
 import { HoloFooter } from "@/components/neural/holo-footer"
 import { Check, X } from "lucide-react"
+
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Pricing Plans',
+  description: 'Transparent pricing for DONNA plans, from starter deployments to enterprise scale.',
+  path: '/pricing',
+})
 
 export default function PricingPage() {
   const comparisonFeatures = [

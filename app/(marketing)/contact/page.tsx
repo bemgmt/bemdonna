@@ -1,7 +1,15 @@
+import type { Metadata } from 'next'
+import { generatePageMetadata } from '@/lib/metadata'
 import { SectionTitleGlow } from "@/components/neural/section-title-glow"
 import { ContactFormHolo } from "@/components/neural/contact-form-holo"
 import { HoloFooter } from "@/components/neural/holo-footer"
 import { Mail, Calendar, MessageSquare, TrendingUp, Twitter, Linkedin, Youtube, Facebook, Music2 } from "lucide-react"
+
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Contact Sales & Support',
+  description: 'Talk to the DONNA team about demos, partnerships, or support for your AI operations.',
+  path: '/contact',
+})
 
 export default function ContactPage() {
   return (
