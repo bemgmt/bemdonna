@@ -9,7 +9,7 @@ import {
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Capabilities & Features',
-  description: 'Explore DONNA capabilities across voice, email, chat, workflows, and automation.',
+  description: 'Explore DONNA capabilities across communications, scheduling, lead generation, and industry operations.',
   path: '/features',
 })
 
@@ -18,7 +18,7 @@ export default function FeaturesPage() {
     {
       icon: Mail,
       title: "Email Bot",
-      description: "Intelligent email management powered by advanced NLP",
+      description: "Goal-based email execution with thread awareness and brand-safe tone",
       capabilities: [
         "Automatic email categorization and prioritization",
         "Context-aware response generation",
@@ -37,7 +37,7 @@ export default function FeaturesPage() {
     {
       icon: Phone,
       title: "Voice Bot",
-      description: "Natural voice interactions with human-like conversation",
+      description: "Always-on voice operations for inbound calls, routing, and scheduling",
       capabilities: [
         "Advanced speech recognition (ASR)",
         "Natural text-to-speech (TTS)",
@@ -56,7 +56,7 @@ export default function FeaturesPage() {
     {
       icon: MessageSquare,
       title: "SMS Bot",
-      description: "Automated text messaging for instant customer engagement",
+      description: "Two-way SMS for confirmations, reminders, and real-time updates",
       capabilities: [
         "Two-way SMS conversations",
         "Automated appointment reminders",
@@ -75,7 +75,7 @@ export default function FeaturesPage() {
     {
       icon: Bot,
       title: "Secretary Bot",
-      description: "Your AI executive assistant for administrative tasks",
+      description: "Scheduling, coordination, and follow-up that keeps teams aligned",
       capabilities: [
         "Calendar management and scheduling",
         "Meeting coordination across time zones",
@@ -94,7 +94,7 @@ export default function FeaturesPage() {
     {
       icon: Users,
       title: "Chatbot",
-      description: "24/7 intelligent customer support on your website",
+      description: "Web chat with persistent context and seamless human handoff",
       capabilities: [
         "Natural language understanding",
         "Multi-turn conversation handling",
@@ -113,7 +113,7 @@ export default function FeaturesPage() {
     {
       icon: Zap,
       title: "Lead Gen Engine",
-      description: "Automated lead capture, qualification, and nurturing",
+      description: "Intent-based lead capture, qualification, and CRM-ready routing",
       capabilities: [
         "Multi-channel lead capture",
         "Intelligent lead scoring",
@@ -132,7 +132,7 @@ export default function FeaturesPage() {
     {
       icon: TrendingUp,
       title: "Marketing Bot",
-      description: "Automated marketing campaigns and content distribution",
+      description: "Multi-channel campaigns tuned to industry intent and lifecycle stages",
       capabilities: [
         "Multi-channel campaign orchestration",
         "Personalized content delivery",
@@ -151,7 +151,7 @@ export default function FeaturesPage() {
     {
       icon: Target,
       title: "Sales Agent Bot",
-      description: "AI-powered sales conversations and deal progression",
+      description: "AI-led qualification, handoff, and follow-up to accelerate pipelines",
       capabilities: [
         "Intelligent lead qualification",
         "Product recommendation engine",
@@ -170,7 +170,7 @@ export default function FeaturesPage() {
     {
       icon: FileText,
       title: "Landing Page Generator",
-      description: "Create high-converting pages with AI-driven design",
+      description: "Launch industry-specific pages that capture and qualify demand",
       capabilities: [
         "AI-powered copywriting",
         "Responsive design templates",
@@ -189,7 +189,7 @@ export default function FeaturesPage() {
     {
       icon: Database,
       title: "Knowledge Base Integration",
-      description: "Centralized information hub with intelligent retrieval",
+      description: "Centralized knowledge with role-based access and accurate answers",
       capabilities: [
         "Multi-source data aggregation",
         "Semantic search capabilities",
@@ -208,7 +208,7 @@ export default function FeaturesPage() {
     {
       icon: Search,
       title: "Scraper Module",
-      description: "Automated data collection and competitive intelligence",
+      description: "Automated data collection for market signals and lead enrichment",
       capabilities: [
         "Web scraping and monitoring",
         "Competitor price tracking",
@@ -227,7 +227,7 @@ export default function FeaturesPage() {
     {
       icon: Workflow,
       title: "Agentic Workflows",
-      description: "Complex multi-step automations with decision-making",
+      description: "Multi-step workflows that execute tasks across tools with oversight",
       capabilities: [
         "Visual workflow builder",
         "Conditional logic and branching",
@@ -257,7 +257,7 @@ export default function FeaturesPage() {
             DONNA Capabilities
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed animate-slide-up">
-            An operational intelligence layer built to execute real workflows across your business
+            Industry-ready capabilities built to execute real workflows across your business
           </p>
         </div>
       </section>

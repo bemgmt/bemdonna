@@ -8,7 +8,7 @@ import { Phone, Mail, MessageSquare, Zap, Database, Shield, Puzzle, Bot } from '
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Product Overview',
-  description: 'Explore DONNA’s operational intelligence layer: agentic, multi-modal, tool-native, and network-aware.',
+  description: 'Industry-ready AI products for communication, scheduling, and lead response across real estate, hospitality, healthcare, and more.',
   path: '/product',
 })
 
@@ -28,56 +28,56 @@ export default async function ProductPage() {
     {
       _id: 'voice-receptionist',
       title: 'Voice Receptionist',
-      description: 'AI-powered voice receptionist that handles calls, schedules appointments, and manages phone communications with intelligent routing and context awareness.',
+      description: 'Always-on call handling with intelligent routing, booking, and industry-specific intake.',
       slug: { current: 'voice-receptionist' },
       icon: 'phone',
     },
     {
       _id: 'email-assistant',
       title: 'Email Assistant',
-      description: 'Thread-aware email automation with intelligent lead classification and auto-draft responses.',
+      description: 'Goal-based email drafting, follow-ups, and approvals that preserve brand voice.',
       slug: { current: 'email-assistant' },
       icon: 'mail',
     },
     {
       _id: 'chatbot',
       title: 'AI Chatbot',
-      description: 'Embedded chat widget with lead capture, funnel logic, and white-label branding for your website.',
+      description: 'Web chat that captures intent, qualifies leads, and hands off to humans seamlessly.',
       slug: { current: 'chatbot' },
       icon: 'message-square',
     },
     {
       _id: 'secretary-bot',
       title: 'Secretary Bot',
-      description: 'AI executive assistant that manages schedules, coordinates meetings, and handles administrative tasks 24/7.',
+      description: 'Scheduling, reminders, and coordination that keep teams aligned without bottlenecks.',
       slug: { current: 'secretary-bot' },
       icon: 'bot',
     },
     {
       _id: 'marketing-bot',
       title: 'Marketing Bot',
-      description: 'Automate campaigns across SMS, email, and chat with intelligent lead scoring and personalization.',
+      description: 'Campaign automation across SMS, email, and chat aligned to industry intent signals.',
       slug: { current: 'marketing-bot' },
       icon: 'zap',
     },
     {
       _id: 'knowledge-base',
       title: 'Knowledge Base',
-      description: 'Centralized knowledge management system that powers all DONNA interactions with accurate, up-to-date information.',
+      description: 'Living knowledge system with industry-specific segmentation and access controls.',
       slug: { current: 'knowledge-base' },
       icon: 'database',
     },
     {
       _id: 'integrations',
       title: 'Integrations',
-      description: 'Seamlessly connect with your existing tools: CRM, calendar, email, and hundreds of other platforms.',
+      description: 'Tool-native integrations across CRM, calendar, email, and operational systems.',
       slug: { current: 'integrations' },
       icon: 'puzzle',
     },
     {
       _id: 'security',
       title: 'Security',
-      description: 'Enterprise-grade security with SOC 2 compliance, GDPR compliance, and end-to-end encryption.',
+      description: 'Enterprise-grade security with role-based access, encryption, and compliance readiness.',
       slug: { current: 'security' },
       icon: 'shield',
     },
@@ -104,7 +104,7 @@ export default async function ProductPage() {
             The Digital Operations Layer
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            DONNA connects to your tools, coordinates across channels, and executes workflows with human-in-the-loop control.
+            DONNA connects to your tools, coordinates across channels, and executes industry workflows with human-in-the-loop control.
           </p>
           <Button size="lg" asChild>
             <Link href="/#demo-form">Join the Waitlist</Link>
@@ -116,11 +116,11 @@ export default async function ProductPage() {
           <h2 className="text-3xl font-bold mb-6 text-center">Why DONNA Exists</h2>
           <div className="max-w-4xl mx-auto prose prose-lg dark:prose-invert">
             <p>
-              Businesses run on fragmented tools and manual handoffs. DONNA was built to act as the operational layer that
-              coordinates work across departments and systems.
+              Businesses run on fragmented tools and manual handoffs. DONNA was built as the operational layer that
+              coordinates work across departments, industries, and systems.
             </p>
             <p>
-              It takes action inside your existing stack, escalates exceptions, and keeps humans in control.
+              It takes action inside your existing stack, escalates exceptions, and keeps humans in control of outcomes.
             </p>
           </div>
         </section>
@@ -152,7 +152,7 @@ export default async function ProductPage() {
         <section className="py-12 text-center bg-muted rounded-lg">
           <h2 className="text-3xl font-bold mb-4">Ready to Deploy DONNA?</h2>
           <p className="text-xl text-muted-foreground mb-6">
-            Join the waitlist or request a demo to see the platform in action.
+            Join the waitlist or request a demo to see industry-specific workflows in action.
           </p>
           <Button size="lg" asChild>
             <Link href="/#demo-form">Join the Waitlist</Link>

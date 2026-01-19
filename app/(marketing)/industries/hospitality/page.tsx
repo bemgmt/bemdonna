@@ -6,11 +6,37 @@ import { StatsSection } from '@/components/stats-section'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Hospitality AI Solutions - DONNA for Hotels & Resorts',
-  description: 'Operational intelligence for hospitality teams across reservations, guest services, and coordination.',
+  description: 'Hospitality AI for reservations, guest services, and concierge coordination across hotels and resorts.',
   path: '/industries/hospitality',
 })
 
 export default function HospitalityPage() {
+  const operations = [
+    {
+      title: 'Communications Layer',
+      description: 'Unify guest messaging across phone, SMS, and web chat with a consistent brand voice.',
+    },
+    {
+      title: 'Email Center',
+      description: 'Automate confirmations, upgrades, and stay logistics with goal-based replies.',
+    },
+    {
+      title: 'Chatbot + Live Handoff',
+      description: 'Resolve routine questions and hand off VIP issues to staff in the same thread.',
+    },
+    {
+      title: 'Knowledge Base',
+      description: 'Answer questions on amenities, policies, and local recommendations in seconds.',
+    },
+    {
+      title: 'Lead Generation',
+      description: 'Capture group and event inquiries and qualify high-value stays.',
+    },
+    {
+      title: 'Secretary Features',
+      description: 'Coordinate schedules, reminders, and internal service requests.',
+    },
+  ]
   const features = [
     {
       icon: Calendar,
@@ -71,6 +97,20 @@ export default function HospitalityPage() {
           <p className="text-center text-sm text-gray-500 mt-6">
             *Gartner research | **Zendesk industry average | ***HubSpot customer expectations
           </p>
+        </div>
+      </section>
+
+      <section className="py-20 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-4xl font-bold mb-12 text-center gradient-text">Hospitality Operations Layer</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {operations.map((item) => (
+              <div key={item.title} className="glass-panel p-6 rounded-xl">
+                <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
+                <p className="text-gray-400">{item.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

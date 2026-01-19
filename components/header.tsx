@@ -74,16 +74,6 @@ export default function Header() {
         { label: "Appointment Scheduling", href: "/use-cases/appointment-scheduling" },
       ],
     },
-    resources: {
-      label: "Resources",
-      items: [
-        { label: "Blog", href: "/blog" },
-        { label: "Case Studies", href: "/case-studies" },
-        { label: "Documentation", href: "/documentation" },
-        { label: "Tutorials", href: "/tutorials" },
-        { label: "Webinars", href: "/webinars" },
-      ],
-    },
   }
 
   return (

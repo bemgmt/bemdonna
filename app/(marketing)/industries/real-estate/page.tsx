@@ -6,11 +6,38 @@ import { StatsSection } from '@/components/stats-section'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Real Estate AI Solutions - DONNA for Realtors',
-  description: 'Operational intelligence for real estate teams that automates inquiries, scheduling, and follow-ups.',
+  description: 'Real estate AI assistant for lead response, showings, and client communication across the full buying journey.',
   path: '/industries/real-estate',
 })
 
 export default function RealEstatePage() {
+  const operations = [
+    {
+      title: 'Communications Layer',
+      description: 'Capture buyer and seller inquiries across phone, SMS, and web chat with shared context.',
+    },
+    {
+      title: 'Email Center',
+      description: 'Automate follow-ups, disclosures, and appointment confirmations with brand voice consistency.',
+    },
+    {
+      title: 'Chatbot + Live Handoff',
+      description: 'Qualify leads, then route high-intent buyers to an agent without losing context.',
+    },
+    {
+      title: 'Knowledge Base',
+      description: 'Answer listing questions with MLS data, availability, and neighborhood details.',
+    },
+    {
+      title: 'Lead Generation',
+      description: 'Identify motivated buyers and sellers and prep CRM-ready lead profiles.',
+    },
+    {
+      title: 'Secretary Features',
+      description: 'Coordinate showings, reminders, and status updates across all active listings.',
+    },
+  ]
+
   const features = [
     {
       icon: Phone,
@@ -71,6 +98,20 @@ export default function RealEstatePage() {
           <p className="text-center text-sm text-gray-500 mt-6">
             *Harvard Business Review study
           </p>
+        </div>
+      </section>
+
+      <section className="py-20 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-4xl font-bold mb-12 text-center gradient-text">Real Estate Operations Layer</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {operations.map((item) => (
+              <div key={item.title} className="glass-panel p-6 rounded-xl">
+                <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
+                <p className="text-gray-400">{item.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

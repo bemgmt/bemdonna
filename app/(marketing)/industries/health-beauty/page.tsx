@@ -6,11 +6,37 @@ import { StatsSection } from '@/components/stats-section'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Health & Beauty AI - DONNA for Salons & Spas',
-  description: 'Operational intelligence for salons, spas, and wellness teams across scheduling and client care.',
+  description: 'Health and beauty AI for salons, spas, and wellness centers across booking, reminders, and client care.',
   path: '/industries/health-beauty',
 })
 
 export default function HealthBeautyPage() {
+  const operations = [
+    {
+      title: 'Communications Layer',
+      description: 'Handle inquiries across phone, SMS, and chat with consistent tone and context.',
+    },
+    {
+      title: 'Email Center',
+      description: 'Automate confirmations, reschedules, and follow-ups with goal-based messaging.',
+    },
+    {
+      title: 'Chatbot + Live Handoff',
+      description: 'Guide new clients to the right services, then route VIP requests to staff.',
+    },
+    {
+      title: 'Knowledge Base',
+      description: 'Answer service, pricing, and availability questions instantly.',
+    },
+    {
+      title: 'Lead Generation',
+      description: 'Identify high-intent clients and prep intake details for your team.',
+    },
+    {
+      title: 'Secretary Features',
+      description: 'Coordinate calendars, reminders, and retention outreach.',
+    },
+  ]
   const features = [
     {
       icon: Calendar,
@@ -71,6 +97,20 @@ export default function HealthBeautyPage() {
           <p className="text-center text-sm text-gray-500 mt-6">
             *Industry standard | **Automated reminder studies
           </p>
+        </div>
+      </section>
+
+      <section className="py-20 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-4xl font-bold mb-12 text-center gradient-text">Health & Beauty Operations Layer</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {operations.map((item) => (
+              <div key={item.title} className="glass-panel p-6 rounded-xl">
+                <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
+                <p className="text-gray-400">{item.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

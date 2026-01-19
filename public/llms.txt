@@ -7,9 +7,9 @@
 ## Key Pages
 - https://donna.business/product
 - https://donna.business/pricing
-- https://donna.business/documentation
 - https://donna.business/industries
 - https://donna.business/use-cases
+- https://donna.business/contact
 
 ## Contact
 - Email: derek@bem.studio

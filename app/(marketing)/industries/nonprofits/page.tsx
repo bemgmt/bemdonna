@@ -6,11 +6,37 @@ import { StatsSection } from '@/components/stats-section'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Nonprofit AI Solutions - DONNA for Nonprofits & Chambers',
-  description: 'Operational intelligence for nonprofits across member communications, events, and donor outreach.',
+  description: 'Nonprofit AI for member communications, events, and donor outreach with consistent messaging.',
   path: '/industries/nonprofits',
 })
 
 export default function NonprofitsPage() {
+  const operations = [
+    {
+      title: 'Communications Layer',
+      description: 'Handle member, donor, and community inquiries across phone, SMS, and chat.',
+    },
+    {
+      title: 'Email Center',
+      description: 'Automate campaigns, event confirmations, and follow-ups with goal-based messaging.',
+    },
+    {
+      title: 'Chatbot + Live Handoff',
+      description: 'Answer common questions and route high-value donor conversations to staff.',
+    },
+    {
+      title: 'Knowledge Base',
+      description: 'Maintain program info, policies, and impact stories in one place.',
+    },
+    {
+      title: 'Lead Generation',
+      description: 'Identify donor intent and prep outreach details for fundraising teams.',
+    },
+    {
+      title: 'Secretary Features',
+      description: 'Coordinate event schedules, reminders, and volunteer outreach.',
+    },
+  ]
   const features = [
     {
       icon: Users,
@@ -71,6 +97,20 @@ export default function NonprofitsPage() {
           <p className="text-center text-sm text-gray-500 mt-6">
             *Gartner research | **Zendesk industry average
           </p>
+        </div>
+      </section>
+
+      <section className="py-20 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-4xl font-bold mb-12 text-center gradient-text">Nonprofit Operations Layer</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {operations.map((item) => (
+              <div key={item.title} className="glass-panel p-6 rounded-xl">
+                <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
+                <p className="text-gray-400">{item.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

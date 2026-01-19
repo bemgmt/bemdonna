@@ -10,8 +10,8 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = generatePageMetadata({
-  title: 'Industries - AI Solutions for Every Business',
-  description: 'Industry-agnostic operational intelligence with tailored deployments for your business.',
+  title: 'Industry AI Solutions by Vertical',
+  description: 'Industry-specific AI for real estate, hospitality, healthcare, insurance, retail, and more with DONNA’s operational intelligence layer.',
   path: '/industries',
 })
 
@@ -30,6 +30,33 @@ interface Vertical {
 }
 
 export default async function IndustriesPage() {
+  const capabilityBlocks = [
+    {
+      title: 'Communications Layer',
+      description: 'Omnichannel conversations tailored to the language, timing, and workflows of each industry.',
+    },
+    {
+      title: 'Email Center',
+      description: 'Goal-based email drafting and follow-up for industry-specific workflows and compliance needs.',
+    },
+    {
+      title: 'Chatbot + Live Handoff',
+      description: 'Natural web chat with seamless escalation for high-value or regulated conversations.',
+    },
+    {
+      title: 'Knowledge Base',
+      description: 'Industry-specific knowledge segmentation that keeps answers accurate and current.',
+    },
+    {
+      title: 'Lead Generation',
+      description: 'Intent-based lead capture and qualification tuned to each vertical.',
+    },
+    {
+      title: 'Secretary Features',
+      description: 'Scheduling, reminders, and coordination that keep operations moving without bottlenecks.',
+    },
+  ]
+
   const verticals: Vertical[] = [
     {
       name: 'Real Estate & Property',
@@ -240,8 +267,29 @@ export default async function IndustriesPage() {
             DONNA for Every Industry
           </h1>
           <p className="text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            One operational intelligence layer, adapted to the workflows and language of your industry.
+            One operational intelligence layer, tuned to the workflows, language, and compliance needs of every industry.
           </p>
+        </div>
+      </section>
+
+      <section className="py-16 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-10">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+              Industry Operations Layer
+            </h2>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              These core capabilities adapt to each vertical to deliver industry-specific outcomes.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {capabilityBlocks.map((block) => (
+              <div key={block.title} className="glass-panel p-6 rounded-xl">
+                <h3 className="text-xl font-bold text-white mb-3">{block.title}</h3>
+                <p className="text-gray-400">{block.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

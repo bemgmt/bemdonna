@@ -6,11 +6,37 @@ import { StatsSection } from '@/components/stats-section'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Nightlife AI Solutions - DONNA for Clubs & Entertainment',
-  description: 'Operational intelligence for nightlife venues across reservations, guest lists, and event coordination.',
+  description: 'Nightlife AI for reservations, VIP guest lists, and event coordination across clubs and lounges.',
   path: '/industries/nightlife',
 })
 
 export default function NightlifePage() {
+  const operations = [
+    {
+      title: 'Communications Layer',
+      description: 'Capture VIP requests and event questions across SMS, chat, and phone.',
+    },
+    {
+      title: 'Email Center',
+      description: 'Automate confirmations, promotions, and deposit reminders.',
+    },
+    {
+      title: 'Chatbot + Live Handoff',
+      description: 'Handle high-volume inquiries and route high-spend guests to staff.',
+    },
+    {
+      title: 'Knowledge Base',
+      description: 'Answer questions about lineups, policies, dress code, and hours.',
+    },
+    {
+      title: 'Lead Generation',
+      description: 'Identify repeat VIPs and segment promotions by intent.',
+    },
+    {
+      title: 'Secretary Features',
+      description: 'Coordinate bookings, reminders, and door lists.',
+    },
+  ]
   const features = [
     {
       icon: Calendar,
@@ -71,6 +97,20 @@ export default function NightlifePage() {
           <p className="text-center text-sm text-gray-500 mt-6">
             *Industry standard | **Automated reminder studies
           </p>
+        </div>
+      </section>
+
+      <section className="py-20 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-4xl font-bold mb-12 text-center gradient-text">Nightlife Operations Layer</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {operations.map((item) => (
+              <div key={item.title} className="glass-panel p-6 rounded-xl">
+                <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
+                <p className="text-gray-400">{item.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

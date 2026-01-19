@@ -7,12 +7,19 @@ import { NeonButton } from "@/components/neural/neon-button"
 import { Sparkles, Users, Home, Briefcase } from "lucide-react"
 
 export const metadata: Metadata = generatePageMetadata({
-  title: 'Industry Solutions',
-  description: 'Operational intelligence tailored to real estate, hospitality, wellness, and services.',
+  title: 'Industry Solutions by Vertical',
+  description: 'Industry-specific AI for real estate, hospitality, wellness, and professional services with DONNA’s operational intelligence layer.',
   path: '/verticals',
 })
 
 export default function VerticalsPage() {
+  const outcomeHighlights = [
+    'Faster response times and fewer missed inquiries',
+    'Consistent brand voice across channels',
+    'Intent-based lead capture and qualification',
+    'Streamlined scheduling, coordination, and follow-up',
+  ]
+
   return (
     <main className="min-h-screen bg-[#030314]">
       {/* Hero Section */}
@@ -27,6 +34,24 @@ export default function VerticalsPage() {
           <p className="text-2xl text-gray-300 leading-relaxed animate-slide-up">
             One operational intelligence layer, tailored to your industry workflows
           </p>
+        </div>
+      </section>
+
+      <section className="py-16 px-4">
+        <div className="container mx-auto max-w-5xl text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 gradient-text">
+            Industry Outcomes, Not Generic Automation
+          </h2>
+          <p className="text-xl text-gray-400 mb-8">
+            DONNA adapts the communications layer, knowledge base, and scheduling logic to each vertical.
+          </p>
+          <div className="grid md:grid-cols-2 gap-4">
+            {outcomeHighlights.map((item) => (
+              <div key={item} className="glass-panel px-6 py-4 rounded-xl text-gray-300">
+                {item}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

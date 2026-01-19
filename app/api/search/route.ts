@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getAllBlogPosts, getAllProductPages, getAllIndustryPages, getAllUseCasePages, getAllDocumentation } from '@/lib/sanity/queries'
+import { getAllProductPages, getAllIndustryPages, getAllUseCasePages } from '@/lib/sanity/queries'
 
 export async function GET(request: NextRequest) {
   try {
@@ -13,33 +13,13 @@ export async function GET(request: NextRequest) {
     const searchTerm = query.toLowerCase()
 
     // Search across different content types
-    const [blogPosts, productPages, industryPages, useCasePages, docs] = await Promise.all([
-      getAllBlogPosts().catch(() => []),
+    const [productPages, industryPages, useCasePages] = await Promise.all([
       getAllProductPages().catch(() => []),
       getAllIndustryPages().catch(() => []),
       getAllUseCasePages().catch(() => []),
-      getAllDocumentation().catch(() => []),
     ])
 
     const results: any[] = []
-
-    // Search blog posts
-    if (Array.isArray(blogPosts)) {
-      blogPosts.forEach((post: any) => {
-        if (
-          post.title?.toLowerCase().includes(searchTerm) ||
-          post.excerpt?.toLowerCase().includes(searchTerm) ||
-          post.tags?.some((tag: string) => tag.toLowerCase().includes(searchTerm))
-        ) {
-          results.push({
-            type: 'Blog Post',
-            title: post.title,
-            description: post.excerpt,
-            url: `/blog/${post.slug?.current || post.slug}`,
-          })
-        }
-      })
-    }
 
     // Search product pages
     if (Array.isArray(productPages)) {
@@ -84,23 +64,6 @@ export async function GET(request: NextRequest) {
             title: page.title,
             description: '',
             url: `/use-cases/${page.slug?.current || page.slug}`,
-          })
-        }
-      })
-    }
-
-    // Search documentation
-    if (Array.isArray(docs)) {
-      docs.forEach((doc: any) => {
-        if (
-          doc.title?.toLowerCase().includes(searchTerm) ||
-          doc.description?.toLowerCase().includes(searchTerm)
-        ) {
-          results.push({
-            type: 'Documentation',
-            title: doc.title,
-            description: doc.description,
-            url: `/documentation/${doc.slug?.current || doc.slug}`,
           })
         }
       })

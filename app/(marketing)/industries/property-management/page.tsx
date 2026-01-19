@@ -6,11 +6,37 @@ import { StatsSection } from '@/components/stats-section'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Property Management AI - DONNA for Property Managers',
-  description: 'Operational intelligence for property management: tenant communication, maintenance, and leasing workflows.',
+  description: 'Property management AI for tenant communication, maintenance requests, and leasing workflows.',
   path: '/industries/property-management',
 })
 
 export default function PropertyManagementPage() {
+  const operations = [
+    {
+      title: 'Communications Layer',
+      description: 'Handle tenant inquiries across SMS, phone, and web chat with full context.',
+    },
+    {
+      title: 'Email Center',
+      description: 'Automate lease reminders, notices, and maintenance updates.',
+    },
+    {
+      title: 'Chatbot + Live Handoff',
+      description: 'Resolve routine requests and escalate urgent issues to staff instantly.',
+    },
+    {
+      title: 'Knowledge Base',
+      description: 'Answer questions about policies, amenities, and lease terms.',
+    },
+    {
+      title: 'Lead Generation',
+      description: 'Capture leasing inquiries and qualify prospects by intent.',
+    },
+    {
+      title: 'Secretary Features',
+      description: 'Coordinate tours, maintenance schedules, and payment reminders.',
+    },
+  ]
   const features = [
     {
       icon: Wrench,
@@ -71,6 +97,20 @@ export default function PropertyManagementPage() {
           <p className="text-center text-sm text-gray-500 mt-6">
             *Gartner research | **Zendesk industry average
           </p>
+        </div>
+      </section>
+
+      <section className="py-20 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-4xl font-bold mb-12 text-center gradient-text">Property Management Operations Layer</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {operations.map((item) => (
+              <div key={item.title} className="glass-panel p-6 rounded-xl">
+                <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
+                <p className="text-gray-400">{item.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

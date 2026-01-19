@@ -170,10 +170,10 @@ export default function IntegrationsPage() {
               Our API and webhook system makes it easy to build custom integrations with any platform.
             </p>
             <Link
-              href="/documentation"
+              href="/contact"
               className="inline-block px-8 py-4 bg-gradient-to-r from-[#8A2FFF] to-[#6B4FFF] rounded-lg font-semibold text-white hover:scale-105 transition-transform"
             >
-              View API Documentation
+              Talk to the Team
             </Link>
           </div>
         </div>

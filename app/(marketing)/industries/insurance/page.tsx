@@ -6,11 +6,37 @@ import { StatsSection } from '@/components/stats-section'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Insurance AI Solutions - DONNA for Insurance Agents',
-  description: 'Operational intelligence for insurance agencies across quotes, renewals, and client support.',
+  description: 'Insurance AI for quotes, renewals, and policy support with compliant client communication.',
   path: '/industries/insurance',
 })
 
 export default function InsurancePage() {
+  const operations = [
+    {
+      title: 'Communications Layer',
+      description: 'Handle policy questions and claims inquiries across phone, SMS, and chat.',
+    },
+    {
+      title: 'Email Center',
+      description: 'Automate quote follow-ups, renewals, and documentation requests.',
+    },
+    {
+      title: 'Chatbot + Live Handoff',
+      description: 'Qualify prospects and route complex coverage questions to agents.',
+    },
+    {
+      title: 'Knowledge Base',
+      description: 'Surface policy details, coverage FAQs, and regulatory guidance.',
+    },
+    {
+      title: 'Lead Generation',
+      description: 'Capture intent signals and prioritize high-value insurance leads.',
+    },
+    {
+      title: 'Secretary Features',
+      description: 'Coordinate appointments, reminders, and policy reviews.',
+    },
+  ]
   const features = [
     {
       icon: FileText,
@@ -71,6 +97,20 @@ export default function InsurancePage() {
           <p className="text-center text-sm text-gray-500 mt-6">
             *Harvard Business Review study
           </p>
+        </div>
+      </section>
+
+      <section className="py-20 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-4xl font-bold mb-12 text-center gradient-text">Insurance Operations Layer</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {operations.map((item) => (
+              <div key={item.title} className="glass-panel p-6 rounded-xl">
+                <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
+                <p className="text-gray-400">{item.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
