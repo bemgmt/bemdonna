@@ -59,7 +59,7 @@ const downloads = [
         description: 'Complete API reference and integration guides',
         size: '3.5 MB',
         format: 'PDF',
-        url: '/docs',
+        url: '/documentation',
       },
       {
         title: 'SDK & Code Examples',

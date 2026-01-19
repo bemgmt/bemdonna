@@ -16,7 +16,7 @@ const pathMap: Record<string, string> = {
   '/blog': 'Blog',
   '/case-studies': 'Case Studies',
   '/tutorials': 'Tutorials',
-  '/docs': 'Documentation',
+  '/documentation': 'Documentation',
   '/webinars': 'Webinars',
   '/downloads': 'Downloads',
   '/careers': 'Careers',

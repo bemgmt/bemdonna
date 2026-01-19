@@ -148,12 +148,9 @@ export default function CaseStudiesPage() {
                       <div className="text-[#8A2FFF] font-semibold">— {study.author}</div>
                     </div>
 
-                    <Link
-                      href={`/case-studies/${study.slug}`}
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#8A2FFF] to-[#6B4FFF] rounded-lg font-semibold text-white hover:scale-105 transition-transform"
-                    >
-                      Read Full Case Study
-                    </Link>
+                    <span className="inline-flex items-center gap-2 px-6 py-3 bg-[#8A2FFF]/20 text-[#8A2FFF] rounded-lg font-semibold cursor-not-allowed">
+                      Full case study coming soon
+                    </span>
                   </div>
 
                   <div>

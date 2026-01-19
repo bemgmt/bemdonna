@@ -11,7 +11,7 @@ export default function ResourcesLayout({ children }: { children: ReactNode }) {
     { href: '/blog', label: 'Blog', icon: BookOpen },
     { href: '/case-studies', label: 'Case Studies', icon: Briefcase },
     { href: '/tutorials', label: 'Tutorials', icon: GraduationCap },
-    { href: '/docs', label: 'Documentation', icon: FileText },
+    { href: '/documentation', label: 'Documentation', icon: FileText },
     { href: '/webinars', label: 'Webinars', icon: Video },
     { href: '/downloads', label: 'Downloads', icon: Download },
   ]

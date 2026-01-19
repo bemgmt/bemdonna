@@ -42,6 +42,26 @@ const nextConfig = {
         destination: '/',
         permanent: true,
       },
+      {
+        source: '/series-a-funding',
+        destination: '/press/series-a-funding',
+        permanent: true,
+      },
+      {
+        source: '/language-launch',
+        destination: '/press/multi-language-launch',
+        permanent: true,
+      },
+      {
+        source: '/certification',
+        destination: '/press/soc2-certification',
+        permanent: true,
+      },
+      {
+        source: '/customers-milestone',
+        destination: '/press/10k-users-milestone',
+        permanent: true,
+      },
     ]
   },
   // Rewrites for clean URLs
