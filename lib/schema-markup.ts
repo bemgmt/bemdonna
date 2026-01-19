@@ -117,7 +117,7 @@ export function productSchema(product: {
   description: string
   image?: string
 }): Product {
-  return {
+  const schema: Product = {
     '@type': 'Product',
     name: product.name,
     description: product.description,
@@ -126,7 +126,17 @@ export function productSchema(product: {
       '@type': 'Brand',
       name: 'DONNA',
     },
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+    },
   }
+  // #region agent log
+  fetch('http://127.0.0.1:7245/ingest/523dd404-685e-4f69-8de8-31375ba15ef3',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'audit-run',hypothesisId:'D',location:'lib/schema-markup.ts:134',message:'schema:product',data:{name:product.name,hasImage:Boolean(product.image),hasOffers:Boolean(schema.offers)},timestamp:Date.now()})}).catch(()=>{});
+  // #endregion
+  return schema
 }
 
 export function offerSchema(pricing: {
@@ -184,7 +194,8 @@ export function jobPostingSchema(job: {
   employmentType: string
   datePosted: string
 }): JobPosting {
-  return {
+  const isRemote = /remote/i.test(job.location)
+  const schema: JobPosting = {
     '@type': 'JobPosting',
     title: job.title,
     description: job.description,
@@ -194,15 +205,28 @@ export function jobPostingSchema(job: {
       '@type': 'Organization',
       name: 'DONNA',
       sameAs: siteUrl,
+      url: siteUrl,
     },
     jobLocation: {
       '@type': 'Place',
       address: {
         '@type': 'PostalAddress',
-        addressLocality: job.location,
+        addressLocality: isRemote ? 'Remote' : job.location,
+        addressCountry: 'US',
       },
     },
+    ...(isRemote && {
+      jobLocationType: 'TELECOMMUTE',
+      applicantLocationRequirements: {
+        '@type': 'Country',
+        name: 'US',
+      },
+    }),
   }
+  // #region agent log
+  fetch('http://127.0.0.1:7245/ingest/523dd404-685e-4f69-8de8-31375ba15ef3',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'audit-run',hypothesisId:'E',location:'lib/schema-markup.ts:199',message:'schema:jobPosting',data:{title:job.title,employmentType:job.employmentType,isRemote,location:job.location},timestamp:Date.now()})}).catch(()=>{});
+  // #endregion
+  return schema
 }
 
 export function howToSchema(tutorial: {

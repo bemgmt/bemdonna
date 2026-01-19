@@ -67,6 +67,41 @@ const nextConfig = {
         destination: '/documentation',
         permanent: true,
       },
+      {
+        source: '/docs',
+        destination: '/documentation',
+        permanent: true,
+      },
+      {
+        source: '/realty-group',
+        destination: '/case-studies',
+        permanent: true,
+      },
+      {
+        source: '/sunset-spa',
+        destination: '/case-studies',
+        permanent: true,
+      },
+      {
+        source: '/metro-property',
+        destination: '/case-studies',
+        permanent: true,
+      },
+      {
+        source: '/downtown-chamber',
+        destination: '/case-studies',
+        permanent: true,
+      },
+      {
+        source: '/premier-insurance',
+        destination: '/case-studies',
+        permanent: true,
+      },
+      {
+        source: '/grand-hotel',
+        destination: '/case-studies',
+        permanent: true,
+      },
     ]
   },
   // Rewrites for clean URLs

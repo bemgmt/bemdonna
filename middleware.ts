@@ -34,6 +34,28 @@ export function middleware(request: NextRequest) {
 
   // Handle redirects for old URLs
   const { pathname } = request.nextUrl
+  const auditPaths = new Set([
+    '/careers',
+    '/press',
+    '/site.webmanifest',
+    '/llms.txt',
+    '/docs',
+    '/series-a-funding',
+    '/language-launch',
+    '/certification',
+    '/customers-milestone',
+    '/realty-group',
+    '/sunset-spa',
+    '/metro-property',
+    '/downtown-chamber',
+    '/premier-insurance',
+    '/grand-hotel',
+  ])
+  if (auditPaths.has(pathname)) {
+    // #region agent log
+    fetch('http://127.0.0.1:7245/ingest/523dd404-685e-4f69-8de8-31375ba15ef3',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'audit-run',hypothesisId:'B',location:'middleware.ts:44',message:'audit:path-hit',data:{pathname,search:request.nextUrl.search},timestamp:Date.now()})}).catch(()=>{});
+    // #endregion
+  }
 
   // Redirect old prelaunch URLs
   if (pathname === '/prelaunch' || pathname === '/waitlist') {

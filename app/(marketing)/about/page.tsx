@@ -188,16 +188,16 @@ export default async function AboutPage() {
 
         {/* CTA Section */}
         <section className="py-12 text-center bg-white/5 rounded-lg max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-4">Join Us on This Journey</h2>
+          <h2 className="text-3xl font-bold mb-4">Stay Connected</h2>
           <p className="text-xl text-foreground/70 mb-6">
-            We're always looking for talented people to join our team.
+            Reach out to learn more about DONNA and our roadmap.
           </p>
           <div className="flex gap-4 justify-center">
             <Button size="lg" asChild>
-              <Link href="/careers">View Open Positions</Link>
+              <Link href="/contact">Contact Us</Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
-              <Link href="/contact">Get in Touch</Link>
+              <Link href="/product">Explore Product</Link>
             </Button>
           </div>
         </section>

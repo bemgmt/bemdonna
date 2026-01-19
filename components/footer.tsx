@@ -108,9 +108,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li><Link href="/about" className="text-foreground/70 hover:text-accent transition-colors">About Us</Link></li>
               <li><Link href="/system-brief" className="text-foreground/70 hover:text-accent transition-colors">System Brief</Link></li>
-              <li><Link href="/careers" className="text-foreground/70 hover:text-accent transition-colors">Careers</Link></li>
               <li><Link href="/investors" className="text-foreground/70 hover:text-accent transition-colors">Investors</Link></li>
-              <li><Link href="/press" className="text-foreground/70 hover:text-accent transition-colors">Press</Link></li>
               <li><Link href="/contact" className="text-foreground/70 hover:text-accent transition-colors">Contact</Link></li>
               <li><Link href="/terms" className="text-foreground/70 hover:text-accent transition-colors">Terms</Link></li>
               <li><Link href="/privacy" className="text-foreground/70 hover:text-accent transition-colors">Privacy</Link></li>

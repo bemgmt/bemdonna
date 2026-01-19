@@ -96,13 +96,17 @@ export function generatePageMetadata({
   authors,
   tags,
 }: GenerateMetadataParams): Metadata {
-  const pageTitle = title ? `${title} | ${siteName}` : defaultTitle
+  const normalizedTitle = title?.replace(/\s*(\||-)\s*DONNA\s*$/i, '').trim()
+  const pageTitle = normalizedTitle ? `${normalizedTitle} | ${siteName}` : defaultTitle
   const pageDescription = description || defaultDescription
   const pageUrl = `${siteUrl}${path}`
   const pageImage = image || `${siteUrl}/og-image.png`
 
+  // #region agent log
+  fetch('http://127.0.0.1:7245/ingest/523dd404-685e-4f69-8de8-31375ba15ef3',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'audit-run',hypothesisId:'C',location:'lib/metadata.ts:104',message:'metadata:generate',data:{path,pageTitle,descriptionLength:pageDescription.length,canonical:pageUrl},timestamp:Date.now()})}).catch(()=>{});
+  // #endregion
   return {
-    title,
+    title: normalizedTitle,
     description: pageDescription,
     keywords: tags,
     authors: authors?.map((name) => ({ name })),
