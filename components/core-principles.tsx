@@ -60,8 +60,8 @@ export default function CorePrinciples() {
           </p>
         </div>
 
-        {/* Principles Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+        {/* Principles */}
+        <div>
           {/* Mobile: Horizontal Scroll */}
           <div className="md:hidden overflow-x-auto -mx-4 px-4 pb-4 snap-x snap-mandatory scrollbar-hide">
             <div className="flex gap-4 w-max">
