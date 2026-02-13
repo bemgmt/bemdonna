@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Header from "@/components/header"
 import Hero from "@/components/hero"
 import Overview from "@/components/overview"
+import TrustPositioning from "@/components/trust-positioning"
 import CorePrinciples from "@/components/core-principles"
 import FunctionalDomains from "@/components/functional-domains"
 import DonnaNetwork from "@/components/donna-network"
@@ -79,6 +80,7 @@ export default function Home() {
         <Header />
         <Hero />
         <Overview />
+        <TrustPositioning />
         <CorePrinciples />
         <FunctionalDomains />
         <DonnaNetwork />

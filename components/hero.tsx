@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import Image from "next/image"
 
 export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -31,8 +30,8 @@ export default function Hero() {
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
-      ctx.fillStyle = "rgba(132, 204, 255, 0.15)"
-      ctx.strokeStyle = "rgba(132, 204, 255, 0.1)"
+      ctx.fillStyle = "rgba(6, 182, 212, 0.15)"
+      ctx.strokeStyle = "rgba(6, 182, 212, 0.1)"
       ctx.lineWidth = 1
 
       dots.forEach((dot) => {
@@ -77,34 +76,28 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-[85vh] md:min-h-screen flex items-center justify-center overflow-hidden pt-16">
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/hero-ai-brain-wide.jpg"
-          alt="AI Brain - DONNA Office Assistant"
-          fill
-          priority
-          className="object-cover object-center"
-        />
-        {/* Dark blur overlay for text readability */}
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
-      </div>
+      {/* Clean gradient background - no image for aidonna.co minimalism */}
+      <div className="absolute inset-0 z-0 bg-black" />
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-black z-0" />
 
       {/* Animated canvas overlay */}
       <canvas ref={canvasRef} className="absolute inset-0 opacity-30 z-10" />
 
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-background/60 z-20" />
-
       <div className="relative z-30 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
-          {/* Left: Text content */}
           <div className="animate-slide-up">
+            <p className="text-sm font-medium text-[#22d3ee] uppercase tracking-wider mb-4">
+              Operational intelligence
+            </p>
             <h1 className="text-3xl md:text-6xl font-bold mb-4 md:mb-6 leading-tight">
               <span className="gradient-text">One AI.</span> Every Industry.
             </h1>
 
-            <p className="text-base md:text-xl text-foreground/90 mb-6 md:mb-8 leading-relaxed">
-              DONNA is the digital operations layer that runs workflows, communication, and decision support quietly inside your business. Agentic, tool-native, multi-modal, and enterprise-grade.
+            <p className="text-base md:text-xl text-foreground/90 mb-4 leading-relaxed">
+              Operational intelligence built to run a business, not talk about it.
+            </p>
+            <p className="text-base md:text-lg text-foreground/70 mb-6 md:mb-8 leading-relaxed">
+              Designed to coordinate communication, decisions, and execution across how work actually happens.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
@@ -113,9 +106,9 @@ export default function Hero() {
                   const form = document.getElementById("demo-form")
                   form?.scrollIntoView({ behavior: "smooth" })
                 }}
-                className="px-8 py-3 rounded-lg bg-accent text-background hover:bg-accent/90 transition-all duration-300 font-semibold text-lg glow-accent hover:shadow-[0_0_30px_rgba(138,47,255,0.5)]"
+                className="px-8 py-3 rounded-lg bg-accent text-accent-foreground hover:bg-accent/90 transition-all duration-300 font-semibold text-lg glow-accent"
               >
-                Join the Waitlist
+                Request Access
               </button>
               <button
                 onClick={() => {
@@ -124,11 +117,10 @@ export default function Hero() {
                 }}
                 className="px-8 py-3 rounded-lg border-2 border-accent text-accent hover:bg-accent/10 transition-all duration-300 font-semibold text-lg"
               >
-                Request a Demo
+                Join Waitlist
               </button>
             </div>
 
-            {/* Trust badge */}
             <div className="text-sm text-foreground/70 flex items-center gap-2">
               <span>⬢</span>
               <span>Enterprise-grade security • GDPR compliant • SOC 2 Type II</span>

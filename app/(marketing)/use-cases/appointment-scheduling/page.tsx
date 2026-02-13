@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { generatePageMetadata } from '@/lib/metadata'
+import { breadcrumbSchema } from '@/lib/schema-markup'
 import { Calendar, Clock, Bell, CheckCircle } from 'lucide-react'
 import { BeforeAfter } from '@/components/before-after'
 import { StatsSection } from '@/components/stats-section'
@@ -58,8 +59,18 @@ export default function AppointmentSchedulingPage() {
     { value: '<30s', label: 'Average Booking Time' },
   ]
 
+  const schemaMarkup = breadcrumbSchema([
+    { name: 'Home', url: 'https://donna.business/' },
+    { name: 'Use Cases', url: 'https://donna.business/use-cases' },
+    { name: 'Appointment Scheduling', url: 'https://donna.business/use-cases/appointment-scheduling' },
+  ])
+
   return (
     <main className="min-h-screen bg-[#030314]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaMarkup) }}
+      />
       <section className="relative py-32 px-4 overflow-hidden">
         <div className="absolute inset-0 neural-grid-animated opacity-20" />
         <div className="relative z-10 container mx-auto max-w-6xl text-center">

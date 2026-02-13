@@ -23,7 +23,7 @@ export default function Footer() {
               <span className="font-bold gradient-text">DONNA</span>
             </div>
             <p className="text-foreground/60 text-sm mb-4">
-              One AI. Every industry. DONNA is the digital operations layer that runs workflows, communication, and decision support quietly in the background.
+              One AI. Every industry. Operational intelligence built to run a business, not talk about it.
             </p>
             <div className="flex gap-3 mb-4">
               <a href="https://x.com/donnaai_" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-accent transition-colors" aria-label="DONNA on X">

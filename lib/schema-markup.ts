@@ -1,4 +1,4 @@
-import type { Organization, SoftwareApplication, FAQPage, Article, BreadcrumbList, Product, Offer, Event, JobPosting, HowTo } from 'schema-dts'
+import type { Organization, SoftwareApplication, FAQPage, Article, BreadcrumbList, Product, Offer, Event, JobPosting, HowTo, WebSite } from 'schema-dts'
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://donna.business'
 
@@ -20,6 +20,25 @@ export function organizationSchema(): Organization {
       email: 'derek@bem.studio',
       areaServed: 'US',
       availableLanguage: ['en', 'es', 'zh'],
+    },
+  }
+}
+
+export function webSiteSchema(): WebSite {
+  return {
+    '@type': 'WebSite',
+    '@id': `${siteUrl}/#website`,
+    url: siteUrl,
+    name: 'DONNA',
+    description: 'AI-Powered Business Communication Platform',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${siteUrl}/search?q={search_term_string}`,
+      },
+      // @ts-expect-error Google specific property not in schema-dts
+      'query-input': 'required name=search_term_string',
     },
   }
 }
@@ -134,7 +153,7 @@ export function productSchema(product: {
     },
   }
   // #region agent log
-  fetch('http://127.0.0.1:7245/ingest/523dd404-685e-4f69-8de8-31375ba15ef3',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'audit-run',hypothesisId:'D',location:'lib/schema-markup.ts:134',message:'schema:product',data:{name:product.name,hasImage:Boolean(product.image),hasOffers:Boolean(schema.offers)},timestamp:Date.now()})}).catch(()=>{});
+  fetch('http://127.0.0.1:7245/ingest/523dd404-685e-4f69-8de8-31375ba15ef3', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sessionId: 'debug-session', runId: 'audit-run', hypothesisId: 'D', location: 'lib/schema-markup.ts:134', message: 'schema:product', data: { name: product.name, hasImage: Boolean(product.image), hasOffers: Boolean(schema.offers) }, timestamp: Date.now() }) }).catch(() => { });
   // #endregion
   return schema
 }
@@ -224,7 +243,7 @@ export function jobPostingSchema(job: {
     }),
   }
   // #region agent log
-  fetch('http://127.0.0.1:7245/ingest/523dd404-685e-4f69-8de8-31375ba15ef3',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'audit-run',hypothesisId:'E',location:'lib/schema-markup.ts:199',message:'schema:jobPosting',data:{title:job.title,employmentType:job.employmentType,isRemote,location:job.location},timestamp:Date.now()})}).catch(()=>{});
+  fetch('http://127.0.0.1:7245/ingest/523dd404-685e-4f69-8de8-31375ba15ef3', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sessionId: 'debug-session', runId: 'audit-run', hypothesisId: 'E', location: 'lib/schema-markup.ts:199', message: 'schema:jobPosting', data: { title: job.title, employmentType: job.employmentType, isRemote, location: job.location }, timestamp: Date.now() }) }).catch(() => { });
   // #endregion
   return schema
 }

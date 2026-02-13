@@ -24,11 +24,11 @@ export function PricingTierCard({
   return (
     <div className={cn(
       "holo-panel p-8 rounded-2xl hover-lift transition-all duration-300 relative overflow-hidden",
-      highlight && "ring-2 ring-[#8A2FFF] animate-pulse-glow scale-105",
+      highlight && "ring-2 ring-[#06B6D4] animate-pulse-glow scale-105",
       className
     )}>
       {highlight && (
-        <div className="absolute top-0 right-0 bg-gradient-to-r from-[#8A2FFF] to-[#6B4FFF] text-white px-6 py-2 text-sm font-bold rounded-bl-xl">
+        <div className="absolute top-0 right-0 bg-gradient-to-r from-[#06B6D4] to-[#0891b2] text-white px-6 py-2 text-sm font-bold rounded-bl-xl">
           POPULAR
         </div>
       )}
@@ -48,7 +48,7 @@ export function PricingTierCard({
         <ul className="space-y-4 mb-8">
           {features.map((feature, index) => (
             <li key={index} className="flex items-start gap-3">
-              <Check className="w-5 h-5 text-[#3DE0FF] mt-0.5 flex-shrink-0" />
+              <Check className="w-5 h-5 text-[#06B6D4] mt-0.5 flex-shrink-0" />
               <span className="text-gray-300">{feature}</span>
             </li>
           ))}

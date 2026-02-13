@@ -46,7 +46,7 @@ export function HoloFooter({
 
   return (
     <footer className={cn(
-      "relative border-t border-[#8A2FFF]/30 bg-gradient-to-b from-[#030314] to-[#0A0A1A]",
+      "relative border-t border-[#06B6D4]/30 bg-gradient-to-b from-black to-[#0A0A0A]",
       className
     )}>
       <div className="circuitry-lines absolute inset-0 opacity-20" />
@@ -64,62 +64,62 @@ export function HoloFooter({
             <div className="flex gap-4">
               <a 
                 href="mailto:derek@bem.studio" 
-                className="p-2 rounded-lg bg-[#8A2FFF]/10 hover:bg-[#8A2FFF]/20 transition-colors duration-300 hover:glow-violet"
+                className="p-2 rounded-lg bg-[#06B6D4]/10 hover:bg-[#06B6D4]/20 transition-colors duration-300 hover:glow-violet"
                 aria-label="Email"
               >
-                <Mail className="w-5 h-5 text-[#3DE0FF]" />
+                <Mail className="w-5 h-5 text-[#22d3ee]" />
               </a>
               <a 
                 href="https://www.linkedin.com/in/derek-talbird-65293977/" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-[#8A2FFF]/10 hover:bg-[#8A2FFF]/20 transition-colors duration-300 hover:glow-violet"
+                className="p-2 rounded-lg bg-[#06B6D4]/10 hover:bg-[#06B6D4]/20 transition-colors duration-300 hover:glow-violet"
                 aria-label="LinkedIn"
               >
-                <Linkedin className="w-5 h-5 text-[#3DE0FF]" />
+                <Linkedin className="w-5 h-5 text-[#22d3ee]" />
               </a>
               <a 
                 href="https://x.com/donnaai_" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-[#8A2FFF]/10 hover:bg-[#8A2FFF]/20 transition-colors duration-300 hover:glow-violet"
+                className="p-2 rounded-lg bg-[#06B6D4]/10 hover:bg-[#06B6D4]/20 transition-colors duration-300 hover:glow-violet"
                 aria-label="X"
               >
-                <Twitter className="w-5 h-5 text-[#3DE0FF]" />
+                <Twitter className="w-5 h-5 text-[#22d3ee]" />
               </a>
               <a 
                 href="https://www.tiktok.com/@donnaai_?lang=en" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-[#8A2FFF]/10 hover:bg-[#8A2FFF]/20 transition-colors duration-300 hover:glow-violet"
+                className="p-2 rounded-lg bg-[#06B6D4]/10 hover:bg-[#06B6D4]/20 transition-colors duration-300 hover:glow-violet"
                 aria-label="TikTok"
               >
-                <Music2 className="w-5 h-5 text-[#3DE0FF]" />
+                <Music2 className="w-5 h-5 text-[#22d3ee]" />
               </a>
               <a 
                 href="https://www.youtube.com/@bemdonna" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-[#8A2FFF]/10 hover:bg-[#8A2FFF]/20 transition-colors duration-300 hover:glow-violet"
+                className="p-2 rounded-lg bg-[#06B6D4]/10 hover:bg-[#06B6D4]/20 transition-colors duration-300 hover:glow-violet"
                 aria-label="YouTube"
               >
-                <Youtube className="w-5 h-5 text-[#3DE0FF]" />
+                <Youtube className="w-5 h-5 text-[#22d3ee]" />
               </a>
               <a 
                 href="https://www.facebook.com/profile.php?id=61586503540067" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-[#8A2FFF]/10 hover:bg-[#8A2FFF]/20 transition-colors duration-300 hover:glow-violet"
+                className="p-2 rounded-lg bg-[#06B6D4]/10 hover:bg-[#06B6D4]/20 transition-colors duration-300 hover:glow-violet"
                 aria-label="Facebook"
               >
-                <Facebook className="w-5 h-5 text-[#3DE0FF]" />
+                <Facebook className="w-5 h-5 text-[#22d3ee]" />
               </a>
             </div>
           </div>
           
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-[#3DE0FF]">
+            <h4 className="text-lg font-semibold mb-4 text-[#22d3ee]">
               Quick Links
             </h4>
             <ul className="space-y-2">
@@ -127,7 +127,7 @@ export function HoloFooter({
                 <li key={index}>
                   <Link 
                     href={link.href}
-                    className="text-gray-400 hover:text-[#8A2FFF] transition-colors duration-300"
+                    className="text-gray-400 hover:text-[#06B6D4] transition-colors duration-300"
                   >
                     {link.label}
                   </Link>
@@ -138,7 +138,7 @@ export function HoloFooter({
           
           {/* Contact */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-[#3DE0FF]">
+            <h4 className="text-lg font-semibold mb-4 text-[#22d3ee]">
               Contact
             </h4>
             <p className="text-gray-400 mb-2">
@@ -148,7 +148,7 @@ export function HoloFooter({
         </div>
         
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-[#8A2FFF]/20 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="pt-8 border-t border-[#06B6D4]/20 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 text-sm">
             © {currentYear} DONNA. All rights reserved.
           </p>
@@ -157,7 +157,7 @@ export function HoloFooter({
               <Link 
                 key={index}
                 href={link.href}
-                className="text-gray-500 hover:text-[#8A2FFF] text-sm transition-colors duration-300"
+                className="text-gray-500 hover:text-[#06B6D4] text-sm transition-colors duration-300"
               >
                 {link.label}
               </Link>

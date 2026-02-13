@@ -13,18 +13,17 @@ export default function Overview() {
           {/* Text Content */}
           <div className={`animate-fade-in ${inView ? 'opacity-100' : 'opacity-0'}`}>
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              What is <span className="gradient-text">DONNA</span>?
+              DONNA is not software you use.
             </h2>
             
             <div className="space-y-4 text-foreground/80 leading-relaxed">
               <p className="text-lg">
-                DONNA is operational intelligence that becomes part of your core infrastructure. It connects to your tools,
-                understands context across your organization, and executes work end-to-end without babysitting.
+                DONNA is an operational intelligence layer that sits beneath a business. It coordinates communication,
+                workflows, and decisions across tools, teams, and channels without forcing you to change how you work.
               </p>
 
               <p className="text-lg">
-                This is not software you use occasionally. It is infrastructure your business runs on: a role-fluid AI
-                that shifts between sales, marketing, operations, and support as needed.
+                This is not automation. This is how modern businesses run.
               </p>
 
               <div className="mt-6 p-4 rounded-lg bg-accent/10 border-l-4 border-accent">
@@ -92,7 +91,7 @@ export default function Overview() {
         <div className="mt-12 text-center">
           <div className="inline-block p-4 rounded-lg bg-foreground/5 border border-foreground/10">
             <p className="text-base font-semibold text-foreground/90">
-              Not a chatbot. Not a CRM. An AI operator that runs the day-to-day so your team stays focused.
+              Not a chatbot. Not a CRM. An operational intelligence layer that runs the day-to-day so your team stays focused.
             </p>
           </div>
         </div>

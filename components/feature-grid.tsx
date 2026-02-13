@@ -26,9 +26,9 @@ export function FeatureGrid({ features, columns = 3, className = '' }: FeatureGr
         return (
           <div
             key={index}
-            className="glass-panel p-8 rounded-xl hover:border-[#8A2FFF] transition-all duration-300 group"
+            className="glass-panel p-8 rounded-xl hover:border-[#06B6D4] transition-all duration-300 group"
           >
-            <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-[#8A2FFF] to-[#6B4FFF] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+            <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-[#06B6D4] to-[#0891b2] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
               <Icon className="w-7 h-7 text-white" />
             </div>
             <h3 className="text-xl font-bold mb-3 text-white">{feature.title}</h3>

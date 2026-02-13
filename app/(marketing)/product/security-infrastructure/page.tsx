@@ -43,18 +43,57 @@ export default function SecurityInfrastructurePage() {
     },
   ]
 
+  const securityLayerFeatures = [
+    "PII Detection",
+    "Credential Blocking",
+    "MNPI Protection",
+    "Code Scanning",
+    "Audit Logging",
+    "<50ms Latency",
+  ]
+
   return (
-    <main className="min-h-screen bg-[#030314]">
-      {/* Hero Section */}
-      <section className="relative py-32 px-4 overflow-hidden">
+    <main className="min-h-screen bg-black">
+      {/* Security Layer hero - DONNA-DEMO block */}
+      <section className="relative py-24 md:py-32 px-4 overflow-hidden">
         <div className="absolute inset-0 neural-grid-animated opacity-20" />
-        <div className="relative z-10 container mx-auto max-w-6xl text-center">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 gradient-text text-glow-violet">
-            Security &amp; Infrastructure
-          </h1>
-          <p className="text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            Built for business security with encryption, access controls, and reliable uptime you can trust.
+        <div className="relative z-10 container mx-auto max-w-[1000px] text-center">
+          <p className="text-xs font-semibold text-[#34D399] uppercase tracking-widest mb-6">
+            The Security Layer
           </p>
+          <div className="inline-flex items-center gap-2 bg-gradient-to-br from-[rgba(6,182,212,0.15)] to-[rgba(6,182,212,0.08)] border-2 border-[#06B6D4] px-6 py-3 rounded-full text-sm font-semibold text-[#22d3ee] mb-6">
+            Built-in, not bolted on
+          </div>
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 md:mb-6 leading-tight">
+            All This Power.
+            <br />
+            <span className="text-[#22d3ee]">Completely Protected.</span>
+          </h1>
+          <p className="text-lg md:text-xl text-foreground/70 max-w-2xl mx-auto mb-10 leading-relaxed">
+            Every interaction scanned. Every risk blocked. Every action logged.
+            <br className="hidden sm:block" />
+            Enterprise security that&apos;s invisible to your team.
+          </p>
+
+          <div className="mb-10">
+            <div className="w-[200px] h-[200px] mx-auto rounded-full bg-gradient-to-br from-slate-900 to-slate-800 border-4 border-[#06B6D4] flex flex-col items-center justify-center shadow-[0_0_60px_rgba(6,182,212,0.25)] animate-shield-pulse">
+              <svg viewBox="0 0 48 48" width={56} height={56} fill="none" stroke="currentColor" strokeWidth={1.5} className="text-[#22d3ee] mb-2">
+                <path d="M24 4L6 12v12c0 11 7 21 18 24 11-3 18-13 18-24V12L24 4z" />
+              </svg>
+              <span className="text-sm font-bold text-[#22d3ee] uppercase tracking-wider">Protected</span>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-4">
+            {securityLayerFeatures.map((feature) => (
+              <div
+                key={feature}
+                className="px-5 py-3 rounded-lg bg-[rgba(6,182,212,0.1)] border border-[rgba(6,182,212,0.3)] text-sm font-medium text-[#22d3ee]"
+              >
+                {feature}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

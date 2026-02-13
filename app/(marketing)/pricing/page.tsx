@@ -24,7 +24,7 @@ export default function PricingPage() {
   ]
 
   return (
-    <main className="min-h-screen bg-[#030314] bg-radial-glow relative overflow-hidden">
+    <main className="min-h-screen bg-black bg-radial-glow relative overflow-hidden">
       {/* Hero Section */}
       <section className="relative py-32 px-4 overflow-hidden">
         <div className="absolute inset-0 neural-grid-animated opacity-20" />
@@ -110,18 +110,18 @@ export default function PricingPage() {
               <div className="relative z-10">
                 <table className="w-full">
                   <thead>
-                    <tr className="border-b border-[#8A2FFF]/30">
-                      <th className="text-left py-4 px-4 text-[#3DE0FF] font-bold text-glow-blue">Feature</th>
-                      <th className="text-center py-4 px-4 text-[#3DE0FF] font-bold text-glow-blue">Starter</th>
-                      <th className="text-center py-4 px-4 text-[#3DE0FF] font-bold text-glow-blue">Pro</th>
-                      <th className="text-center py-4 px-4 text-[#3DE0FF] font-bold text-glow-blue">Enterprise</th>
+                    <tr className="border-b border-[#06B6D4]/30">
+                      <th className="text-left py-4 px-4 text-[#22d3ee] font-bold text-glow-blue">Feature</th>
+                      <th className="text-center py-4 px-4 text-[#22d3ee] font-bold text-glow-blue">Starter</th>
+                      <th className="text-center py-4 px-4 text-[#22d3ee] font-bold text-glow-blue">Pro</th>
+                      <th className="text-center py-4 px-4 text-[#22d3ee] font-bold text-glow-blue">Enterprise</th>
                     </tr>
                   </thead>
                   <tbody>
                     {comparisonFeatures.map((row, index) => (
                       <tr
                         key={index}
-                        className="border-b border-[#8A2FFF]/20 hover:bg-[#8A2FFF]/10 transition-all duration-300 hover:border-[#8A2FFF]/40"
+                        className="border-b border-[#06B6D4]/20 hover:bg-[#06B6D4]/10 transition-all duration-300 hover:border-[#06B6D4]/40"
                       >
                         <td className="py-4 px-4 text-gray-300 font-medium">
                           {row.feature}
@@ -129,7 +129,7 @@ export default function PricingPage() {
                         <td className="py-4 px-4 text-center">
                           {typeof row.starter === 'boolean' ? (
                             row.starter ? (
-                              <Check className="w-5 h-5 text-[#3DE0FF] mx-auto text-glow-blue" />
+                              <Check className="w-5 h-5 text-[#22d3ee] mx-auto text-glow-blue" />
                             ) : (
                               <X className="w-5 h-5 text-gray-600 mx-auto opacity-50" />
                             )
@@ -140,7 +140,7 @@ export default function PricingPage() {
                         <td className="py-4 px-4 text-center">
                           {typeof row.pro === 'boolean' ? (
                             row.pro ? (
-                              <Check className="w-5 h-5 text-[#3DE0FF] mx-auto text-glow-blue" />
+                              <Check className="w-5 h-5 text-[#22d3ee] mx-auto text-glow-blue" />
                             ) : (
                               <X className="w-5 h-5 text-gray-600 mx-auto opacity-50" />
                             )
@@ -151,7 +151,7 @@ export default function PricingPage() {
                         <td className="py-4 px-4 text-center">
                           {typeof row.enterprise === 'boolean' ? (
                             row.enterprise ? (
-                              <Check className="w-5 h-5 text-[#3DE0FF] mx-auto text-glow-blue" />
+                              <Check className="w-5 h-5 text-[#22d3ee] mx-auto text-glow-blue" />
                             ) : (
                               <X className="w-5 h-5 text-gray-600 mx-auto opacity-50" />
                             )

@@ -164,9 +164,9 @@ export default function Header() {
             </Link>
             <Link
               href="/#demo-form"
-              className="px-4 py-2 rounded-lg bg-accent text-background hover:bg-accent/90 transition-colors text-sm font-medium"
+              className="px-4 py-2 rounded-lg bg-accent text-accent-foreground hover:bg-accent/90 transition-colors text-sm font-medium"
             >
-              Get Started
+              Request Access
             </Link>
           </div>
 
@@ -221,9 +221,9 @@ export default function Header() {
               <Link
                 href="/#demo-form"
                 onClick={() => setIsOpen(false)}
-                className="px-4 py-2 rounded-lg bg-accent text-background text-center text-sm font-medium"
+                className="px-4 py-2 rounded-lg bg-accent text-accent-foreground text-center text-sm font-medium"
               >
-                Get Started
+                Request Access
               </Link>
             </div>
           </nav>

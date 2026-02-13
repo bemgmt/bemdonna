@@ -65,6 +65,9 @@ export const defaultMetadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  verification: {
+    google: 'verification_token', // TODO: Replace with your actual Google Search Console verification token
+  },
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon-16x16.png',

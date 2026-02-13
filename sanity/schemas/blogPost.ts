@@ -148,7 +148,7 @@ export default defineType({
     prepare({ title, author, media, publishedAt }) {
       return {
         title,
-        subtitle: author ? `by ${author} • ${publishedAt ? new Date(publishedAt).toLocaleDateString() : 'Draft'}`,
+        subtitle: author ? `by ${author} • ${publishedAt ? new Date(publishedAt).toLocaleDateString() : 'Draft'}` : '',
         media,
       }
     },
