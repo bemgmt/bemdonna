@@ -22,14 +22,12 @@ const staticRoutes = [
 ]
 
 const productSlugs = [
-  'voice-receptionist',
-  'email-assistant',
-  'chatbot',
-  'secretary-bot',
-  'marketing-bot',
-  'knowledge-base',
-  'integrations',
-  'security',
+  'overview',
+  'communications-layer',
+  'donna-tools',
+  'custom-knowledge-base',
+  'integrations-architecture',
+  'security-infrastructure',
 ]
 
 const useCaseSlugs = [

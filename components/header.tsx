@@ -69,6 +69,7 @@ export default function Header() {
         { label: "Lead Response", href: "/use-cases/lead-response" },
         { label: "Customer Support", href: "/use-cases/customer-support" },
         { label: "Appointment Scheduling", href: "/use-cases/appointment-scheduling" },
+        { label: "Lead Nurturing", href: "/use-cases/lead-nurturing" },
       ],
     },
   }

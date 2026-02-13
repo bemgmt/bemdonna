@@ -11,6 +11,33 @@ export const metadata: Metadata = generatePageMetadata({
 
 export default async function UseCasesPage() {
   const useCases: any[] = []
+  const fallbackUseCases = [
+    {
+      _id: 'lead-response',
+      title: 'Lead Response',
+      description: 'Instantly engage inbound leads with qualification, routing, and follow-up workflows.',
+      slug: { current: 'lead-response' },
+    },
+    {
+      _id: 'customer-support',
+      title: 'Customer Support',
+      description: 'Resolve support requests faster with consistent multi-channel responses and escalation paths.',
+      slug: { current: 'customer-support' },
+    },
+    {
+      _id: 'appointment-scheduling',
+      title: 'Appointment Scheduling',
+      description: 'Automate booking, reminders, and coordination so calendars stay full and teams stay aligned.',
+      slug: { current: 'appointment-scheduling' },
+    },
+    {
+      _id: 'lead-nurturing',
+      title: 'Lead Nurturing',
+      description: 'Move prospects through the pipeline with targeted, contextual follow-ups across channels.',
+      slug: { current: 'lead-nurturing' },
+    },
+  ]
+  const displayUseCases = useCases.length > 0 ? useCases : fallbackUseCases
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -24,33 +51,21 @@ export default async function UseCasesPage() {
       </section>
 
       <section className="py-12">
-        {useCases.length === 0 ? (
-          <div className="text-center p-12 border rounded-lg bg-foreground/5">
-            <h2 className="text-2xl font-bold mb-4">Use Case Playbooks Coming Soon</h2>
-            <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
-              We’re building detailed playbooks that show how DONNA runs workflows across departments and industries.
-            </p>
-            <p className="text-sm text-muted-foreground mb-4">
-              In the meantime, explore our <Link href="/industries" className="text-accent hover:underline">industry pages</Link> to see how DONNA serves different verticals.
-            </p>
-          </div>
-        ) : (
-          <div className="grid md:grid-cols-2 gap-8">
-            {useCases.map((useCase) => (
-              <Link
-                key={useCase._id}
-                href={`/use-cases/${useCase.slug.current}`}
-                className="group p-8 border rounded-lg hover:border-primary hover:shadow-lg transition-all"
-              >
-                <h2 className="text-2xl font-semibold mb-3 group-hover:text-primary transition-colors">
-                  {useCase.title}
-                </h2>
-                <p className="text-muted-foreground mb-4">{useCase.description}</p>
-                <span className="text-primary font-medium">Learn More →</span>
-              </Link>
-            ))}
-          </div>
-        )}
+        <div className="grid md:grid-cols-2 gap-8">
+          {displayUseCases.map((useCase) => (
+            <Link
+              key={useCase._id}
+              href={`/use-cases/${useCase.slug.current}`}
+              className="group p-8 border rounded-lg hover:border-primary hover:shadow-lg transition-all"
+            >
+              <h2 className="text-2xl font-semibold mb-3 group-hover:text-primary transition-colors">
+                {useCase.title}
+              </h2>
+              <p className="text-muted-foreground mb-4">{useCase.description}</p>
+              <span className="text-primary font-medium">Learn More →</span>
+            </Link>
+          ))}
+        </div>
       </section>
     </div>
   )

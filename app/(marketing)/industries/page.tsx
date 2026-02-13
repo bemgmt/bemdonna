@@ -255,6 +255,21 @@ export default async function IndustriesPage() {
       ]
     },
   ]
+  const supportedIndustrySlugs = new Set([
+    'real-estate',
+    'property-management',
+    'hospitality',
+    'health-beauty',
+    'insurance',
+    'nightlife',
+    'nonprofits',
+  ])
+  const filteredVerticals = verticals
+    .map((vertical) => ({
+      ...vertical,
+      industries: vertical.industries.filter((industry) => supportedIndustrySlugs.has(industry.slug)),
+    }))
+    .filter((vertical) => vertical.industries.length > 0)
 
   return (
     <main className="min-h-screen bg-[#030314] bg-radial-glow relative overflow-hidden">
@@ -294,7 +309,7 @@ export default async function IndustriesPage() {
       </section>
 
       {/* Verticals */}
-      {verticals.map((vertical, vIndex) => (
+      {filteredVerticals.map((vertical, vIndex) => (
         <section key={vIndex} className={`py-20 px-4 ${vIndex % 2 === 1 ? 'bg-black/20' : ''}`}>
           <div className="container mx-auto max-w-7xl">
             <div className="text-center mb-12">

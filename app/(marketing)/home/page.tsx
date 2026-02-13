@@ -307,7 +307,7 @@ export default function HomePage() {
                 DONNA is the operational intelligence layer powering the next generation of businesses.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <NeonButton label="Investor Information" link="/investor" variant="primary" />
+                <NeonButton label="Investor Information" link="/investors" variant="primary" />
                 <NeonButton label="Schedule Call" link="/contact" variant="outline" />
               </div>
             </div>

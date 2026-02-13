@@ -72,7 +72,7 @@ export default function SearchModal() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-foreground/50" />
               <input
                 type="text"
-                placeholder="Search pages, blog posts, docs..."
+                placeholder="Search pages, products, industries, and use cases..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 className="w-full pl-10 pr-10 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent text-foreground placeholder:text-foreground/50"
