@@ -17,7 +17,7 @@ export default function Chatbot() {
     {
       id: "welcome",
       role: "assistant",
-      content: "Hi! I'm Donna, your AI operations operator. How can I help you today?",
+      content: "Hi! I'm Donna, your AI operations operator. Ask me about platform pages, pricing, use cases, security, or our latest blog insights.",
       timestamp: new Date(),
     },
   ])
@@ -26,9 +26,9 @@ export default function Chatbot() {
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
   const suggestedPrompts = [
-    "How does DONNA join meetings?",
-    "What makes DONNA different from other AI tools?",
-    "What are your pricing plans?"
+    "How does DONNA Network work?",
+    "What are your pricing plans?",
+    "What does your latest AI blog say about network effects?"
   ]
 
   const scrollToBottom = () => {
@@ -109,21 +109,21 @@ export default function Chatbot() {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 w-[400px] h-[600px] max-w-[calc(100vw-3rem)] max-h-[calc(100vh-3rem)] flex flex-col glass-card rounded-2xl shadow-2xl border border-accent/20 overflow-hidden animate-slide-up">
+        <div className="fixed bottom-6 right-6 z-50 w-[400px] h-[600px] max-w-[calc(100vw-3rem)] max-h-[calc(100vh-3rem)] flex flex-col bg-black rounded-2xl shadow-2xl border border-white/15 overflow-hidden animate-slide-up">
           {/* Header */}
-          <div className="bg-gradient-to-r from-accent to-primary p-4 flex items-center justify-between">
+          <div className="bg-black p-4 flex items-center justify-between border-b border-white/10">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center overflow-hidden">
+              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center overflow-hidden border border-white/15">
                 <Image src="/DONNA-logo.png" alt="Donna" width={24} height={24} className="h-6 w-6" />
               </div>
               <div>
-                <h3 className="font-bold text-background">Donna</h3>
-                <p className="text-xs text-background/80">Operational Intelligence Layer</p>
+                <h3 className="font-bold text-white">Donna</h3>
+                <p className="text-xs text-white/70">Operational Intelligence Layer</p>
               </div>
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="text-background/80 hover:text-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background rounded-md"
+              className="text-white/70 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded-md"
               aria-label="Close chat"
             >
               <X className="w-6 h-6" />
@@ -131,7 +131,7 @@ export default function Chatbot() {
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-background/95">
+          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-black">
             {messages.map((message) => (
               <div
                 key={message.id}
@@ -217,7 +217,7 @@ export default function Chatbot() {
           </div>
 
           {/* Input */}
-          <div className="p-4 border-t border-white/10 bg-background/95">
+          <div className="p-4 border-t border-white/10 bg-black">
             <div className="flex gap-2">
               <input
                 type="text"

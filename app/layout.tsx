@@ -46,7 +46,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`font-sans antialiased ${inter.variable}`}>
+      <body className={`font-sans antialiased infra-depth-bg ${inter.variable}`}>
         <a
           href="#main-content"
           className="sr-only focus-visible:not-sr-only focus-visible:absolute focus-visible:top-4 focus-visible:left-4 focus-visible:z-50 focus-visible:px-4 focus-visible:py-2 focus-visible:bg-primary focus-visible:text-primary-foreground focus-visible:rounded-md"

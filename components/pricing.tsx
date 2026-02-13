@@ -10,6 +10,15 @@ export default function Pricing() {
     form?.scrollIntoView({ behavior: "smooth" })
   }
 
+  const handleTierAction = (cta: string) => {
+    if (cta.toLowerCase().includes("contact")) {
+      window.location.href = "/contact"
+      return
+    }
+
+    handleScrollToForm()
+  }
+
   return (
     <section id="pricing" ref={ref} className="py-12 md:py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
@@ -64,7 +73,7 @@ export default function Pricing() {
                 </div>
                 <p className="text-sm text-foreground/70 mb-4">{tier.description}</p>
                 <button
-                  onClick={handleScrollToForm}
+                  onClick={() => handleTierAction(tier.cta)}
                   className={`w-full py-2 rounded-lg font-semibold transition-all ${
                     tier.featured
                       ? "bg-accent text-background hover:bg-accent/90"
@@ -119,7 +128,7 @@ export default function Pricing() {
               </div>
               <div className="text-sm text-foreground/70 mb-6">{tier.description}</div>
               <button
-                onClick={handleScrollToForm}
+                onClick={() => handleTierAction(tier.cta)}
                 className={`w-full py-2 rounded-lg font-medium transition-all duration-300 ${
                   tier.featured
                     ? "bg-accent text-background hover:bg-accent/90"

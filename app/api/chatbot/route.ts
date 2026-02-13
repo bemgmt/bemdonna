@@ -1,10 +1,34 @@
 import { NextRequest, NextResponse } from "next/server"
 import knowledgeBase from "@/lib/chatbot-knowledge-base.json"
+import { promises as fs } from "fs"
+import path from "path"
 
 interface Message {
   role: "user" | "assistant"
   content: string
 }
+
+interface KnowledgeSnippet {
+  id: string
+  title: string
+  content: string
+  source: "knowledge-base" | "blog"
+  sourcePath?: string
+  terms: string[]
+}
+
+const BLOG_CONTENT_DIR = path.join(process.cwd(), "public", "blog-content")
+const SNIPPET_CACHE_TTL_MS = 5 * 60 * 1000
+
+const STOP_WORDS = new Set([
+  "about", "after", "also", "been", "being", "both", "can", "from", "have", "just", "more",
+  "that", "than", "their", "there", "they", "this", "what", "when", "where", "which", "with",
+  "would", "your", "you", "our", "and", "the", "for", "are", "how", "why", "who", "into",
+  "does", "dont", "isnt", "cant", "will", "shall", "should", "could",
+])
+
+let cachedSnippets: KnowledgeSnippet[] | null = null
+let cachedAt = 0
 
 export async function POST(request: NextRequest) {
   try {
@@ -17,14 +41,16 @@ export async function POST(request: NextRequest) {
     // Check if AI API keys are configured
     const useAI = process.env.OPENAI_API_KEY || process.env.ANTHROPIC_API_KEY
 
+    const snippets = await getKnowledgeSnippets()
+    const relevantSnippets = retrieveRelevantSnippets(message, snippets)
     let response: string
 
     if (useAI) {
       // Use AI-powered responses
-      response = await generateAIResponse(message, history)
+      response = await generateAIResponse(message, history, relevantSnippets)
     } else {
-      // Fallback to keyword-based responses
-      response = generateResponse(message.toLowerCase(), history)
+      // Fallback to local retrieval response
+      response = generateFallbackResponse(message, relevantSnippets)
     }
 
     return NextResponse.json({ message: response }, { status: 200 })
@@ -34,43 +60,27 @@ export async function POST(request: NextRequest) {
   }
 }
 
-async function generateAIResponse(message: string, history: Message[]): Promise<string> {
-  // Prepare the system prompt with knowledge base
-  const systemPrompt = `You are Donna, an AI operations operator built by Bird's Eye Management Services. You help organizations run communications, workflows, and lead management.
+async function generateAIResponse(message: string, history: Message[], relevantSnippets: KnowledgeSnippet[]): Promise<string> {
+  const contextBlock = relevantSnippets
+    .slice(0, 6)
+    .map((snippet) => {
+      const sourceLabel = snippet.source === "blog"
+        ? `Blog (${snippet.sourcePath ?? "public/blog-content"})`
+        : "Knowledge Base"
+      return `- ${snippet.title} [${sourceLabel}]\n${snippet.content}`
+    })
+    .join("\n\n")
 
-Key Information:
-- Company: Bird's Eye Management Services, CEO: Derek Talbird, Based in California
-- Tagline: "Your Digital Operations Neural Network"
-- Built on AWS with Verizon partnership for enterprise reliability
-- Supports 25+ languages including English, Spanish, and Mandarin
+  const systemPrompt = `You are Donna, an AI operations operator for Bird's Eye Management Services.
 
-Pricing:
-- Free: Join waitlist for early access
-- $5,000 Pilot: Early access program with full features
-- Custom: Enterprise solutions and partnerships
+Use the supplied context as the source of truth for product details, pricing, security, use cases, and thought leadership topics.
+If context is missing or uncertain, say that clearly and offer the contact path instead of inventing details.
 
-Core Modules:
-1. Donna Email - Inbox analysis and lead classification, includes real-time meeting integration
-2. Donna Chat - Website chatbot with human routing
-3. Donna Voice - AI receptionist with real-time transcription
-4. Donna CRM - Lead tracking and analytics
-5. Donna Books - QuickBooks integration
-6. Donna Lead Generation - Hybrid AI + human lead conversion
-7. Donna Secretary - Real-time scheduling and assistance
-8. Donna Landing Page Generator - Automated page creation
-9. Donna Photobooth - Event-based photo/video capture
-10. Donna Network - DONNA-to-DONNA coordination that allows multiple DONNAs to work together securely, pass tasks, share approved context, and move work forward automatically
+Tone: professional, clear, and concise. Prefer short paragraphs and direct answers.
+When relevant, suggest requesting a demo or contacting the team at derek@bem.studio.
 
-Major Differentiator - Meeting Integration:
-DONNA can join video meetings (Zoom, Teams, Google Meet, etc.) and interact in real-time. Simply say "Hey Donna" to activate her during any meeting, and she can instantly answer questions from participants, provide information from your knowledge base, explain features, provide pricing details, or clarify any aspect of your business-all live during the meeting. This is a game-changing feature that sets DONNA apart from every competitor. No other operations AI platform offers this real-time meeting interaction capability.
-
-Industries: Real Estate, Hospitality, Professional Services, Health & Beauty, Construction/ADU, Nonprofits
-
-Security: SOC 2 Type II, GDPR compliant, AWS infrastructure, bank-level encryption
-
-Contact: derek@bem.studio
-
-Be professional, friendly, and helpful. Keep responses concise but informative. Always encourage users to request a demo or join the waitlist.`
+Context:
+${contextBlock || "- No context retrieved."}`
 
   // Try OpenAI first
   if (process.env.OPENAI_API_KEY) {
@@ -88,7 +98,7 @@ Be professional, friendly, and helpful. Keep responses concise but informative. 
             ...history.slice(-10).map((msg) => ({ role: msg.role, content: msg.content })),
             { role: "user", content: message },
           ],
-          temperature: 0.7,
+          temperature: 0.4,
           max_tokens: 500,
         }),
       })
@@ -99,8 +109,7 @@ Be professional, friendly, and helpful. Keep responses concise but informative. 
       return data.choices[0].message.content
     } catch (error) {
       console.error("OpenAI error:", error)
-      // Fallback to keyword-based
-      return generateResponse(message.toLowerCase(), history)
+      return generateFallbackResponse(message, relevantSnippets)
     }
   }
 
@@ -131,87 +140,261 @@ Be professional, friendly, and helpful. Keep responses concise but informative. 
       return data.content[0].text
     } catch (error) {
       console.error("Anthropic error:", error)
-      // Fallback to keyword-based
-      return generateResponse(message.toLowerCase(), history)
+      return generateFallbackResponse(message, relevantSnippets)
     }
   }
 
   // Fallback
-  return generateResponse(message.toLowerCase(), history)
+  return generateFallbackResponse(message, relevantSnippets)
 }
 
-function generateResponse(message: string, history: Message[]): string {
-  // Greeting responses
-  if (message.match(/\b(hi|hello|hey|greetings)\b/)) {
-    return "Hello! I'm Donna, your AI operations operator built by Bird's Eye Management Services. I can help you learn about our features, pricing, integrations, and more. What would you like to know?"
+function generateFallbackResponse(message: string, relevantSnippets: KnowledgeSnippet[]): string {
+  const normalized = message.toLowerCase()
+
+  if (normalized.match(/\b(hi|hello|hey|greetings)\b/)) {
+    return "Hi! I can help with DONNA product details, pricing, security, use cases, and related blog insights. What would you like to explore?"
   }
 
-  // Pricing questions
-  if (message.match(/\b(price|pricing|cost|how much|payment|plan)\b/)) {
-    return `We offer three options:\n\n1. **Free Waitlist** - Join to be among the first to experience DONNA\n2. **$5,000 Pilot Program** - Early access with full features and priority support\n3. **Custom Enterprise** - Tailored solutions for partnerships and custom builds\n\nWe're currently in an invite-only beta program. Would you like to join the waitlist or learn more about the pilot program?`
+  if (normalized.match(/\b(thank|thanks|appreciate|bye|goodbye)\b/)) {
+    return "Happy to help. If you want a walkthrough, you can request a demo or contact the team at derek@bem.studio."
   }
 
-  // Features questions
-  if (message.match(/\b(feature|capability|what can|what does|do)\b/)) {
-    return `DONNA offers powerful features including:\n\n• **Real-Time Voice & Chat** - Handle 4,000+ concurrent users\n• **AI + Human Collaboration** - Hybrid automation with human oversight\n• **Multi-Language Support** - 25+ languages including English, Spanish, Mandarin\n• **600+ Integrations** - Connect with Salesforce, HubSpot, Google Workspace, and more\n• **Enterprise Security** - Built on AWS with SOC 2 Type II certification\n\nWhich feature would you like to know more about?`
+  if (normalized.match(/\b(demo|contact|email|support|sales)\b/)) {
+    return "You can request a demo from the site or contact Bird's Eye Management Services at derek@bem.studio."
   }
 
-  // Modules questions
-  if (message.match(/\b(module|donna email|donna chat|donna voice|donna crm|donna books)\b/)) {
-    return `DONNA includes 9 specialized modules:\n\n• **Email** - Inbox analysis and lead classification with real-time meeting integration\n• **Chat** - Website chatbot with human routing\n• **Voice** - AI receptionist with real-time transcription\n• **CRM** - Lead tracking and pipeline visualization\n• **Books** - QuickBooks-style financial integration\n• **Lead Generation** - Hybrid AI and human lead conversion\n• **Secretary** - Real-time scheduling and executive assistance\n• **Landing Page Generator** - Automated page creation\n• **Photobooth** - Event-based photo/video capture\n\n**Special Feature**: DONNA can join your video meetings and interact live when you say "Hey Donna" - a feature no competitor offers!\n\nWhich module interests you?`
+  if (relevantSnippets.length === 0) {
+    return "I do not have enough context for that yet. You can ask about pricing, DONNA Network, use cases, security, or recent blog topics, and I can point you to the right details."
   }
 
-  // Meeting integration questions
-  if (message.match(/\b(meeting|zoom|teams|google meet|hey donna|join meeting|live meeting|real-time meeting)\b/)) {
-    return `Yes! DONNA's meeting integration is one of our most unique features that sets us apart from every competitor:\n\n**How It Works**:\n• DONNA seamlessly joins your video meetings (Zoom, Teams, Google Meet, etc.)\n• She sits quietly in the background, ready to assist\n• Simply say **"Hey Donna"** to activate her instantly\n• She can answer questions from participants, provide information from your knowledge base, explain features, give pricing details, or clarify any aspect of your business-all in real-time during the meeting\n\n**Perfect For**:\n• Sales calls and client presentations\n• Team meetings where you need instant data\n• Demos where questions come up\n• Any meeting where you need quick access to information\n\nNo other operations AI platform can join meetings and interact with participants in real-time like DONNA can!`
+  const summaryLines = relevantSnippets.slice(0, 3).map((snippet) => {
+    const source = snippet.source === "blog" ? "Blog" : "Knowledge base"
+    return `- **${snippet.title}** (${source}): ${trimSentence(snippet.content, 210)}`
+  })
+
+  return `Here is what I found:\n\n${summaryLines.join("\n")}\n\nIf you want, I can go deeper on one section or help you find the best plan and next step.`
+}
+
+function trimSentence(text: string, maxLength: number) {
+  if (text.length <= maxLength) return text
+  return `${text.slice(0, maxLength - 3).trimEnd()}...`
+}
+
+function tokenize(text: string): string[] {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, " ")
+    .split(/\s+/)
+    .filter((term) => term.length > 2 && !STOP_WORDS.has(term))
+}
+
+function createSnippet(id: string, title: string, content: string, source: "knowledge-base" | "blog", sourcePath?: string): KnowledgeSnippet {
+  const normalized = content.replace(/\s+/g, " ").trim()
+  return {
+    id,
+    title,
+    content: normalized,
+    source,
+    sourcePath,
+    terms: tokenize(`${title} ${normalized}`),
+  }
+}
+
+async function getKnowledgeSnippets(): Promise<KnowledgeSnippet[]> {
+  const now = Date.now()
+  if (cachedSnippets && now - cachedAt < SNIPPET_CACHE_TTL_MS) {
+    return cachedSnippets
   }
 
-  // Industry/use case questions
-  if (message.match(/\b(industry|vertical|use case|real estate|hospitality|professional|health|beauty|construction)\b/)) {
-    return `DONNA serves multiple industries:\n\n• **Real Estate** - Property inquiries, showings, lead nurturing\n• **Hospitality** - Reservations, guest services, multilingual support\n• **Professional Services** - Client intake, appointments, billing\n• **Health & Beauty** - Appointment booking, service inquiries\n• **Construction/ADU** - Project inquiries, permit tracking\n• **Nonprofits** - Event management, member engagement\n\nEach vertical includes 200+ curated questions and industry-specific workflows. Which industry are you in?`
+  const kbSnippets = getKnowledgeBaseSnippets()
+  const blogSnippets = await getBlogSnippets()
+  cachedSnippets = [...kbSnippets, ...blogSnippets]
+  cachedAt = now
+
+  return cachedSnippets
+}
+
+function getKnowledgeBaseSnippets(): KnowledgeSnippet[] {
+  const kb = knowledgeBase as any
+  const snippets: KnowledgeSnippet[] = []
+
+  snippets.push(
+    createSnippet(
+      "kb-company",
+      "DONNA overview",
+      `${kb.company?.description ?? ""} ${kb.company?.key_advantage ?? ""}`.trim(),
+      "knowledge-base"
+    )
+  )
+
+  const pricingSummary = (kb.pricing?.tiers ?? [])
+    .map((tier: any) => `${tier.tier}: ${tier.price} - ${tier.description}`)
+    .join(" | ")
+  snippets.push(createSnippet("kb-pricing", "Pricing and plans", pricingSummary, "knowledge-base"))
+
+  snippets.push(
+    createSnippet(
+      "kb-infra-security",
+      "Infrastructure and security",
+      `${kb.infrastructure?.foundation ?? ""} ${kb.infrastructure?.voice ?? ""} ${
+        (kb.security ?? []).map((entry: any) => `${entry.title}: ${entry.description}`).join(" ")
+      }`.trim(),
+      "knowledge-base"
+    )
+  )
+
+  snippets.push(
+    createSnippet(
+      "kb-modules",
+      "Core DONNA modules",
+      Object.entries(kb.modules ?? {})
+        .map(([moduleName, moduleDescription]) => `${moduleName.replaceAll("_", " ")}: ${moduleDescription}`)
+        .join(" "),
+      "knowledge-base"
+    )
+  )
+
+  snippets.push(
+    createSnippet(
+      "kb-use-cases",
+      "Industries and use cases",
+      (kb.useCases ?? [])
+        .map((useCase: any) => `${useCase.industry}: ${useCase.description}. Outcomes: ${(useCase.outcomes ?? []).join(", ")}`)
+        .join(" "),
+      "knowledge-base"
+    )
+  )
+
+  for (const faqEntry of kb.faq ?? []) {
+    snippets.push(
+      createSnippet(
+        `kb-faq-${faqEntry.question}`,
+        faqEntry.question,
+        faqEntry.answer,
+        "knowledge-base"
+      )
+    )
   }
 
-  // Security questions
-  if (message.match(/\b(secure|security|safe|privacy|data|encryption|gdpr|soc)\b/)) {
-    return `Security is our top priority:\n\n• **AWS Infrastructure** - Built on enterprise-grade AWS services\n• **SOC 2 Type II Certified** - Independently audited\n• **GDPR Compliant** - Full data protection compliance\n• **Bank-Level Encryption** - All data encrypted at rest and in transit\n• **Verizon Partnership** - Enterprise network reliability\n• **Data Isolation** - Each client runs in a secure, isolated environment\n\nYour data is yours—we never train our models on customer data.`
+  return snippets.filter((snippet) => snippet.content.length > 0)
+}
+
+async function getBlogSnippets(): Promise<KnowledgeSnippet[]> {
+  try {
+    const files = await fs.readdir(BLOG_CONTENT_DIR)
+    const markdownFiles = files.filter((file) => file.endsWith(".md"))
+    const snippets: KnowledgeSnippet[] = []
+
+    for (const fileName of markdownFiles) {
+      const fullPath = path.join(BLOG_CONTENT_DIR, fileName)
+      const raw = await fs.readFile(fullPath, "utf8")
+      const parsed = parseMarkdownWithFrontmatter(raw)
+      const blogTitle = parsed.frontmatter.title || cleanHeading(parsed.body) || fileName.replace(".md", "")
+      const excerpt = parsed.frontmatter.excerpt || ""
+      const cleanBody = cleanMarkdown(parsed.body)
+      const bodySections = cleanBody
+        .split(/\n{2,}/)
+        .filter((chunk) => chunk.trim().length > 120)
+        .slice(0, 4)
+
+      const summaryContent = `${excerpt} ${bodySections.join(" ")}`.trim()
+      snippets.push(
+        createSnippet(
+          `blog-${fileName}-summary`,
+          `Blog insight: ${blogTitle}`,
+          trimSentence(summaryContent, 900),
+          "blog",
+          `/blog-content/${fileName}`
+        )
+      )
+
+      if (bodySections[0]) {
+        snippets.push(
+          createSnippet(
+            `blog-${fileName}-detail`,
+            `${blogTitle} - key takeaway`,
+            trimSentence(bodySections[0], 600),
+            "blog",
+            `/blog-content/${fileName}`
+          )
+        )
+      }
+    }
+
+    return snippets
+  } catch (error) {
+    console.error("Unable to read blog content for chatbot:", error)
+    return []
+  }
+}
+
+function parseMarkdownWithFrontmatter(raw: string): { frontmatter: Record<string, string>; body: string } {
+  const frontmatterMatch = raw.match(/^---\s*[\r\n]+([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/)
+
+  if (!frontmatterMatch) {
+    return { frontmatter: {}, body: raw }
   }
 
-  // Integration questions
-  if (message.match(/\b(integrat|connect|crm|salesforce|hubspot|google|microsoft|quickbooks)\b/)) {
-    return `DONNA integrates with 600+ platforms including:\n\n• **CRMs**: Salesforce, HubSpot, custom systems\n• **Communication**: Google Workspace, Microsoft 365, Slack, Teams\n• **Finance**: QuickBooks, accounting systems\n• **Phone**: Twilio, Verizon Connect\n• **Support**: Zendesk, help desk tools\n• **Automation**: Zapier, custom APIs\n\nWe offer both real-time and scheduled data sync. Need a specific integration?`
+  const [, frontmatterRaw, body] = frontmatterMatch
+  const frontmatter: Record<string, string> = {}
+  for (const line of frontmatterRaw.split(/\r?\n/)) {
+    const separatorIndex = line.indexOf(":")
+    if (separatorIndex === -1) continue
+    const key = line.slice(0, separatorIndex).trim()
+    const value = line.slice(separatorIndex + 1).trim().replace(/^["']|["']$/g, "")
+    if (key) frontmatter[key] = value
   }
 
-  // Setup/onboarding questions
-  if (message.match(/\b(setup|install|onboard|start|begin|implement)\b/)) {
-    return `Getting started with DONNA is quick and easy:\n\n**Setup Time**: 15-30 minutes\n**Process**:\n1. Connect your phone, email, calendar, and CRM\n2. Upload your knowledge base and business documents\n3. Go live with DONNA managing communications\n4. Review analytics and optimize performance\n\nMost customers are live within an hour! Would you like to request a demo or join the pilot program?`
+  return { frontmatter, body }
+}
+
+function cleanHeading(markdown: string): string {
+  const headingMatch = markdown.match(/^#\s+(.+)$/m)
+  return headingMatch ? headingMatch[1].trim() : ""
+}
+
+function cleanMarkdown(markdown: string): string {
+  return markdown
+    .replace(/^#{1,6}\s+/gm, "")
+    .replace(/`{1,3}[^`]*`{1,3}/g, " ")
+    .replace(/\*\*([^*]+)\*\*/g, "$1")
+    .replace(/\*([^*]+)\*/g, "$1")
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1")
+    .replace(/^\s*[-*]\s+/gm, "")
+    .replace(/\r/g, "")
+    .trim()
+}
+
+function retrieveRelevantSnippets(message: string, snippets: KnowledgeSnippet[]): KnowledgeSnippet[] {
+  const normalizedMessage = message.toLowerCase()
+  const messageTerms = tokenize(message)
+
+  const scored = snippets.map((snippet) => {
+    const termSet = new Set(snippet.terms)
+    let score = 0
+
+    for (const term of messageTerms) {
+      if (termSet.has(term)) score += 2
+    }
+
+    if (snippet.title.toLowerCase().includes(normalizedMessage)) score += 4
+    if (snippet.content.toLowerCase().includes(normalizedMessage)) score += 3
+
+    return { snippet, score }
+  })
+
+  const relevant = scored
+    .filter((entry) => entry.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 6)
+    .map((entry) => entry.snippet)
+
+  if (relevant.length > 0) {
+    return relevant
   }
 
-  // Language questions
-  if (message.match(/\b(language|multilingual|spanish|mandarin|translate)\b/)) {
-    return `Yes! DONNA supports 25+ languages including English, Spanish, and Mandarin. She can seamlessly switch between languages during conversations, making her perfect for diverse customer bases and international operations.`
-  }
-
-  // Demo/contact questions
-  if (message.match(/\b(demo|contact|talk|speak|call|email|support)\b/)) {
-    return `I'd be happy to connect you with our team!\n\n**Contact Options**:\n• **Email**: derek@bem.studio\n• **Request Demo**: Fill out the form on this page\n• **Join Beta**: Sign up with your business email\n\nYou can also scroll down to our contact form to request a personalized demo. What works best for you?`
-  }
-
-  // Difference from other AI
-  if (message.match(/\b(different|chatgpt|alexa|compare|versus|vs|better)\b/)) {
-    return `Great question! Unlike ChatGPT or Alexa, DONNA is built specifically for business operations:\n\n• **Direct Integration** - Works with your existing workflows and tools\n• **Real Phone Calls** - Handles actual voice conversations via Verizon\n• **Inbox Management** - Analyzes and responds to emails\n• **Lead Automation** - Qualifies and nurtures prospects\n• **AWS-Native** - Enterprise-grade reliability and security\n• **Human Collaboration** - Hybrid AI + human model for quality\n\nDONNA is your complete operations layer, not just a chatbot.`
-  }
-
-  // White label questions
-  if (message.match(/\b(white label|rebrand|custom|agency|resell)\b/)) {
-    return `Yes! DONNA can be fully white-labeled and customized for:\n\n• Agencies wanting a branded AI solution\n• Enterprises needing custom branding\n• Chambers of commerce and civic organizations\n• Partners looking to resell\n\nWe offer complete customization of branding, features, and workflows. Interested in a white-label partnership?`
-  }
-
-  // Thank you / goodbye
-  if (message.match(/\b(thank|thanks|appreciate|bye|goodbye)\b/)) {
-    return "You're welcome! If you have any other questions about DONNA, feel free to ask. You can also reach us at derek@bem.studio or request a demo using the form on this page. Have a great day!"
-  }
-
-  // Default response with helpful suggestions
-  return `I'd be happy to help! I can answer questions about:\n\n• **Pricing & Plans** - Free waitlist, $5K pilot, custom enterprise\n• **Features** - Voice, chat, email, CRM, integrations\n• **Industries** - Real estate, hospitality, professional services, and more\n• **Security** - AWS infrastructure, SOC 2, GDPR compliance\n• **Setup** - Quick 15-30 minute onboarding\n• **Modules** - Email, chat, voice, CRM, lead generation, and more\n\nWhat would you like to know more about?`
+  return snippets
+    .filter((snippet) => snippet.id === "kb-company" || snippet.id === "kb-pricing" || snippet.id === "kb-use-cases")
+    .slice(0, 3)
 }
 

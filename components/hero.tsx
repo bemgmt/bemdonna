@@ -46,8 +46,8 @@ export default function Hero() {
     let rafId = 0
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
-      ctx.fillStyle = "rgba(6, 182, 212, 0.15)"
-      ctx.strokeStyle = "rgba(6, 182, 212, 0.1)"
+      ctx.fillStyle = "rgba(129, 140, 248, 0.2)"
+      ctx.strokeStyle = "rgba(99, 102, 241, 0.18)"
       ctx.lineWidth = 1
 
       dots.forEach((dot) => {
@@ -95,7 +95,7 @@ export default function Hero() {
     <section className="relative min-h-[85vh] md:min-h-screen flex items-center justify-center overflow-hidden pt-16">
       {/* Clean gradient background - no image for aidonna.co minimalism */}
       <div className="absolute inset-0 z-0 bg-black" />
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-black z-0" />
+      <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/10 via-transparent to-black z-0" />
 
       {/* Animated canvas overlay */}
       {!reducedMotion && <canvas ref={canvasRef} className="absolute inset-0 opacity-30 z-10" aria-hidden="true" />}

@@ -105,7 +105,7 @@ export default function HomePage() {
         title="One AI. Every Industry."
         subtitle="DONNA is the digital operations layer that runs workflows, communication, and decision support across your business."
         primaryCTA={{ label: "Join the Waitlist", link: "/#demo-form" }}
-        secondaryCTA={{ label: "Watch Demo", link: "#demo" }}
+        secondaryCTA={{ label: "Request a Demo", link: "/contact" }}
       />
 
       {/* What is DONNA */}

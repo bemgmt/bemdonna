@@ -8,22 +8,22 @@ The DONNA chatbot is now integrated into your landing page! It features:
 - ✅ Message history and real-time responses
 - ✅ Comprehensive knowledge base
 - ✅ AI-powered responses (OpenAI or Anthropic)
-- ✅ Fallback keyword-based responses
+- ✅ Retrieval fallback responses from local content
 
 ## Features
 
 ### 1. **Chatbot UI Component** (`components/chatbot.tsx`)
 - Floating chat button in bottom-right corner
 - Expandable chat window with message history
-- Professional gradient design matching your brand
+- Black chat surface for stronger logo/text contrast
 - Mobile-responsive
 - Smooth animations
 
 ### 2. **API Endpoint** (`app/api/chatbot/route.ts`)
 - Handles chat requests
 - Integrates with OpenAI GPT-4 or Anthropic Claude
-- Falls back to keyword-based responses if no API key
-- Uses comprehensive knowledge base
+- Falls back to retrieval-based responses if no API key
+- Uses `chatbot-knowledge-base.json` + markdown posts in `public/blog-content`
 
 ### 3. **Knowledge Base** (`lib/chatbot-knowledge-base.json`)
 - Complete information about DONNA
@@ -63,9 +63,9 @@ The DONNA chatbot is now integrated into your landing page! It features:
    - Navigate to Environment Variables
    - Add `ANTHROPIC_API_KEY` with your key
 
-### Option 2: Use Keyword-Based Responses (No API Key Required)
+### Option 2: Use Retrieval Fallback (No API Key Required)
 
-The chatbot will automatically fall back to keyword-based responses if no API keys are configured. This works out of the box but provides less natural conversations.
+The chatbot automatically retrieves relevant snippets from the knowledge base and blog markdown files when no API keys are configured.
 
 ## How It Works
 
@@ -76,10 +76,10 @@ The chatbot will automatically fall back to keyword-based responses if no API ke
 4. AI generates contextual response
 5. Response displayed to user
 
-### Keyword-Based Mode (Fallback)
+### Retrieval Mode (Fallback)
 1. User sends a message
-2. API matches keywords in the message
-3. Returns pre-written response based on topic
+2. API retrieves relevant snippets from local knowledge + blog content
+3. Returns a concise answer grounded in retrieved snippets
 4. Response displayed to user
 
 ## Customization
@@ -92,6 +92,11 @@ Edit `lib/chatbot-knowledge-base.json` to update:
 - Features and modules
 - FAQ responses
 - Contact information
+
+### Add Blog Knowledge
+
+Drop markdown files into `public/blog-content` with frontmatter (recommended `title`, `slug`, `excerpt`).
+The chatbot indexes these files automatically for both AI and fallback responses.
 
 ### Customize Appearance
 
