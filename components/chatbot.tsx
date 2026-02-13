@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import { Send, X, MessageCircle, Loader2 } from "lucide-react"
+import Image from "next/image"
 
 interface Message {
   id: string
@@ -16,7 +17,7 @@ export default function Chatbot() {
     {
       id: "welcome",
       role: "assistant",
-      content: "Hi! I'm Donna, your AI Office Assistant. How can I help you today?",
+      content: "Hi! I'm Donna, your AI operations operator. How can I help you today?",
       timestamp: new Date(),
     },
   ])
@@ -26,7 +27,7 @@ export default function Chatbot() {
 
   const suggestedPrompts = [
     "How does DONNA join meetings?",
-    "What makes DONNA different from other AI assistants?",
+    "What makes DONNA different from other AI tools?",
     "What are your pricing plans?"
   ]
 
@@ -99,7 +100,7 @@ export default function Chatbot() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 chat-pulse"
+          className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 chat-pulse focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           aria-label="Open chat"
         >
           <MessageCircle className="w-8 h-8 text-background" />
@@ -112,17 +113,17 @@ export default function Chatbot() {
           {/* Header */}
           <div className="bg-gradient-to-r from-accent to-primary p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-                <span className="text-xl font-bold text-background">D</span>
+              <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center overflow-hidden">
+                <Image src="/DONNA-logo.png" alt="Donna" width={24} height={24} className="h-6 w-6" />
               </div>
               <div>
                 <h3 className="font-bold text-background">Donna</h3>
-                <p className="text-xs text-background/80">AI Office Assistant</p>
+                <p className="text-xs text-background/80">Operational Intelligence Layer</p>
               </div>
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="text-background/80 hover:text-background transition-colors"
+              className="text-background/80 hover:text-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background rounded-md"
               aria-label="Close chat"
             >
               <X className="w-6 h-6" />
@@ -205,7 +206,7 @@ export default function Chatbot() {
                         setIsLoading(false)
                       }
                     }}
-                    className="w-full text-left px-3 py-2 text-sm bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-foreground/80 hover:text-foreground transition-colors"
+                    className="w-full text-left px-3 py-2 text-sm bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-foreground/80 hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     {prompt}
                   </button>
@@ -225,12 +226,12 @@ export default function Chatbot() {
                 onKeyPress={handleKeyPress}
                 placeholder="Ask me anything..."
                 disabled={isLoading}
-                className="flex-1 px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-accent/50 focus:outline-none transition-colors text-foreground placeholder:text-foreground/40 disabled:opacity-50"
+                className="flex-1 px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus-visible:border-accent/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/20 transition-colors text-foreground placeholder:text-foreground/40 disabled:opacity-50"
               />
               <button
                 onClick={handleSend}
                 disabled={!input.trim() || isLoading}
-                className="px-4 py-2 rounded-lg bg-accent text-background hover:bg-accent/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center"
+                className="px-4 py-2 rounded-lg bg-accent text-background hover:bg-accent/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 aria-label="Send message"
               >
                 <Send className="w-5 h-5" />

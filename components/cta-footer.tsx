@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { Button } from "@/components/ui/button"
 
 export default function CTAFooter() {
   return (
@@ -13,18 +14,12 @@ export default function CTAFooter() {
           Join the waitlist for early access to the AI operations layer built for real business workflows.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link
-            href="/#demo-form"
-            className="px-8 py-3 rounded-lg bg-accent text-background hover:bg-accent/90 transition-all duration-300 font-semibold text-lg glow-accent hover:shadow-[0_0_30px_rgba(138,47,255,0.5)]"
-          >
-            Join the Waitlist
-          </Link>
-          <Link
-            href="/contact"
-            className="px-8 py-3 rounded-lg border-2 border-accent text-accent hover:bg-accent/10 transition-all duration-300 font-semibold text-lg"
-          >
-            Request a Demo
-          </Link>
+          <Button variant="donnaPrimary" size="lg" asChild>
+            <Link href="/#demo-form">Join the Waitlist</Link>
+          </Button>
+          <Button variant="donnaOutline" size="lg" asChild>
+            <Link href="/contact">Request a Demo</Link>
+          </Button>
         </div>
       </div>
     </section>

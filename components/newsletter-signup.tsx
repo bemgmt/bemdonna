@@ -60,8 +60,9 @@ export default function NewsletterSignup({ variant = 'inline' }: NewsletterSignu
           <input
             type="email"
             placeholder="Enter your email"
+            aria-label="Email address"
             {...register('email')}
-            className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-accent text-foreground placeholder:text-foreground/50"
+            className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/30 text-foreground placeholder:text-foreground/50"
           />
           {errors.email && (
             <p className="mt-1 text-xs text-red-400">{errors.email.message}</p>
@@ -92,8 +93,9 @@ export default function NewsletterSignup({ variant = 'inline' }: NewsletterSignu
           <input
             type="email"
             placeholder="Your email"
+            aria-label="Email address"
             {...register('email')}
-            className="w-full px-3 py-2 rounded-lg bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-accent text-foreground placeholder:text-foreground/50 text-sm"
+            className="w-full px-3 py-2 rounded-lg bg-white/5 border border-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/30 text-foreground placeholder:text-foreground/50 text-sm"
           />
           {errors.email && (
             <p className="text-xs text-red-400">{errors.email.message}</p>

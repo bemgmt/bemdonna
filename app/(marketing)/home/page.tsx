@@ -31,7 +31,7 @@ export default function HomePage() {
     {
       icon: Bot,
       title: "Secretary Bot",
-      description: "Virtual assistant for scheduling, reminders, and administrative tasks"
+      description: "Operational agent for scheduling, reminders, and administrative tasks"
     },
     {
       icon: Users,
@@ -192,21 +192,21 @@ export default function HomePage() {
           />
           <div className="grid md:grid-cols-3 gap-6">
             <div className="glass-panel p-8 rounded-xl">
-              <div className="text-4xl mb-4">⚡</div>
+              <Zap className="w-8 h-8 text-[#3DE0FF] mb-4" />
               <h3 className="text-2xl font-bold mb-3 text-[#3DE0FF]">Instant Response</h3>
               <p className="text-gray-300">
                 Multi-modal responses across voice, email, chat, and SMS without delay.
               </p>
             </div>
             <div className="glass-panel p-8 rounded-xl">
-              <div className="text-4xl mb-4">🧠</div>
+              <Brain className="w-8 h-8 text-[#8A2FFF] mb-4" />
               <h3 className="text-2xl font-bold mb-3 text-[#8A2FFF]">Contextual Understanding</h3>
               <p className="text-gray-300">
                 Shared memory across systems and conversations for consistent decisions.
               </p>
             </div>
             <div className="glass-panel p-8 rounded-xl">
-              <div className="text-4xl mb-4">🎯</div>
+              <Target className="w-8 h-8 text-[#8A2FFF] mb-4" />
               <h3 className="text-2xl font-bold mb-3 text-[#8A2FFF]">Autonomous Execution</h3>
               <p className="text-gray-300">
                 From lead qualification to scheduling, DONNA runs workflows end-to-end.

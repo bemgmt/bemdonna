@@ -204,15 +204,15 @@ export default function InvestorsPage() {
               </p>
               <ul className="space-y-2 text-gray-300">
                 <li className="flex items-start gap-2">
-                  <span className="text-[#8A2FFF] mt-1">•</span>
+                  <span className="text-[#8A2FFF] mt-1">-</span>
                   <span>R&D tax credits for AI implementation</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-[#8A2FFF] mt-1">•</span>
+                  <span className="text-[#8A2FFF] mt-1">-</span>
                   <span>Small business innovation grants</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-[#8A2FFF] mt-1">•</span>
+                  <span className="text-[#8A2FFF] mt-1">-</span>
                   <span>Workforce development incentives</span>
                 </li>
               </ul>
@@ -227,15 +227,15 @@ export default function InvestorsPage() {
               </p>
               <ul className="space-y-2 text-gray-300">
                 <li className="flex items-start gap-2">
-                  <span className="text-[#8A2FFF] mt-1">•</span>
+                  <span className="text-[#8A2FFF] mt-1">-</span>
                   <span>Data privacy and security mandates</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-[#8A2FFF] mt-1">•</span>
+                  <span className="text-[#8A2FFF] mt-1">-</span>
                   <span>Customer service standards</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-[#8A2FFF] mt-1">•</span>
+                  <span className="text-[#8A2FFF] mt-1">-</span>
                   <span>Accessibility requirements</span>
                 </li>
               </ul>

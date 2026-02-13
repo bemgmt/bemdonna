@@ -1,33 +1,35 @@
 "use client"
 
 import { useInView } from "react-intersection-observer"
+import { Building2, Hotel, BriefcaseBusiness, Sparkles, type LucideIcon } from "lucide-react"
+import { IconBadge } from "@/components/donna/icon-badge"
 
 const useCases = [
   {
     title: "Real Estate",
-    icon: "◎",
+    icon: Building2,
     description: "Automate inquiries, showings, and lead qualification with an AI operator that syncs with your CRM and calendar.",
     outcomes: ["Faster lead response", "More showings booked", "Cleaner CRM data", "Always-on follow-up"],
   },
   {
     title: "Hospitality",
-    icon: "◈",
+    icon: Hotel,
     description: "Handle reservations, guest questions, and service coordination across voice, SMS, and email.",
     outcomes: ["24/7 reservation handling", "Reduced front-desk load", "Consistent guest experience", "Faster issue resolution"],
   },
   {
     title: "Professional Services",
-    icon: "⬢",
+    icon: BriefcaseBusiness,
     description: "Automate intake, scheduling, and follow-ups so teams stay focused on high-value work.",
     outcomes: ["Fewer no-shows", "Faster intake", "Automated reminders", "More billable time"],
   },
   {
     title: "Health & Beauty",
-    icon: "⟳",
+    icon: Sparkles,
     description: "Book and manage appointments, send reminders, and respond to client questions around the clock.",
     outcomes: ["Fuller calendars", "Reduced no-shows", "24/7 client support", "Smooth rescheduling"],
   },
-]
+] as { title: string; icon: LucideIcon; description: string; outcomes: string[] }[]
 
 export default function UseCases() {
   const { ref, inView } = useInView({ threshold: 0.2, once: true })
@@ -48,10 +50,14 @@ export default function UseCases() {
           {useCases.map((useCase, index) => (
             <div
               key={index}
-              className="glass-card p-8 rounded-xl glow-accent transition-all duration-300 hover:glow-accent hover:shadow-[0_0_30px_rgba(122,92,255,0.2)] animate-slide-up group"
+              className="glass-card p-8 rounded-xl glow-accent transition-all duration-300 hover:glow-accent hover:shadow-[var(--shadow-accent)] animate-slide-up group"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="text-4xl mb-4 group-hover:animate-float">{useCase.icon}</div>
+              <div className="mb-4">
+                <IconBadge>
+                  <useCase.icon className="h-5 w-5 text-accent" />
+                </IconBadge>
+              </div>
               <h3 className="text-xl font-bold mb-2">{useCase.title}</h3>
               <p className="text-foreground/70 mb-4 text-sm">{useCase.description}</p>
               <div className="space-y-2">

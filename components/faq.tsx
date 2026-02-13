@@ -1,8 +1,8 @@
 "use client"
 
-import { useState } from "react"
 import { useInView } from "react-intersection-observer"
 import { ChevronDown } from "lucide-react"
+import * as Accordion from "@radix-ui/react-accordion"
 
 const faqs = [
   {
@@ -48,7 +48,6 @@ const faqs = [
 ]
 
 export default function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
   const { ref, inView } = useInView({ threshold: 0.2, once: true })
 
   return (
@@ -60,34 +59,26 @@ export default function FAQ() {
           </h2>
         </div>
 
-        <div className="space-y-3">
+        <Accordion.Root type="single" collapsible className="space-y-3">
           {faqs.map((faq, index) => (
-            <div
+            <Accordion.Item
               key={faq.id}
-              className="glass-card rounded-lg overflow-hidden transition-all duration-300 animate-slide-up"
+              value={faq.id}
+              className="glass-card rounded-lg overflow-hidden transition-all duration-300 animate-slide-up border border-[color:var(--border-subtle)]"
               style={{ animationDelay: `${index * 50}ms` }}
             >
-              <button
-                onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full p-4 flex items-center justify-between hover:bg-white/5 transition-colors text-left"
-              >
-                <span className="font-semibold pr-4">{faq.question}</span>
-                <ChevronDown
-                  size={20}
-                  className={`flex-shrink-0 text-accent transition-transform duration-300 ${
-                    openIndex === index ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
-
-              {openIndex === index && (
-                <div className="px-4 pb-4 pt-2 border-t border-white/10 text-foreground/70">
-                  {faq.answer}
-                </div>
-              )}
-            </div>
+              <Accordion.Header>
+                <Accordion.Trigger className="w-full p-4 flex items-center justify-between hover:bg-white/5 transition-colors text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                  <span className="font-semibold pr-4">{faq.question}</span>
+                  <ChevronDown size={20} className="flex-shrink-0 text-accent transition-transform duration-300 data-[state=open]:rotate-180" />
+                </Accordion.Trigger>
+              </Accordion.Header>
+              <Accordion.Content className="px-4 pb-4 pt-2 border-t border-white/10 text-foreground/70">
+                {faq.answer}
+              </Accordion.Content>
+            </Accordion.Item>
           ))}
-        </div>
+        </Accordion.Root>
       </div>
     </section>
   )

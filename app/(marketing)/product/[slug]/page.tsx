@@ -84,7 +84,7 @@ export default async function ProductDetailPage({ params }: { params: { slug: st
       ],
     },
     'email-assistant': {
-      title: 'Email Assistant',
+      title: 'Email Operations',
       description: 'Thread-aware email operations with task execution and approvals.',
       features: [
         { title: 'Context Memory', description: 'Understands full conversation history.' },

@@ -54,7 +54,7 @@ export default function SearchModal() {
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
         <button
-          className="flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 transition-colors text-sm"
+          className="flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 transition-colors text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           aria-label="Search"
         >
           <Search className="h-4 w-4" />
@@ -75,12 +75,13 @@ export default function SearchModal() {
                 placeholder="Search pages, products, industries, and use cases..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="w-full pl-10 pr-10 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent text-foreground placeholder:text-foreground/50"
+                className="w-full pl-10 pr-10 py-3 bg-white/5 border border-white/10 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/30 text-foreground placeholder:text-foreground/50"
                 autoFocus
               />
               <button
                 onClick={() => setOpen(false)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-foreground/50 hover:text-foreground"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-foreground/50 hover:text-foreground rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                aria-label="Close search"
               >
                 <X className="h-5 w-5" />
               </button>

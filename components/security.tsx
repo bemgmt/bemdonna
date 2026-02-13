@@ -1,6 +1,8 @@
 "use client"
 
 import { useInView } from "react-intersection-observer"
+import { BadgeCheck, LockKeyhole, ShieldCheck, type LucideIcon } from "lucide-react"
+import { IconBadge } from "@/components/donna/icon-badge"
 
 const securityLayerFeatures = [
   "PII Detection",
@@ -12,11 +14,11 @@ const securityLayerFeatures = [
 ]
 
 const securityItems = [
-  { icon: "◐", title: "SOC 2 Type II & GDPR", description: "Enterprise compliance with audited controls and data protection standards." },
-  { icon: "✓", title: "Encryption Everywhere", description: "Secure data in transit and at rest with strict access controls." },
-  { icon: "⚙", title: "Governed Automation", description: "Permissioned actions, audit trails, and clear escalation rules." },
-  { icon: "⬢", title: "Privacy by Design", description: "Only the required data is shared. You control what DONNA can access and execute." },
-]
+  { icon: BadgeCheck, title: "SOC 2 Type II & GDPR", description: "Enterprise compliance with audited controls and data protection standards." },
+  { icon: LockKeyhole, title: "Encryption Everywhere", description: "Secure data in transit and at rest with strict access controls." },
+  { icon: ShieldCheck, title: "Governed Automation", description: "Permissioned actions, audit trails, and clear escalation rules." },
+  { icon: ShieldCheck, title: "Privacy by Design", description: "Only the required data is shared. You control what DONNA can access and execute." },
+] as { icon: LucideIcon; title: string; description: string }[]
 
 function ShieldIcon({ className }: { className?: string }) {
   return (
@@ -89,7 +91,11 @@ export default function Security() {
                 className="glass-card p-5 rounded-xl text-center glow-accent hover:shadow-[0_0_30px_rgba(6,182,212,0.2)] transition-all duration-300 animate-slide-up min-w-[260px] snap-start"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="text-3xl mb-2">{item.icon}</div>
+                <div className="mb-2 flex justify-center">
+                  <IconBadge>
+                    <item.icon className="h-5 w-5 text-accent" />
+                  </IconBadge>
+                </div>
                 <h4 className="font-bold mb-2 text-sm">{item.title}</h4>
                 <p className="text-foreground/60 text-xs">{item.description}</p>
               </div>
@@ -104,7 +110,11 @@ export default function Security() {
               className="glass-card p-6 rounded-xl text-center glow-accent hover:shadow-[0_0_30px_rgba(6,182,212,0.2)] transition-all duration-300 animate-slide-up"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="text-4xl mb-3">{item.icon}</div>
+              <div className="mb-3 flex justify-center">
+                <IconBadge>
+                  <item.icon className="h-5 w-5 text-accent" />
+                </IconBadge>
+              </div>
               <h4 className="font-bold mb-2">{item.title}</h4>
               <p className="text-foreground/60 text-sm">{item.description}</p>
             </div>

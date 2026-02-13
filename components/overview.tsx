@@ -1,7 +1,7 @@
 "use client"
 
 import { useInView } from "react-intersection-observer"
-import Link from "next/link"
+import { OperationalLayersDiagram } from "@/components/donna/operational-layers-diagram"
 
 export default function Overview() {
   const { ref, inView } = useInView({ threshold: 0.1, once: true })
@@ -36,54 +36,7 @@ export default function Overview() {
 
           {/* Visual Diagram */}
           <div className={`animate-fade-in ${inView ? 'opacity-100' : 'opacity-0'}`} style={{ animationDelay: '200ms' }}>
-            <div className="glass-card p-8 rounded-xl border border-accent/10">
-              <div className="space-y-6">
-                {/* People */}
-                <div className="flex items-center justify-center">
-                  <div className="flex gap-4">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-accent/20 to-primary/20 flex items-center justify-center border-2 border-accent/30">
-                      <span className="text-2xl">👥</span>
-                    </div>
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-accent/20 to-primary/20 flex items-center justify-center border-2 border-accent/30">
-                      <span className="text-2xl">👥</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Arrow */}
-                <div className="flex items-center justify-center">
-                  <div className="w-1 h-12 bg-gradient-to-b from-accent to-primary"></div>
-                </div>
-
-                {/* DONNA Layer */}
-                <div className="flex items-center justify-center">
-                  <div className="px-6 py-4 rounded-lg bg-gradient-to-r from-accent/20 to-primary/20 border-2 border-accent/40">
-                    <span className="text-xl font-bold gradient-text">DONNA</span>
-                  </div>
-                </div>
-
-                {/* Arrow */}
-                <div className="flex items-center justify-center">
-                  <div className="w-1 h-12 bg-gradient-to-b from-primary to-accent"></div>
-                </div>
-
-                {/* Software Systems */}
-                <div className="flex items-center justify-center">
-                  <div className="grid grid-cols-3 gap-3">
-                    {['📧', '📅', '💼', '📊', '🔧', '📱'].map((icon, i) => (
-                      <div key={i} className="w-12 h-12 rounded-lg bg-foreground/5 flex items-center justify-center border border-foreground/10">
-                        <span className="text-xl">{icon}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Caption */}
-                <p className="text-center text-sm text-foreground/60 mt-4">
-                  People ⇄ DONNA ⇄ Software Systems
-                </p>
-              </div>
-            </div>
+            <OperationalLayersDiagram />
           </div>
         </div>
 

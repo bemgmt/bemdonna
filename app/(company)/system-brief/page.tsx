@@ -18,7 +18,7 @@ export default function SystemBriefPage() {
         {/* Header */}
         <header className="mb-12">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
-            DONNA System Briefing: From AI Assistant to Economic Network
+            DONNA System Briefing: From AI Operator to Economic Network
           </h1>
           <p className="text-xl text-foreground/80 leading-relaxed">
             Operational Intelligence Overview
@@ -31,7 +31,7 @@ export default function SystemBriefPage() {
             The DONNA (Digital Operations Neural Network Assistant) platform is engineered to function as an "AI employee" for small and mid-sized businesses (SMBs), designed to amplify human teams by automating monotonous administrative and operational tasks. Operating across multiple channels—including voice, email, SMS, and web chat—DONNA handles lead generation, scheduling, customer service, and in-meeting assistance. The core mission is to augment human capabilities, allowing teams to focus on high-value, strategic work.
           </p>
           <p className="text-foreground/90 leading-relaxed mb-4">
-            The system's transformative potential lies in the DONNA-to-DONNA (D2D) Network, a vision that evolves the platform from a collection of isolated AI assistants into a networked economic layer. In this ecosystem, individual DONNA instances, representing different businesses, can securely discover, communicate, and transact with one another. This creates a marketplace of intelligence and execution that replaces operational friction with automated, AI-mediated collaboration.
+            The system's transformative potential lies in the DONNA-to-DONNA (D2D) Network, a vision that evolves the platform from a collection of isolated AI operators into a networked economic layer. In this ecosystem, individual DONNA instances, representing different businesses, can securely discover, communicate, and transact with one another. This creates a marketplace of intelligence and execution that replaces operational friction with automated, AI-mediated collaboration.
           </p>
           <p className="text-foreground/90 leading-relaxed mb-4">
             This strategic evolution is underpinned by a non-negotiable commitment to enterprise-grade governance and safety. The platform architecture embeds trust by design, incorporating features like cryptographic agent identity, scoped permissions, data firewalls, and anti-collusion monitoring. These safeguards are not features but foundational infrastructure, positioning governance as a key competitive moat.
@@ -122,12 +122,12 @@ export default function SystemBriefPage() {
             The long-term vision positions DONNA not as an isolated tool but as the foundation for an intelligent economic network where AI agents collaborate on behalf of businesses.
           </p>
 
-          <h3 className="text-2xl font-bold mb-4">2.1 From Isolated Assistants to a Living Network</h3>
+          <h3 className="text-2xl font-bold mb-4">2.1 From Isolated Operators to a Living Network</h3>
           <p className="text-foreground/90 leading-relaxed mb-4">
-            The platform's evolution is marked by a critical inflection point where individual DONNA instances transition from being isolated assistants to nodes in a connected network.
+            The platform's evolution is marked by a critical inflection point where individual DONNA instances transition from being isolated operators to nodes in a connected network.
           </p>
           <ul className="list-disc list-inside space-y-2 text-foreground/90 mb-6">
-            <li><strong>Pre-Marketplace (Current State):</strong> Each DONNA is a private, company-specific AI assistant, deeply integrated into internal workflows but operating in isolation.</li>
+            <li><strong>Pre-Marketplace (Current State):</strong> Each DONNA is a private, company-specific AI operator, deeply integrated into internal workflows but operating in isolation.</li>
             <li><strong>Post-Marketplace (Vision):</strong> Once DONNAs can discover each other, communicate securely, and negotiate tasks or referrals, the system's value becomes multiplicative. It shifts from being "An AI that helps my business" to "An AI that connects my business to an intelligent economic network."</li>
           </ul>
 
@@ -429,7 +429,7 @@ export default function SystemBriefPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-foreground/10">
-                  <td className="p-4 font-medium">"This is just another AI assistant."</td>
+                  <td className="p-4 font-medium">"This is just another AI tool."</td>
                   <td className="p-4 text-foreground/80">DONNA is a coordinating layer. Replacement cost grows as memory and D2D network dependencies accumulate.</td>
                 </tr>
                 <tr className="border-b border-foreground/10">
@@ -475,7 +475,7 @@ export default function SystemBriefPage() {
               <p className="text-foreground/90 italic">"Most platforms optimize attention. The DONNA Marketplace optimizes outcomes."</p>
             </div>
             <div className="glass-card p-6 rounded-xl">
-              <p className="text-foreground/90 italic">"Donna evolves from 'An AI assistant for your business' into 'The connective tissue between businesses.'"</p>
+              <p className="text-foreground/90 italic">"Donna evolves from 'An AI operator for your business' into 'The connective tissue between businesses.'"</p>
             </div>
             <div className="glass-card p-6 rounded-xl">
               <p className="text-foreground/90 italic">"DONNA is designed as operational infrastructure — not an unchecked AI agent."</p>

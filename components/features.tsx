@@ -1,10 +1,22 @@
 "use client"
 
 import { useInView } from "react-intersection-observer"
+import {
+  Zap,
+  Shield,
+  Workflow,
+  Plug,
+  Network,
+  MessageSquareText,
+  BadgeCheck,
+  BrainCircuit,
+  type LucideIcon,
+} from "lucide-react"
+import { IconBadge } from "@/components/donna/icon-badge"
 
 interface FeatureCard {
   id: string
-  icon: string
+  icon: LucideIcon
   title: string
   subtitle: string
   description: string
@@ -13,7 +25,7 @@ interface FeatureCard {
 const features: FeatureCard[] = [
   {
     id: "agentic",
-    icon: "⚡",
+    icon: Zap,
     title: "Agentic Execution",
     subtitle: "Plans, reasons, and completes work",
     description:
@@ -21,7 +33,7 @@ const features: FeatureCard[] = [
   },
   {
     id: "human-loop",
-    icon: "🛡️",
+    icon: Shield,
     title: "Human-in-the-Loop",
     subtitle: "Automation with real oversight",
     description:
@@ -29,15 +41,15 @@ const features: FeatureCard[] = [
   },
   {
     id: "role-fluid",
-    icon: "🔄",
+    icon: Workflow,
     title: "Role-Fluid AI",
     subtitle: "One AI, multiple roles",
     description:
-      "Sales assistant, receptionist, operations analyst, executive secretary — all in a single deployment.",
+      "Sales operator, receptionist, operations analyst, executive secretary - all in a single deployment.",
   },
   {
     id: "tool-native",
-    icon: "🔌",
+    icon: Plug,
     title: "Tool-Native Control",
     subtitle: "It doesn’t just suggest — it executes",
     description:
@@ -45,7 +57,7 @@ const features: FeatureCard[] = [
   },
   {
     id: "network",
-    icon: "🌐",
+    icon: Network,
     title: "Network-Aware",
     subtitle: "AI-to-AI coordination",
     description:
@@ -53,7 +65,7 @@ const features: FeatureCard[] = [
   },
   {
     id: "multimodal",
-    icon: "💬",
+    icon: MessageSquareText,
     title: "Multi-Modal Communication",
     subtitle: "Voice, email, SMS, and chat",
     description:
@@ -61,7 +73,7 @@ const features: FeatureCard[] = [
   },
   {
     id: "enterprise",
-    icon: "✓",
+    icon: BadgeCheck,
     title: "Enterprise-Grade Security",
     subtitle: "Built for real operations",
     description:
@@ -69,7 +81,7 @@ const features: FeatureCard[] = [
   },
   {
     id: "operations",
-    icon: "◆",
+    icon: BrainCircuit,
     title: "Operational Intelligence",
     subtitle: "Decisions with context",
     description:
@@ -102,8 +114,10 @@ export default function Features() {
             >
               {/* Icon and title */}
               <div className="mb-4">
-                <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">
-                  {feature.icon}
+                <div className="mb-3 group-hover:scale-105 transition-transform duration-300">
+                  <IconBadge>
+                    <feature.icon className="h-5 w-5 text-accent" />
+                  </IconBadge>
                 </div>
                 <h3 className="text-lg font-bold text-foreground mb-2">{feature.title}</h3>
                 <p className="text-sm text-accent font-medium">{feature.subtitle}</p>

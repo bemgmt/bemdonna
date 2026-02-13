@@ -52,5 +52,34 @@ export default function Outcomes() {
     })
   }, [inView])
 
-  return null
+  return (
+    <section ref={ref} className="py-12 md:py-20 px-4 sm:px-6 lg:px-8 bg-background">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold mb-3">
+            Measurable <span className="gradient-text">Outcomes</span>
+          </h2>
+          <p className="text-foreground/70 max-w-2xl mx-auto">
+            Operational intelligence should produce clear, compounding business results.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {stats.map((stat, index) => {
+            const numericValue = Number.parseInt(stat.value, 10)
+            const suffix = stat.value.replace(String(numericValue), "")
+            return (
+              <div key={stat.label} className="glass-card rounded-2xl border border-accent/20 p-6">
+                <p className="text-3xl font-bold text-accent">
+                  {inView ? counters[index] ?? 0 : 0}
+                  {suffix}
+                </p>
+                <h3 className="mt-2 text-lg font-semibold">{stat.label}</h3>
+                <p className="mt-1 text-sm text-foreground/70">{stat.description}</p>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
 }

@@ -16,11 +16,11 @@ export default function ProductOverviewPage() {
     {
       icon: Phone,
       title: 'Voice Receptionist',
-      description: 'Real-time AI voice assistant that handles calls, routes inquiries, and schedules appointments 24/7.',
+      description: 'Real-time AI voice operations that handle calls, route inquiries, and schedule appointments 24/7.',
     },
     {
       icon: Mail,
-      title: 'Email Assistant',
+      title: 'Email Operations',
       description: 'Thread-aware email automation with intelligent lead classification and auto-draft responses.',
     },
     {
@@ -81,7 +81,7 @@ export default function ProductOverviewPage() {
             <p className="text-xl text-gray-300 leading-relaxed mb-6">
               Businesses waste countless hours on repetitive communication tasks—answering the same questions, 
               routing calls, responding to emails, and managing leads across multiple platforms. DONNA was built 
-              to solve this problem by creating a unified AI assistant that handles all your communication channels 
+              to solve this problem by creating a unified AI operations layer that handles all your communication channels 
               with intelligence and context.
             </p>
             <p className="text-xl text-gray-300 leading-relaxed">

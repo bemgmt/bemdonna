@@ -350,7 +350,7 @@ export default async function IndustriesPage() {
                       <ul className="space-y-2">
                         {industry.keyFeatures.slice(0, 4).map((feature, fIndex) => (
                           <li key={fIndex} className="flex items-start gap-2 text-sm text-gray-400">
-                            <span className="text-[#8A2FFF] mt-1">•</span>
+                            <span className="text-[#8A2FFF] mt-1">-</span>
                             <span>{feature}</span>
                           </li>
                         ))}
@@ -359,7 +359,7 @@ export default async function IndustriesPage() {
 
                     <div className="mt-6 flex items-center gap-2 text-[#8A2FFF] font-medium group-hover:gap-3 transition-all">
                       <span>Learn More</span>
-                      <span className="group-hover:translate-x-1 transition-transform">→</span>
+                      <span className="group-hover:translate-x-1 transition-transform">-&gt;</span>
                     </div>
                   </Link>
                 )

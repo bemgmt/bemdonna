@@ -33,7 +33,7 @@ export function HoloFeatureCard({
       </p>
       {link && (
         <div className="mt-6 flex items-center text-[#3DE0FF] font-semibold group-hover:translate-x-2 transition-transform duration-300">
-          Learn more →
+          Learn more -&gt;
         </div>
       )}
     </div>

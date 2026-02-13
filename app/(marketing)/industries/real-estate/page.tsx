@@ -6,7 +6,7 @@ import { StatsSection } from '@/components/stats-section'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Real Estate AI Solutions - DONNA for Realtors',
-  description: 'Real estate AI assistant for lead response, showings, and client communication across the full buying journey.',
+  description: 'Real estate operational AI for lead response, showings, and client communication across the full buying journey.',
   path: '/industries/real-estate',
 })
 

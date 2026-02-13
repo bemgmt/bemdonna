@@ -85,6 +85,7 @@ export default function Home() {
         <FunctionalDomains />
         <DonnaNetwork />
         <FutureVision />
+        <Outcomes />
         <HowItWorks />
         <UseCases />
         <Integrations />

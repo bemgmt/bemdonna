@@ -36,11 +36,11 @@ export async function POST(request: NextRequest) {
 
 async function generateAIResponse(message: string, history: Message[]): Promise<string> {
   // Prepare the system prompt with knowledge base
-  const systemPrompt = `You are Donna, an AI Office Assistant built by Bird's Eye Management Services. You help organizations automate communications, workflows, and lead management.
+  const systemPrompt = `You are Donna, an AI operations operator built by Bird's Eye Management Services. You help organizations run communications, workflows, and lead management.
 
 Key Information:
 - Company: Bird's Eye Management Services, CEO: Derek Talbird, Based in California
-- Tagline: "Your Digital Office Neural Network Assistant"
+- Tagline: "Your Digital Operations Neural Network"
 - Built on AWS with Verizon partnership for enterprise reliability
 - Supports 25+ languages including English, Spanish, and Mandarin
 
@@ -62,7 +62,7 @@ Core Modules:
 10. Donna Network - DONNA-to-DONNA coordination that allows multiple DONNAs to work together securely, pass tasks, share approved context, and move work forward automatically
 
 Major Differentiator - Meeting Integration:
-DONNA can join video meetings (Zoom, Teams, Google Meet, etc.) and interact in real-time. Simply say "Hey Donna" to activate her during any meeting, and she can instantly answer questions from participants, provide information from your knowledge base, explain features, provide pricing details, or clarify any aspect of your business—all live during the meeting. This is a game-changing feature that sets DONNA apart from every competitor. No other AI assistant offers this real-time meeting interaction capability.
+DONNA can join video meetings (Zoom, Teams, Google Meet, etc.) and interact in real-time. Simply say "Hey Donna" to activate her during any meeting, and she can instantly answer questions from participants, provide information from your knowledge base, explain features, provide pricing details, or clarify any aspect of your business-all live during the meeting. This is a game-changing feature that sets DONNA apart from every competitor. No other operations AI platform offers this real-time meeting interaction capability.
 
 Industries: Real Estate, Hospitality, Professional Services, Health & Beauty, Construction/ADU, Nonprofits
 
@@ -143,7 +143,7 @@ Be professional, friendly, and helpful. Keep responses concise but informative. 
 function generateResponse(message: string, history: Message[]): string {
   // Greeting responses
   if (message.match(/\b(hi|hello|hey|greetings)\b/)) {
-    return "Hello! I'm Donna, your AI Office Assistant built by Bird's Eye Management Services. I can help you learn about our features, pricing, integrations, and more. What would you like to know?"
+    return "Hello! I'm Donna, your AI operations operator built by Bird's Eye Management Services. I can help you learn about our features, pricing, integrations, and more. What would you like to know?"
   }
 
   // Pricing questions
@@ -163,7 +163,7 @@ function generateResponse(message: string, history: Message[]): string {
 
   // Meeting integration questions
   if (message.match(/\b(meeting|zoom|teams|google meet|hey donna|join meeting|live meeting|real-time meeting)\b/)) {
-    return `Yes! DONNA's meeting integration is one of our most unique features that sets us apart from every competitor:\n\n**How It Works**:\n• DONNA seamlessly joins your video meetings (Zoom, Teams, Google Meet, etc.)\n• She sits quietly in the background, ready to assist\n• Simply say **"Hey Donna"** to activate her instantly\n• She can answer questions from participants, provide information from your knowledge base, explain features, give pricing details, or clarify any aspect of your business—all in real-time during the meeting\n\n**Perfect For**:\n• Sales calls and client presentations\n• Team meetings where you need instant data\n• Demos where questions come up\n• Any meeting where you need quick access to information\n\nNo other AI assistant can join meetings and interact with participants in real-time like DONNA can!`
+    return `Yes! DONNA's meeting integration is one of our most unique features that sets us apart from every competitor:\n\n**How It Works**:\n• DONNA seamlessly joins your video meetings (Zoom, Teams, Google Meet, etc.)\n• She sits quietly in the background, ready to assist\n• Simply say **"Hey Donna"** to activate her instantly\n• She can answer questions from participants, provide information from your knowledge base, explain features, give pricing details, or clarify any aspect of your business-all in real-time during the meeting\n\n**Perfect For**:\n• Sales calls and client presentations\n• Team meetings where you need instant data\n• Demos where questions come up\n• Any meeting where you need quick access to information\n\nNo other operations AI platform can join meetings and interact with participants in real-time like DONNA can!`
   }
 
   // Industry/use case questions
@@ -198,7 +198,7 @@ function generateResponse(message: string, history: Message[]): string {
 
   // Difference from other AI
   if (message.match(/\b(different|chatgpt|alexa|compare|versus|vs|better)\b/)) {
-    return `Great question! Unlike ChatGPT or Alexa, DONNA is built specifically for business operations:\n\n• **Direct Integration** - Works with your existing workflows and tools\n• **Real Phone Calls** - Handles actual voice conversations via Verizon\n• **Inbox Management** - Analyzes and responds to emails\n• **Lead Automation** - Qualifies and nurtures prospects\n• **AWS-Native** - Enterprise-grade reliability and security\n• **Human Collaboration** - Hybrid AI + human model for quality\n\nDONNA is your complete office assistant, not just a chatbot.`
+    return `Great question! Unlike ChatGPT or Alexa, DONNA is built specifically for business operations:\n\n• **Direct Integration** - Works with your existing workflows and tools\n• **Real Phone Calls** - Handles actual voice conversations via Verizon\n• **Inbox Management** - Analyzes and responds to emails\n• **Lead Automation** - Qualifies and nurtures prospects\n• **AWS-Native** - Enterprise-grade reliability and security\n• **Human Collaboration** - Hybrid AI + human model for quality\n\nDONNA is your complete operations layer, not just a chatbot.`
   }
 
   // White label questions

@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://donna.business'
 const siteName = 'DONNA'
-const defaultTitle = 'DONNA - AI-Powered Business Communication Platform'
+const defaultTitle = 'DONNA - Operational Intelligence Layer for Business'
 const defaultDescription =
-  'Transform your business communication with DONNA\'s AI-powered voice, email, and chat assistants. Automate lead response, customer support, and appointment scheduling 24/7.'
+  'Run communication, workflows, and decision support across voice, email, and chat with DONNA, the operational intelligence layer for modern teams.'
 
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -14,7 +14,7 @@ export const defaultMetadata: Metadata = {
   },
   description: defaultDescription,
   keywords: [
-    'AI assistant',
+    'AI operator',
     'business automation',
     'customer support',
     'lead response',

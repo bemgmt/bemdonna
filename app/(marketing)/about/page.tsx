@@ -5,7 +5,7 @@ import { getTeamMembers } from '@/lib/sanity/queries'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { Linkedin, Twitter, Mail } from 'lucide-react'
+import { Linkedin, Twitter, Mail, Bot, Link2, ShieldCheck } from 'lucide-react'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'About Us',
@@ -107,21 +107,21 @@ export default async function AboutPage() {
           <h2 className="text-3xl font-bold mb-6 text-center">What Makes DONNA Different</h2>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="text-center p-6">
-              <div className="text-4xl mb-4">🤖</div>
+              <div className="flex justify-center mb-4"><Bot className="h-8 w-8 text-accent" /></div>
               <h3 className="text-xl font-semibold mb-2">Agentic Execution</h3>
               <p className="text-foreground/70">
                 AI that plans, executes, and improves outcomes across your operations.
               </p>
             </div>
             <div className="text-center p-6">
-              <div className="text-4xl mb-4">🔗</div>
+              <div className="flex justify-center mb-4"><Link2 className="h-8 w-8 text-accent" /></div>
               <h3 className="text-xl font-semibold mb-2">Tool-Native Control</h3>
               <p className="text-foreground/70">
                 Executes inside the tools you already use, end-to-end.
               </p>
             </div>
             <div className="text-center p-6">
-              <div className="text-4xl mb-4">🛡️</div>
+              <div className="flex justify-center mb-4"><ShieldCheck className="h-8 w-8 text-accent" /></div>
               <h3 className="text-xl font-semibold mb-2">Enterprise Governance</h3>
               <p className="text-foreground/70">
                 SOC 2 and GDPR practices with permissions, auditability, and controls.

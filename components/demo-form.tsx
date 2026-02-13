@@ -4,6 +4,7 @@ import type React from "react"
 
 import { useState } from "react"
 import { useRef } from "react"
+import { Button } from "@/components/ui/button"
 
 interface FormData {
   name: string
@@ -110,68 +111,80 @@ export default function DemoForm() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input
-                type="text"
-                name="name"
-                placeholder="Full Name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-accent/50 focus:outline-none transition-colors"
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Email Address"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-accent/50 focus:outline-none transition-colors"
-              />
+              <div>
+                <label htmlFor="demo-name" className="block text-sm text-foreground/70 mb-1">Full Name</label>
+                <input
+                  id="demo-name"
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus-visible:border-accent/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/20 transition-colors"
+                />
+              </div>
+              <div>
+                <label htmlFor="demo-email" className="block text-sm text-foreground/70 mb-1">Email Address</label>
+                <input
+                  id="demo-email"
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus-visible:border-accent/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/20 transition-colors"
+                />
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input
-                type="text"
-                name="company"
-                placeholder="Company Name"
-                value={formData.company}
-                onChange={handleChange}
-                required
-                className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-accent/50 focus:outline-none transition-colors"
-              />
-              <select
-                name="role"
-                value={formData.role}
-                onChange={handleChange}
-                required
-                className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-accent/50 focus:outline-none transition-colors [&>option]:bg-background [&>option]:text-foreground"
-              >
-                <option value="">Select Your Role</option>
-                <option value="founder">Founder / CEO</option>
-                <option value="operations">Operations Manager</option>
-                <option value="hr">HR Manager</option>
-                <option value="executive">Executive</option>
-                <option value="other">Other</option>
-              </select>
+              <div>
+                <label htmlFor="demo-company" className="block text-sm text-foreground/70 mb-1">Company Name</label>
+                <input
+                  id="demo-company"
+                  type="text"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus-visible:border-accent/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/20 transition-colors"
+                />
+              </div>
+              <div>
+                <label htmlFor="demo-role" className="block text-sm text-foreground/70 mb-1">Your Role</label>
+                <select
+                  id="demo-role"
+                  name="role"
+                  value={formData.role}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus-visible:border-accent/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/20 transition-colors [&>option]:bg-background [&>option]:text-foreground"
+                >
+                  <option value="">Select Your Role</option>
+                  <option value="founder">Founder / CEO</option>
+                  <option value="operations">Operations Manager</option>
+                  <option value="hr">HR Manager</option>
+                  <option value="executive">Executive</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
             </div>
 
-            <textarea
-              name="useCase"
-              placeholder="Tell us about your use case (optional)"
-              value={formData.useCase}
-              onChange={handleChange}
-              rows={3}
-              className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-accent/50 focus:outline-none transition-colors resize-none"
-            />
+            <div>
+              <label htmlFor="demo-usecase" className="block text-sm text-foreground/70 mb-1">Use Case (Optional)</label>
+              <textarea
+                id="demo-usecase"
+                name="useCase"
+                value={formData.useCase}
+                onChange={handleChange}
+                rows={3}
+                className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus-visible:border-accent/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/20 transition-colors resize-none"
+              />
+            </div>
 
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full px-6 py-3 rounded-lg bg-accent text-background hover:bg-accent/90 disabled:opacity-50 transition-all font-semibold glow-accent hover:shadow-[0_0_30px_rgba(138,47,255,0.5)]"
-            >
+            <Button type="submit" disabled={isSubmitting} variant="donnaPrimary" size="lg" className="w-full">
               {isSubmitting ? "Submitting..." : formData.type === "waitlist" ? "Join Waitlist" : "Request Demo"}
-            </button>
+            </Button>
           </form>
         </div>
       </div>

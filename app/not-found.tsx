@@ -46,19 +46,19 @@ export default function NotFound() {
             <Link href="/" className="text-sm text-accent hover:underline">
               Home
             </Link>
-            <span className="text-foreground/50">•</span>
+            <span className="text-foreground/50">|</span>
             <Link href="/product" className="text-sm text-accent hover:underline">
               Product Overview
             </Link>
-            <span className="text-foreground/50">•</span>
+            <span className="text-foreground/50">|</span>
             <Link href="/pricing" className="text-sm text-accent hover:underline">
               Pricing
             </Link>
-            <span className="text-foreground/50">•</span>
+            <span className="text-foreground/50">|</span>
             <Link href="/industries" className="text-sm text-accent hover:underline">
               Industries
             </Link>
-            <span className="text-foreground/50">•</span>
+            <span className="text-foreground/50">|</span>
             <Link href="/contact" className="text-sm text-accent hover:underline">
               Contact
             </Link>

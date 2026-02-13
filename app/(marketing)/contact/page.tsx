@@ -102,7 +102,7 @@ export default function ContactPage() {
                 href="mailto:derek@bem.studio?subject=Sales Inquiry"
                 className="text-[#3DE0FF] hover:text-[#8A2FFF] transition-colors duration-300 font-medium"
               >
-                Contact Sales →
+                Contact Sales -&gt;
               </a>
             </div>
 
@@ -117,7 +117,7 @@ export default function ContactPage() {
                 href="mailto:derek@bem.studio?subject=Support Request"
                 className="text-[#8A2FFF] hover:text-[#3DE0FF] transition-colors duration-300 font-medium"
               >
-                Get Support →
+                Get Support -&gt;
               </a>
             </div>
           </div>

@@ -66,7 +66,7 @@ export function ContactFormHolo({
               name="inquiryType"
               value={formData.inquiryType || ""}
               onChange={handleChange}
-              className="w-full px-4 py-3 bg-[#0F0F1F] border border-[#8A2FFF]/30 rounded-lg text-white focus:border-[#8A2FFF] focus:ring-2 focus:ring-[#8A2FFF]/20 focus:outline-none transition-all duration-300"
+              className="w-full px-4 py-3 bg-[#0F0F1F] border border-accent/30 rounded-lg text-white focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent/20 focus-visible:outline-none transition-all duration-300"
               required
             >
               <option value="">Select type...</option>
@@ -87,7 +87,7 @@ export function ContactFormHolo({
               name="name"
               value={formData.name || ""}
               onChange={handleChange}
-              className="w-full px-4 py-3 bg-[#0F0F1F] border border-[#8A2FFF]/30 rounded-lg text-white focus:border-[#8A2FFF] focus:ring-2 focus:ring-[#8A2FFF]/20 focus:outline-none transition-all duration-300 focus:glow-violet"
+              className="w-full px-4 py-3 bg-[#0F0F1F] border border-accent/30 rounded-lg text-white focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent/20 focus-visible:outline-none transition-all duration-300"
               required
             />
           </div>
@@ -103,7 +103,7 @@ export function ContactFormHolo({
               name="email"
               value={formData.email || ""}
               onChange={handleChange}
-              className="w-full px-4 py-3 bg-[#0F0F1F] border border-[#8A2FFF]/30 rounded-lg text-white focus:border-[#8A2FFF] focus:ring-2 focus:ring-[#8A2FFF]/20 focus:outline-none transition-all duration-300 focus:glow-violet"
+              className="w-full px-4 py-3 bg-[#0F0F1F] border border-accent/30 rounded-lg text-white focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent/20 focus-visible:outline-none transition-all duration-300"
               required
             />
           </div>
@@ -119,7 +119,7 @@ export function ContactFormHolo({
               name="company"
               value={formData.company || ""}
               onChange={handleChange}
-              className="w-full px-4 py-3 bg-[#0F0F1F] border border-[#8A2FFF]/30 rounded-lg text-white focus:border-[#8A2FFF] focus:ring-2 focus:ring-[#8A2FFF]/20 focus:outline-none transition-all duration-300 focus:glow-violet"
+              className="w-full px-4 py-3 bg-[#0F0F1F] border border-accent/30 rounded-lg text-white focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent/20 focus-visible:outline-none transition-all duration-300"
             />
           </div>
         )}
@@ -134,7 +134,7 @@ export function ContactFormHolo({
               value={formData.message || ""}
               onChange={handleChange}
               rows={5}
-              className="w-full px-4 py-3 bg-[#0F0F1F] border border-[#8A2FFF]/30 rounded-lg text-white focus:border-[#8A2FFF] focus:ring-2 focus:ring-[#8A2FFF]/20 focus:outline-none transition-all duration-300 focus:glow-violet resize-none"
+              className="w-full px-4 py-3 bg-[#0F0F1F] border border-accent/30 rounded-lg text-white focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent/20 focus-visible:outline-none transition-all duration-300 resize-none"
               required
             />
           </div>

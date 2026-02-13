@@ -80,7 +80,7 @@ export default function HowItWorks() {
         {/* Mobile: Horizontal Scroll */}
         <div className="md:hidden">
           <div className="text-center mb-3 text-sm text-foreground/60">
-            Swipe to see steps →
+            Swipe to see steps -&gt;
           </div>
           <div className="relative">
             {/* Left gradient mask */}
@@ -93,7 +93,7 @@ export default function HowItWorks() {
               <button
                 onClick={scrollPrev}
                 disabled={activeIndex === 0}
-                className="p-2 rounded-full bg-background/80 backdrop-blur-sm border border-white/10 hover:bg-background/90 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                className="p-2 rounded-full bg-background/80 backdrop-blur-sm border border-white/10 hover:bg-background/90 disabled:opacity-30 disabled:cursor-not-allowed transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 aria-label="Previous step"
               >
                 <ChevronLeft className="h-5 w-5 text-foreground" />
@@ -103,7 +103,7 @@ export default function HowItWorks() {
               <button
                 onClick={scrollNext}
                 disabled={activeIndex === steps.length - 1}
-                className="p-2 rounded-full bg-background/80 backdrop-blur-sm border border-white/10 hover:bg-background/90 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                className="p-2 rounded-full bg-background/80 backdrop-blur-sm border border-white/10 hover:bg-background/90 disabled:opacity-30 disabled:cursor-not-allowed transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 aria-label="Next step"
               >
                 <ChevronRight className="h-5 w-5 text-foreground" />
@@ -138,7 +138,7 @@ export default function HowItWorks() {
                   index === activeIndex
                     ? 'w-8 bg-accent'
                     : 'w-2 bg-foreground/30 hover:bg-foreground/50'
-                }`}
+                } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring`}
                 aria-label={`Go to step ${index + 1}`}
                 aria-current={index === activeIndex ? 'true' : undefined}
               />

@@ -2,6 +2,10 @@
 
 import { useInView } from "react-intersection-observer"
 import Link from "next/link"
+import { Store, Building2 } from "lucide-react"
+import { FutureVisionDiagram } from "@/components/donna/future-vision-diagram"
+import { IconBadge } from "@/components/donna/icon-badge"
+import { Button } from "@/components/ui/button"
 
 export default function FutureVision() {
   const { ref, inView } = useInView({ threshold: 0.1, once: true })
@@ -26,7 +30,9 @@ export default function FutureVision() {
         <div className={`mb-12 animate-fade-in ${inView ? 'opacity-100' : 'opacity-0'}`}>
           <div className="glass-card p-8 rounded-xl border border-accent/10">
             <div className="flex items-start gap-4 mb-6">
-              <div className="text-4xl">🏪</div>
+              <IconBadge>
+                <Store className="h-5 w-5 text-accent" />
+              </IconBadge>
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-2">
                   <h3 className="text-2xl font-bold text-foreground">DONNA Marketplace</h3>
@@ -50,7 +56,9 @@ export default function FutureVision() {
         <div className={`mb-12 animate-fade-in ${inView ? 'opacity-100' : 'opacity-0'}`} style={{ animationDelay: '200ms' }}>
           <div className="glass-card p-8 rounded-xl border border-accent/10">
             <div className="flex items-start gap-4 mb-6">
-              <div className="text-4xl">🏢</div>
+              <IconBadge>
+                <Building2 className="h-5 w-5 text-accent" />
+              </IconBadge>
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-2">
                   <h3 className="text-2xl font-bold text-foreground">Multi-DONNA Architecture</h3>
@@ -71,43 +79,7 @@ export default function FutureVision() {
         {/* Visual Timeline */}
         <div className={`mb-12 animate-fade-in ${inView ? 'opacity-100' : 'opacity-0'}`} style={{ animationDelay: '400ms' }}>
           <div className="glass-card p-8 rounded-xl border border-accent/10">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Today */}
-              <div className="text-center">
-                <div className="text-sm font-semibold text-accent mb-4">Today</div>
-                <div className="flex items-center justify-center gap-4 mb-4">
-                  <div className="w-20 h-20 rounded-xl bg-gradient-to-br from-accent/20 to-primary/20 border-2 border-accent/40 flex items-center justify-center">
-                    <span className="text-2xl">🏢</span>
-                  </div>
-                  <div className="text-2xl">→</div>
-                  <div className="w-16 h-16 rounded-lg bg-gradient-to-br from-accent/30 to-primary/30 border border-accent/50 flex items-center justify-center">
-                    <span className="text-xl font-bold gradient-text">D</span>
-                  </div>
-                </div>
-                <p className="text-sm text-foreground/70">One DONNA per organization</p>
-              </div>
-
-              {/* Future */}
-              <div className="text-center">
-                <div className="text-sm font-semibold text-accent mb-4">Future</div>
-                <div className="flex items-center justify-center gap-2 mb-4">
-                  <div className="w-16 h-16 rounded-lg bg-gradient-to-br from-accent/30 to-primary/30 border border-accent/50 flex items-center justify-center">
-                    <span className="text-sm font-bold gradient-text">M</span>
-                  </div>
-                  <div className="w-16 h-16 rounded-lg bg-gradient-to-br from-accent/30 to-primary/30 border border-accent/50 flex items-center justify-center">
-                    <span className="text-sm font-bold gradient-text">S</span>
-                  </div>
-                  <div className="w-16 h-16 rounded-lg bg-gradient-to-br from-accent/30 to-primary/30 border border-accent/50 flex items-center justify-center">
-                    <span className="text-sm font-bold gradient-text">H</span>
-                  </div>
-                  <div className="text-2xl">+</div>
-                  <div className="w-20 h-20 rounded-xl bg-gradient-to-br from-accent/20 to-primary/20 border-2 border-accent/40 flex items-center justify-center">
-                    <span className="text-2xl">🌐</span>
-                  </div>
-                </div>
-                <p className="text-sm text-foreground/70">Many DONNAs + Marketplace</p>
-              </div>
-            </div>
+            <FutureVisionDiagram />
           </div>
         </div>
 
@@ -123,12 +95,9 @@ export default function FutureVision() {
 
         {/* CTA */}
         <div className="text-center">
-          <Link
-            href="/contact"
-            className="inline-block px-8 py-3 rounded-lg border-2 border-accent text-accent hover:bg-accent/10 transition-all duration-300 font-semibold text-lg"
-          >
-            Contact Us to Discuss Your AI Strategy
-          </Link>
+          <Button variant="donnaOutline" size="lg" asChild>
+            <Link href="/contact">Contact Us to Discuss Your AI Strategy</Link>
+          </Button>
         </div>
       </div>
     </section>

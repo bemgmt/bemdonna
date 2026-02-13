@@ -80,7 +80,7 @@ export default function Integrations() {
             href="/product/integrations-architecture"
             className="text-accent hover:text-accent/80 transition-colors font-medium"
           >
-            View All Integrations →
+            View All Integrations -&gt;
           </Link>
         </div>
       </div>

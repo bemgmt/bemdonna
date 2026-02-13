@@ -7,8 +7,9 @@ import NewsletterSignup from "./newsletter-signup"
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 px-4 sm:px-6 lg:px-8 py-12 bg-black/20">
-      <div className="max-w-7xl mx-auto">
+    <footer className="relative border-t border-[color:var(--border-subtle)] px-4 sm:px-6 lg:px-8 py-12 bg-black/20">
+      <div className="absolute inset-0 neural-grid opacity-[0.12]" aria-hidden="true" />
+      <div className="max-w-7xl mx-auto relative">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-8">
           {/* Brand */}
           <div className="col-span-2 md:col-span-3 lg:col-span-2">
@@ -26,19 +27,19 @@ export default function Footer() {
               One AI. Every industry. Operational intelligence built to run a business, not talk about it.
             </p>
             <div className="flex gap-3 mb-4">
-              <a href="https://x.com/donnaai_" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-accent transition-colors" aria-label="DONNA on X">
+              <a href="https://x.com/donnaai_" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md" aria-label="DONNA on X">
                 <Twitter className="h-5 w-5" />
               </a>
-              <a href="https://www.linkedin.com/in/derek-talbird-65293977/" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-accent transition-colors" aria-label="DONNA on LinkedIn">
+              <a href="https://www.linkedin.com/in/derek-talbird-65293977/" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md" aria-label="DONNA on LinkedIn">
                 <Linkedin className="h-5 w-5" />
               </a>
-              <a href="https://www.tiktok.com/@donnaai_?lang=en" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-accent transition-colors" aria-label="DONNA on TikTok">
+              <a href="https://www.tiktok.com/@donnaai_?lang=en" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md" aria-label="DONNA on TikTok">
                 <Music2 className="h-5 w-5" />
               </a>
-              <a href="https://www.youtube.com/@bemdonna" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-accent transition-colors" aria-label="DONNA on YouTube">
+              <a href="https://www.youtube.com/@bemdonna" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md" aria-label="DONNA on YouTube">
                 <Youtube className="h-5 w-5" />
               </a>
-              <a href="https://www.facebook.com/profile.php?id=61586503540067" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-accent transition-colors" aria-label="DONNA on Facebook">
+              <a href="https://www.facebook.com/profile.php?id=61586503540067" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md" aria-label="DONNA on Facebook">
                 <Facebook className="h-5 w-5" />
               </a>
             </div>
@@ -51,12 +52,12 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold mb-4 text-sm">Product</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/product" className="text-foreground/70 hover:text-accent transition-colors">Overview</Link></li>
-              <li><Link href="/product/communications-layer" className="text-foreground/70 hover:text-accent transition-colors">Communications Layer</Link></li>
-              <li><Link href="/product/donna-tools" className="text-foreground/70 hover:text-accent transition-colors">DONNA Tools/Features</Link></li>
-              <li><Link href="/product/custom-knowledge-base" className="text-foreground/70 hover:text-accent transition-colors">Custom Knowledge Base</Link></li>
-              <li><Link href="/product/integrations-architecture" className="text-foreground/70 hover:text-accent transition-colors">Integrations & Architecture</Link></li>
-              <li><Link href="/product/security-infrastructure" className="text-foreground/70 hover:text-accent transition-colors">Security & Infrastructure</Link></li>
+              <li><Link href="/product" className="text-foreground/70 hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm">Overview</Link></li>
+              <li><Link href="/product/communications-layer" className="text-foreground/70 hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm">Communications Layer</Link></li>
+              <li><Link href="/product/donna-tools" className="text-foreground/70 hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm">DONNA Tools/Features</Link></li>
+              <li><Link href="/product/custom-knowledge-base" className="text-foreground/70 hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm">Custom Knowledge Base</Link></li>
+              <li><Link href="/product/integrations-architecture" className="text-foreground/70 hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm">Integrations & Architecture</Link></li>
+              <li><Link href="/product/security-infrastructure" className="text-foreground/70 hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm">Security & Infrastructure</Link></li>
             </ul>
           </div>
 
@@ -104,16 +105,16 @@ export default function Footer() {
         <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-foreground/60">
           <div className="flex flex-col sm:flex-row items-center gap-2">
             <p>&copy; {new Date().getFullYear()} DONNA. All rights reserved.</p>
-            <span className="hidden sm:inline">•</span>
-            <p className="text-foreground/50">Built with ❤️ by DONNA Team</p>
+            <span className="hidden sm:inline">|</span>
+            <p className="text-foreground/50">Built by the DONNA team.</p>
           </div>
           <div className="flex flex-wrap gap-4 justify-center items-center">
             <Link href="/terms" className="hover:text-accent transition-colors">Terms</Link>
             <Link href="/privacy" className="hover:text-accent transition-colors">Privacy</Link>
             <Link href="/acceptable-use" className="hover:text-accent transition-colors">Acceptable Use</Link>
             <Link href="/gdpr" className="hover:text-accent transition-colors">GDPR</Link>
-            <span className="hidden sm:inline text-foreground/40">•</span>
-            <span className="text-xs text-foreground/50">SOC 2 Type II • GDPR Compliant • Enterprise Security</span>
+            <span className="hidden sm:inline text-foreground/40">|</span>
+            <span className="text-xs text-foreground/50">SOC 2 Type II | GDPR Compliant | Enterprise Security</span>
           </div>
         </div>
       </div>

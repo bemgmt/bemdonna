@@ -1,30 +1,36 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Menu, X, ChevronDown } from "lucide-react"
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu"
 import SearchModal from "./search-modal"
+import { Button } from "@/components/ui/button"
 
 function MobileNavItem({ section, onItemClick }: { section: { label: string; items: Array<{ label: string; href: string }> }; onItemClick: () => void }) {
   const [isExpanded, setIsExpanded] = useState(false)
+  const contentId = `mobile-nav-${section.label.toLowerCase().replace(/\s+/g, "-")}`
+
   return (
     <div className="border-b border-white/5">
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full flex items-center justify-between font-semibold text-sm text-foreground/90 py-2 px-2 hover:text-accent transition-colors"
+        aria-expanded={isExpanded}
+        aria-controls={contentId}
+        className="w-full flex items-center justify-between font-semibold text-sm text-foreground/90 py-2 px-2 hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md"
       >
         <span>{section.label}</span>
         <ChevronDown className={`h-4 w-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
       </button>
       {isExpanded && (
-        <div className="pb-2">
+        <div id={contentId} className="pb-2">
           {section.items.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               onClick={onItemClick}
-              className="block text-sm text-foreground/70 hover:text-accent transition-colors py-1.5 pl-4"
+              className="block text-sm text-foreground/70 hover:text-accent transition-colors py-1.5 pl-4 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {item.label}
             </Link>
@@ -37,8 +43,6 @@ function MobileNavItem({ section, onItemClick }: { section: { label: string; ite
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   const navigation = {
     product: {
@@ -75,7 +79,7 @@ export default function Header() {
   }
 
   return (
-    <header className="fixed top-0 w-full z-50 glass-card border-b border-white/10 backdrop-blur-xl">
+    <header className="fixed top-0 w-full z-50 border-b border-[color:var(--border-subtle)] bg-background/70 backdrop-blur-xl shadow-[var(--shadow-soft)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -94,54 +98,32 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
             {Object.entries(navigation).map(([key, section]) => (
-              <div
-                key={key}
-                className="relative"
-                onMouseEnter={() => {
-                  if (timeoutRef.current) {
-                    clearTimeout(timeoutRef.current)
-                    timeoutRef.current = null
-                  }
-                  setActiveDropdown(key)
-                }}
-                onMouseLeave={() => {
-                  timeoutRef.current = setTimeout(() => {
-                    setActiveDropdown(null)
-                  }, 200) // 200ms delay before closing
-                }}
-              >
-                <button className="flex items-center gap-1 text-sm text-foreground/70 hover:text-accent transition-colors py-2 px-1">
-                  {section.label}
-                  <ChevronDown className="h-4 w-4" />
-                </button>
-
-                {activeDropdown === key && (
-                  <div 
-                    className="absolute top-full left-0 mt-1 w-56 glass-card border border-white/10 rounded-lg shadow-lg py-2 z-50"
-                    onMouseEnter={() => {
-                      if (timeoutRef.current) {
-                        clearTimeout(timeoutRef.current)
-                        timeoutRef.current = null
-                      }
-                    }}
-                    onMouseLeave={() => {
-                      timeoutRef.current = setTimeout(() => {
-                        setActiveDropdown(null)
-                      }, 200)
-                    }}
+              <DropdownMenu.Root key={key}>
+                <DropdownMenu.Trigger asChild>
+                  <button className="flex items-center gap-1 text-sm text-foreground/70 hover:text-accent transition-colors py-2 px-1 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                    {section.label}
+                    <ChevronDown className="h-4 w-4" />
+                  </button>
+                </DropdownMenu.Trigger>
+                <DropdownMenu.Portal>
+                  <DropdownMenu.Content
+                    sideOffset={8}
+                    align="start"
+                    className="w-56 glass-card border border-[color:var(--border-subtle)] rounded-lg shadow-[var(--shadow-soft)] py-2 z-50"
                   >
                     {section.items.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className="block px-4 py-2 text-sm text-foreground/70 hover:text-accent hover:bg-white/5 transition-colors"
-                      >
-                        {item.label}
-                      </Link>
+                      <DropdownMenu.Item key={item.href} asChild>
+                        <Link
+                          href={item.href}
+                          className="block px-4 py-2 text-sm text-foreground/70 hover:text-accent hover:bg-white/5 transition-colors focus-visible:outline-none"
+                        >
+                          {item.label}
+                        </Link>
+                      </DropdownMenu.Item>
                     ))}
-                  </div>
-                )}
-              </div>
+                  </DropdownMenu.Content>
+                </DropdownMenu.Portal>
+              </DropdownMenu.Root>
             ))}
             <Link href="/donna-network" className="text-sm text-foreground/70 hover:text-accent transition-colors px-1">
               DONNA Network
@@ -157,22 +139,16 @@ export default function Header() {
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center gap-4 ml-4">
             <SearchModal />
-            <Link
-              href="/contact"
-              className="px-4 py-2 text-sm font-medium text-foreground/70 hover:text-accent transition-colors"
-            >
-              Contact
-            </Link>
-            <Link
-              href="/#demo-form"
-              className="px-4 py-2 rounded-lg bg-accent text-accent-foreground hover:bg-accent/90 transition-colors text-sm font-medium"
-            >
-              Request Access
-            </Link>
+            <Button variant="donnaOutline" size="sm" asChild>
+              <Link href="/contact">Contact</Link>
+            </Button>
+            <Button variant="donnaPrimary" size="sm" asChild>
+              <Link href="/#demo-form">Request Access</Link>
+            </Button>
           </div>
 
           {/* Mobile menu button */}
-          <button className="lg:hidden" onClick={() => setIsOpen(!isOpen)}>
+          <button className="lg:hidden rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu" aria-expanded={isOpen}>
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
@@ -190,21 +166,21 @@ export default function Header() {
             <Link
               href="/donna-network"
               onClick={() => setIsOpen(false)}
-              className="text-sm text-foreground/70 hover:text-accent transition-colors py-2 px-2"
+              className="text-sm text-foreground/70 hover:text-accent transition-colors py-2 px-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               DONNA Network
             </Link>
             <Link
               href="/pricing"
               onClick={() => setIsOpen(false)}
-              className="text-sm text-foreground/70 hover:text-accent transition-colors py-2 px-2"
+              className="text-sm text-foreground/70 hover:text-accent transition-colors py-2 px-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               Pricing
             </Link>
             <Link
               href="/about"
               onClick={() => setIsOpen(false)}
-              className="text-sm text-foreground/70 hover:text-accent transition-colors py-2 px-2"
+              className="text-sm text-foreground/70 hover:text-accent transition-colors py-2 px-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               About
             </Link>
@@ -215,14 +191,14 @@ export default function Header() {
               <Link
                 href="/contact"
                 onClick={() => setIsOpen(false)}
-                className="px-4 py-2 rounded-lg border border-accent text-accent text-center text-sm font-medium"
+                className="px-4 py-2 rounded-lg border border-accent text-accent text-center text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 Contact
               </Link>
               <Link
                 href="/#demo-form"
                 onClick={() => setIsOpen(false)}
-                className="px-4 py-2 rounded-lg bg-accent text-accent-foreground text-center text-sm font-medium"
+                className="px-4 py-2 rounded-lg bg-accent text-accent-foreground text-center text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 Request Access
               </Link>

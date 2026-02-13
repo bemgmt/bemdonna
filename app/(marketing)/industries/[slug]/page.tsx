@@ -51,7 +51,7 @@ export default async function IndustryDetailPage({ params }: { params: { slug: s
               <ul className="space-y-2">
                 {operations.map((item) => (
                   <li key={item} className="text-gray-300 flex items-start gap-2">
-                    <span className="text-[#3DE0FF] mt-1">•</span>
+                    <span className="text-[#3DE0FF] mt-1">-</span>
                     <span>{item}</span>
                   </li>
                 ))}
@@ -62,7 +62,7 @@ export default async function IndustryDetailPage({ params }: { params: { slug: s
               <ul className="space-y-2">
                 {impacts.map((item) => (
                   <li key={item} className="text-gray-300 flex items-start gap-2">
-                    <span className="text-[#3DE0FF] mt-1">•</span>
+                    <span className="text-[#3DE0FF] mt-1">-</span>
                     <span>{item}</span>
                   </li>
                 ))}

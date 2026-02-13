@@ -62,7 +62,7 @@ export default async function UseCasesPage() {
                 {useCase.title}
               </h2>
               <p className="text-muted-foreground mb-4">{useCase.description}</p>
-              <span className="text-primary font-medium">Learn More →</span>
+              <span className="text-primary font-medium">Learn More -&gt;</span>
             </Link>
           ))}
         </div>

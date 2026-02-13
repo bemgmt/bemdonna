@@ -51,7 +51,7 @@ export default function ROICalculator() {
               value={employees}
               onChange={(e) => setEmployees(Number(e.target.value))}
               min="1"
-              className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-accent"
+              className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/30"
             />
           </div>
           <div>
@@ -64,7 +64,7 @@ export default function ROICalculator() {
               onChange={(e) => setHourlyRate(Number(e.target.value))}
               min="10"
               step="5"
-              className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-accent"
+              className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/30"
             />
           </div>
           <div>
@@ -77,7 +77,7 @@ export default function ROICalculator() {
               onChange={(e) => setHoursPerWeek(Number(e.target.value))}
               min="1"
               step="1"
-              className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-accent"
+              className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/30"
             />
           </div>
           <div>
@@ -89,7 +89,7 @@ export default function ROICalculator() {
               value={responseTime}
               onChange={(e) => setResponseTime(Number(e.target.value))}
               min="1"
-              className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-accent"
+              className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/30"
             />
           </div>
         </div>

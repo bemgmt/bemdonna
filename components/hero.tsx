@@ -1,11 +1,26 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useMemo, useRef } from "react"
+import { ShieldCheck } from "lucide-react"
+import { Button } from "@/components/ui/button"
+
+function usePrefersReducedMotion() {
+  return useMemo(
+    () =>
+      typeof window !== "undefined" &&
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    []
+  )
+}
 
 export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const reducedMotion = usePrefersReducedMotion()
 
   useEffect(() => {
+    if (reducedMotion) return
+
     const canvas = canvasRef.current
     if (!canvas) return
 
@@ -28,6 +43,7 @@ export default function Hero() {
       })
     }
 
+    let rafId = 0
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       ctx.fillStyle = "rgba(6, 182, 212, 0.15)"
@@ -68,11 +84,12 @@ export default function Hero() {
       })
 
       ctx.globalAlpha = 1
-      requestAnimationFrame(animate)
+      rafId = requestAnimationFrame(animate)
     }
 
     animate()
-  }, [])
+    return () => cancelAnimationFrame(rafId)
+  }, [reducedMotion])
 
   return (
     <section className="relative min-h-[85vh] md:min-h-screen flex items-center justify-center overflow-hidden pt-16">
@@ -81,7 +98,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-black z-0" />
 
       {/* Animated canvas overlay */}
-      <canvas ref={canvasRef} className="absolute inset-0 opacity-30 z-10" />
+      {!reducedMotion && <canvas ref={canvasRef} className="absolute inset-0 opacity-30 z-10" aria-hidden="true" />}
 
       <div className="relative z-30 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
@@ -101,29 +118,31 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <button
+              <Button
+                variant="donnaPrimary"
+                size="lg"
                 onClick={() => {
                   const form = document.getElementById("demo-form")
                   form?.scrollIntoView({ behavior: "smooth" })
                 }}
-                className="px-8 py-3 rounded-lg bg-accent text-accent-foreground hover:bg-accent/90 transition-all duration-300 font-semibold text-lg glow-accent"
               >
                 Request Access
-              </button>
-              <button
+              </Button>
+              <Button
+                variant="donnaOutline"
+                size="lg"
                 onClick={() => {
                   const form = document.getElementById("demo-form")
                   form?.scrollIntoView({ behavior: "smooth" })
                 }}
-                className="px-8 py-3 rounded-lg border-2 border-accent text-accent hover:bg-accent/10 transition-all duration-300 font-semibold text-lg"
               >
                 Join Waitlist
-              </button>
+              </Button>
             </div>
 
             <div className="text-sm text-foreground/70 flex items-center gap-2">
-              <span>⬢</span>
-              <span>Enterprise-grade security • GDPR compliant • SOC 2 Type II</span>
+              <ShieldCheck className="h-4 w-4 text-accent" aria-hidden="true" />
+              <span>Enterprise-grade security | GDPR compliant | SOC 2 Type II</span>
               <span className="ml-2 px-2 py-0.5 rounded bg-accent/20 text-accent text-xs font-medium">Beta</span>
             </div>
           </div>
