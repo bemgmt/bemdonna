@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { generatePageMetadata } from '@/lib/metadata'
 import { SectionTitleGlow } from "@/components/neural/section-title-glow"
 import { VerticalBlock } from "@/components/neural/vertical-block"
-import { HoloFooter } from "@/components/neural/holo-footer"
 import { NeonButton } from "@/components/neural/neon-button"
 import { Sparkles, Users, Home, Briefcase } from "lucide-react"
 
@@ -169,7 +168,6 @@ export default function VerticalsPage() {
         </div>
       </section>
 
-      <HoloFooter />
     </main>
   )
 }

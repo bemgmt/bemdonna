@@ -3,7 +3,6 @@ import Link from 'next/link'
 import Header from "@/components/header"
 import Hero from "@/components/hero"
 import DemoForm from "@/components/demo-form"
-import CTAFooter from "@/components/cta-footer"
 import Footer from "@/components/footer"
 import Chatbot from "@/components/chatbot"
 import { generatePageMetadata } from '@/lib/metadata'
@@ -162,7 +161,6 @@ export default function Home() {
         <div id="demo-form">
           <DemoForm />
         </div>
-        <CTAFooter />
         <Footer />
         <Chatbot />
       </main>

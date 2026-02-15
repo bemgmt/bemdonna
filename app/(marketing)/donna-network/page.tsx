@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { generatePageMetadata } from '@/lib/metadata'
-import { HoloFooter } from '@/components/neural/holo-footer'
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'DONNA to DONNA: Networked Digital Employees',
@@ -115,7 +114,6 @@ export default function DonnaNetworkPage() {
           </div>
         </div>
       </section>
-      <HoloFooter />
     </main>
   )
 }

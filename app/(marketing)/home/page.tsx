@@ -3,7 +3,6 @@ import { SectionTitleGlow } from "@/components/neural/section-title-glow"
 import { HoloFeatureCard } from "@/components/neural/holo-feature-card"
 import { CapabilitiesGrid } from "@/components/neural/capabilities-grid"
 import { PricingTierCard } from "@/components/neural/pricing-tier-card"
-import { HoloFooter } from "@/components/neural/holo-footer"
 import { NeonButton } from "@/components/neural/neon-button"
 import {
   Bot, Mail, Phone, MessageSquare, Users, Zap,
@@ -315,8 +314,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <HoloFooter />
     </main>
   )
 }

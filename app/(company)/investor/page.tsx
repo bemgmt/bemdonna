@@ -1,6 +1,5 @@
 import { SectionTitleGlow } from "@/components/neural/section-title-glow"
 import { InvestorPayoutTable } from "@/components/neural/investor-payout-table"
-import { HoloFooter } from "@/components/neural/holo-footer"
 import { NeonButton } from "@/components/neural/neon-button"
 import { TrendingUp, Target, DollarSign, Rocket, Shield, Users } from "lucide-react"
 
@@ -303,7 +302,6 @@ export default function InvestorPage() {
         </div>
       </section>
 
-      <HoloFooter />
     </main>
   )
 }

@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { generatePageMetadata } from '@/lib/metadata'
 import { SectionTitleGlow } from "@/components/neural/section-title-glow"
-import { HoloFooter } from "@/components/neural/holo-footer"
 import {
   Mail, Phone, MessageSquare, Bot, Users, Zap,
   TrendingUp, Target, FileText, Database, Search, Workflow
@@ -311,7 +310,6 @@ export default function FeaturesPage() {
         </div>
       </section>
 
-      <HoloFooter />
     </main>
   )
 }

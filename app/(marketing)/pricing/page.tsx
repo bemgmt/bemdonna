@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { generatePageMetadata } from '@/lib/metadata'
 import { SectionTitleGlow } from "@/components/neural/section-title-glow"
 import { PricingTierCard } from "@/components/neural/pricing-tier-card"
-import { HoloFooter } from "@/components/neural/holo-footer"
 import { Check, X } from "lucide-react"
 
 export const metadata: Metadata = generatePageMetadata({
@@ -170,7 +169,6 @@ export default function PricingPage() {
         </div>
       </section>
 
-      <HoloFooter />
     </main>
   )
 }
