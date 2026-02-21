@@ -1,8 +1,14 @@
+import type { Condition, IntakeProfile } from "./onboarding-intake"
+import { evaluateAllConditions } from "./onboarding-intake"
+
 export interface ChecklistItem {
   id: string
   label: string
   description: string
   priority: "high" | "medium" | "low"
+  weight?: number
+  conditions?: Condition[]
+  dynamicLabel?: Record<string, string>
 }
 
 export interface Phase {
@@ -31,6 +37,7 @@ export const phases: Phase[] = [
         description:
           "Provide names and contact info for project sponsor(s), IT lead, business lead, security contact, and end-user champions.",
         priority: "high",
+        weight: 3,
       },
       {
         id: "gs-roles-counts",
@@ -38,6 +45,7 @@ export const phases: Phase[] = [
         description:
           "Define who needs access to DONNA (agents, managers, analysts) and at what permission levels. This drives license counts and RBAC configuration.",
         priority: "high",
+        weight: 3,
       },
       {
         id: "gs-use-cases",
@@ -45,6 +53,7 @@ export const phases: Phase[] = [
         description:
           "Document target use cases (e.g. identify at-risk clients, cross-sell campaigns) and success KPIs (e.g. +5% retention, +10% upsell).",
         priority: "high",
+        weight: 3,
       },
       {
         id: "gs-success-criteria",
@@ -52,6 +61,7 @@ export const phases: Phase[] = [
         description:
           'Define clear go/no-go criteria such as "Policy churn prediction accuracy > 80%" or "Target users trained and using DONNA daily."',
         priority: "medium",
+        weight: 2,
       },
       {
         id: "gs-training-needs",
@@ -59,6 +69,7 @@ export const phases: Phase[] = [
         description:
           "Determine who needs training and at what level (basic user vs. admin). Schedule training sessions (in-person or virtual).",
         priority: "medium",
+        weight: 2,
       },
       {
         id: "gs-change-mgmt",
@@ -66,6 +77,7 @@ export const phases: Phase[] = [
         description:
           "Plan communications and process changes. Establish how insights from DONNA will be integrated into existing workflows. Assign an internal project manager.",
         priority: "medium",
+        weight: 2,
       },
       {
         id: "gs-requirements-doc",
@@ -73,6 +85,7 @@ export const phases: Phase[] = [
         description:
           "Prepare a use-case worksheet or specification with goals and KPIs defined (e.g. cross-sell opportunities, retention targets).",
         priority: "medium",
+        weight: 2,
       },
     ],
   },
@@ -91,6 +104,15 @@ export const phases: Phase[] = [
         description:
           "Obtain API credentials/keys for each source system (e.g. HawkSoft API tokens, CRM OAuth client IDs). Ensure endpoints are reachable via HTTPS.",
         priority: "high",
+        weight: 3,
+        dynamicLabel: {
+          hawksoft: "HawkSoft API Token",
+          applied: "Applied Epic / TAM API Credentials",
+          vertafore: "Vertafore AMS360 API Credentials",
+          salesforce: "Salesforce OAuth Credentials",
+          hubspot: "HubSpot API Key",
+          dynamics365: "Dynamics 365 API Credentials",
+        },
       },
       {
         id: "tr-data-sources",
@@ -98,6 +120,7 @@ export const phases: Phase[] = [
         description:
           "Identify data feeds required by DONNA (policy data, contact/customer tables, claims, coverages). Provide sample records or schema definitions.",
         priority: "high",
+        weight: 3,
       },
       {
         id: "tr-data-formats",
@@ -105,6 +128,7 @@ export const phases: Phase[] = [
         description:
           "Supply sample data files (CSV/JSON) or database extracts for key entities. Include unit tests for data formats.",
         priority: "high",
+        weight: 3,
       },
       {
         id: "tr-data-volume",
@@ -112,6 +136,7 @@ export const phases: Phase[] = [
         description:
           "Estimate data size (number of policies, customers) and update frequency. Plan for nightly or real-time sync as needed.",
         priority: "medium",
+        weight: 2,
       },
       {
         id: "tr-auth-methods",
@@ -119,6 +144,10 @@ export const phases: Phase[] = [
         description:
           "Decide on authentication flows (OAuth, tokens, etc.). If using SSO (SAML/OIDC), provide identity-provider metadata.",
         priority: "high",
+        weight: 3,
+        conditions: [
+          { field: "identityProvider", operator: "neq", value: "none" },
+        ],
       },
       {
         id: "tr-test-env",
@@ -126,6 +155,7 @@ export const phases: Phase[] = [
         description:
           "Arrange a staging or sandbox environment for initial setup. Obtain test tenants/accounts for AMS/CRM if available.",
         priority: "medium",
+        weight: 2,
       },
       {
         id: "tr-policy-export",
@@ -133,6 +163,10 @@ export const phases: Phase[] = [
         description:
           "Prepare a structured CSV/JSON export from your AMS with columns like Policy_ID, Insured_Name, Effective_Date, Premium, etc.",
         priority: "high",
+        weight: 3,
+        conditions: [
+          { field: "ams", operator: "notIncludes", value: "none" },
+        ],
       },
       {
         id: "tr-crm-export",
@@ -140,6 +174,16 @@ export const phases: Phase[] = [
         description:
           "Prepare CRM contact/opportunity data (e.g. Salesforce CSV with Contact_ID, Email, Last_Activity) or provide API credentials.",
         priority: "high",
+        weight: 3,
+        conditions: [
+          { field: "crm", operator: "notIncludes", value: "none" },
+        ],
+        dynamicLabel: {
+          salesforce: "Salesforce Data Export / API Access",
+          hubspot: "HubSpot Data Export / API Access",
+          dynamics365: "Dynamics 365 Data Export / API Access",
+          sap: "SAP Data Export / API Access",
+        },
       },
     ],
   },
@@ -158,6 +202,7 @@ export const phases: Phase[] = [
         description:
           "Ensure firewall/VPN configuration allows outbound TLS traffic to DONNA's services (port 443 for API calls/webhooks).",
         priority: "high",
+        weight: 3,
       },
       {
         id: "in-ip-allowlist",
@@ -165,6 +210,10 @@ export const phases: Phase[] = [
         description:
           "If required by corporate policy, add DONNA's IP ranges to your allowlist so that data syncs are not blocked.",
         priority: "medium",
+        weight: 2,
+        conditions: [
+          { field: "networkRestrictions", operator: "includes", value: "firewall" },
+        ],
       },
       {
         id: "in-vpn",
@@ -172,6 +221,10 @@ export const phases: Phase[] = [
         description:
           "For highly secure environments, establish a VPN or private link to DONNA's cloud. Most integrations use public APIs with encryption in transit.",
         priority: "low",
+        weight: 1,
+        conditions: [
+          { field: "securityLevel", operator: "eq", value: "high" },
+        ],
       },
       {
         id: "in-cloud-region",
@@ -179,6 +232,10 @@ export const phases: Phase[] = [
         description:
           "Confirm any data residency or region constraints (e.g. EU vs US data centers for GDPR/CCPA compliance). Coordinate private cloud deployment if required.",
         priority: "medium",
+        weight: 2,
+        conditions: [
+          { field: "securityLevel", operator: "neq", value: "standard" },
+        ],
       },
       {
         id: "in-service-accounts",
@@ -186,6 +243,7 @@ export const phases: Phase[] = [
         description:
           "Create any service user accounts needed for DONNA to access client systems (e.g. a read-only AMS user). Document credentials securely.",
         priority: "high",
+        weight: 3,
       },
       {
         id: "in-firewall-doc",
@@ -193,6 +251,10 @@ export const phases: Phase[] = [
         description:
           'Prepare a document listing required network rules (e.g. "Allow TCP 443 outbound to DONNA service IPs").',
         priority: "medium",
+        weight: 2,
+        conditions: [
+          { field: "networkRestrictions", operator: "notIncludes", value: "none" },
+        ],
       },
     ],
   },
@@ -211,6 +273,7 @@ export const phases: Phase[] = [
         description:
           "Define user roles in DONNA (System Administrator, Data Manager, Viewer). Provide a list of users/groups for each role.",
         priority: "high",
+        weight: 3,
       },
       {
         id: "sc-encryption",
@@ -218,6 +281,7 @@ export const phases: Phase[] = [
         description:
           "Verify all data in transit to/from DONNA is encrypted (TLS). Confirm whether data-at-rest encryption is needed.",
         priority: "high",
+        weight: 3,
       },
       {
         id: "sc-audit-logs",
@@ -225,6 +289,10 @@ export const phases: Phase[] = [
         description:
           "Ensure audit logging is enabled. Specify retention period for logs per your organization's policy.",
         priority: "medium",
+        weight: 2,
+        conditions: [
+          { field: "securityLevel", operator: "neq", value: "standard" },
+        ],
       },
       {
         id: "sc-data-retention",
@@ -232,6 +300,10 @@ export const phases: Phase[] = [
         description:
           "Agree on data retention requirements. Specify how long historical data and logs should be kept (e.g. 7 years for insurance compliance).",
         priority: "medium",
+        weight: 2,
+        conditions: [
+          { field: "securityLevel", operator: "neq", value: "standard" },
+        ],
       },
       {
         id: "sc-certifications",
@@ -239,6 +311,7 @@ export const phases: Phase[] = [
         description:
           "Review DONNA's ISO 27001 and SOC 2 Type II certifications, GDPR and CCPA compliance. Have your security team sign off.",
         priority: "high",
+        weight: 3,
       },
       {
         id: "sc-dpa",
@@ -246,6 +319,7 @@ export const phases: Phase[] = [
         description:
           "Sign a Data Processing Addendum if handling personal data. Confirm that your agency retains all IP rights to the data.",
         priority: "high",
+        weight: 3,
       },
       {
         id: "sc-sla-reporting",
@@ -253,6 +327,7 @@ export const phases: Phase[] = [
         description:
           "Agree on service levels (e.g. 99.9% uptime) and reporting cadence. Ensure vendor support contacts and escalation paths are documented.",
         priority: "medium",
+        weight: 2,
       },
     ],
   },
@@ -271,6 +346,15 @@ export const phases: Phase[] = [
         description:
           "List systems to integrate (Salesforce, HubSpot, Dynamics 365, HawkSoft, Applied, Vertafore, etc.). Gather API endpoints, credentials, and objects to sync.",
         priority: "high",
+        weight: 3,
+        dynamicLabel: {
+          hawksoft: "HawkSoft Integration Setup",
+          applied: "Applied Epic / TAM Integration",
+          vertafore: "Vertafore AMS360 Integration",
+          salesforce: "Salesforce Integration Setup",
+          hubspot: "HubSpot Integration Setup",
+          dynamics365: "Dynamics 365 Integration Setup",
+        },
       },
       {
         id: "ig-calendar-email",
@@ -278,6 +362,10 @@ export const phases: Phase[] = [
         description:
           "If using DONNA's voice/meeting features, integrate with calendar/email (Outlook, Google Calendar, Exchange). Obtain credentials or delegate access.",
         priority: "medium",
+        weight: 2,
+        conditions: [
+          { field: "useCases", operator: "includes", value: "voice" },
+        ],
       },
       {
         id: "ig-identity-provider",
@@ -285,6 +373,11 @@ export const phases: Phase[] = [
         description:
           "Configure DONNA as a SAML/OIDC service provider in your corporate IdP. Provide metadata URL or certificate.",
         priority: "medium",
+        weight: 2,
+        conditions: [
+          { field: "identityProvider", operator: "neq", value: "none" },
+          { field: "identityProvider", operator: "neq", value: "" },
+        ],
       },
       {
         id: "ig-external-data",
@@ -292,6 +385,10 @@ export const phases: Phase[] = [
         description:
           "Identify any external data feeds for enrichment (credit bureau, public records APIs). Prepare API keys or file formats.",
         priority: "low",
+        weight: 1,
+        conditions: [
+          { field: "useCases", operator: "includes", value: "cross-sell" },
+        ],
       },
       {
         id: "ig-messaging",
@@ -299,6 +396,10 @@ export const phases: Phase[] = [
         description:
           "If DONNA will send notifications via Slack, SMS, or Teams, set up webhook URLs or API tokens. Document expected message formats.",
         priority: "low",
+        weight: 1,
+        conditions: [
+          { field: "useCases", operator: "includes", value: "task-automation" },
+        ],
       },
       {
         id: "ig-file-stores",
@@ -306,6 +407,10 @@ export const phases: Phase[] = [
         description:
           "If using SFTP/FTP uploads or callback webhooks, arrange for storage endpoints and firewall rules. Provide sample payload schemas.",
         priority: "low",
+        weight: 1,
+        conditions: [
+          { field: "dataFormat", operator: "eq", value: "sftp" },
+        ],
       },
       {
         id: "ig-standards",
@@ -313,6 +418,7 @@ export const phases: Phase[] = [
         description:
           "Ensure all integrated platforms meet compatibility guidelines (standard JSON/REST APIs, ACORD forms if applicable).",
         priority: "medium",
+        weight: 2,
       },
     ],
   },
@@ -331,6 +437,7 @@ export const phases: Phase[] = [
         description:
           "Ensure a signed subscription/license agreement covering usage rights, renewal terms, and SLAs is in place.",
         priority: "high",
+        weight: 3,
       },
       {
         id: "lc-nda",
@@ -338,6 +445,7 @@ export const phases: Phase[] = [
         description:
           "Exchange any needed NDAs. Ensure compliance with privacy laws. Verify that DONNA's DPA meets GDPR/CCPA standards.",
         priority: "high",
+        weight: 3,
       },
       {
         id: "lc-ip-ownership",
@@ -345,6 +453,7 @@ export const phases: Phase[] = [
         description:
           "Confirm all outputs and reports are owned by your agency. Clarify that your data is never used to train AI models.",
         priority: "high",
+        weight: 3,
       },
       {
         id: "lc-billing",
@@ -352,6 +461,7 @@ export const phases: Phase[] = [
         description:
           "Provide billing contacts, purchase order numbers, and invoice preferences. Confirm license counts/users for initial payment.",
         priority: "medium",
+        weight: 2,
       },
       {
         id: "lc-renewal-sla",
@@ -359,6 +469,7 @@ export const phases: Phase[] = [
         description:
           "Understand renewal terms and included technical support. Document any penalties or remedies for SLA breaches.",
         priority: "medium",
+        weight: 2,
       },
       {
         id: "lc-regulatory",
@@ -366,6 +477,10 @@ export const phases: Phase[] = [
         description:
           "Incorporate any industry-specific rules (insurance regulations, auditability requirements, carrier reporting).",
         priority: "medium",
+        weight: 2,
+        conditions: [
+          { field: "securityLevel", operator: "eq", value: "regulated" },
+        ],
       },
     ],
   },
@@ -384,6 +499,7 @@ export const phases: Phase[] = [
         description:
           "Establish separate sandbox/staging and production tenants. All integrations should first be validated in a test environment.",
         priority: "high",
+        weight: 3,
       },
       {
         id: "dt-test-plan",
@@ -391,6 +507,7 @@ export const phases: Phase[] = [
         description:
           'Develop test cases covering each integration and feature (e.g. "Given test data, DONNA should import 100% of policies correctly").',
         priority: "high",
+        weight: 3,
       },
       {
         id: "dt-test-data",
@@ -398,6 +515,7 @@ export const phases: Phase[] = [
         description:
           "Prepare representative test datasets (small-scale versions of real data) with known outcomes for validating predictions.",
         priority: "high",
+        weight: 3,
       },
       {
         id: "dt-uat",
@@ -405,6 +523,7 @@ export const phases: Phase[] = [
         description:
           'Define user acceptance tests (e.g. "Sales manager can log in, run a sentiment report, and interpret results").',
         priority: "high",
+        weight: 3,
       },
       {
         id: "dt-rollback",
@@ -412,6 +531,7 @@ export const phases: Phase[] = [
         description:
           "Plan contingencies if an integration fails. Ensure data backups exist and that initial data loads can be refreshed.",
         priority: "medium",
+        weight: 2,
       },
       {
         id: "dt-documentation",
@@ -419,6 +539,7 @@ export const phases: Phase[] = [
         description:
           "Maintain an integration/configuration document (mapping fields, transformation rules) for future reference and audit.",
         priority: "medium",
+        weight: 2,
       },
       {
         id: "dt-monitoring",
@@ -426,6 +547,7 @@ export const phases: Phase[] = [
         description:
           "Identify key operational metrics (sync success, latency, API response times). Configure dashboards and alerts for failures.",
         priority: "medium",
+        weight: 2,
       },
       {
         id: "dt-support-plan",
@@ -433,6 +555,7 @@ export const phases: Phase[] = [
         description:
           "Clarify support tiers (DONNA 24/7 support vs. client IT). Provide escalation contacts and incident tracking procedures.",
         priority: "medium",
+        weight: 2,
       },
     ],
   },
@@ -472,4 +595,45 @@ export function getPrevPhase(currentSlug: string): Phase | undefined {
 
 export function getTotalItems(): number {
   return phases.reduce((sum, phase) => sum + phase.items.length, 0)
+}
+
+// ---------------------------------------------------------------------------
+// Filtering helpers — strip items whose conditions are not met
+// ---------------------------------------------------------------------------
+
+function defaultWeight(priority: "high" | "medium" | "low"): number {
+  return priority === "high" ? 3 : priority === "medium" ? 2 : 1
+}
+
+export function getItemWeight(item: ChecklistItem): number {
+  return item.weight ?? defaultWeight(item.priority)
+}
+
+export function getFilteredPhases(profile: IntakeProfile | undefined): Phase[] {
+  if (!profile) return phases
+
+  return phases
+    .map((phase) => ({
+      ...phase,
+      items: phase.items.filter(
+        (item) =>
+          !item.conditions ||
+          item.conditions.length === 0 ||
+          evaluateAllConditions(profile, item.conditions)
+      ),
+    }))
+    .filter((phase) => phase.items.length > 0)
+}
+
+export function resolveLabel(
+  item: ChecklistItem,
+  profile: IntakeProfile | undefined
+): string {
+  if (!profile || !item.dynamicLabel) return item.label
+
+  const allSystems = [...profile.ams, ...profile.crm]
+  for (const sys of allSystems) {
+    if (item.dynamicLabel[sys]) return item.dynamicLabel[sys]
+  }
+  return item.label
 }

@@ -1,10 +1,30 @@
 "use client"
 
+import { useMemo } from "react"
 import { timelineMilestones } from "@/lib/onboarding-data"
 import { useOnboardingStore } from "./use-onboarding-store"
 
 export default function OnboardingTimeline() {
-  const { getPhaseStatus } = useOnboardingStore()
+  const { getPhaseStatus, getEstimatedTimeline } = useOnboardingStore()
+  const timeline = getEstimatedTimeline()
+
+  const dynamicMilestones = useMemo(() => {
+    const totalDays = timeline.max
+    const count = timelineMilestones.length
+    const sliceSize = Math.max(1, Math.round(totalDays / count))
+
+    let dayCounter = 0
+    return timelineMilestones.map((m, i) => {
+      const start = dayCounter
+      const end = i === count - 1 ? totalDays : dayCounter + sliceSize
+      dayCounter = end
+      const label =
+        i === count - 1
+          ? `Day ${start}+`
+          : `Day ${start}-${end}`
+      return { ...m, dynamicDays: label }
+    })
+  }, [timeline.max])
 
   return (
     <div className="w-full overflow-x-auto pb-4">
@@ -13,7 +33,7 @@ export default function OnboardingTimeline() {
         <div className="absolute top-5 left-5 right-5 h-0.5 bg-white/10" />
 
         <div className="relative flex justify-between">
-          {timelineMilestones.map((milestone, idx) => {
+          {dynamicMilestones.map((milestone, idx) => {
             const phaseStatus = getPhaseStatus(milestone.phase)
             const isComplete = phaseStatus === "complete"
             const isActive = phaseStatus === "in-progress"
@@ -22,7 +42,7 @@ export default function OnboardingTimeline() {
               <div
                 key={idx}
                 className="flex flex-col items-center text-center"
-                style={{ width: `${100 / timelineMilestones.length}%` }}
+                style={{ width: `${100 / dynamicMilestones.length}%` }}
               >
                 {/* Dot */}
                 <div
@@ -57,7 +77,7 @@ export default function OnboardingTimeline() {
                   {milestone.label}
                 </p>
                 <p className="text-[10px] text-foreground/40 mt-0.5">
-                  {milestone.days}
+                  {milestone.dynamicDays}
                 </p>
               </div>
             )

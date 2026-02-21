@@ -1,23 +1,34 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { phases } from "@/lib/onboarding-data"
+import Link from "next/link"
 import { useOnboardingStore } from "./use-onboarding-store"
 import ProgressBar from "./progress-bar"
 import PhaseCard from "./phase-card"
 import OnboardingTimeline from "./onboarding-timeline"
 import ReadinessSummary from "./readiness-summary"
+import IntakeWizard from "./intake-wizard"
 import { Button } from "@/components/ui/button"
-import { RotateCcw } from "lucide-react"
+import { RotateCcw, Pencil, ArrowRight, Sparkles } from "lucide-react"
+import { tierConfig } from "@/lib/onboarding-intake"
+import type { IntakeProfile } from "@/lib/onboarding-intake"
+import { getDefaultIntakeProfile } from "@/lib/onboarding-intake"
 
 export default function OnboardingHub() {
   const store = useOnboardingStore()
   const {
     state,
     hydrated,
+    filteredPhases,
     setCompanyInfo,
+    setIntakeProfile,
+    hasCompletedIntake,
     getPhaseProgress,
     getOverallProgress,
+    getWeightedProgress,
+    getReadinessTier,
+    getSmartRecommendation,
+    getEstimatedTimeline,
     getPhaseStatus,
     resetOnboarding,
   } = store
@@ -28,6 +39,7 @@ export default function OnboardingHub() {
   const [infoSaved, setInfoSaved] = useState(false)
   const [showSummary, setShowSummary] = useState(false)
   const [showResetConfirm, setShowResetConfirm] = useState(false)
+  const [showIntakeWizard, setShowIntakeWizard] = useState(false)
 
   useEffect(() => {
     if (hydrated) {
@@ -44,9 +56,17 @@ export default function OnboardingHub() {
     setTimeout(() => setInfoSaved(false), 3000)
   }
 
-  const overall = getOverallProgress()
-  const hasAnyProgress = overall.completed > 0
+  const handleIntakeComplete = (profile: IntakeProfile) => {
+    setIntakeProfile(profile)
+    setShowIntakeWizard(false)
+  }
 
+  const handleIntakeSkip = () => {
+    setIntakeProfile(getDefaultIntakeProfile())
+    setShowIntakeWizard(false)
+  }
+
+  // Loading skeleton
   if (!hydrated) {
     return (
       <div className="py-20 px-4 sm:px-6 lg:px-8">
@@ -65,6 +85,24 @@ export default function OnboardingHub() {
     )
   }
 
+  // Show intake wizard if not completed yet, or if user clicked "Edit Profile"
+  if ((!hasCompletedIntake() && !state.intakeProfile) || showIntakeWizard) {
+    return (
+      <IntakeWizard
+        onComplete={handleIntakeComplete}
+        onSkip={handleIntakeSkip}
+      />
+    )
+  }
+
+  const overall = getOverallProgress()
+  const weighted = getWeightedProgress()
+  const tier = getReadinessTier()
+  const tierInfo = tierConfig[tier]
+  const recommendation = getSmartRecommendation()
+  const timeline = getEstimatedTimeline()
+  const hasAnyProgress = overall.completed > 0
+
   return (
     <>
       <div className="py-12 md:py-20 px-4 sm:px-6 lg:px-8">
@@ -75,21 +113,40 @@ export default function OnboardingHub() {
               DONNA <span className="gradient-text">Onboarding</span>
             </h1>
             <p className="text-foreground/60 max-w-2xl mx-auto text-sm md:text-base">
-              Prepare your organization for DONNA implementation at your own pace.
-              Complete each phase below to ensure a smooth deployment in 2-6 weeks.
+              Your personalized onboarding plan based on your setup.
+              Estimated timeline:{" "}
+              <span className="text-accent font-semibold">{timeline.label}</span>.
             </p>
           </div>
 
-          {/* Overall Progress */}
+          {/* Readiness Score Card */}
           <div className="glass-card rounded-xl p-6 glow-accent animate-slide-up">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
-              <div>
-                <h2 className="text-lg font-bold">Overall Readiness</h2>
-                <p className="text-sm text-foreground/50">
-                  {overall.completed} of {overall.total} items completed
-                </p>
-              </div>
               <div className="flex items-center gap-3">
+                <div className="text-center">
+                  <div className="text-3xl font-bold">{weighted.percentage}%</div>
+                  <span
+                    className={`inline-block mt-1 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full ${tierInfo.bg} ${tierInfo.color}`}
+                  >
+                    {tierInfo.label}
+                  </span>
+                </div>
+                <div className="ml-2">
+                  <h2 className="text-lg font-bold">Weighted Readiness</h2>
+                  <p className="text-sm text-foreground/50">
+                    {overall.completed} of {overall.total} items completed
+                    {" "}({weighted.earnedWeight}/{weighted.totalWeight} pts)
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 flex-wrap">
+                <button
+                  onClick={() => setShowIntakeWizard(true)}
+                  className="flex items-center gap-1.5 text-xs text-foreground/40 hover:text-accent transition-colors"
+                >
+                  <Pencil className="w-3.5 h-3.5" />
+                  Edit Profile
+                </button>
                 {hasAnyProgress && (
                   <button
                     onClick={() => setShowResetConfirm(true)}
@@ -109,8 +166,36 @@ export default function OnboardingHub() {
                 </Button>
               </div>
             </div>
-            <ProgressBar percentage={overall.percentage} size="lg" showPercentage />
+            <ProgressBar percentage={weighted.percentage} size="lg" showPercentage={false} />
           </div>
+
+          {/* Smart Recommendation */}
+          {recommendation && (
+            <div className="glass-card rounded-xl p-5 border-accent/20 animate-slide-up" style={{ animationDelay: "50ms" }}>
+              <div className="flex items-center gap-3">
+                <div className="shrink-0 w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
+                  <Sparkles className="w-5 h-5 text-accent" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs text-foreground/50 font-medium uppercase tracking-wider">
+                    Recommended Next
+                  </p>
+                  <p className="text-sm font-semibold truncate">
+                    {recommendation.itemLabel}
+                  </p>
+                  <p className="text-xs text-foreground/40">
+                    in {recommendation.phaseTitle}
+                  </p>
+                </div>
+                <Link href={`/onboarding/${recommendation.phaseSlug}`}>
+                  <Button variant="donnaOutline" size="sm">
+                    Go
+                    <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          )}
 
           {/* Company Info Form */}
           <div className="glass-card rounded-xl p-6 animate-slide-up" style={{ animationDelay: "100ms" }}>
@@ -180,7 +265,7 @@ export default function OnboardingHub() {
           <div>
             <h2 className="text-xl font-bold mb-6">Onboarding Phases</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {phases.map((phase, idx) => (
+              {filteredPhases.map((phase, idx) => (
                 <div
                   key={phase.slug}
                   className="animate-slide-up"
@@ -200,8 +285,8 @@ export default function OnboardingHub() {
           <div className="glass-card rounded-xl p-6">
             <h2 className="text-lg font-bold mb-1">Estimated Timeline</h2>
             <p className="text-sm text-foreground/50 mb-6">
-              Typical DONNA deployment takes 2-6 weeks depending on complexity.
-              HawkSoft agencies can go live in under 5 days.
+              Based on your profile, deployment is estimated at{" "}
+              <span className="text-accent font-medium">{timeline.label}</span>.
             </p>
             <OnboardingTimeline />
           </div>
@@ -214,7 +299,8 @@ export default function OnboardingHub() {
           <div className="glass-card rounded-2xl p-6 max-w-sm w-full text-center glow-accent">
             <h3 className="text-lg font-bold mb-2">Reset Progress?</h3>
             <p className="text-sm text-foreground/60 mb-6">
-              This will clear all your checklist progress and company information. This action cannot be undone.
+              This will clear all your checklist progress, company information,
+              and intake profile. This action cannot be undone.
             </p>
             <div className="flex gap-3">
               <Button

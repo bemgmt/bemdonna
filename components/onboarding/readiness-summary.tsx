@@ -1,26 +1,55 @@
 "use client"
 
 import { useState } from "react"
-import { phases } from "@/lib/onboarding-data"
 import { useOnboardingStore } from "./use-onboarding-store"
 import ProgressBar from "./progress-bar"
 import { Button } from "@/components/ui/button"
 import { CheckCircle2, Circle, X } from "lucide-react"
+import { tierConfig } from "@/lib/onboarding-intake"
+import {
+  industryOptions,
+  amsOptions,
+  crmOptions,
+  securityLevelOptions,
+  useCaseOptions,
+} from "@/lib/onboarding-intake"
 
 interface ReadinessSummaryProps {
   onClose: () => void
 }
 
+function labelFor(
+  value: string,
+  options: readonly { value: string; label: string }[]
+): string {
+  return options.find((o) => o.value === value)?.label ?? value
+}
+
 export default function ReadinessSummary({ onClose }: ReadinessSummaryProps) {
-  const { state, getPhaseProgress, getOverallProgress } = useOnboardingStore()
-  const overall = getOverallProgress()
+  const {
+    state,
+    filteredPhases,
+    getPhaseProgress,
+    getWeightedProgress,
+    getReadinessTier,
+    getEstimatedTimeline,
+  } = useOnboardingStore()
+
+  const weighted = getWeightedProgress()
+  const tier = getReadinessTier()
+  const tierInfo = tierConfig[tier]
+  const timeline = getEstimatedTimeline()
+  const profile = state.intakeProfile
+
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState("")
 
   const handleSubmit = async () => {
     if (!state.contactEmail) {
-      setError("Please provide your company information on the hub page before submitting.")
+      setError(
+        "Please provide your company information on the hub page before submitting."
+      )
       return
     }
 
@@ -60,8 +89,8 @@ export default function ReadinessSummary({ onClose }: ReadinessSummaryProps) {
           </div>
           <h2 className="text-2xl font-bold mb-2">Assessment Submitted</h2>
           <p className="text-foreground/60 mb-6">
-            Your DONNA readiness assessment has been sent to our team. We&apos;ll
-            review your responses and reach out to{" "}
+            Your DONNA readiness assessment has been sent to our team.
+            We&apos;ll review your responses and reach out to{" "}
             <span className="text-accent">{state.contactEmail}</span> within 24
             hours.
           </p>
@@ -87,6 +116,49 @@ export default function ReadinessSummary({ onClose }: ReadinessSummaryProps) {
         </div>
 
         <div className="p-6 space-y-6">
+          {/* Intake Profile Summary */}
+          {profile && profile.industry && (
+            <div className="glass-panel rounded-xl p-4">
+              <h3 className="text-sm font-semibold text-foreground/60 mb-3 uppercase tracking-wider">
+                Setup Profile
+              </h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-sm">
+                <div>
+                  <span className="text-foreground/50">Industry</span>
+                  <p className="font-medium">
+                    {labelFor(profile.industry, industryOptions)}
+                  </p>
+                </div>
+                <div>
+                  <span className="text-foreground/50">AMS</span>
+                  <p className="font-medium">
+                    {profile.ams.map((a) => labelFor(a, amsOptions)).join(", ")}
+                  </p>
+                </div>
+                <div>
+                  <span className="text-foreground/50">CRM</span>
+                  <p className="font-medium">
+                    {profile.crm.map((c) => labelFor(c, crmOptions)).join(", ")}
+                  </p>
+                </div>
+                <div>
+                  <span className="text-foreground/50">Security</span>
+                  <p className="font-medium">
+                    {labelFor(profile.securityLevel, securityLevelOptions)}
+                  </p>
+                </div>
+                <div className="col-span-2">
+                  <span className="text-foreground/50">Use Cases</span>
+                  <p className="font-medium">
+                    {profile.useCases
+                      .map((u) => labelFor(u, useCaseOptions))
+                      .join(", ")}
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Company Info */}
           <div className="glass-panel rounded-xl p-4">
             <h3 className="text-sm font-semibold text-foreground/60 mb-2 uppercase tracking-wider">
@@ -114,18 +186,35 @@ export default function ReadinessSummary({ onClose }: ReadinessSummaryProps) {
             </div>
           </div>
 
-          {/* Overall Progress */}
-          <div>
-            <ProgressBar
-              percentage={overall.percentage}
-              label={`Overall: ${overall.completed} of ${overall.total} items`}
-              size="lg"
-            />
+          {/* Weighted Readiness */}
+          <div className="flex items-center gap-4">
+            <div className="text-center">
+              <div className="text-2xl font-bold">{weighted.percentage}%</div>
+              <span
+                className={`inline-block mt-1 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${tierInfo.bg} ${tierInfo.color}`}
+              >
+                {tierInfo.label}
+              </span>
+            </div>
+            <div className="flex-1">
+              <ProgressBar
+                percentage={weighted.percentage}
+                label={`Weighted: ${weighted.earnedWeight} of ${weighted.totalWeight} pts`}
+                size="lg"
+                showPercentage={false}
+              />
+            </div>
+          </div>
+
+          {/* Estimated Timeline */}
+          <div className="text-sm text-foreground/50">
+            Estimated timeline:{" "}
+            <span className="text-accent font-semibold">{timeline.label}</span>
           </div>
 
           {/* Phase Breakdown */}
           <div className="space-y-3">
-            {phases.map((phase) => {
+            {filteredPhases.map((phase) => {
               const progress = getPhaseProgress(phase.slug)
               const isComplete = progress.completed === progress.total
 

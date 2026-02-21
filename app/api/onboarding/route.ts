@@ -1,6 +1,18 @@
 import { type NextRequest, NextResponse } from "next/server"
 import nodemailer from "nodemailer"
-import { phases } from "@/lib/onboarding-data"
+import { phases, getFilteredPhases, getItemWeight } from "@/lib/onboarding-data"
+import type { IntakeProfile } from "@/lib/onboarding-intake"
+import {
+  estimateTimelineDays,
+  getReadinessTierFromScore,
+  industryOptions,
+  amsOptions,
+  crmOptions,
+  securityLevelOptions,
+  useCaseOptions,
+  dataVolumeOptions,
+  identityProviderOptions,
+} from "@/lib/onboarding-intake"
 
 interface PhaseState {
   completedItems: string[]
@@ -14,19 +26,40 @@ interface OnboardingSubmission {
   contactEmail: string
   startedAt: string
   phases: Record<string, PhaseState>
+  intakeProfile?: IntakeProfile
+}
+
+function labelFor(
+  value: string,
+  options: readonly { value: string; label: string }[]
+): string {
+  return options.find((o) => o.value === value)?.label ?? value
 }
 
 function buildSummaryHtml(data: OnboardingSubmission): string {
+  const profile = data.intakeProfile
+  const filtered = getFilteredPhases(profile)
+
   let totalCompleted = 0
   let totalItems = 0
+  let earnedWeight = 0
+  let totalWeight = 0
 
-  const phaseSections = phases
+  const phaseSections = filtered
     .map((phase) => {
       const ps = data.phases[phase.slug]
       const completed = ps?.completedItems.length ?? 0
       const total = phase.items.length
       totalCompleted += completed
       totalItems += total
+
+      const completedIds = new Set(ps?.completedItems ?? [])
+      for (const item of phase.items) {
+        const w = getItemWeight(item)
+        totalWeight += w
+        if (completedIds.has(item.id)) earnedWeight += w
+      }
+
       const pct = total > 0 ? Math.round((completed / total) * 100) : 0
 
       const itemRows = phase.items
@@ -38,7 +71,7 @@ function buildSummaryHtml(data: OnboardingSubmission): string {
             <td style="padding:6px 8px;border-bottom:1px solid #222;">${done ? "&#9745;" : "&#9744;"}</td>
             <td style="padding:6px 8px;border-bottom:1px solid #222;">
               <strong>${item.label}</strong>
-              <span style="color:#888;font-size:12px;margin-left:6px;">[${item.priority}]</span>
+              <span style="color:#888;font-size:12px;margin-left:6px;">[${item.priority} — ${getItemWeight(item)}pts]</span>
               ${note ? `<br/><em style="color:#06B6D4;font-size:12px;">Note: ${note}</em>` : ""}
             </td>
           </tr>`
@@ -53,8 +86,38 @@ function buildSummaryHtml(data: OnboardingSubmission): string {
     })
     .join("")
 
-  const overallPct =
-    totalItems > 0 ? Math.round((totalCompleted / totalItems) * 100) : 0
+  const weightedPct =
+    totalWeight > 0 ? Math.round((earnedWeight / totalWeight) * 100) : 0
+  const tier = getReadinessTierFromScore(weightedPct)
+  const tierLabels: Record<string, string> = {
+    critical: "CRITICAL",
+    "needs-work": "NEEDS WORK",
+    good: "GOOD",
+    ready: "READY",
+  }
+
+  const timeline = profile
+    ? estimateTimelineDays(profile)
+    : { label: "2–6 weeks" }
+
+  const skippedCount =
+    phases.reduce((sum, p) => sum + p.items.length, 0) - totalItems
+
+  let profileSection = ""
+  if (profile && profile.industry) {
+    profileSection = `
+      <h2 style="color:#06B6D4;margin-top:24px;">Setup Profile</h2>
+      <table style="font-size:14px;margin-bottom:16px;">
+        <tr><td style="padding:4px 12px 4px 0;color:#888;">Industry:</td><td>${labelFor(profile.industry, industryOptions)}</td></tr>
+        <tr><td style="padding:4px 12px 4px 0;color:#888;">AMS:</td><td>${profile.ams.map((a) => labelFor(a, amsOptions)).join(", ")}</td></tr>
+        <tr><td style="padding:4px 12px 4px 0;color:#888;">CRM:</td><td>${profile.crm.map((c) => labelFor(c, crmOptions)).join(", ")}</td></tr>
+        <tr><td style="padding:4px 12px 4px 0;color:#888;">Identity Provider:</td><td>${labelFor(profile.identityProvider, identityProviderOptions)}</td></tr>
+        <tr><td style="padding:4px 12px 4px 0;color:#888;">Security Level:</td><td>${labelFor(profile.securityLevel, securityLevelOptions)}</td></tr>
+        <tr><td style="padding:4px 12px 4px 0;color:#888;">Data Volume:</td><td>${labelFor(profile.dataVolume, dataVolumeOptions)}</td></tr>
+        <tr><td style="padding:4px 12px 4px 0;color:#888;">Use Cases:</td><td>${profile.useCases.map((u) => labelFor(u, useCaseOptions)).join(", ")}</td></tr>
+      </table>
+    `
+  }
 
   return `
     <div style="font-family:system-ui,sans-serif;color:#f5f5f7;background:#000;padding:32px;">
@@ -66,7 +129,10 @@ function buildSummaryHtml(data: OnboardingSubmission): string {
         <tr><td style="padding:4px 12px 4px 0;color:#888;">Started:</td><td>${data.startedAt ? new Date(data.startedAt).toLocaleDateString() : "N/A"}</td></tr>
         <tr><td style="padding:4px 12px 4px 0;color:#888;">Submitted:</td><td>${new Date().toLocaleString()}</td></tr>
       </table>
-      <h2>Overall Readiness: ${overallPct}% (${totalCompleted}/${totalItems} items)</h2>
+      ${profileSection}
+      <h2>Weighted Readiness: ${weightedPct}% (${earnedWeight}/${totalWeight} pts) — <span style="color:#06B6D4;">${tierLabels[tier]}</span></h2>
+      <p style="font-size:14px;color:#888;">Items: ${totalCompleted}/${totalItems} completed${skippedCount > 0 ? ` (${skippedCount} items filtered out based on profile)` : ""}</p>
+      <p style="font-size:14px;color:#888;">Estimated timeline: <strong style="color:#06B6D4;">${timeline.label}</strong></p>
       ${phaseSections}
       <hr style="border-color:#222;margin-top:32px;" />
       <p style="color:#888;font-size:12px;">This assessment was submitted via the DONNA onboarding portal at bemdonna.com/onboarding</p>

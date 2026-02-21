@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import type { Phase } from "@/lib/onboarding-data"
-import { getNextPhase, getPrevPhase } from "@/lib/onboarding-data"
+import { getNextPhase, getPrevPhase, getFilteredPhases, resolveLabel } from "@/lib/onboarding-data"
 import { useOnboardingStore } from "./use-onboarding-store"
 import ProgressBar from "./progress-bar"
 import { Button } from "@/components/ui/button"
@@ -12,6 +12,8 @@ import {
   ChevronRight,
   ChevronDown,
   LayoutGrid,
+  Filter,
+  Pencil,
 } from "lucide-react"
 
 interface PhaseChecklistProps {
@@ -26,6 +28,7 @@ const priorityBadge = {
 
 export default function PhaseChecklist({ phase }: PhaseChecklistProps) {
   const {
+    state,
     hydrated,
     toggleItem,
     isItemCompleted,
@@ -37,6 +40,14 @@ export default function PhaseChecklist({ phase }: PhaseChecklistProps) {
   const [expandedNotes, setExpandedNotes] = useState<Record<string, boolean>>(
     {}
   )
+
+  const profile = state.intakeProfile
+  const filteredPhases = getFilteredPhases(profile)
+  const filteredPhase = filteredPhases.find((p) => p.slug === phase.slug)
+  const visibleItems = filteredPhase?.items ?? phase.items
+  const totalOriginal = phase.items.length
+  const totalVisible = visibleItems.length
+  const isFiltered = totalVisible < totalOriginal
 
   const progress = getPhaseProgress(phase.slug)
   const next = getNextPhase(phase.slug)
@@ -55,6 +66,33 @@ export default function PhaseChecklist({ phase }: PhaseChecklistProps) {
           {Array.from({ length: 5 }).map((_, i) => (
             <div key={i} className="h-20 bg-white/5 rounded-xl" />
           ))}
+        </div>
+      </div>
+    )
+  }
+
+  if (totalVisible === 0) {
+    return (
+      <div className="py-12 md:py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl mx-auto space-y-8">
+          <div className="animate-fade-in">
+            <Link
+              href="/onboarding"
+              className="inline-flex items-center gap-1.5 text-sm text-foreground/50 hover:text-accent transition-colors mb-6"
+            >
+              <LayoutGrid className="w-4 h-4" />
+              Back to Hub
+            </Link>
+            <h1 className="text-2xl md:text-3xl font-bold mb-4">{phase.title}</h1>
+          </div>
+          <div className="glass-card rounded-xl p-8 text-center">
+            <Filter className="w-8 h-8 text-foreground/30 mx-auto mb-3" />
+            <h3 className="text-lg font-semibold mb-2">Phase Not Applicable</h3>
+            <p className="text-sm text-foreground/50 max-w-md mx-auto">
+              Based on your intake profile, none of the items in this phase apply
+              to your setup.
+            </p>
+          </div>
         </div>
       </div>
     )
@@ -94,12 +132,31 @@ export default function PhaseChecklist({ phase }: PhaseChecklistProps) {
           />
         </div>
 
+        {/* Filter banner */}
+        {isFiltered && (
+          <div className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-accent/5 border border-accent/10 text-xs text-foreground/50">
+            <Filter className="w-3.5 h-3.5 text-accent shrink-0" />
+            <span>
+              Showing {totalVisible} of {totalOriginal} items based on your
+              profile.
+            </span>
+            <Link
+              href="/onboarding"
+              className="ml-auto inline-flex items-center gap-1 text-accent hover:underline shrink-0"
+            >
+              <Pencil className="w-3 h-3" />
+              Edit
+            </Link>
+          </div>
+        )}
+
         {/* Checklist Items */}
         <div className="space-y-3">
-          {phase.items.map((item) => {
+          {visibleItems.map((item) => {
             const completed = isItemCompleted(phase.slug, item.id)
             const noteValue = getNote(phase.slug, item.id)
             const isExpanded = expandedNotes[item.id] || false
+            const displayLabel = resolveLabel(item, profile)
 
             return (
               <div
@@ -118,7 +175,7 @@ export default function PhaseChecklist({ phase }: PhaseChecklistProps) {
                           ? "bg-emerald-500 border-emerald-500"
                           : "border-white/20 hover:border-accent/50"
                       }`}
-                      aria-label={`${completed ? "Uncheck" : "Check"} ${item.label}`}
+                      aria-label={`${completed ? "Uncheck" : "Check"} ${displayLabel}`}
                     >
                       {completed && (
                         <svg
@@ -147,7 +204,7 @@ export default function PhaseChecklist({ phase }: PhaseChecklistProps) {
                               : "text-foreground"
                           }`}
                         >
-                          {item.label}
+                          {displayLabel}
                         </span>
                         <span
                           className={`text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded ${priorityBadge[item.priority]}`}
