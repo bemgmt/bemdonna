@@ -128,6 +128,9 @@ export default function Header() {
             <Link href="/donna-network" className="text-sm text-foreground/70 hover:text-accent transition-colors px-1">
               DONNA Network
             </Link>
+            <Link href="/onboarding" className="text-sm text-foreground/70 hover:text-accent transition-colors px-1">
+              Onboarding
+            </Link>
             <Link href="/pricing" className="text-sm text-foreground/70 hover:text-accent transition-colors px-1">
               Pricing
             </Link>
@@ -169,6 +172,13 @@ export default function Header() {
               className="text-sm text-foreground/70 hover:text-accent transition-colors py-2 px-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               DONNA Network
+            </Link>
+            <Link
+              href="/onboarding"
+              onClick={() => setIsOpen(false)}
+              className="text-sm text-foreground/70 hover:text-accent transition-colors py-2 px-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              Onboarding
             </Link>
             <Link
               href="/pricing"
