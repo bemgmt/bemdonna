@@ -15,7 +15,7 @@ export default function TermsPage() {
 
       <div className="max-w-4xl mx-auto prose prose-lg dark:prose-invert">
         <h1>Terms of Service</h1>
-        <p className="text-sm text-muted-foreground">Last updated: {new Date().toLocaleDateString()}</p>
+        <p className="text-sm text-muted-foreground">Last updated: February 22, 2026</p>
 
         <h2>1. Acceptance of Terms</h2>
         <p>

@@ -15,7 +15,7 @@ export default function PrivacyPage() {
 
       <div className="max-w-4xl mx-auto prose prose-lg dark:prose-invert">
         <h1>Privacy Policy</h1>
-        <p className="text-sm text-muted-foreground">Last updated: {new Date().toLocaleDateString()}</p>
+        <p className="text-sm text-muted-foreground">Last updated: February 22, 2026</p>
 
         <h2>1. Information We Collect</h2>
         <p>We collect information you provide directly to us, including:</p>
@@ -172,7 +172,27 @@ export default function PrivacyPage() {
           at the top of this policy indicates when it was last revised.
         </p>
 
-        <h2>14. Contact Us</h2>
+        <h2>15. Google Sign-In and OAuth</h2>
+        <p>
+          When you choose to sign in using Google, we receive the following information from your Google account:
+        </p>
+        <ul>
+          <li>Your name and email address</li>
+          <li>Your profile picture (if available)</li>
+        </ul>
+        <p>
+          We do not request or access any other Google account data, such as your contacts, calendar, Drive files,
+          or Gmail messages. The information received through Google Sign-In is used solely to authenticate your
+          identity and create or maintain your DONNA account. This data is not sold, rented, or shared with third
+          parties for their marketing purposes. It is only shared as described in Section 3 of this policy.
+        </p>
+        <p>
+          You can revoke DONNA's access to your Google account at any time through your{' '}
+          <a href="https://myaccount.google.com/permissions" className="text-accent hover:underline" target="_blank" rel="noopener noreferrer">Google Account permissions</a>{' '}
+          page. Revoking access will not delete your DONNA account, but you will no longer be able to sign in with Google.
+        </p>
+
+        <h2>16. Contact Us</h2>
         <p>
           For privacy-related questions, to exercise your rights, or to report a privacy concern, contact us at:
         </p>
